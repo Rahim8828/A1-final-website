@@ -415,10 +415,10 @@ export const servicePageData: ServiceData[] = [
     features: ['6 Months Polished Warranty', 'Complete polish for table and chairs', 'Heat and water-resistant finish', 'All Materials & Labour Cost'],
     image: '/assets/Dining-polish.webp',
     options: [
-      { id: 'dining-2seater', name: '2 Seater + Bench', price: 4449, rating: 4.9, reviewCount: 467, estimatedTime: '3.5 hrs', image: '/assets/2 Seater + Bench.webp' },
-      { id: 'dining-4seater', name: '4 Seater Dining Set', price: 3849, rating: 4.9, reviewCount: 567, estimatedTime: '4 hrs', image: '/assets/Dining table with 4 chair.webp' },
-      { id: 'dining-6seater', name: '6 Seater Dining Set', price: 5099, rating: 4.9, reviewCount: 789, estimatedTime: '5 hrs', image: '/assets/Dining table with 6 chair.webp' },
-      { id: 'single-table', name: 'Single Table Polish', price: 999, rating: 4.8, reviewCount: 234, estimatedTime: '1.5 hrs', image: '/assets/Single Table.webp' },
+      { id: 'dining-2seater', name: '2 Seater + Bench', price: 3449, rating: 4.9, reviewCount: 467, estimatedTime: '3.5 hrs', image: '/assets/2 Seater + Bench.webp' },
+      { id: 'dining-4seater', name: '4 Seater Dining Set', price: 3899, rating: 4.9, reviewCount: 567, estimatedTime: '4 hrs', image: '/assets/Dining table with 4 chair.webp' },
+      { id: 'dining-6seater', name: '6 Seater Dining Set', price: 5399, rating: 4.9, reviewCount: 789, estimatedTime: '5 hrs', image: '/assets/Dining table with 6 chair.webp' },
+      { id: 'single-table', name: 'Single Table Polish', price: 2999, rating: 4.8, reviewCount: 234, estimatedTime: '1.5 hrs', image: '/assets/Single Table.webp' },
       { id: 'single-chair', name: 'Single Chair Polish', price: 999, rating: 4.7, reviewCount: 189, estimatedTime: '1 hr', image: '/assets/Single Chair.webp' }
     ],
     selectedOption: -1,
