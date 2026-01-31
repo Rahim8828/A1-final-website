@@ -108,7 +108,7 @@ const GoregaonFurniturePolish = () => {
       'latitude': 19.1663,
       'longitude': 72.8526
     },
-    'telephone': '+917897995178',
+    'telephone': '+918828709945',
     'priceRange': '₹₹',
     'openingHours': 'Mo-Su 00:00-23:59',
     'areaServed': {
@@ -180,7 +180,7 @@ const GoregaonFurniturePolish = () => {
                     <span className="font-semibold">Call Now</span>
                   </a>
                   <a
-                    href="https://wa.me/917897995178?text=Hi, I need furniture polishing service in Goregaon"
+                    href="https://wa.me/918828709945?text=Hi, I need furniture polishing service in Goregaon"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center space-x-2 bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
