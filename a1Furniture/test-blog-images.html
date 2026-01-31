@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Images Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .blog-post { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        .blog-image { width: 200px; height: 150px; object-fit: cover; border-radius: 4px; }
+        .status { font-weight: bold; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Blog Images Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        const blogPosts = [
+            {
+                title: "10 Powerful Reasons Why Choose A1 Furniture Polish For Wooden Furniture In Goregaon",
+                image: "/assets/Why Choose A1 Furniture Polish for Wooden Furniture in Goregaon.webp"
+            },
+            {
+                title: "A1 Furniture Polish Pricing Services In Bandra Complete Guide 2025",
+                image: "/assets/A1 Furniture Polishing Price And Service In Bandra.webp"
+            },
+            {
+                title: "Best Wood Polishing In Andheri Restore Shine With A1 Furniture Polish",
+                image: "/assets/Best Wood Polishing In Andheri.webp"
+            },
+            {
+                title: "Professional Furniture Polishing Services In Jogeshwari A1 Furniture Polish",
+                image: "/assets/Furniture Polishing Services In Jogeshwari.webp"
+            },
+            {
+                title: "Step By Step Furniture Polishing Guide For Mumbai Homes",
+                image: "/assets/Furntiure Polishing Guide For Mumbai.webp"
+            },
+            {
+                title: "Top Furniture Polish Services In Mumbai Enhance Your Home D Cor",
+                image: "/assets/Top Furniture Polish Services in Mumbai.webp"
+            },
+            {
+                title: "Wood Polishing Cost In Mumbai",
+                image: "/assets/Wood Polishing Cost in Mumbai.webp"
+            },
+            {
+                title: "Choosing The Right Wood Polish",
+                image: "/assets/Ultimate Guide to choose.webp"
+            },
+            {
+                title: "Common Polishing Mistakes",
+                image: "/assets/5 Common Mistakes To Avoid.webp"
+            },
+            {
+                title: "How To Maintain Wooden Furniture",
+                image: "/assets/How To Maintain Wooden Furniture At Home.webp"
+            }
+        ];
+        
+        const resultsDiv = document.getElementById('results');
+        
+        // Check for unique images
+        const images = blogPosts.map(post => post.image);
+        const uniqueImages = [...new Set(images)];
+        
+        const summaryDiv = document.createElement('div');
+        summaryDiv.innerHTML = `
+            <h2>Summary</h2>
+            <p><strong>Total blog posts:</strong> ${blogPosts.length}</p>
+            <p><strong>Total images:</strong> ${images.length}</p>
+            <p><strong>Unique images:</strong> ${uniqueImages.length}</p>
+            <p class="status ${images.length === uniqueImages.length ? 'success' : 'error'}">
+                ${images.length === uniqueImages.length ? '✅ All images are DIFFERENT!' : '❌ Some images are SAME!'}
+            </p>
+        `;
+        resultsDiv.appendChild(summaryDiv);
+        
+        // Display each blog post with its image
+        blogPosts.forEach((post, index) => {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'blog-post';
+            
+            const img = document.createElement('img');
+            img.src = post.image;
+            img.alt = post.title;
+            img.className = 'blog-image';
+            
+            img.onload = () => {
+                console.log(`✅ Image ${index + 1} loaded successfully: ${post.image}`);
+            };
+            
+            img.onerror = () => {
+                console.error(`❌ Image ${index + 1} failed to load: ${post.image}`);
+                img.style.border = '2px solid red';
+                img.alt = 'Failed to load';
+            };
+            
+            postDiv.innerHTML = `
+                <h3>${index + 1}. ${post.title}</h3>
+                <p><strong>Image:</strong> ${post.image}</p>
+            `;
+            postDiv.appendChild(img);
+            
+            resultsDiv.appendChild(postDiv);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "types": ["node"]
+  },
+  "include": [
+    "vite.config.ts",
+    "vitest.config.ts",
+    "scripts/**/*",
+    "src/seo/**/*.ts",
+    "src/data/**/*.ts",
+    "src/types.ts",
+    "src/utils/schemaGenerator.ts",
+    "blog/**/*.ts",
+    "postcss.config.js",
+    "tailwind.config.js"
+  ],
+  "exclude": [
+    "src/seo/**/*.test.ts"
+  ]
+}
