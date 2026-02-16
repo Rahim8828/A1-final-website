@@ -13,6 +13,7 @@ export default {
         'slideInUp': 'slideInUp 300ms ease-out',
         'bounce-slow': 'bounce 3s infinite',
         'shimmer': 'shimmer 3s ease-in-out infinite',
+        'float': 'float 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -38,6 +39,10 @@ export default {
         shimmer: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
     },

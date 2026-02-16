@@ -5,6 +5,7 @@ import { Star } from 'lucide-react';
 import { getCanonicalURL } from '../utils/canonicalURL';
 import OptimizedImage from '../../src/components/OptimizedImage';
 import { COMMON_SIZES } from '../../src/utils/imageHelpers';
+import MailtoSection from '../components/MailtoSection';
 
 const WoodenFurniturePolish = () => {
   const pageUrl = "https://a1furniturepolish.com/wooden-furniture-polish";
@@ -64,7 +65,7 @@ const WoodenFurniturePolish = () => {
           text: 'For high-traffic furniture, we recommend durable finishes like Polyurethane (PU) or Melamine polish. They offer excellent protection against spills, scratches, and daily wear and tear.',
         },
       },
-       {
+      {
         '@type': 'Question',
         name: 'Can you change the color of my furniture?',
         acceptedAnswer: {
@@ -95,7 +96,7 @@ const WoodenFurniturePolish = () => {
 
       {/* Hero Section */}
       <section className="relative bg-amber-600 text-white">
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
             Wooden Furniture Polish in Mumbai
@@ -112,14 +113,14 @@ const WoodenFurniturePolish = () => {
 
       <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Intro Section */}
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900">
               Your One-Stop Solution for All Wood Polishing Needs
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-4xl mx-auto">
-             From your cherished dining table and comfortable bed to your elegant sofas and chairs, every piece of wooden furniture deserves to look its best. A1 Furniture Polish provides comprehensive <a href={pageUrl} className="text-amber-600 hover:underline">wooden furniture polishing services in Mumbai</a>, tailored to restore and protect your valuable items.
+              From your cherished dining table and comfortable bed to your elegant sofas and chairs, every piece of wooden furniture deserves to look its best. A1 Furniture Polish provides comprehensive <a href={pageUrl} className="text-amber-600 hover:underline">wooden furniture polishing services in Mumbai</a>, tailored to restore and protect your valuable items.
             </p>
           </div>
 
@@ -137,7 +138,7 @@ const WoodenFurniturePolish = () => {
             <div>
               {/* Why Choose Us Section */}
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Commitment to Quality</h3>
-               <ul className="space-y-4 text-gray-600">
+              <ul className="space-y-4 text-gray-600">
                 <li className="flex items-start">
                   <span className="text-green-500 font-bold mr-2">✔</span>
                   <div><strong>Comprehensive Service:</strong> We handle all furniture types, from dining tables, beds, and wardrobes to sofa frames, chairs, and cabinets.</div>
@@ -146,9 +147,9 @@ const WoodenFurniturePolish = () => {
                   <span className="text-green-500 font-bold mr-2">✔</span>
                   <div><strong>Stain & Scratch Removal:</strong> Our specialty is fixing imperfections, making your furniture look flawless once more in homes across Bandra, Andheri, and South Mumbai.</div>
                 </li>
-                 <li className="flex items-start">
+                <li className="flex items-start">
                   <span className="text-green-500 font-bold mr-2">✔</span>
-                   <div><strong>Durable & Protective Finishes:</strong> We use high-quality Melamine, PU, and other polishes to ensure a finish that is both beautiful and long-lasting.</div>
+                  <div><strong>Durable & Protective Finishes:</strong> We use high-quality Melamine, PU, and other polishes to ensure a finish that is both beautiful and long-lasting.</div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 font-bold mr-2">✔</span>
@@ -162,7 +163,7 @@ const WoodenFurniturePolish = () => {
           <div className="mt-20">
             <h3 className="text-3xl font-bold text-center text-gray-900 mb-8">Our Proven Polishing Process</h3>
             <ol className="grid md:grid-cols-4 gap-8 text-center">
-               <li className="flex flex-col items-center">
+              <li className="flex flex-col items-center">
                 <div className="bg-amber-500 text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl mb-4">1</div>
                 <h4 className="font-semibold text-lg mb-2">Consultation & Quote</h4>
                 <p className="text-gray-600">We assess your furniture's condition and provide a clear, detailed quote with no hidden costs.</p>
@@ -173,7 +174,7 @@ const WoodenFurniturePolish = () => {
                 <p className="text-gray-600">We meticulously prepare the wood, sanding and treating stains to ensure a perfect base.</p>
               </li>
               <li className="flex flex-col items-center">
-                 <div className="bg-amber-500 text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl mb-4">3</div>
+                <div className="bg-amber-500 text-white rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl mb-4">3</div>
                 <h4 className="font-semibold text-lg mb-2">Expert Application</h4>
                 <p className="text-gray-600">Our skilled artisans apply the chosen polish evenly for a consistent and beautiful finish.</p>
               </li>
@@ -184,20 +185,20 @@ const WoodenFurniturePolish = () => {
               </li>
             </ol>
           </div>
-          
-           {/* Service Locations */}
+
+          {/* Service Locations */}
           <div className="mt-20 text-center bg-gray-50 p-8 rounded-lg">
-             <h3 className="text-2xl font-bold text-gray-900 mb-4">Servicing Homes Across the Entire Mumbai Region</h3>
-             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-               Our expert on-site furniture polishing service is available for all residential clients in Mumbai:
-             </p>
-             <div className="mt-4 flex justify-center flex-wrap gap-4">
-                <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">South Mumbai</span>
-                <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">Bandra & Khar</span>
-                <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">Andheri & Juhu</span>
-                <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">Powai & Chembur</span>
-                <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">Thane</span>
-             </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Servicing Homes Across the Entire Mumbai Region</h3>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our expert on-site furniture polishing service is available for all residential clients in Mumbai:
+            </p>
+            <div className="mt-4 flex justify-center flex-wrap gap-4">
+              <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">South Mumbai</span>
+              <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">Bandra & Khar</span>
+              <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">Andheri & Juhu</span>
+              <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">Powai & Chembur</span>
+              <span className="bg-amber-100 text-amber-800 px-4 py-2 rounded-full font-semibold">Thane</span>
+            </div>
           </div>
 
 
@@ -214,7 +215,7 @@ const WoodenFurniturePolish = () => {
               </div>
               <div className="bg-gray-100 p-6 rounded-lg">
                 <div className="flex items-center mb-4">
-                    <div className="flex text-amber-500"><Star /><Star /><Star /><Star /><Star /></div>
+                  <div className="flex text-amber-500"><Star /><Star /><Star /><Star /><Star /></div>
                 </div>
                 <p className="text-gray-600 mb-4">"I had my old wooden bed and wardrobe polished. The results are amazing! They look brand new. I highly recommend A1 for anyone looking for top-quality wood polishing in Mumbai."</p>
                 <p className="font-semibold text-gray-800">- Rajesh P., Bandra</p>
@@ -246,19 +247,22 @@ const WoodenFurniturePolish = () => {
               <a href={`tel:${a1Tel}`} className="bg-white text-amber-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-lg transition duration-300">Call Now</a>
             </div>
           </div>
-          
-           {/* Internal Linking Footer */}
-           <div className="mt-16 text-center">
-                <h4 className="font-semibold text-lg mb-4">Explore Our Specialized Services</h4>
-                <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-amber-600">
-                    <a href="/commercial-polishing" className="hover:underline">Commercial Polishing</a>
-                    <a href="/antique-restoration" className="hover:underline">Antique Restoration</a>
-                    <a href="/" className="hover:underline">Homepage</a>
-                </div>
-           </div>
+
+          {/* Internal Linking Footer */}
+          <div className="mt-16 text-center">
+            <h4 className="font-semibold text-lg mb-4">Explore Our Specialized Services</h4>
+            <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-amber-600">
+              <a href="/commercial-polishing" className="hover:underline">Commercial Polishing</a>
+              <a href="/antique-restoration" className="hover:underline">Antique Restoration</a>
+              <a href="/" className="hover:underline">Homepage</a>
+            </div>
+          </div>
 
         </div>
       </div>
+
+      {/* Email Contact Section */}
+      <MailtoSection variant="gradient" />
     </>
   );
 };

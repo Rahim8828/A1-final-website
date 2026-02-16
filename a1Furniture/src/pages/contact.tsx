@@ -119,7 +119,6 @@ URL: ${window.location.href}`;
           <option>Mandir Polish</option>
           <option>Jula Polish</option>
           <option>Sofa Polish</option>
-          <option>Chester Drawer Polish</option>
           <option>Wardrobe Polish</option>
           <option>TV Unit Polish</option>
         </select>

@@ -65,6 +65,7 @@ export interface ServiceOption {
   estimatedTime?: string;
   image?: string;
   badge?: string;
+  description?: string;
 }
 
 export interface ProcessStep {
@@ -223,13 +224,13 @@ export interface PageData {
   h1: string;
   url: string;
   canonicalUrl: string;
-  
+
   // Service Information
   serviceCategory: string;
   serviceName: string;
   location: string;
   titleVariation: 'affordable' | 'top-rated' | 'professional' | 'best';
-  
+
   // Content Sections
   introduction: string;
   services: ServiceItem[];
@@ -240,13 +241,13 @@ export interface PageData {
   whyChooseUs: BenefitItem[];
   faqs: FAQItem[];
   relatedServices: RelatedService[];
-  
+
   // Schema Data
   schema: {
     localBusiness: LocalBusinessSchema;
     service: ServiceSchema;
   };
-  
+
   // Keywords
   primaryKeyword: string;
   secondaryKeywords: string[];

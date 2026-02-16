@@ -2,9 +2,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import path from 'path';
+import fs from 'fs';
 // import sitemap from 'vite-plugin-sitemap'; // Replaced with custom sitemap generation
 import { blogPosts } from './blog/data/blogPosts';
 import { pagesData } from './src/data/generatedPagesData';
+import { seoGapPagePaths } from './src/routes/seoGapRoutes';
 
 const blogPostRoutes = blogPosts.map(post => `/blog/${post.slug}`);
 const staticRoutes = [
@@ -22,24 +25,156 @@ const staticRoutes = [
   '/goregaon-furniture-polish',
   '/powai-furniture-polish',
   '/dadar',
-  '/products'
+  '/products',
+  '/wood-polishing-services',
+  '/deco-paint-services'
 ];
 
 // Add all 150 generated service pages to sitemap
 const generatedServiceRoutes = pagesData.map(page => page.url);
 
-const dynamicRoutes = [...blogPostRoutes, ...staticRoutes, ...generatedServiceRoutes];
+const dynamicRoutes = [...blogPostRoutes, ...staticRoutes, ...generatedServiceRoutes, ...seoGapPagePaths];
 
+
+// Custom plugin to serve ../assets as /products during dev
+function serveExternalAssets() {
+  const assetsRoot = path.resolve(__dirname, '../assets');
+  return {
+    name: 'serve-product-images',
+    configureServer(server: any) {
+      // Serve /media/* from ../assets root (videos, banners)
+      server.middlewares.use('/media', (req: any, res: any, next: any) => {
+        const filePath = path.join(assetsRoot, decodeURIComponent(req.url || ''));
+        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+          const ext = path.extname(filePath).toLowerCase();
+          const mimeTypes: Record<string, string> = {
+            '.mp4': 'video/mp4', '.webm': 'video/webm',
+            '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+            '.webp': 'image/webp',
+          };
+          res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
+          res.setHeader('Cache-Control', 'public, max-age=86400');
+          fs.createReadStream(filePath).pipe(res);
+        } else {
+          next();
+        }
+      });
+      // Serve /products/* from ../assets subfolders
+      server.middlewares.use('/products', (req: any, res: any, next: any) => {
+        const filePath = path.join(assetsRoot, decodeURIComponent(req.url || ''));
+        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+          const ext = path.extname(filePath).toLowerCase();
+          const mimeTypes: Record<string, string> = {
+            '.png': 'image/png',
+            '.jpg': 'image/jpeg',
+            '.jpeg': 'image/jpeg',
+            '.webp': 'image/webp',
+            '.gif': 'image/gif',
+            '.svg': 'image/svg+xml',
+            '.mp4': 'video/mp4',
+            '.webm': 'video/webm',
+          };
+          res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
+          res.setHeader('Cache-Control', 'public, max-age=86400');
+          fs.createReadStream(filePath).pipe(res);
+        } else {
+          next();
+        }
+      });
+    },
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    serveExternalAssets(),
     viteStaticCopy({
       targets: [
         {
           src: 'assets',
           dest: '.'
+        },
+        {
+          src: '../assets/banner_video.mp4',
+          dest: 'media'
+        },
+        {
+          src: '../assets/banner',
+          dest: 'media'
+        },
+        {
+          src: '../assets/sofa',
+          dest: 'products'
+        },
+        {
+          src: '../assets/bed',
+          dest: 'products'
+        },
+        {
+          src: '../assets/dining_set',
+          dest: 'products'
+        },
+        {
+          src: '../assets/table',
+          dest: 'products'
+        },
+        {
+          src: '../assets/wardrobe',
+          dest: 'products'
+        },
+        {
+          src: '../assets/cabinet',
+          dest: 'products'
+        },
+        {
+          src: '../assets/shelves',
+          dest: 'products'
+        },
+        {
+          src: '../assets/tvUnitPolish',
+          dest: 'products'
+        },
+        {
+          src: '../assets/doors',
+          dest: 'products'
+        },
+        {
+          src: '../assets/front_page_service_products',
+          dest: 'products'
+        },
+        {
+          src: '../assets/mandir',
+          dest: 'products'
+        },
+        {
+          src: '../assets/antique',
+          dest: 'products'
+        },
+        {
+          src: '../assets/jhula',
+          dest: 'products'
+        },
+        {
+          src: '../assets/pu_polish',
+          dest: 'products'
+        },
+        {
+          src: '../assets/deco_paint',
+          dest: 'products'
+        },
+        {
+          src: '../assets/FloorPoshining',
+          dest: 'products'
+        },
+        {
+          src: '../assets/logo_symbols',
+          dest: 'products'
+        },
+        {
+          src: '../assets/seo',
+          dest: 'products'
         },
         {
           src: 'public/favicon.ico',
@@ -71,6 +206,10 @@ export default defineConfig({
         },
         {
           src: 'public/browserconfig.xml',
+          dest: '.'
+        },
+        {
+          src: 'public/robots.txt',
           dest: '.'
         }
       ]
@@ -156,6 +295,12 @@ export default defineConfig({
     cssCodeSplit: true,
     // Optimize CSS
     cssMinify: true
+  },
+  // Dev server: serve parent assets folder as /products
+  server: {
+    fs: {
+      allow: ['.', '..'],
+    },
   },
   // Optimize dependencies
   optimizeDeps: {

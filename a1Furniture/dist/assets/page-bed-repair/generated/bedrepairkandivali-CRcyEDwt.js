@@ -1,0 +1,1 @@
+import{j as o}from"../../react-vendor-D7TvRcQ7.js";import{a,B as i}from"../bedrepairmumbai-DfkZ_qwa.js";import"../../page-servicelocations-DG6-8LJt.js";import"../../page-about-AoWZBs5p.js";import"../../icons-Bf1VXX4I.js";const r=()=>{const r=a.find(o=>"kandivali"===o.id);return o.jsx(i,{pageType:"location",location:r})};export{r as default};

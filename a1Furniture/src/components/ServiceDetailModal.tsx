@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { X, ArrowLeft, Shield, Wrench, Award, Umbrella, FileCheck, ChevronDown } from 'lucide-react';
-import { ServiceData } from '../types';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { X, ArrowLeft, Shield, Wrench, Award, Umbrella, FileCheck, ChevronDown, ChevronLeft, ChevronRight, UserCheck, GraduationCap, BadgeCheck } from 'lucide-react';
+import { ServiceData, ServiceOption } from '../types';
 import ServiceOptionCard from './ServiceOptionCard';
 import OptimizedImage from '../../src/components/OptimizedImage';
 import ServiceSelectionSummary from './ServiceSelectionSummary';
+import ProductDetailModal from './ProductDetailModal';
 
 interface ServiceDetailModalProps {
   service: ServiceData | null;
@@ -28,8 +29,12 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+  const [selectedProductOption, setSelectedProductOption] = useState<{ option: ServiceOption, index: number } | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const toggleFAQ = (index: number) => {
     setExpandedFAQ(expandedFAQ === index ? null : index);
@@ -52,7 +57,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
     const currentQty = quantities[optionIndex] || 1;
     const option = service!.options[optionIndex];
     const optionId = option.id || `${service!.id}-${optionIndex}`;
-    
+
     if (currentQty > 1) {
       // Just decrease quantity
       const newQty = currentQty - 1;
@@ -69,6 +74,40 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
     }
   };
 
+  // Handle product option click - opens detail modal
+  const handleProductClick = (option: ServiceOption, index: number) => {
+    setSelectedProductOption({ option, index });
+  };
+
+  // Close product detail modal
+  const closeProductDetail = () => {
+    setSelectedProductOption(null);
+  };
+
+  // Check scroll position and update buttons
+  const checkScrollPosition = useCallback(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = container;
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  }, []);
+
+  // Scroll left
+  const scrollLeft = () => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    container.scrollBy({ left: -240, behavior: 'smooth' });
+  };
+
+  // Scroll right
+  const scrollRight = () => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    container.scrollBy({ left: 240, behavior: 'smooth' });
+  };
+
   // Reset quantities when modal opens
   useEffect(() => {
     if (isOpen && service) {
@@ -79,15 +118,17 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
         }
       });
       setQuantities(initialQty);
+      // Reset scroll position and check buttons
+      setTimeout(checkScrollPosition, 100);
     }
-  }, [isOpen, service, selectedOptions]);
+  }, [isOpen, service, selectedOptions, checkScrollPosition]);
 
   // Handle focus trap
   useEffect(() => {
     if (isOpen) {
       // Store the previously focused element
       previousFocusRef.current = document.activeElement as HTMLElement;
-      
+
       // Focus the modal
       modalRef.current?.focus();
 
@@ -96,7 +137,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
     } else {
       // Restore body scroll
       document.body.style.overflow = '';
-      
+
       // Restore focus to the previously focused element
       previousFocusRef.current?.focus();
     }
@@ -120,7 +161,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
         const focusableElements = modalRef.current?.querySelectorAll(
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
-        
+
         if (!focusableElements || focusableElements.length === 0) return;
 
         const firstElement = focusableElements[0] as HTMLElement;
@@ -213,16 +254,55 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           {/* Scrollable Content - Responsive padding and spacing */}
           <div className="flex-1 overflow-y-auto overscroll-contain scroll-smooth webkit-overflow-scrolling-touch">
             <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-5 md:space-y-6 pb-4">
-              {/* Service Options Section - Responsive text and spacing */}
+              {/* Service Options Section - With Auto-Scroll */}
               <section aria-labelledby="service-options-heading" className="bg-gray-50 -mx-3 sm:-mx-4 md:mx-0 px-3 sm:px-4 md:px-0 py-3 sm:py-4 md:py-0 md:bg-transparent rounded-lg md:rounded-none">
-                <h3 id="service-options-heading" className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">
-                  Select Service Option
-                </h3>
-                {/* Mobile & Desktop: Horizontal scroll with cards */}
-                <div className="-mx-3 sm:-mx-4 md:mx-0">
-                  <div className="flex flex-row gap-2 md:gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide px-3 sm:px-4 md:px-0" role="group" aria-label="Service pricing options">
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <h3 id="service-options-heading" className="text-sm sm:text-base md:text-lg font-semibold text-gray-900">
+                    Select Service Option
+                  </h3>
+                  {/* Desktop scroll buttons */}
+                  <div className="hidden md:flex items-center gap-2">
+                    <button
+                      onClick={scrollLeft}
+                      disabled={!canScrollLeft}
+                      className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-200
+                                ${canScrollLeft
+                          ? 'border-gray-300 hover:bg-gray-100 text-gray-700'
+                          : 'border-gray-200 text-gray-300 cursor-not-allowed'}`}
+                      aria-label="Scroll left"
+                      type="button"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={scrollRight}
+                      disabled={!canScrollRight}
+                      className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-200
+                                ${canScrollRight
+                          ? 'border-gray-300 hover:bg-gray-100 text-gray-700'
+                          : 'border-gray-200 text-gray-300 cursor-not-allowed'}`}
+                      aria-label="Scroll right"
+                      type="button"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+                {/* Horizontal scroll container */}
+                <div className="-mx-3 sm:-mx-4 md:mx-0 relative">
+                  <div
+                    ref={scrollContainerRef}
+                    onScroll={checkScrollPosition}
+                    className="flex flex-row gap-2 md:gap-3 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide px-3 sm:px-4 md:px-0 scroll-smooth"
+                    role="group"
+                    aria-label="Service pricing options"
+                  >
                     {service.options.map((option, index) => (
-                      <div key={option.id || index} className="flex-shrink-0 w-[220px] md:w-[260px] snap-start">
+                      <div
+                        key={option.id || index}
+                        className="flex-shrink-0 w-[220px] md:w-[260px] snap-start cursor-pointer"
+                        onClick={() => handleProductClick(option, index)}
+                      >
                         <ServiceOptionCard
                           option={option}
                           serviceImage={service.image}
@@ -270,135 +350,71 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 </ul>
               </section>
 
-              {/* Top Professionals Section - Light & Compact UI */}
-              <section className="bg-amber-50 rounded-lg p-4 border border-amber-200" aria-labelledby="professionals-heading">
-                <h3 id="professionals-heading" className="text-base font-bold text-gray-900 mb-3">
-                  Why Choose Our Professionals?
+              {/* Why Choose Our Professionals - Clean Cube Box Design */}
+              <section className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5" aria-labelledby="professionals-heading">
+                <h3 id="professionals-heading" className="text-sm sm:text-base font-semibold text-gray-900 mb-4 uppercase tracking-wide">
+                  Why Choose Our Professionals
                 </h3>
-                <div className="space-y-2">
-                  {service.trustBadges.map((badge, index) => {
-                    // Map icon names to Lucide components
-                    const IconComponent =
-                      badge.icon === 'shield-check'
-                        ? Shield
-                        : badge.icon === 'wrench'
-                        ? Wrench
-                        : Award;
-
-                    return (
-                      <div key={index} className="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm">
-                        <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
-                          <IconComponent className="w-5 h-5 text-amber-600" />
-                        </div>
-                        <p className="text-sm font-medium text-gray-700 leading-snug flex-1">
-                          {badge.text}
-                        </p>
-                      </div>
-                    );
-                  })}
+                <div className="grid grid-cols-3 gap-3">
+                  {/* Background Verified */}
+                  <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center mb-2">
+                      <UserCheck className="w-5 h-5 text-white" />
+                    </div>
+                    <p className="text-xs text-center text-gray-700 font-medium leading-tight">
+                      Background Verified
+                    </p>
+                  </div>
+                  {/* 300+ Hours Training */}
+                  <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center mb-2">
+                      <GraduationCap className="w-5 h-5 text-white" />
+                    </div>
+                    <p className="text-xs text-center text-gray-700 font-medium leading-tight">
+                      300+ Hrs Training
+                    </p>
+                  </div>
+                  {/* Certified */}
+                  <div className="flex flex-col items-center p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center mb-2">
+                      <BadgeCheck className="w-5 h-5 text-white" />
+                    </div>
+                    <p className="text-xs text-center text-gray-700 font-medium leading-tight">
+                      Skill India Certified
+                    </p>
+                  </div>
                 </div>
               </section>
 
-              {/* A1 Cover Promise Section - Responsive sizing */}
-              <section className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-green-100" aria-labelledby="promise-heading">
-                <h3 id="promise-heading" className="text-base sm:text-lg font-semibold text-green-700 mb-3 sm:mb-4">
+              {/* A1 Cover Promise - Clean Cube Box Design */}
+              <section className="bg-white rounded-xl border border-gray-200 p-4 sm:p-5" aria-labelledby="promise-heading">
+                <h3 id="promise-heading" className="text-sm sm:text-base font-semibold text-gray-900 mb-4 uppercase tracking-wide">
                   A1 Cover Promise
                 </h3>
-                <div className="space-y-3 sm:space-y-4">
-                  {/* 6 months warranty */}
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="flex-shrink-0">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                        <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
-                      </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {/* 6 Months Warranty */}
+                  <div className="flex flex-col p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center mb-2">
+                      <Shield className="w-5 h-5 text-white" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs sm:text-sm font-medium text-gray-900">
-                        6 months warranty
-                      </p>
-                      <p className="text-xs text-gray-600 mt-0.5">
-                        On all polishing work against peeling or fading
-                      </p>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-green-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
+                    <p className="text-xs font-semibold text-gray-900 mb-0.5">6 Months Warranty</p>
+                    <p className="text-[10px] text-gray-500 leading-tight">Against peeling or fading</p>
                   </div>
-
-                  {/* Damage cover */}
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="flex-shrink-0">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                        <Umbrella className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
-                      </div>
+                  {/* Damage Cover */}
+                  <div className="flex flex-col p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center mb-2">
+                      <Umbrella className="w-5 h-5 text-white" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs sm:text-sm font-medium text-gray-900">
-                        Up to ₹10,000 damage cover
-                      </p>
-                      <p className="text-xs text-gray-600 mt-0.5">
-                        Protection against accidental damage during service
-                      </p>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-green-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
+                    <p className="text-xs font-semibold text-gray-900 mb-0.5">Damage Cover</p>
+                    <p className="text-[10px] text-gray-500 leading-tight">Up to 10,000 protection</p>
                   </div>
-
-                  {/* Verified quotes */}
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="flex-shrink-0">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                        <FileCheck className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
-                      </div>
+                  {/* Verified Quotes */}
+                  <div className="flex flex-col p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center mb-2">
+                      <FileCheck className="w-5 h-5 text-white" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs sm:text-sm font-medium text-gray-900">
-                        Verified quotes
-                      </p>
-                      <p className="text-xs text-gray-600 mt-0.5">
-                        Transparent pricing with no hidden charges
-                      </p>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-green-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
+                    <p className="text-xs font-semibold text-gray-900 mb-0.5">Verified Quotes</p>
+                    <p className="text-[10px] text-gray-500 leading-tight">No hidden charges</p>
                   </div>
                 </div>
               </section>
@@ -422,7 +438,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                       <div className="flex gap-2 sm:gap-3 md:gap-4">
                         {/* Step Number */}
                         <div className="flex-shrink-0">
-                          <div 
+                          <div
                             className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white text-sm sm:text-base font-bold shadow-md"
                             aria-label={`Step ${step.step}`}
                           >
@@ -522,6 +538,23 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           />
         </div>
       </div>
+
+      {/* Product Detail Modal - Opens when clicking on a service option */}
+      {selectedProductOption && service && (
+        <ProductDetailModal
+          option={selectedProductOption.option}
+          serviceImage={service.image}
+          serviceName={service.name}
+          priceIncludes={service.priceIncludes}
+          isOpen={!!selectedProductOption}
+          onClose={closeProductDetail}
+          onAdd={() => handleAdd(selectedProductOption.index)}
+          isSelected={selectedOptions.includes(selectedProductOption.index)}
+          quantity={quantities[selectedProductOption.index] || 1}
+          onIncrease={() => handleIncrease(selectedProductOption.index)}
+          onDecrease={() => handleDecrease(selectedProductOption.index)}
+        />
+      )}
     </div>
   );
 };

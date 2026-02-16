@@ -1,111 +1,108 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Star, ArrowRight } from 'lucide-react';
-import { servicePageData } from '../data/servicePageData';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+
+interface ServiceItem {
+  id: string;
+  name: string;
+  image: string;
+  link: string;
+}
+
+const services: ServiceItem[] = [
+  { id: 'sofa', name: 'Sofa Polish', image: '/products/front_page_service_products/whiteseater_6_front.webp', link: '/services?service=sofa-polish' },
+  { id: 'bed', name: 'Bed Polish', image: '/products/front_page_service_products/redqueenSize_front.webp', link: '/services?service=bed-polish' },
+  { id: 'wardrobe', name: 'Wardrobe Polish', image: '/products/front_page_service_products/darkSingle_front.webp', link: '/services?service=wardrobe-polish' },
+  { id: 'door', name: 'Door Polish', image: '/products/front_page_service_products/doubke_door_front.webp', link: '/services?service=door-polish' },
+  { id: 'dining', name: 'Dining Set', image: '/products/front_page_service_products/whitechair_single_front.webp', link: '/services?service=dining-set-polish' },
+  { id: 'table', name: 'Table Polish', image: '/products/table/center_table/darkWoodenTable.webp', link: '/services?service=table-polish' },
+  { id: 'cabinet', name: 'Cabinet Polish', image: '/products/cabinet/five_Drawer_cabinet/singleCabinet.jpeg', link: '/services?service=cabinet-polish' },
+  { id: 'shelf', name: 'Shelf Polish', image: '/products/front_page_service_products/lightWhite_shelve_front.webp', link: '/services?service=wooden-shelf-polish' },
+  { id: 'tv-unit', name: 'TV Unit', image: '/products/tvUnitPolish/solidWood/darkBrown_solidwood.webp', link: '/services?service=tv-unit-polish' },
+  { id: 'jhula', name: 'Jhula Polish', image: '/products/front_page_service_products/darkWoodenJhula_front.webp', link: '/services?service=jhula-polish' },
+  { id: 'pu-polish', name: 'PU Polish', image: '/products/pu_polish/puPolish_title/pu_polish_title.webp', link: '/wood-polishing-services' },
+  { id: 'deco-paint', name: 'Deco Paint', image: '/products/deco_paint/decoPaint_Header/deco_paint_page_header.webp', link: '/deco-paint-services' },
+  { id: 'mandir', name: 'Mandir Polish', image: '/products/mandir/darkWoodenMandir.webp', link: '/services?service=mandir-polish' },
+  { id: 'antique', name: 'Antique Polish', image: '/products/antique/mediumAntique.webp', link: '/services?service=antique-polish' },
+];
 
 const PopularServices: React.FC = () => {
-  const navigate = useNavigate();
-
-  // Get top 6 popular services
-  const popularServices = servicePageData.slice(0, 6);
-
-  const handleQuickBook = (serviceId: string) => {
-    // Navigate to services page with service ID in URL
-    navigate(`/services?service=${serviceId}`);
-  };
-
   return (
-    <>
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                Popular Services
-              </h2>
-              <p className="text-gray-600">Most booked furniture polishing services</p>
-            </div>
-            <Link
-              to="/services"
-              className="hidden md:flex items-center gap-2 text-amber-600 hover:text-amber-700 font-semibold"
-            >
-              View All
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+    <section className="pt-4 pb-5 md:py-10 bg-white">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
+        {/* Section Header */}
+        <div className="flex items-center justify-between mb-4 md:mb-8">
+          <div>
+            <h2 className="text-lg md:text-2xl font-bold text-gray-900">Popular Services</h2>
+            <p className="text-gray-400 text-xs md:text-sm mt-0.5">Shop by category</p>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-            {popularServices.map((service) => {
-              const minPrice = Math.min(...service.options.map(opt => opt.price));
-              
-              return (
-                <div
-                  key={service.id}
-                  className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 group"
-                >
-                  {/* Service Image */}
-                  <div className="relative h-32 md:h-40 overflow-hidden bg-gray-100">
-                    <img
-                      src={service.image}
-                      alt={service.name}
-                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
-                    />
-                    {service.options[0]?.badge && (
-                      <div className="absolute top-2 right-2 bg-green-500 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full">
-                        {service.options[0].badge}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Service Info */}
-                  <div className="p-2.5 md:p-3">
-                    <h3 className="font-bold text-gray-900 text-xs md:text-sm mb-1.5 line-clamp-1">
-                      {service.name}
-                    </h3>
-
-                    {/* Rating */}
-                    <div className="flex items-center gap-1 mb-2">
-                      <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                      <span className="text-xs font-semibold text-gray-900">{service.rating}</span>
-                      <span className="text-[10px] text-gray-500">
-                        ({service.reviewCount >= 1000 ? `${(service.reviewCount / 1000).toFixed(1)}K` : service.reviewCount})
-                      </span>
-                    </div>
-
-                    {/* Price & CTA */}
-                    <div className="flex items-end justify-between gap-2">
-                      <div>
-                        <p className="text-[10px] text-gray-500">From</p>
-                        <p className="text-sm md:text-base font-bold text-gray-900">
-                          ₹{minPrice.toLocaleString()}
-                        </p>
-                      </div>
-                      <button
-                        onClick={() => handleQuickBook(service.id)}
-                        className="px-2.5 py-1.5 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors font-semibold text-[10px] md:text-xs whitespace-nowrap"
-                      >
-                        Book
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* View All Button - Mobile */}
-          <div className="mt-6 text-center md:hidden">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-semibold"
-            >
-              View All Services
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          <Link
+            to="/services"
+            className="hidden md:flex items-center gap-1.5 text-amber-600 hover:text-amber-700 font-semibold text-sm transition-colors"
+          >
+            View All
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
-      </section>
-    </>
+
+        {/* ===== Mobile: Square Grid (4 columns) ===== */}
+        <div className="md:hidden grid grid-cols-4 gap-x-3 gap-y-4">
+          {services.map((service) => (
+            <Link
+              key={service.id}
+              to={service.link}
+              className="flex flex-col items-center group"
+            >
+              <div className="w-full aspect-square rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shadow-sm group-active:scale-95 transition-transform">
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <span className="mt-1.5 text-[11px] font-medium text-gray-700 text-center leading-tight line-clamp-2">
+                {service.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        {/* ===== Desktop: Circular Grid (7 columns × 2 rows) ===== */}
+        <div className="hidden md:grid md:grid-cols-7 gap-x-6 gap-y-8 justify-items-center">
+          {services.map((service) => (
+            <Link
+              key={service.id}
+              to={service.link}
+              className="flex flex-col items-center gap-2.5 group"
+            >
+              <div className="w-[110px] h-[110px] lg:w-[128px] lg:h-[128px] rounded-full overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 border-2 border-gray-100 group-hover:border-amber-300">
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-800 text-center leading-tight group-hover:text-amber-700 transition-colors">
+                {service.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        {/* Mobile: View All Link */}
+        <div className="mt-4 text-center md:hidden">
+          <Link
+            to="/services"
+            className="inline-flex items-center gap-1.5 text-amber-600 hover:text-amber-700 font-semibold text-sm"
+          >
+            View All Services
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 };
 

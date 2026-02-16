@@ -1,0 +1,1 @@
+import{j as r}from"../react-vendor-D7TvRcQ7.js";import{S as a}from"./fadedsofarepair-Bg-Nt0r7.js";import"../page-servicelocations-DG6-8LJt.js";import"../page-about-AoWZBs5p.js";import"../icons-Bf1VXX4I.js";import"../page-bed-repair/bedrepairmumbai-DfkZ_qwa.js";const e=()=>r.jsx(a,{pageType:"master"});export{e as default};

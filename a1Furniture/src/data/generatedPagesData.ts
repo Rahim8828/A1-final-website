@@ -9,6 +9,7 @@
 
 import { PageData } from '../types';
 import { generateAllPagesSync, validatePages } from './pageDataGenerator';
+import { allSeoGapPages } from './seoGapPagesData';
 
 // Generate all 150 pages synchronously (without SEO processing)
 export const pagesData: PageData[] = generateAllPagesSync();
@@ -26,6 +27,32 @@ console.log('✓ All 150 pages generated and validated successfully');
 console.log(`  - Phase 1: 80 Mumbai generic pages`);
 console.log(`  - Phase 2: 70 location-specific pages`);
 console.log(`  - Total: ${pagesData.length} pages`);
+
+// SEO Gap pages count
+const seoGapCount = allSeoGapPages.length;
+const seoGapByCategory = allSeoGapPages.reduce((acc, p) => {
+  acc[p.category] = (acc[p.category] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+
+// Print full SEO page summary
+console.log('\n══════════════════════════════════════════════');
+console.log('  📊 TOTAL SEO PAGES SUMMARY');
+console.log('══════════════════════════════════════════════');
+console.log(`  ✅ Generated Service Pages : ${pagesData.length}`);
+console.log(`  ✅ Sofa Repair Pages       : 160`);
+console.log(`  ✅ Bed Repair Pages         : 96`);
+console.log(`  ✅ SEO Gap Pages            : ${seoGapCount}`);
+console.log(`     ├─ Near Me              : ${seoGapByCategory['near-me'] || 0}`);
+console.log(`     ├─ Location Hubs        : ${seoGapByCategory['location-hub'] || 0}`);
+console.log(`     ├─ Wooden Polishing In  : ${seoGapByCategory['wooden-polishing-in'] || 0}`);
+console.log(`     ├─ Furniture Polish In  : ${seoGapByCategory['furniture-polish-in'] || 0}`);
+console.log(`     ├─ Wood Polishing In    : ${seoGapByCategory['wood-polishing-in'] || 0}`);
+console.log(`     ├─ Sofa Repair Standalone: ${seoGapByCategory['sofa-repair'] || 0}`);
+console.log(`     └─ Bed Repair Standalone : ${seoGapByCategory['bed-repair'] || 0}`);
+console.log('──────────────────────────────────────────────');
+console.log(`  🚀 GRAND TOTAL             : ${pagesData.length + 160 + 96 + seoGapCount} SEO pages`);
+console.log('══════════════════════════════════════════════\n');
 
 // Export helper functions to find pages
 export function getPageByUrl(url: string): PageData | undefined {

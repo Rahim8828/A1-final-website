@@ -55,15 +55,15 @@ const ServiceOptionCard: React.FC<ServiceOptionCardProps> = ({
       )}
 
       {/* Option Image - Top */}
-      <div className="w-full mb-2 bg-gray-50 rounded-lg overflow-hidden aspect-square flex items-center justify-center p-1.5 sm:p-2">
+      <div className="w-full mb-2 bg-gray-50 rounded-lg overflow-hidden aspect-square flex items-center justify-center">
         <OptimizedImage
           src={optionImage}
           alt={`${option.name} service option`}
           width={400}
           height={400}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-cover"
           loading="lazy"
-          objectFit="contain"
+          objectFit="cover"
         />
       </div>
 

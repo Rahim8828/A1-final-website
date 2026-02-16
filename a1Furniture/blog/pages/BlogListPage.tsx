@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { blogPosts } from '../data/blogPosts';
 import SEOHead from '../../src/components/SEOHead';
 import BlogCard from '../components/BlogCard';
-
+import MailtoSection from '../../src/components/MailtoSection';
 import { getCanonicalURL } from '../../src/utils/canonicalURL';
 
 
@@ -52,9 +52,9 @@ const BlogListPage = () => {
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                 {featuredPosts.map((post) => (
-                  <BlogCard 
-                    key={post.slug} 
-                    post={post} 
+                  <BlogCard
+                    key={post.slug}
+                    post={post}
                     variant="featured"
                     showTags={true}
                     showExcerpt={true}
@@ -84,9 +84,9 @@ const BlogListPage = () => {
           {paginatedPosts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
               {paginatedPosts.map((post) => (
-                <BlogCard 
-                  key={post.slug} 
-                  post={post} 
+                <BlogCard
+                  key={post.slug}
+                  post={post}
                   showTags={true}
                   showExcerpt={true}
                 />
@@ -108,14 +108,14 @@ const BlogListPage = () => {
           {totalPages > 1 && (
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-8">
               <div className="flex flex-col items-center gap-6">
-                
+
                 {/* Page Info */}
                 <div className="text-center">
                   <p className="text-sm text-gray-600 mb-2">
                     Showing page <span className="font-semibold text-gray-900">{currentPage}</span> of <span className="font-semibold text-gray-900">{totalPages}</span>
                   </p>
                   <div className="w-full bg-gray-200 rounded-full h-2 max-w-xs mx-auto">
-                    <div 
+                    <div
                       className="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full transition-all duration-300"
                       style={{ width: `${(currentPage / totalPages) * 100}%` }}
                     ></div>
@@ -124,16 +124,15 @@ const BlogListPage = () => {
 
                 {/* Navigation Buttons */}
                 <div className="flex flex-wrap justify-center items-center gap-2">
-                  
+
                   {/* Previous Button */}
                   <button
                     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
-                      currentPage === 1
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${currentPage === 1
                         ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md active:scale-95'
-                    }`}
+                      }`}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -154,22 +153,21 @@ const BlogListPage = () => {
                       } else {
                         page = currentPage - 2 + i;
                       }
-                      
+
                       return (
                         <button
                           key={page}
                           onClick={() => setCurrentPage(page)}
-                          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl font-semibold transition-all duration-200 ${
-                            currentPage === page
+                          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl font-semibold transition-all duration-200 ${currentPage === page
                               ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg transform scale-110'
                               : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md active:scale-95'
-                          }`}
+                            }`}
                         >
                           {page}
                         </button>
                       );
                     })}
-                    
+
                     {/* Show ellipsis and last page if needed */}
                     {totalPages > 5 && currentPage < totalPages - 2 && (
                       <>
@@ -183,16 +181,15 @@ const BlogListPage = () => {
                       </>
                     )}
                   </div>
-                  
+
                   {/* Next Button */}
                   <button
                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
-                      currentPage === totalPages
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${currentPage === totalPages
                         ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md active:scale-95'
-                    }`}
+                      }`}
                   >
                     <span className="hidden sm:inline">Next</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -224,6 +221,9 @@ const BlogListPage = () => {
 
         </div>
       </div>
+
+      {/* Email Contact Section */}
+      <MailtoSection variant="light" />
     </>
   );
 };

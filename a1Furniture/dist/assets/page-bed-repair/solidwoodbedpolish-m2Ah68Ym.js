@@ -1,0 +1,1 @@
+import{j as o}from"../react-vendor-D7TvRcQ7.js";import{c as s,B as e}from"./bedrepairmumbai-DfkZ_qwa.js";import"../page-servicelocations-DG6-8LJt.js";import"../page-about-AoWZBs5p.js";import"../icons-Bf1VXX4I.js";const r=()=>{const r=s.find(o=>"solid-wood"===o.id);return o.jsx(e,{pageType:"wood-type",woodType:r})};export{r as default};

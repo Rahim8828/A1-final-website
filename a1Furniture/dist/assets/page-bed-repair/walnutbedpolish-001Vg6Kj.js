@@ -1,0 +1,1 @@
+import{j as o}from"../react-vendor-D7TvRcQ7.js";import{c as e,B as r}from"./bedrepairmumbai-DfkZ_qwa.js";import"../page-servicelocations-DG6-8LJt.js";import"../page-about-AoWZBs5p.js";import"../icons-Bf1VXX4I.js";const s=()=>{const s=e.find(o=>"walnut"===o.id);return o.jsx(r,{pageType:"wood-type",woodType:s})};export{s as default};

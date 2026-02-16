@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white pb-16 md:pb-0">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
@@ -62,7 +62,7 @@ const Footer = () => {
               <div className="flex items-start space-x-2">
                 <Mail size={18} className="text-amber-400 flex-shrink-0 mt-1" />
                 <a href="mailto:A1furniturepolishservice@gmail.com" className="text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm break-all">
-                  A1furniturepolishservice@gmail.com
+                  contact@furniturepolish.com
                 </a>
               </div>
               <div className="flex items-start space-x-2">

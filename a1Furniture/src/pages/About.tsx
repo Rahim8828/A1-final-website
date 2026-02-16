@@ -3,6 +3,7 @@ import SEOHead from '../../src/components/SEOHead';
 import { FadeIn } from '../components/ScrollAnimations';
 import { getCanonicalURL } from '../utils/canonicalURL';
 import OptimizedImage from '../../src/components/OptimizedImage';
+import MailtoSection from '../components/MailtoSection';
 
 const About = () => {
   const values = [
@@ -43,7 +44,7 @@ const About = () => {
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-amber-200 rounded-full opacity-20 -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-200 rounded-full opacity-20 translate-y-1/2 -translate-x-1/2"></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn>
@@ -60,7 +61,7 @@ const About = () => {
                 <p className="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
                   Our team of skilled craftsmen specializes in wooden furniture polish, antique restoration, and commercial furniture maintenance. We serve residential and commercial clients across all areas of Mumbai with the same dedication to quality and customer satisfaction.
                 </p>
-                
+
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-4 md:gap-6 mt-8">
                   <div className="text-center p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
@@ -78,7 +79,7 @@ const About = () => {
                 </div>
               </div>
             </FadeIn>
-            
+
             <FadeIn delay={200}>
               <div className="relative mt-8 lg:mt-0">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
@@ -123,14 +124,14 @@ const About = () => {
               </p>
             </div>
           </FadeIn>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {values.map((value, index) => (
               <FadeIn key={index} delay={index * 100}>
                 <div className="group relative bg-white p-6 md:p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
                   {/* Decorative Corner */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-amber-100 to-orange-100 rounded-bl-full opacity-50"></div>
-                  
+
                   <div className="relative">
                     <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                       {value.icon}
@@ -273,6 +274,9 @@ const About = () => {
           </FadeIn>
         </div>
       </section>
+
+      {/* Email Contact Section */}
+      <MailtoSection variant="light" />
     </>
   );
 };

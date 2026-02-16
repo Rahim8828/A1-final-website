@@ -1,7 +1,8 @@
-import React from 'react';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import React, { useRef } from 'react';
+import { CheckCircle2, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const OurProcess = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const steps = [
     {
       step: 1,
@@ -43,7 +44,7 @@ const OurProcess = () => {
 
   return (
     <section className="py-12 md:py-16 bg-gradient-to-br from-white to-orange-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         <div className="text-center mb-10 md:mb-12">
           <span className="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             Our Process
@@ -98,7 +99,8 @@ const OurProcess = () => {
           </div>
 
           {/* Mobile Horizontal Scroll */}
-          <div className="md:hidden overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+          <div className="md:hidden">
+          <div ref={scrollRef} className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
             <div className="flex gap-4" style={{ width: 'max-content' }}>
               {steps.map((item, index) => (
                 <div 
@@ -144,6 +146,25 @@ const OurProcess = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Visible Left/Right Arrow Buttons Below Cards */}
+          <div className="flex justify-center gap-4 mt-4">
+            <button
+              onClick={() => scrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' })}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-amber-500 shadow-md hover:bg-amber-50 transition-all"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-5 h-5 text-amber-600" />
+            </button>
+            <button
+              onClick={() => scrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' })}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-white border-2 border-amber-500 shadow-md hover:bg-amber-50 transition-all"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-5 h-5 text-amber-600" />
+            </button>
+          </div>
           </div>
         </div>
 

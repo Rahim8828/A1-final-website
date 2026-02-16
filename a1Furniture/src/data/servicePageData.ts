@@ -19,37 +19,41 @@ export const servicePageData: ServiceData[] = [
     ],
     image: '/assets/sofa-polish.webp',
     options: [
-      { 
+      {
         id: 'sofa-1seater',
-        name: '1 Seater Sofa', 
+        name: '1 Seater Sofa',
         price: 1449,
         rating: 4.9,
         reviewCount: 356,
-        estimatedTime: '1.5 hrs'
+        estimatedTime: '1.5 hrs',
+        description: 'Complete wood polish restoration for single-seater sofas. Includes surface preparation, scratch removal, premium polish application, and protective finish. Ideal for armchairs and accent seating.'
       },
-      { 
+      {
         id: 'sofa-2seater',
-        name: '2 Seater Sofa', 
+        name: '2 Seater Sofa',
         price: 1999,
         rating: 4.9,
         reviewCount: 456,
-        estimatedTime: '2 hrs'
+        estimatedTime: '2 hrs',
+        description: 'Professional polish service for 2-seater sofas and loveseats. Our craftsmen restore the natural wood grain, remove surface imperfections, and apply a durable finish that lasts.'
       },
-      { 
+      {
         id: 'sofa-3seater',
-        name: '3 Seater Sofa', 
+        name: '3 Seater Sofa',
         price: 2949,
         rating: 4.8,
         reviewCount: 678,
-        estimatedTime: '2.5 hrs'
+        estimatedTime: '2.5 hrs',
+        description: 'Full restoration polish for 3-seater sofas. Comprehensive service includes deep cleaning, stain removal, gap filling, and multi-coat polish application for a showroom-quality finish.'
       },
-      { 
+      {
         id: 'sofa-lshape',
-        name: 'L-Shape Sofa', 
+        name: 'L-Shape Sofa',
         price: 6449,
         rating: 4.8,
         reviewCount: 234,
-        estimatedTime: '4.5 hrs'
+        estimatedTime: '4.5 hrs',
+        description: 'Complete L-shape sofa wood polish service. Covers all wooden components including armrests, legs, and frame. Extended service time ensures thorough coverage of the entire sectional piece.'
       },
     ],
     selectedOption: -1,
@@ -152,53 +156,59 @@ export const servicePageData: ServiceData[] = [
     ],
     image: '/assets/Bed-polish.webp',
     options: [
-      { 
+      {
         id: 'bed-single',
-        name: 'Single Bed', 
+        name: 'Single Bed',
         price: 2449,
         rating: 4.8,
         reviewCount: 342,
-        estimatedTime: '3 hrs'
+        estimatedTime: '3 hrs',
+        description: 'Professional wood polish service for single beds. Complete restoration including headboard, footboard, and side rails. Removes scratches and restores original wood beauty.'
       },
-      { 
+      {
         id: 'bed-diwan',
-        name: 'Diwan', 
+        name: 'Diwan',
         price: 2999,
         rating: 4.8,
         reviewCount: 156,
-        estimatedTime: '2.5 hrs'
+        estimatedTime: '2.5 hrs',
+        description: 'Expert polish restoration for diwan beds. Covers all wooden surfaces including decorative elements. Perfect for refreshing your day bed or sitting area.'
       },
-      { 
+      {
         id: 'bed-queen',
-        name: 'Queen Size Bed', 
+        name: 'Queen Size Bed',
         price: 3449,
         rating: 4.9,
         reviewCount: 521,
-        estimatedTime: '3.5 hrs'
+        estimatedTime: '3.5 hrs',
+        description: 'Comprehensive polish service for queen size beds. Full coverage of frame, headboard, and all wooden components with premium quality finish and protective coating.'
       },
-      { 
+      {
         id: 'bed-king',
-        name: 'King Size Bed', 
+        name: 'King Size Bed',
         price: 3799,
         rating: 4.8,
         reviewCount: 284,
-        estimatedTime: '4 hrs'
+        estimatedTime: '4 hrs',
+        description: 'Complete wood polish restoration for king size beds. Extended service covers all surfaces with attention to detail. Includes scratch removal and long-lasting protective finish.'
       },
-      { 
+      {
         id: 'bed-sofacumbed',
-        name: 'Sofa cum Bed', 
+        name: 'Sofa cum Bed',
         price: 4799,
         rating: 4.7,
         reviewCount: 89,
-        estimatedTime: '4 hrs'
+        estimatedTime: '4 hrs',
+        description: 'Specialized polish service for sofa-cum-bed furniture. Covers both sofa and bed mechanisms wooden components with care for moving parts and joints.'
       },
-      { 
+      {
         id: 'bed-bunk',
-        name: 'Bunk Bed', 
+        name: 'Bunk Bed',
         price: 5799,
         rating: 4.7,
         reviewCount: 100,
-        estimatedTime: '5 hrs'
+        estimatedTime: '5 hrs',
+        description: 'Complete polish restoration for bunk beds. Includes upper and lower frames, ladder, and all safety rails. Extra time ensures thorough coverage of all levels.'
       },
     ],
     selectedOption: -1,
@@ -613,41 +623,6 @@ export const servicePageData: ServiceData[] = [
     ]
   },
   {
-    id: 'chester-drawer-polish',
-    name: 'Chester Drawer Polish',
-    category: 'furniture-polish',
-    rating: 4.7,
-    reviewCount: 543,
-    duration: '~3 hrs',
-    features: ['6 Months Polished Warranty', 'Choice of clear or coloured finishes', 'All Materials & Labour Cost'],
-    image: '/assets/3-Chester-Drawer.webp',
-    options: [
-      { id: 'drawer-2', name: '2 Drawer', price: 1449, rating: 4.7, reviewCount: 234, estimatedTime: '2 hrs', image: '/assets/2-Chester-Drawer.webp' },
-      { id: 'drawer-3', name: '3 Drawer', price: 2199, rating: 4.8, reviewCount: 189, estimatedTime: '2.5 hrs', image: '/assets/3-Chester-Drawer.webp' },
-      { id: 'drawer-4', name: '4 Drawer', price: 2799, rating: 4.7, reviewCount: 120, estimatedTime: '3 hrs', image: '/assets/4-Chester-Drawer.webp' },
-      { id: 'drawer-5', name: '5 Drawer', price: 3449, rating: 4.8, reviewCount: 95, estimatedTime: '3.5 hrs', image: '/assets/5-Chester-Drawer.webp' },
-      { id: 'drawer-6', name: '6 Drawer', price: 3999, rating: 4.7, reviewCount: 78, estimatedTime: '4 hrs', image: '/assets/6-Chester-Drawer.webp' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand', 'Post-service cleaning', '6 months warranty', 'Machine Polish: Extra ₹1,749/-'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Preparation', description: 'Our professionals clean and sand the drawer surface to remove old polish and scratches.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Polish Shade Selection', description: 'Choose from clear or colored finishes that match your furniture and home décor.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'Gap Filling & Polish Application', description: 'We fill any gaps or cracks, then apply premium quality polish evenly.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Drying & Finishing', description: 'Allow proper drying time and apply finishing coats for a smooth, glossy finish.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect finish. We clean up and hand over your refreshed drawer.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'How long does drawer polishing take?', answer: 'Typically 2-3 hours depending on size.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
-  {
     id: 'tv-unit-polish',
     name: 'TV Unit Polish',
     category: 'furniture-polish',
@@ -720,7 +695,7 @@ export const servicePageData: ServiceData[] = [
     reviewCount: 856,
     duration: 'Varies by area',
     features: ['Premium PU finish', 'Durable coating', 'Professional application', 'Travelling cost extra'],
-    image: '/assets/PU.webp',
+    image: '/products/pu_polish/puPolish_title/pu_polish_title.png',
     options: [
       { id: 'pu-standard', name: 'PU Polish (per sqft)', price: 270, rating: 4.8, reviewCount: 456, estimatedTime: 'Varies' },
       { id: 'pu-premium', name: 'Premium PU Polish (per sqft)', price: 320, rating: 4.9, reviewCount: 400, estimatedTime: 'Varies' }
@@ -753,7 +728,7 @@ export const servicePageData: ServiceData[] = [
     reviewCount: 723,
     duration: 'Varies by area',
     features: ['Decorative finish', 'Multiple color options', 'Professional application', 'Travelling cost extra'],
-    image: '/assets/Deco.webp',
+    image: '/products/deco_paint/decoPaint_Header/deco_paint_page_header.png',
     options: [
       { id: 'deco-standard', name: 'Deco Polish (per sqft)', price: 249, rating: 4.7, reviewCount: 389, estimatedTime: 'Varies' },
       { id: 'deco-premium', name: 'Premium Deco Polish (per sqft)', price: 279, rating: 4.8, reviewCount: 334, estimatedTime: 'Varies' }
@@ -815,134 +790,8 @@ export const servicePageData: ServiceData[] = [
       { icon: 'medal', text: 'Antique restoration experts' }
     ]
   },
-  {
-    id: 'metal-almirah-paint',
-    name: 'Metal Almirah Paint',
-    category: 'metal-services',
-    rating: 4.6,
-    reviewCount: 542,
-    duration: 'Varies by size',
-    features: ['Multi-color available', 'Durable paint', 'Professional finish', 'Travelling cost extra'],
-    image: '/assets/Metal-cupboard.webp',
-    options: [
-      { id: 'almirah-paint', name: 'Metal Almirah Paint (per sqft)', price: 249, rating: 4.6, reviewCount: 542, estimatedTime: 'Varies' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost', 'Multi-color paint options', 'Surface preparation', 'Professional application'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Preparation', description: 'Our professionals clean and prepare the metal almirah surface thoroughly.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Color Selection', description: 'Choose from multiple colors that match your interior décor.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'Primer & Paint Application', description: 'Apply primer and paint evenly for durable finish.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Drying & Finishing', description: 'Allow proper drying time and apply finishing coats.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect finish. We clean up and hand over your almirah.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'What colors are available?', answer: 'Multiple colors are available. You can choose during consultation.' },
-      { question: 'Is travelling cost included?', answer: 'No, travelling cost is charged separately based on location.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
-  {
-    id: 'metal-bed-powder-coating',
-    name: 'Metal Bed Powder Coating',
-    category: 'metal-services',
-    rating: 4.7,
-    reviewCount: 634,
-    duration: 'Varies by size',
-    features: ['Powder coating finish', 'Durable protection', 'Fitting charge extra', 'Travelling cost extra'],
-    image: '/assets/Metal-Bed.webp',
-    options: [
-      { id: 'bed-powder-coating', name: 'Metal Bed Powder Coating (per sqft)', price: 160, rating: 4.7, reviewCount: 634, estimatedTime: 'Varies' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost', 'Powder coating application', 'Surface preparation'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Preparation', description: 'Our professionals clean and prepare the metal bed surface thoroughly.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Color Selection', description: 'Choose from multiple powder coating colors.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'Powder Coating Application', description: 'Apply powder coating evenly for durable finish.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Curing & Finishing', description: 'Cure the coating at proper temperature for long-lasting finish.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect finish. We clean up and hand over your bed.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'What is powder coating?', answer: 'Powder coating is a durable finish applied to metal surfaces for long-lasting protection.' },
-      { question: 'Are fitting and travelling charges included?', answer: 'No, fitting and travelling charges are extra and charged separately.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
-  {
-    id: 'steel-bed-buffing',
-    name: 'Steel Bed Buffing Polish',
-    category: 'metal-services',
-    rating: 4.8,
-    reviewCount: 478,
-    duration: 'Varies by size',
-    features: ['Buffing polish', 'Junk removal included', 'Fitting charge extra', 'Travelling cost extra'],
-    image: '/assets/Steel-Bed.webp',
-    options: [
-      { id: 'steel-bed-buffing', name: 'Steel Bed Buffing (per sqft)', price: 189, rating: 4.8, reviewCount: 478, estimatedTime: 'Varies' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost', 'Buffing polish', 'Junk removal', 'Surface preparation'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Cleaning', description: 'Our professionals clean the steel bed surface thoroughly.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Rust Removal', description: 'Remove any rust or oxidation from the surface.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'Buffing Application', description: 'Apply buffing compound and polish the surface.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Polishing & Shine', description: 'Buff the surface to restore shine and luster.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect shine. We clean up and hand over your bed.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'What is buffing polish?', answer: 'Buffing polish restores shine to steel surfaces by removing oxidation and scratches.' },
-      { question: 'Are fitting and travelling charges included?', answer: 'No, fitting and travelling charges are extra and charged separately.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
-  {
-    id: 'kitchen-trolley-buffing',
-    name: 'Kitchen Steel Trolley Buffing',
-    category: 'metal-services',
-    rating: 4.7,
-    reviewCount: 392,
-    duration: 'Varies by size',
-    features: ['Buffing polish only', 'Junk removal included', 'Labour cost extra', 'Travelling cost extra'],
-    image: '/assets/Kitchen-Steel.webp',
-    options: [
-      { id: 'trolley-buffing', name: 'Kitchen Trolley Buffing (per sqft)', price: 189, rating: 4.7, reviewCount: 392, estimatedTime: 'Varies' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Buffing polish', 'Junk removal', 'Surface preparation'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Cleaning', description: 'Our professionals clean the kitchen trolley surface thoroughly.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Rust Removal', description: 'Remove any rust or oxidation from the surface.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'Buffing Application', description: 'Apply buffing compound and polish the surface.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Polishing & Shine', description: 'Buff the surface to restore shine and luster.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect shine. We clean up and hand over your trolley.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'What is included in the price?', answer: 'The price includes only buffing polish. Labour and travelling costs are charged separately.' },
-      { question: 'Is junk removal included?', answer: 'Yes, junk removal is included in the buffing service.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
+
+
   // IKEA Furniture Assembly Services
   {
     id: 'ikea-bed-assembly',

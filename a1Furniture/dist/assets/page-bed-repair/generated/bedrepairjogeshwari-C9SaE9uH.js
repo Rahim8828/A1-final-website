@@ -1,0 +1,1 @@
+import{j as o}from"../../react-vendor-D7TvRcQ7.js";import{a,B as r}from"../bedrepairmumbai-DfkZ_qwa.js";import"../../page-servicelocations-DG6-8LJt.js";import"../../page-about-AoWZBs5p.js";import"../../icons-Bf1VXX4I.js";const s=()=>{const s=a.find(o=>"jogeshwari"===o.id);return o.jsx(r,{pageType:"location",location:s})};export{s as default};

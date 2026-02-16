@@ -329,8 +329,9 @@ async function generateOptimizedSitemap() {
 }
 
 // Run the script
-if (import.meta.url === `file://${process.argv[1]}`) {
-  generateOptimizedSitemap();
-}
+generateOptimizedSitemap().catch(error => {
+  console.error('Fatal error:', error);
+  process.exit(1);
+});
 
 export { generateOptimizedSitemap };

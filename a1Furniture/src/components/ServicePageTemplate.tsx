@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Phone, 
@@ -12,7 +12,8 @@ import {
   Users, 
   MessageCircle,
   Home,
-  ChevronRight
+  ChevronRight,
+  Info
 } from 'lucide-react';
 import { PageData } from '../types';
 import SEOHead from '../../src/components/SEOHead';
@@ -20,6 +21,7 @@ import StickyWhatsApp from './StickyWhatsApp';
 import OptimizedImage from '../../src/components/OptimizedImage';
 import { FadeIn } from './ScrollAnimations';
 import { COMMON_SIZES } from '../../src/utils/imageHelpers';
+import DraggablePricingModal from './DraggablePricingModal';
 
 interface ServicePageTemplateProps {
   pageData: PageData;
@@ -45,6 +47,8 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
     serviceName,
     location,
   } = pageData;
+
+  const [activeModal, setActiveModal] = useState<number | null>(null);
 
   return (
     <>
@@ -350,55 +354,107 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
         </section>
 
         {/* Pricing Section */}
-        <section className="py-12 md:py-16 bg-gradient-to-br from-amber-50 to-orange-50">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-12 md:py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <FadeIn>
-              <div className="text-center mb-8 md:mb-12">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                   Transparent Pricing
                 </h2>
-                <p className="text-sm md:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-2">
+                <p className="text-lg text-gray-300 max-w-3xl mx-auto">
                   Affordable {serviceName} services in {location} with no hidden charges
                 </p>
               </div>
             </FadeIn>
+
+            {/* Enhanced Pricing Card */}
             <FadeIn delay={100}>
-              <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl">
-                <div className="text-center mb-6">
-                  <div className="inline-block bg-gradient-to-br from-amber-600 to-orange-600 text-white px-6 py-3 rounded-full mb-4">
-                    <span className="text-sm font-semibold">Starting From</span>
-                    <div className="text-3xl md:text-4xl font-bold">₹{pricing.startingPrice}</div>
+              <div className="relative">
+                {/* Main Card with Glassmorphism */}
+                <div className="relative bg-gradient-to-br from-gray-800/90 to-gray-900/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-amber-500/30 overflow-hidden">
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-orange-500/10 pointer-events-none"></div>
+                  
+                  {/* Content */}
+                  <div className="relative p-8 md:p-12">
+                    {/* Top Section - Price Display */}
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
+                      {/* Left - Price */}
+                      <div className="flex-1 text-center md:text-left">
+                        <div className="inline-flex items-center gap-2 bg-amber-500/20 px-4 py-2 rounded-full mb-4">
+                          <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                          <span className="text-amber-300 text-sm font-semibold">Monthly Billed</span>
+                        </div>
+                        <div className="mb-2">
+                          <span className="text-6xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
+                            ₹{pricing.startingPrice}
+                          </span>
+                        </div>
+                        <p className="text-gray-400 text-lg">
+                          Price Range: <span className="text-white font-semibold">{pricing.priceRange}</span>
+                        </p>
+                        
+                        {/* CTA Button */}
+                        <div className="mt-6">
+                          <a
+                            href="tel:+918828709945"
+                            className="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-8 py-4 rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg font-bold text-lg w-full md:w-auto"
+                          >
+                            <Phone size={20} />
+                            <span>Get Started</span>
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Right - Features */}
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-6">
+                          <span className="text-gray-400 text-lg font-semibold">Features</span>
+                          <div className="h-px flex-1 bg-gradient-to-r from-gray-700 to-transparent"></div>
+                        </div>
+                        <div className="space-y-4">
+                          {pricing.factors.slice(0, 5).map((factor, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setActiveModal(index)}
+                              className="group w-full flex items-start gap-3 text-left p-3 rounded-xl hover:bg-white/5 transition-all duration-300 cursor-pointer"
+                            >
+                              <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                              <span className="text-gray-300 group-hover:text-white transition-colors flex-1">
+                                {factor}
+                              </span>
+                              <Info className="w-4 h-4 text-gray-500 group-hover:text-amber-400 transition-colors opacity-0 group-hover:opacity-100" />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Section - Additional Info */}
+                    <div className="border-t border-gray-700/50 pt-8">
+                      <div className="flex items-center justify-center gap-2 text-gray-400">
+                        <CheckCircle className="w-5 h-5 text-amber-400" />
+                        <span className="text-sm">Click on any feature above for detailed information</span>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-gray-600 text-sm md:text-base">
-                    Price Range: {pricing.priceRange}
-                  </p>
                 </div>
-                <div className="border-t border-gray-200 pt-6">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4">
-                    Pricing Factors:
-                  </h3>
-                  <ul className="space-y-3">
-                    {pricing.factors.map((factor, index) => (
-                      <li key={index} className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm md:text-base text-gray-700">{factor}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-6 text-center">
-                  <a
-                    href="tel:+918828709945"
-                    className="inline-flex items-center space-x-2 bg-amber-600 text-white px-8 py-4 rounded-lg hover:bg-amber-700 transition-all duration-200 transform hover:scale-105 shadow-lg font-semibold min-h-[44px]"
-                  >
-                    <Phone size={20} />
-                    <span>Call for Exact Quote</span>
-                  </a>
-                </div>
+
+                {/* Bottom Accent Bar */}
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-3/4 h-4 bg-gradient-to-r from-amber-500/50 via-orange-500/50 to-amber-500/50 rounded-full blur-xl"></div>
               </div>
             </FadeIn>
           </div>
         </section>
+
+        {/* Draggable Modals for Pricing Factors */}
+        {activeModal !== null && (
+          <DraggablePricingModal
+            title={pricing.factors[activeModal]}
+            content={getPricingFactorDetails(pricing.factors[activeModal])}
+            onClose={() => setActiveModal(null)}
+          />
+        )}
 
         {/* Why Choose Us Section */}
         <section className="py-12 md:py-16 bg-white">
@@ -550,5 +606,17 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
     </>
   );
 };
+
+// Helper function for pricing factor details
+function getPricingFactorDetails(factor: string): string {
+  const details: Record<string, string> = {
+    'Furniture size and type': 'Larger furniture pieces like wardrobes and dining tables require more materials and time, affecting the overall cost. We provide detailed measurements and estimates for accurate pricing.',
+    'Polish type (PU, Melamine, Duco)': 'Different polish types have varying costs. PU polish is durable and premium, Melamine offers good value, and Duco provides a smooth finish. We help you choose the best option for your furniture.',
+    'Condition of existing finish': 'Furniture with damaged or worn finishes may require additional preparation work, including stripping old polish, repairing scratches, and extensive sanding before applying new polish.',
+    'Number of items': 'We offer package discounts for multiple furniture pieces. The more items you polish together, the better value you get per piece. Ask about our bulk pricing options.',
+    'Additional repair work needed': 'Structural repairs, veneer replacement, or fixing broken parts are quoted separately. We provide transparent estimates for all repair work required before starting the project.',
+  };
+  return details[factor] || 'This factor affects the final pricing. Contact us for detailed information specific to your furniture needs.';
+}
 
 export default ServicePageTemplate;

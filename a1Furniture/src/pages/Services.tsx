@@ -340,11 +340,11 @@ const Services = () => {
                 aria-label={`View ${service.name} options`}
                 type="button"
               >
-                <div className="w-full aspect-square bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1 sm:p-1.5 group-hover:bg-gray-100 transition-colors">
+                <div className="w-full aspect-square bg-gray-50 rounded overflow-hidden flex items-center justify-center group-hover:bg-gray-100 transition-colors">
                   <img
                     src={service.image}
                     alt={service.name}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover rounded"
                     loading="lazy"
                   />
                 </div>
@@ -424,11 +424,11 @@ const Services = () => {
                   {/* Right Side - Image and Add Button (Compact) */}
                   <div className="flex flex-col items-center gap-2 w-32 sm:w-40 flex-shrink-0">
                     {/* Service Image */}
-                    <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center p-3">
+                    <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center">
                       <img
                         src={service.image}
                         alt={service.name}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover rounded-lg"
                         loading="lazy"
                       />
                     </div>

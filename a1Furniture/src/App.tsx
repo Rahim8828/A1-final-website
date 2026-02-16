@@ -7,6 +7,9 @@ import Home from './pages/Home';
 import ScrollToTop from './components/ScrollToTop';
 import BottomNav from './components/BottomNav';
 import ErrorBoundary from './components/ErrorBoundary';
+import { sofaRepairRoutes } from './routes/sofaRepairRoutes';
+import { bedRepairRoutes } from './routes/bedRepairRoutes';
+import { seoGapRoutes } from './routes/seoGapRoutes';
 
 // Lazy load pages for better performance
 const About = lazy(() => import('./pages/About'));
@@ -15,6 +18,8 @@ const Contact = lazy(() => import('./pages/Contact'));
 const BlogPostPage = lazy(() => import('../blog/pages/BlogPostPage'));
 const BlogListPage = lazy(() => import('../blog/pages/BlogListPage'));
 const WoodenFurniturePolish = lazy(() => import('./pages/WoodenFurniturePolish'));
+const WoodPolishingServices = lazy(() => import('./pages/WoodPolishingServices'));
+const DecoPaintServices = lazy(() => import('./pages/DecoPaintServices'));
 const SofaAndChairPolishing = lazy(() => import('./pages/SofaAndChairPolishing'));
 const TableAndBedPolishing = lazy(() => import('./pages/TableAndBedPolishing'));
 const AntiqueRestoration = lazy(() => import('./pages/AntiqueRestoration'));
@@ -23,10 +28,13 @@ const SofaServices = lazy(() => import('./pages/SofaServices'));
 const SofaFabricChange = lazy(() => import('./pages/SofaFabricChange'));
 const OfficeChairRepair = lazy(() => import('./pages/OfficeChairRepair'));
 const IkeaAssembly = lazy(() => import('./pages/IkeaAssembly'));
+const ServiceLocations = lazy(() => import('./pages/ServiceLocations'));
 const GoregaonFurniturePolish = lazy(() => import('./pages/GoregaonFurniturePolish'));
 const PowaiFurniturePolish = lazy(() => import('./pages/PowaiFurniturePolish'));
 const DadarLocation = lazy(() => import('./pages/locations/DadarLocation.tsx'));
 const Products = lazy(() => import('./pages/Products'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const OldServices = lazy(() => import('./pages/Services'));
 
 // Auto-generated page imports
 const AffordableFurniturePolishingMumbai = lazy(() => import('./pages/generated/AffordableFurniturePolishingMumbai'));
@@ -207,13 +215,17 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
+              <Route path="/services" element={<Products />} />
+              <Route path="/services/:productId" element={<ProductDetail />} />
+              <Route path="/book" element={<OldServices />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<BlogListPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               
               {/* Service Pages */}
               <Route path="/services/wooden-furniture-polish" element={<WoodenFurniturePolish />} />
+              <Route path="/wood-polishing-services" element={<WoodPolishingServices />} />
+              <Route path="/deco-paint-services" element={<DecoPaintServices />} />
               <Route path="/sofa-chair-polishing" element={<SofaAndChairPolishing />} />
               <Route path="/services/table-and-bed-polishing" element={<TableAndBedPolishing />} />
               <Route path="/services/antique-restoration" element={<AntiqueRestoration />} />
@@ -223,13 +235,16 @@ function App() {
               <Route path="/ikea-assembly" element={<IkeaAssembly />} />
               <Route path="/office-chair-repair" element={<OfficeChairRepair />} />
               
+              {/* Service Locations Page */}
+              <Route path="/service-areas-mumbai" element={<ServiceLocations />} />
+              
               {/* Location Pages */}
               <Route path="/goregaon-furniture-polish" element={<GoregaonFurniturePolish />} />
               <Route path="/powai-furniture-polish" element={<PowaiFurniturePolish />} />
               <Route path="/dadar" element={<DadarLocation />} />
               
-              {/* Products Page */}
-              <Route path="/products" element={<Products />} />
+              {/* Redirect /products to /services */}
+              <Route path="/products" element={<Navigate to="/services" replace />} />
               
               {/* Redirect old route to /services */}
               <Route path="/furniture-polish-services" element={<Navigate to="/services" replace />} />
@@ -398,6 +413,15 @@ function App() {
               <Route path="/services/affordable-antique-furniture-polish-santa-cruz" element={<AffordableAntiqueFurniturePolishSantaCruz />} />
               <Route path="/services/top-rated-antique-furniture-polish-vile-parle" element={<TopRatedAntiqueFurniturePolishVileParle />} />
               <Route path="/services/professional-antique-furniture-polish-juhu" element={<ProfessionalAntiqueFurniturePolishJuhu />} />
+
+              {/* Sofa Repair SEO Pages (160 pages) */}
+              {sofaRepairRoutes}
+
+              {/* Bed Repair SEO Pages (96 pages) */}
+              {bedRepairRoutes}
+
+              {/* SEO Gap Pages (50 pages) - Near Me, Location Hubs, Service+Location */}
+              {seoGapRoutes}
             </Routes>
             </Suspense>
           </main>

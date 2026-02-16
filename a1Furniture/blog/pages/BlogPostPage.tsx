@@ -7,6 +7,7 @@ import JsonLd from '../../src/components/JsonLd';
 import { Calendar, Clock, User, ArrowLeft } from 'lucide-react';
 import OptimizedImage from '../../src/components/OptimizedImage';
 import { COMMON_SIZES } from '../../src/utils/imageHelpers';
+import MailtoSection from '../../src/components/MailtoSection';
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -48,30 +49,30 @@ const BlogPostPage = () => {
   }
 
   const blogPostSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `https://a1furniturepolish.com/blog/${post.slug}`,
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://a1furniturepolish.com/blog/${post.slug}`,
+    },
+    headline: post.title,
+    description: post.description,
+    image: `https://a1furniturepolish.com${post.image}`,
+    author: {
+      '@type': 'Organization',
+      name: 'A1 Furniture Polish',
+      url: 'https://a1furniturepolish.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'A1 Furniture Polish',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://a1furniturepolish.com/logo.png',
       },
-      headline: post.title,
-      description: post.description,
-      image: `https://a1furniturepolish.com${post.image}`,
-      author: {
-        '@type': 'Organization',
-        name: 'A1 Furniture Polish',
-        url: 'https://a1furniturepolish.com',
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'A1 Furniture Polish',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://a1furniturepolish.com/logo.png',
-        },
-      },
-      datePublished: post.date,
-    };
+    },
+    datePublished: post.date,
+  };
 
   return (
     <>
@@ -112,19 +113,19 @@ const BlogPostPage = () => {
                 </div>
                 <span className="mx-2">|</span>
                 <div className="flex items-center space-x-2">
-                    <User size={16} />
-                    <span>{post.author}</span>
+                  <User size={16} />
+                  <span>{post.author}</span>
                 </div>
               </div>
             </header>
-            
+
             {/* Hide header image for wood polishing cost post */}
             {post.slug !== 'wood-polishing-cost-in-mumbai' && (
               <div className="mb-8 blog-post-header">
                 <div className="w-full overflow-hidden rounded-lg shadow-md">
-                  <OptimizedImage 
-                    src={post.image} 
-                    alt={post.title} 
+                  <OptimizedImage
+                    src={post.image}
+                    alt={post.title}
                     width={800}
                     height={450}
                     className="w-full h-auto object-contain"
@@ -134,19 +135,22 @@ const BlogPostPage = () => {
               </div>
             )}
 
-            <div 
-              className="prose prose-lg max-w-none blog-content" 
-              dangerouslySetInnerHTML={{ 
-                __html: post.slug === 'wood-polishing-cost-in-mumbai' 
-                  ? post.content.replace(/<h1[^>]*>.*?<\/h1>/gi, '') 
-                  : post.content 
-              }} 
+            <div
+              className="prose prose-lg max-w-none blog-content"
+              dangerouslySetInnerHTML={{
+                __html: post.slug === 'wood-polishing-cost-in-mumbai'
+                  ? post.content.replace(/<h1[^>]*>.*?<\/h1>/gi, '')
+                  : post.content
+              }}
             />
 
           </article>
 
         </div>
       </div>
+
+      {/* Email Contact Section */}
+      <MailtoSection variant="light" />
     </>
   );
 };

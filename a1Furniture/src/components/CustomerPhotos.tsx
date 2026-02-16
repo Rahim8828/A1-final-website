@@ -4,35 +4,35 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 const customerReviews = [
   {
     name: 'Priya Sharma',
-    location: 'Bandra, Mumbai',
+    location: 'Bandra West, Mumbai',
     rating: 5,
     image: '/assets/sofa-polish.webp',
     service: 'Sofa Polish',
-    review: 'Excellent work! My sofa looks brand new.',
+    review: 'Excellent work! My sofa looks brand new. The team was very professional and completed the job within the same day.',
   },
   {
     name: 'Rajesh Patel',
-    location: 'Andheri, Mumbai',
+    location: 'Andheri East, Mumbai',
     rating: 5,
     image: '/assets/Bed-polish.webp',
     service: 'Bed Polish',
-    review: 'Very professional service. Highly recommended!',
+    review: 'Very professional service. Highly recommended! They arrived on time and the finish quality is outstanding.',
   },
   {
     name: 'Meera Joshi',
     location: 'Powai, Mumbai',
-    rating: 5,
+    rating: 4,
     image: '/assets/Wardrobe-polish.webp',
     service: 'Wardrobe Polish',
-    review: 'Amazing transformation! Worth every penny.',
+    review: 'Amazing transformation! My old wardrobe now looks like a showroom piece. Worth every penny spent.',
   },
   {
     name: 'Amit Kumar',
-    location: 'Goregaon, Mumbai',
-    rating: 5,
+    location: 'Goregaon West, Mumbai',
+    rating: 4,
     image: '/assets/Door-polish.webp',
     service: 'Door Polish',
-    review: 'Great quality work. Very satisfied!',
+    review: 'Great quality work on all 6 doors. Minor delay in delivery but the final result was very satisfying.',
   },
   {
     name: 'Sneha Desai',
@@ -40,7 +40,47 @@ const customerReviews = [
     rating: 5,
     image: '/assets/side-table.webp',
     service: 'Table Polish',
-    review: 'Professional team. Excellent results!',
+    review: 'Professional team with excellent results. My dining table and centre table look absolutely gorgeous now!',
+  },
+  {
+    name: 'Vikram Mehta',
+    location: 'Malad West, Mumbai',
+    rating: 4,
+    image: '/products/pu_polish/glass_pu_polish.png',
+    service: 'PU Polish',
+    review: 'Got PU gloss finish on my kitchen cabinets. The shine is amazing and they cleaned up after the work. Very satisfied!',
+  },
+  {
+    name: 'Kavita Nair',
+    location: 'Borivali East, Mumbai',
+    rating: 5,
+    image: '/products/pu_polish/pu_matt_polish.png',
+    service: 'PU Matt Finish',
+    review: 'PU matt polish on my bedroom furniture turned out beautiful. Smooth finish, no drip marks. Highly recommend A1!',
+  },
+  {
+    name: 'Deepak Singh',
+    location: 'Jogeshwari West, Mumbai',
+    rating: 4,
+    image: '/products/deco_paint/designer_deco_paint.png',
+    service: 'Deco Paint',
+    review: 'Got designer deco paint on our TV unit. Looks very modern and premium now. Colour matching was spot on.',
+  },
+  {
+    name: 'Sunita Rao',
+    location: 'Kandivali West, Mumbai',
+    rating: 5,
+    image: '/products/deco_paint/texture_deco_paint.png',
+    service: 'Texture Deco Paint',
+    review: 'Texture deco paint on the wardrobe gave it a completely new life. The craftsmen were skilled and courteous.',
+  },
+  {
+    name: 'Farhan Sheikh',
+    location: 'Versova, Mumbai',
+    rating: 4,
+    image: '/products/pu_polish/pu_satin_finish.png',
+    service: 'PU Satin Finish',
+    review: 'Satin PU finish on my bookshelf and study table. Elegant look, good durability. Would book again for sure.',
   },
 ];
 
@@ -75,7 +115,7 @@ const CustomerPhotos: React.FC = () => {
 
   return (
     <section className="py-8 md:py-12 bg-gradient-to-br from-amber-50 to-orange-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         <div className="text-center mb-6">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             Join 50,000+ Happy Customers

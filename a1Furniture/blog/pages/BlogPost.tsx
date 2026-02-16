@@ -8,6 +8,7 @@ import { blogPosts, fetchBlogPostContent } from '../data/blogPosts';
 import { BlogPostData } from '../types';
 import OptimizedImage from '../../src/components/OptimizedImage';
 import { COMMON_SIZES } from '../../src/utils/imageHelpers';
+import MailtoSection from '../../src/components/MailtoSection';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -68,15 +69,15 @@ const BlogPost = () => {
 
   return (
     <>
-      <SEOHead 
-        title={post.title} 
-        description={post.description} 
-        keywords={post.keywords} 
+      <SEOHead
+        title={post.title}
+        description={post.description}
+        keywords={post.keywords}
         ogUrl={`https://a1furniturepolish.com/blog/${slug}`}
       />
       <div className="bg-white py-8 md:py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="text-sm text-gray-500 mb-4">
             <Link to="/" className="hover:text-amber-600">Home</Link>
             <span className="mx-2">/</span>
@@ -86,12 +87,12 @@ const BlogPost = () => {
           </div>
 
           <div className="w-full mb-6 md:mb-8 rounded-lg overflow-hidden">
-            <OptimizedImage 
-              src={post.image} 
-              alt={post.title} 
-              width={1920} 
-              height={1080} 
-              className="w-full" 
+            <OptimizedImage
+              src={post.image}
+              alt={post.title}
+              width={1920}
+              height={1080}
+              className="w-full"
               sizes={COMMON_SIZES.fullWidth}
               objectFit="cover"
             />
@@ -100,7 +101,7 @@ const BlogPost = () => {
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
             {post.title}
           </h1>
-          
+
           <div className="flex items-center space-x-4 mb-8 text-gray-500">
             <div className="flex items-center space-x-2">
               <span className="font-medium text-gray-700">{post.author}</span>
@@ -116,11 +117,11 @@ const BlogPost = () => {
               <span>{post.readTime}</span>
             </div>
           </div>
-          
+
           <main>
             <div className="prose prose-lg max-w-none prose-p:mb-6 prose-headings:text-gray-800 prose-headings:font-semibold prose-h2:text-3xl prose-h3:text-2xl prose-a:text-amber-600 hover:prose-a:text-amber-800 overflow-x-auto">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {post.content}
+                {post.content}
               </ReactMarkdown>
             </div>
           </main>
@@ -172,9 +173,12 @@ const BlogPost = () => {
         </div>
       </div>
 
+      {/* Email Contact Section */}
+      <MailtoSection variant="light" />
+
       {showGoToTop && (
-        <button 
-          onClick={scrollToTop} 
+        <button
+          onClick={scrollToTop}
           className="fixed bottom-10 right-10 bg-amber-600 text-white p-3 rounded-full shadow-lg hover:bg-amber-700 transition-all duration-300 z-50"
           aria-label="Go to top"
         >

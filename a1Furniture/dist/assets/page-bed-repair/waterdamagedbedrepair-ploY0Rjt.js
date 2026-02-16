@@ -1,0 +1,1 @@
+import{j as r}from"../react-vendor-D7TvRcQ7.js";import{b as e,B as o}from"./bedrepairmumbai-DfkZ_qwa.js";import"../page-servicelocations-DG6-8LJt.js";import"../page-about-AoWZBs5p.js";import"../icons-Bf1VXX4I.js";const a=()=>{const a=e.find(r=>"water-damaged"===r.id);return r.jsx(o,{pageType:"problem",problem:a})};export{a as default};
