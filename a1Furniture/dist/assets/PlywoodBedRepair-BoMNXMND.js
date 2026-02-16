@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{a as e,B as s}from"./BedRepairPageTemplate-LyCdEoK6.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const p=()=>{const p=e.find(o=>"plywood"===o.id);return o.jsx(s,{pageType:"wood-type",woodType:p})};export{p as default};

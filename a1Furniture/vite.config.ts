@@ -211,6 +211,10 @@ export default defineConfig({
         {
           src: 'public/robots.txt',
           dest: '.'
+        },
+        {
+          src: 'public/_redirects',
+          dest: '.'
         }
       ]
     }),
@@ -232,53 +236,15 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Core React libraries - loaded on every page
-          if (id.includes('node_modules/react') || 
-              id.includes('node_modules/react-dom') || 
-              id.includes('node_modules/react-router-dom')) {
-            return 'react-vendor';
-          }
-          
-          // UI libraries - icons and components
-          if (id.includes('node_modules/lucide-react')) {
-            return 'icons';
-          }
-          
-          // SEO and meta libraries
-          if (id.includes('node_modules/react-helmet-async')) {
-            return 'seo-vendor';
-          }
-          
-          // Markdown and content libraries (used in blog)
-          if (id.includes('node_modules/react-markdown') || 
-              id.includes('node_modules/remark-gfm')) {
-            return 'markdown-vendor';
-          }
-          
-          // Route-based code splitting for pages
-          if (id.includes('src/pages/')) {
-            const pageName = id.split('src/pages/')[1].split('.')[0];
-            // Don't bundle generated pages together - let them be lazy loaded individually
-            return `page-${pageName.toLowerCase()}`;
-          }
-          
-          // Component chunks for lazy-loaded components
-          if (id.includes('src/components/ExitIntentPopup') ||
-              id.includes('src/components/OurProcess') ||
-              id.includes('src/components/StatsCounter')) {
-            return 'lazy-components';
-          }
-          
-          // Data modules - shared across generated pages
-          if (id.includes('src/data/contentTemplates') ||
-              id.includes('src/data/pageDataGenerator') ||
-              id.includes('src/data/generatedPagesConfig')) {
-            return 'page-data';
-          }
-          
-          // Generated pages data - separate chunk
-          if (id.includes('src/data/generatedPagesData')) {
-            return 'generated-data';
+          // All node_modules go into vendor chunk to avoid circular dependencies
+          if (id.includes('node_modules/')) {
+            // Markdown libraries - separate chunk (only used in blog)
+            if (id.includes('node_modules/react-markdown') || 
+                id.includes('node_modules/remark-gfm')) {
+              return 'markdown-vendor';
+            }
+            // Everything else from node_modules → single vendor chunk
+            return 'vendor';
           }
         },
         // Optimize chunk file names

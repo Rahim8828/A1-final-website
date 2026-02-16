@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{b as e,B as r}from"./BedRepairPageTemplate-LyCdEoK6.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const s=()=>{const s=e.find(o=>"scratched"===o.id);return o.jsx(r,{pageType:"problem",problem:s})};export{s as default};

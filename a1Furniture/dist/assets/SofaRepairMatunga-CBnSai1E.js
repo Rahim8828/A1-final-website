@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{a,S as s}from"./SofaRepairPageTemplate-CNVVxd-2.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const t=()=>{const t=a.find(o=>"matunga"===o.id);return o.jsx(s,{pageType:"location",location:t})};export{t as default};

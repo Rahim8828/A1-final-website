@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{B as e}from"./BedRepairPageTemplate-LyCdEoK6.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const s=()=>o.jsx(e,{pageType:"master"});export{s as default};

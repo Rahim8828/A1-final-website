@@ -1,1 +1,0 @@
-import{j as r}from"../react-vendor-D7TvRcQ7.js";import{b as o,B as e}from"./bedrepairmumbai-DfkZ_qwa.js";import"../page-servicelocations-DG6-8LJt.js";import"../page-about-AoWZBs5p.js";import"../icons-Bf1VXX4I.js";const s=()=>{const s=o.find(r=>"scratched"===r.id);return r.jsx(e,{pageType:"problem",problem:s})};export{s as default};

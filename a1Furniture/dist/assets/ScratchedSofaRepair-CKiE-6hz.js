@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{s,S as e}from"./SofaRepairPageTemplate-CNVVxd-2.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const r=()=>{const r=s.find(o=>"scratched"===o.id);return o.jsx(e,{pageType:"problem",problem:r})};export{r as default};
