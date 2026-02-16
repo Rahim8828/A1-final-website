@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{a as s,S as a}from"./SofaRepairPageTemplate-CNVVxd-2.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const e=()=>{const e=s.find(o=>"chembur"===o.id);return o.jsx(a,{pageType:"location",location:e})};export{e as default};

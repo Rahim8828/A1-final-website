@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{a,S as e}from"./SofaRepairPageTemplate-Cq-expEJ.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const i=()=>{const i=a.find(o=>"vile-parle"===o.id);return o.jsx(e,{pageType:"location",location:i})};export{i as default};

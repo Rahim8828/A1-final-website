@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{c as e,B as s}from"./BedRepairPageTemplate-LyCdEoK6.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const t=()=>{const t=e.find(o=>"thane"===o.id);return o.jsx(s,{pageType:"location",location:t})};export{t as default};

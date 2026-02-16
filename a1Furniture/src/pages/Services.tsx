@@ -328,27 +328,38 @@ const Services = () => {
           </div>
         </header>
 
-      {/* Category Grid Section - Extra Compact */}
-      <section className="bg-gray-50 py-3 sm:py-4">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4">
-          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-1.5 sm:gap-2">
+      {/* Category Grid Section */}
+      <section className="bg-white py-4 sm:py-5 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4">
+          {/* Grid Header with View All */}
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-base sm:text-lg font-bold text-gray-900">Browse by Category</h2>
+            <button
+              onClick={() => window.scrollTo({ top: document.querySelector('main')?.offsetTop || 500, behavior: 'smooth' })}
+              className="text-amber-600 hover:text-amber-700 text-xs sm:text-sm font-semibold transition-colors"
+            >
+              View All ↓
+            </button>
+          </div>
+          {/* Mobile: 4-col square grid / Desktop: wider grid */}
+          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2 sm:gap-3">
             {polishServices.map((service) => (
               <button
                 key={service.id}
                 onClick={() => handleViewDetails(service.id)}
-                className="flex flex-col items-center gap-1 p-1.5 sm:p-2 bg-white rounded-md hover:shadow-md active:shadow-sm transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-amber-600 group"
+                className="flex flex-col items-center gap-1.5 p-2 bg-gray-50 rounded-lg hover:shadow-md active:shadow-sm transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-amber-600 group"
                 aria-label={`View ${service.name} options`}
                 type="button"
               >
-                <div className="w-full aspect-square bg-gray-50 rounded overflow-hidden flex items-center justify-center group-hover:bg-gray-100 transition-colors">
+                <div className="w-full aspect-square bg-white rounded-lg overflow-hidden flex items-center justify-center group-hover:bg-gray-50 transition-colors border border-gray-100">
                   <img
                     src={service.image}
                     alt={service.name}
-                    className="w-full h-full object-cover rounded"
+                    className="w-full h-full object-cover rounded-lg"
                     loading="lazy"
                   />
                 </div>
-                <span className="text-[9px] sm:text-[10px] font-medium text-gray-900 text-center line-clamp-2 w-full leading-tight">
+                <span className="text-[10px] sm:text-xs font-medium text-gray-800 text-center line-clamp-2 w-full leading-tight">
                   {service.name}
                 </span>
               </button>

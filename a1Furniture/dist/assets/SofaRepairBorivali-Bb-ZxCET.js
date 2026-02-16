@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{a as i,S as a}from"./SofaRepairPageTemplate-Cq-expEJ.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const s=()=>{const s=i.find(o=>"borivali"===o.id);return o.jsx(a,{pageType:"location",location:s})};export{s as default};

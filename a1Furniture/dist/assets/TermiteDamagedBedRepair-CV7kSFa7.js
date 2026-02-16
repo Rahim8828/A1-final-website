@@ -1,1 +1,0 @@
-import{j as e}from"./vendor-KZb78xUY.js";import{b as o,B as r}from"./BedRepairPageTemplate-LyCdEoK6.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const s=()=>{const s=o.find(e=>"termite"===e.id);return e.jsx(r,{pageType:"problem",problem:s})};export{s as default};

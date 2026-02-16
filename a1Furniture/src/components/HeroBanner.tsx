@@ -16,17 +16,17 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    desktop: '/products/banner/banner_2.png',
-    tablet: '/products/banner/banner_2.png',
-    mobile: '/products/banner/banner_2.png',
+    desktop: '/media/banner/banner_2.webp',
+    tablet: '/media/banner/banner_2.webp',
+    mobile: '/media/banner/banner_2.webp',
     badge: 'Starting From ₹1,299*',
     cta: 'Book Now',
     ctaLink: '/services',
   },
   {
-    desktop: '/products/banner/banner_3.png.png',
-    tablet: '/products/banner/banner_3.png.png',
-    mobile: '/products/banner/banner_3.png.png',
+    desktop: '/media/banner/banner_3.png.webp',
+    tablet: '/media/banner/banner_3.png.webp',
+    mobile: '/media/banner/banner_3.png.webp',
     badge: 'Starting From ₹2,449*',
     cta: 'Explore Services',
     ctaLink: '/services',

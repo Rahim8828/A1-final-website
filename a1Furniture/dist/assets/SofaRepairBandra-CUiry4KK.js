@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{a,S as s}from"./SofaRepairPageTemplate-Cq-expEJ.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const i=()=>{const i=a.find(o=>"bandra"===o.id);return o.jsx(s,{pageType:"location",location:i})};export{i as default};

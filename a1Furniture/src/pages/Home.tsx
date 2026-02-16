@@ -42,13 +42,20 @@ const Home = () => {
       <StickyWhatsApp />
       <StickyBookButton />
 
-      {/* 1. Popular Services — Category grid (first thing users see) */}
-      <Suspense fallback={<div className="py-10 bg-white" />}>
-        <PopularServices />
-      </Suspense>
+      {/* Desktop: Banner first, Services second | Mobile: Services first, Banner second */}
+      <div className="flex flex-col">
+        {/* Popular Services — shows first on mobile (order-1), second on desktop (md:order-2) */}
+        <div className="order-1 md:order-2">
+          <Suspense fallback={<div className="py-10 bg-white" />}>
+            <PopularServices />
+          </Suspense>
+        </div>
 
-      {/* 2. Hero Banner — Full-width carousel */}
-      <HeroBanner />
+        {/* Hero Banner — shows second on mobile (order-2), first on desktop (md:order-1) */}
+        <div className="order-2 md:order-1">
+          <HeroBanner />
+        </div>
+      </div>
 
       {/* 3. Sales Promo — Golden Polish Sale with service highlights */}
       <PromoBanner />

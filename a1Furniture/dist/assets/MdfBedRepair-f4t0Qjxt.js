@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{a as e,B as s}from"./BedRepairPageTemplate-CCVFF6LK.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const p=()=>{const p=e.find(o=>"mdf"===o.id);return o.jsx(s,{pageType:"wood-type",woodType:p})};export{p as default};

@@ -695,7 +695,7 @@ export const servicePageData: ServiceData[] = [
     reviewCount: 856,
     duration: 'Varies by area',
     features: ['Premium PU finish', 'Durable coating', 'Professional application', 'Travelling cost extra'],
-    image: '/products/pu_polish/puPolish_title/pu_polish_title.png',
+    image: '/products/pu_polish/puPolish_title/pu_polish_title.webp',
     options: [
       { id: 'pu-standard', name: 'PU Polish (per sqft)', price: 270, rating: 4.8, reviewCount: 456, estimatedTime: 'Varies' },
       { id: 'pu-premium', name: 'Premium PU Polish (per sqft)', price: 320, rating: 4.9, reviewCount: 400, estimatedTime: 'Varies' }
@@ -728,7 +728,7 @@ export const servicePageData: ServiceData[] = [
     reviewCount: 723,
     duration: 'Varies by area',
     features: ['Decorative finish', 'Multiple color options', 'Professional application', 'Travelling cost extra'],
-    image: '/products/deco_paint/decoPaint_Header/deco_paint_page_header.png',
+    image: '/products/deco_paint/decoPaint_Header/deco_paint_page_header.webp',
     options: [
       { id: 'deco-standard', name: 'Deco Polish (per sqft)', price: 249, rating: 4.7, reviewCount: 389, estimatedTime: 'Varies' },
       { id: 'deco-premium', name: 'Premium Deco Polish (per sqft)', price: 279, rating: 4.8, reviewCount: 334, estimatedTime: 'Varies' }

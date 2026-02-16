@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{a,S as i}from"./SofaRepairPageTemplate-Cq-expEJ.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const r=()=>{const r=a.find(o=>"mira-road"===o.id);return o.jsx(i,{pageType:"location",location:r})};export{r as default};

@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{a as e,B as s}from"./BedRepairPageTemplate-LyCdEoK6.js";import"./index-DUk_4l4t.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const r=()=>{const r=e.find(o=>"veneer"===o.id);return o.jsx(s,{pageType:"wood-type",woodType:r})};export{r as default};

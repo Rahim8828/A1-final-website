@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{s as e,S as r}from"./SofaRepairPageTemplate-Cq-expEJ.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const s=()=>{const s=e.find(o=>"water-damaged"===o.id);return o.jsx(r,{pageType:"problem",problem:s})};export{s as default};
