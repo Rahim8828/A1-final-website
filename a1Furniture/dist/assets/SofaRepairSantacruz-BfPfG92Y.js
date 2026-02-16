@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{a,S as s}from"./SofaRepairPageTemplate-Cq-expEJ.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const t=()=>{const t=a.find(o=>"santacruz"===o.id);return o.jsx(s,{pageType:"location",location:t})};export{t as default};

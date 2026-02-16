@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{S as s}from"./SofaRepairPageTemplate-MH8uO81Q.js";import"./index-B3puepM7.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const e=()=>o.jsx(s,{pageType:"master"});export{e as default};

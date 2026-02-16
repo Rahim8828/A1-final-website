@@ -1,6 +1,6 @@
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { SlidersHorizontal, LayoutGrid, Columns2, ChevronRight, Sparkles, Shield, Star, CheckCircle2 } from 'lucide-react';
+import { SlidersHorizontal, LayoutGrid, Columns2, ChevronRight, ShoppingCart } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { getCanonicalURL } from '../utils/canonicalURL';
 import FurnitureProductCard from '../components/FurnitureProductCard';
@@ -92,6 +92,38 @@ const Products: React.FC = () => {
     searchParams.delete('category');
     setSearchParams(searchParams, { replace: true });
   }, [minPrice, maxPrice, searchParams, setSearchParams]);
+
+  // Ref for scrolling to product section on category click
+  const productSectionRef = useRef<HTMLDivElement>(null);
+
+  // Category thumbnail data — maps each service to a product image from assets folder
+  const categoryThumbnails: { filterCategory: FurnitureCategory; label: string; image: string }[] = [
+    { filterCategory: 'sofas', label: 'Sofa Wood Polish', image: '/products/sofa/1_seater_sofa/lightBrownsingleSofa.png' },
+    { filterCategory: 'beds', label: 'Bed Wood Polish', image: '/products/bed/queen_bed/lightbrownQueen.png' },
+    { filterCategory: 'doors', label: 'Door Wood Polish', image: '/products/doors/single_door/darkBrownDoor.png' },
+    { filterCategory: 'tables', label: 'Table Wood Polish', image: '/products/table/side_table/lightBrowntable.png' },
+    { filterCategory: 'wardrobes', label: 'Wardrobe Wood Polish', image: '/products/wardrobe/double/lightBrown.png' },
+    { filterCategory: 'dining', label: 'Dining Set Polish', image: '/products/dining_set/4_seater/lightbrown_4.png' },
+    { filterCategory: 'cabinets', label: 'Cabinet Wood Polish', image: '/products/cabinet/crokery/lightBrown_crokery.png' },
+    { filterCategory: 'shelves', label: 'Bookshelf / Rack Polish', image: '/products/shelves/brownShelve.png' },
+    { filterCategory: 'shelves', label: 'Wooden Shelf Polish', image: '/products/shelves/ligt_brown_shelve.png' },
+    { filterCategory: 'mandir', label: 'Mandir Polish', image: '/products/mandir/darkWoodenMandir.png' },
+    { filterCategory: 'jhula', label: 'Jhula Polish', image: '/products/jhula/darkWoodenJhula.png' },
+    { filterCategory: 'all', label: 'Chester Drawer Polish', image: '/assets/optimized/Chester Drawer.webp' },
+    { filterCategory: 'tv-units', label: 'TV Unit Polish', image: '/products/tvUnitPolish/solidWood/darkBrown_solidwood.png' },
+    { filterCategory: 'wood-polish', label: 'Floor Polishing', image: '/products/FloorPoshining/wooden_polish.webp' },
+    { filterCategory: 'pu-polish', label: 'PU Polish', image: '/products/pu_polish/pu_matt_polish.webp' },
+    { filterCategory: 'deco-paint', label: 'Deco Paint', image: '/products/deco_paint/designer_deco_paint.webp' },
+    { filterCategory: 'antique', label: 'Antique / Carving Furniture', image: '/products/antique/largeAntiqueImage.png' },
+  ];
+
+  // Click a category thumbnail → set filter + scroll to products
+  const handleCategoryThumbnailClick = useCallback((category: FurnitureCategory) => {
+    handleFilterChange({ category });
+    setTimeout(() => {
+      productSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }, [handleFilterChange]);
 
   // Apply filters
   const filteredProducts = useMemo(() => {
@@ -220,128 +252,55 @@ const Products: React.FC = () => {
         </nav>
 
         {/* ══════════════════════════════════════════
-            HERO / TITLE SECTION — Deccan Clap Inspired
-        ══════════════════════════════════════════ */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-amber-600 via-amber-500 to-yellow-400">
-          {/* Decorative background shapes */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-            <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-white/5" />
-            <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-white/5" />
-            <div className="absolute top-1/2 right-1/4 w-40 h-40 rounded-full bg-white/[0.03]" />
-            {/* Dot pattern */}
-            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-          </div>
-
-          <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-              {/* ── Left Side: Title & Tagline ── */}
-              <div className="lg:max-w-[55%] space-y-4">
-                {/* Tagline badge */}
-                <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5 border border-white/20">
-                  <Sparkles className="w-4 h-4 text-white" />
-                  <span className="text-xs sm:text-sm font-semibold text-white tracking-wide uppercase">
-                    {categoryTagline}
-                  </span>
-                </div>
-
-                {/* Main title */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
-                  {currentCategoryLabel}
-                  <span className="block text-lg sm:text-xl lg:text-2xl font-medium text-white/80 mt-2 tracking-normal">
-                    Polish & Restoration Services
-                  </span>
-                </h1>
-
-                {/* Trust badges */}
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <div className="flex items-center gap-1.5 text-white/90 text-xs sm:text-sm font-medium">
-                    <Shield className="w-4 h-4 text-white" />
-                    <span>6-Month Warranty</span>
-                  </div>
-                  <div className="w-px h-4 bg-white/30" />
-                  <div className="flex items-center gap-1.5 text-white/90 text-xs sm:text-sm font-medium">
-                    <Star className="w-4 h-4 text-white fill-white" />
-                    <span>4.9 Rated Service</span>
-                  </div>
-                  <div className="w-px h-4 bg-white/30" />
-                  <div className="flex items-center gap-1.5 text-white/90 text-xs sm:text-sm font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-white" />
-                    <span>Expert Craftsmen</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* ── Right Side: Description Card ── */}
-              <div className="lg:max-w-[42%] w-full">
-                <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-6 sm:p-8 border border-white/40">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-1.5 h-8 rounded-full bg-gradient-to-b from-amber-500 to-amber-700" />
-                    <h2 className="text-lg sm:text-xl font-bold text-gray-900">
-                      About This Service
-                    </h2>
-                  </div>
-                  <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                    {categoryDescription}
-                  </p>
-                  <div className="mt-5 pt-4 border-t border-gray-100">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-xs text-gray-500">Starting from</span>
-                        <span className="text-lg font-bold text-amber-600">
-                          ₹{filteredProducts.length > 0 ? Math.min(...filteredProducts.map(p => p.price)).toLocaleString('en-IN') : '999'}
-                        </span>
-                      </div>
-                      <a
-                        href="tel:+919892060961"
-                        className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-amber-600/25 hover:shadow-amber-700/30"
-                      >
-                        Get Free Quote
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom curved edge */}
-          <div className="absolute bottom-0 left-0 right-0 h-4 bg-gray-50 rounded-t-[2rem]" />
-        </div>
-
-        {/* ══════════════════════════════════════════
-            CATEGORY ICONS BAR (like the reference image)
+            SERVICE CATEGORIES HEADER — Thumbnail Grid
         ══════════════════════════════════════════ */}
         <div className="bg-white border-b border-gray-200 shadow-sm">
-          <div className="max-w-[1400px] mx-auto px-4 py-4">
-            <div className="flex items-center justify-center gap-4 md:gap-6 overflow-x-auto pb-1 scrollbar-hide">
-              {furnitureCategories.map((cat) => (
+          <div className="max-w-[1400px] mx-auto px-4 pt-6 pb-4 md:pt-8 md:pb-5">
+            {/* Title Row */}
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex-1 text-center">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
+                  Furniture Wood Polish
+                </h1>
+                <p className="mt-1.5 text-xs sm:text-sm text-gray-500 font-medium">
+                  Professional polishing &bull; 6 Months Warranty &bull; Expert Craftsmen
+                </p>
+              </div>
+              <a
+                href="tel:+919892060961"
+                className="relative flex-shrink-0 ml-3 p-2.5 rounded-full hover:bg-amber-50 transition-colors"
+                aria-label="Get a free quote"
+                title="Call for free quote"
+              >
+                <ShoppingCart className="w-6 h-6 text-gray-700" />
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow">
+                  {filteredProducts.length > 0 ? filteredProducts.length : '!'}
+                </span>
+              </a>
+            </div>
+
+            {/* Category Thumbnail Grid — square images */}
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-9 gap-3 md:gap-4">
+              {categoryThumbnails.map((item, index) => (
                 <button
-                  key={cat.id}
-                  onClick={() => handleFilterChange({ category: cat.id })}
-                  className={`flex flex-col items-center gap-1.5 min-w-[72px] transition-all duration-200 group ${
-                    filters.category === cat.id ? '' : 'opacity-70 hover:opacity-100'
+                  key={index}
+                  onClick={() => handleCategoryThumbnailClick(item.filterCategory)}
+                  className={`flex flex-col items-center gap-1.5 p-1.5 sm:p-2 rounded-xl transition-all duration-200 hover:bg-amber-50 hover:shadow-md group ${
+                    filters.category === item.filterCategory
+                      ? 'bg-amber-50 ring-2 ring-amber-400 shadow-sm'
+                      : ''
                   }`}
                 >
-                  <div
-                    className={`w-14 h-14 md:w-16 md:h-16 rounded-xl flex items-center justify-center transition-all duration-200 ${
-                      filters.category === cat.id
-                        ? 'bg-amber-50 border-2 border-amber-500 shadow-sm'
-                        : 'bg-gray-50 border border-gray-200 group-hover:bg-gray-100'
-                    }`}
-                  >
-                    <CategoryIcon
-                      icon={cat.icon}
-                      isActive={filters.category === cat.id}
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                    <img
+                      src={item.image}
+                      alt={item.label}
+                      className="absolute inset-0 w-full h-full object-contain p-1.5"
+                      loading="lazy"
                     />
                   </div>
-                  <span
-                    className={`text-[11px] font-medium text-center whitespace-nowrap ${
-                      filters.category === cat.id
-                        ? 'text-amber-600 font-semibold'
-                        : 'text-gray-600'
-                    }`}
-                  >
-                    {cat.label}
+                  <span className="text-[10px] sm:text-xs font-medium text-gray-700 text-center leading-tight group-hover:text-amber-700 line-clamp-2">
+                    {item.label}
                   </span>
                 </button>
               ))}
@@ -352,7 +311,7 @@ const Products: React.FC = () => {
         {/* ══════════════════════════════════════════
             MAIN CONTENT: SIDEBAR + PRODUCTS
         ══════════════════════════════════════════ */}
-        <div className="max-w-[1400px] mx-auto px-4 py-6">
+        <div ref={productSectionRef} className="max-w-[1400px] mx-auto px-4 py-6">
           {/* Sort Bar */}
           <div className="flex items-center justify-between mb-5 bg-white rounded-xl border border-gray-200 px-4 py-3 shadow-sm">
             <div className="flex items-center gap-3">

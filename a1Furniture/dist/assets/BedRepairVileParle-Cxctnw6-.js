@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{c as e,B as i}from"./BedRepairPageTemplate-CCVFF6LK.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const s=()=>{const s=e.find(o=>"vile-parle"===o.id);return o.jsx(i,{pageType:"location",location:s})};export{s as default};

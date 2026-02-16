@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{c as i,B as s}from"./BedRepairPageTemplate-CCVFF6LK.js";import"./index-hBiT11Ip.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const a=()=>{const a=i.find(o=>"navi-mumbai"===o.id);return o.jsx(s,{pageType:"location",location:a})};export{a as default};
