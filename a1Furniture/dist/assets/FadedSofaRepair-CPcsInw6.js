@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{s as e,S as s}from"./SofaRepairPageTemplate-MH8uO81Q.js";import"./index-B3puepM7.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const r=()=>{const r=e.find(o=>"faded"===o.id);return o.jsx(s,{pageType:"problem",problem:r})};export{r as default};

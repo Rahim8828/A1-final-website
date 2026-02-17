@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{a as s,S as i}from"./SofaRepairPageTemplate-BJPNRt0e.js";import"./index-CH9GRaaw.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const a=()=>{const a=s.find(o=>"sion"===o.id);return o.jsx(i,{pageType:"location",location:a})};export{a as default};

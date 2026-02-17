@@ -347,7 +347,7 @@ export const servicePageData: ServiceData[] = [
     reviewCount: 1767,
     duration: '~2.5 hrs',
     features: ['6 Months Polished Warranty', 'Scratch-resistant finish', 'Food-safe polish options'],
-    image: '/assets/side-table.webp',
+    image: '/products/table/center_table/lightBrowntable.png',
     options: [
       { id: 'table-coffee', name: 'Coffee Table', price: 1549, rating: 4.8, reviewCount: 234, estimatedTime: '1.5 hrs', image: '/assets/Coffe-table-polish.webp' },
       { id: 'table-center', name: 'Center Table', price: 2899, rating: 4.9, reviewCount: 567, estimatedTime: '2.5 hrs', image: '/assets/Center-table-polish.webp' },

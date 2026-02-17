@@ -1,0 +1,1 @@
+import{j as e}from"./vendor-KZb78xUY.js";import{S as a}from"./ServicePageTemplate-ijXXES_j.js";import"./index-CH9GRaaw.js";import"./OptimizedImage-T78ZHos1.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./imageHelpers-qSMgXOFz.js";const t=({pageData:t})=>e.jsx(a,{pageData:t});export{t as default};

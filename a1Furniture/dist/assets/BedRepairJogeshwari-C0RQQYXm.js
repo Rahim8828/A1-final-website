@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{c as s,B as e}from"./BedRepairPageTemplate-DqhTK-Mu.js";import"./index-B3puepM7.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const i=()=>{const i=s.find(o=>"jogeshwari"===o.id);return o.jsx(e,{pageType:"location",location:i})};export{i as default};

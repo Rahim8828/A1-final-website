@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-KZb78xUY.js";import{c as i,B as s}from"./BedRepairPageTemplate-DpgFj3Bb.js";import"./index-CH9GRaaw.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const e=()=>{const e=i.find(o=>"powai"===o.id);return o.jsx(s,{pageType:"location",location:e})};export{e as default};
