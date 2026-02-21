@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { SlidersHorizontal, LayoutGrid, Columns2, ChevronRight, ShoppingCart } from 'lucide-react';
+import { SlidersHorizontal, LayoutGrid, Columns2, ChevronRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { getCanonicalURL } from '../utils/canonicalURL';
 import FurnitureProductCard from '../components/FurnitureProductCard';
@@ -98,23 +98,21 @@ const Products: React.FC = () => {
 
   // Category thumbnail data — maps each service to a product image from assets folder
   const categoryThumbnails: { filterCategory: FurnitureCategory; label: string; image: string }[] = [
-    { filterCategory: 'sofas', label: 'Sofa Wood Polish', image: '/products/sofa/1_seater_sofa/lightBrownsingleSofa.png' },
-    { filterCategory: 'beds', label: 'Bed Wood Polish', image: '/products/bed/queen_bed/lightbrownQueen.png' },
-    { filterCategory: 'doors', label: 'Door Wood Polish', image: '/products/doors/single_door/darkBrownDoor.png' },
-    { filterCategory: 'tables', label: 'Table Wood Polish', image: '/products/table/side_table/lightBrowntable.png' },
-    { filterCategory: 'wardrobes', label: 'Wardrobe Wood Polish', image: '/products/wardrobe/double/lightBrown.png' },
-    { filterCategory: 'dining', label: 'Dining Set Polish', image: '/products/dining_set/4_seater/lightbrown_4.png' },
-    { filterCategory: 'cabinets', label: 'Cabinet Wood Polish', image: '/products/cabinet/crokery/lightBrown_crokery.png' },
-    { filterCategory: 'shelves', label: 'Bookshelf / Rack Polish', image: '/products/shelves/brownShelve.png' },
-    { filterCategory: 'shelves', label: 'Wooden Shelf Polish', image: '/products/shelves/ligt_brown_shelve.png' },
-    { filterCategory: 'mandir', label: 'Mandir Polish', image: '/products/mandir/darkWoodenMandir.png' },
-    { filterCategory: 'jhula', label: 'Jhula Polish', image: '/products/jhula/darkWoodenJhula.png' },
-    { filterCategory: 'all', label: 'Chester Drawer Polish', image: '/assets/optimized/Chester Drawer.webp' },
-    { filterCategory: 'tv-units', label: 'TV Unit Polish', image: '/products/tvUnitPolish/solidWood/darkBrown_solidwood.png' },
+    { filterCategory: 'sofas', label: 'Sofa Wood Polish', image: '/products/front_page_service_products/sofa_polish.webp' },
+    { filterCategory: 'beds', label: 'Bed Wood Polish', image: '/products/front_page_service_products/bed_polish.webp' },
+    { filterCategory: 'doors', label: 'Door Wood Polish', image: '/products/front_page_service_products/door_polish.webp' },
+    { filterCategory: 'tables', label: 'Table Wood Polish', image: '/products/front_page_service_products/table_polish.webp' },
+    { filterCategory: 'wardrobes', label: 'Wardrobe Wood Polish', image: '/products/front_page_service_products/wardrobe_polish.webp' },
+    { filterCategory: 'dining', label: 'Dining Set Polish', image: '/products/front_page_service_products/dining_set_polish.webp' },
+    { filterCategory: 'cabinets', label: 'Cabinet Wood Polish', image: '/products/front_page_service_products/crokery_polish.webp' },
+    { filterCategory: 'shelves', label: 'Wooden Shelf Polish', image: '/products/front_page_service_products/shelve_polish.webp' },
+    { filterCategory: 'mandir', label: 'Mandir Polish', image: '/products/front_page_service_products/mandir_polish.webp' },
+    { filterCategory: 'jhula', label: 'Jhula Polish', image: '/products/front_page_service_products/jhula_polish.webp' },
+    { filterCategory: 'tv-units', label: 'TV Unit Polish', image: '/products/front_page_service_products/tv_polish.webp' },
     { filterCategory: 'wood-polish', label: 'Floor Polishing', image: '/products/FloorPoshining/wooden_polish.webp' },
     { filterCategory: 'pu-polish', label: 'PU Polish', image: '/products/pu_polish/pu_matt_polish.webp' },
     { filterCategory: 'deco-paint', label: 'Deco Paint', image: '/products/deco_paint/designer_deco_paint.webp' },
-    { filterCategory: 'antique', label: 'Antique / Carving Furniture', image: '/products/antique/largeAntiqueImage.png' },
+    { filterCategory: 'antique', label: 'Antique / Carving Furniture', image: '/products/front_page_service_products/antique_polish.png' },
   ];
 
   // Click a category thumbnail → set filter + scroll to products
@@ -266,40 +264,29 @@ const Products: React.FC = () => {
                   Professional polishing &bull; 6 Months Warranty &bull; Expert Craftsmen
                 </p>
               </div>
-              <a
-                href="tel:+919892060961"
-                className="relative flex-shrink-0 ml-3 p-2.5 rounded-full hover:bg-amber-50 transition-colors"
-                aria-label="Get a free quote"
-                title="Call for free quote"
-              >
-                <ShoppingCart className="w-6 h-6 text-gray-700" />
-                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow">
-                  {filteredProducts.length > 0 ? filteredProducts.length : '!'}
-                </span>
-              </a>
             </div>
 
-            {/* Category Thumbnail Grid — square images */}
+            {/* Category Thumbnail Grid — square images with zoom effect */}
             <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-9 gap-3 md:gap-4">
               {categoryThumbnails.map((item, index) => (
                 <button
                   key={index}
                   onClick={() => handleCategoryThumbnailClick(item.filterCategory)}
-                  className={`flex flex-col items-center gap-1.5 p-1.5 sm:p-2 rounded-xl transition-all duration-200 hover:bg-amber-50 hover:shadow-md group ${
+                  className={`flex flex-col items-center gap-1.5 p-1.5 sm:p-2 rounded-xl transition-all duration-300 hover:bg-amber-50 hover:shadow-lg group ${
                     filters.category === item.filterCategory
                       ? 'bg-amber-50 ring-2 ring-amber-400 shadow-sm'
                       : ''
                   }`}
                 >
-                  <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-gray-50 border border-gray-100">
+                  <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-gray-50 border border-gray-100 group-hover:scale-105 transition-transform duration-300 group-hover:shadow-md">
                     <img
                       src={item.image}
                       alt={item.label}
-                      className="absolute inset-0 w-full h-full object-contain p-1.5"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       loading="lazy"
                     />
                   </div>
-                  <span className="text-[10px] sm:text-xs font-medium text-gray-700 text-center leading-tight group-hover:text-amber-700 line-clamp-2">
+                  <span className="text-[10px] sm:text-xs font-medium text-gray-700 text-center leading-tight group-hover:text-amber-700 transition-colors line-clamp-2">
                     {item.label}
                   </span>
                 </button>

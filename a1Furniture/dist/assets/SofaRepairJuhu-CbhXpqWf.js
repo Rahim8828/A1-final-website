@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{a as s,S as a}from"./SofaRepairPageTemplate-BJPNRt0e.js";import"./index-CH9GRaaw.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const i=()=>{const i=s.find(o=>"juhu"===o.id);return o.jsx(a,{pageType:"location",location:i})};export{i as default};

@@ -12,28 +12,28 @@ interface PromoCard {
 
 const promoCards: PromoCard[] = [
   {
-    image: '/products/front_page_service_products/whiteseater_6_front.webp',
+    image: '/products/front_page_service_products/sofa_polish.webp',
     title: 'Sofa Polish',
     subtitle: 'Starts at ₹1,449',
     link: '/services?service=sofa-polish',
     badge: 'Bestseller',
   },
   {
-    image: '/products/front_page_service_products/redqueenSize_front.webp',
+    image: '/products/front_page_service_products/bed_polish.webp',
     title: 'Bed Polish',
     subtitle: 'Starts at ₹2,449',
     link: '/services?service=bed-polish',
     badge: 'Popular',
   },
   {
-    image: '/products/pu_polish/puPolish_title/pu_polish_title.webp',
+    image: '/products/front_page_service_products/pu_polish_front.webp',
     title: 'PU Polish',
     subtitle: 'Starts at ₹270/sqft',
     link: '/wood-polishing-services',
     badge: 'Premium',
   },
   {
-    image: '/products/deco_paint/decoPaint_Header/deco_paint_page_header.webp',
+    image: '/products/front_page_service_products/deco_paint_front.webp',
     title: 'Deco Paint',
     subtitle: 'Starts at ₹249/sqft',
     link: '/deco-paint-services',

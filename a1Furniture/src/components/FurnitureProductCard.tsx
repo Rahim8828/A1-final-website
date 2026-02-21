@@ -33,7 +33,7 @@ const FurnitureProductCard: React.FC<FurnitureProductCardProps> = ({ product, vi
     if (variant && variant.image) return variant.image;
     // fallback to first variant with image
     const fallback = product.colorVariants.find((v) => v.image);
-    return fallback?.image || '/assets/placeholder.webp';
+    return fallback?.image 
   };
 
   const discountPercent = Math.round(
@@ -89,7 +89,7 @@ const FurnitureProductCard: React.FC<FurnitureProductCardProps> = ({ product, vi
 
           {/* Product Image */}
           <img
-            src={imgError ? '/assets/placeholder.webp' : getImageForColor()}
+            src={getImageForColor()}
             alt={`${product.name} - ${selectedColor} finish`}
             className={`w-full h-full object-cover transition-transform duration-500 ease-out ${
               isHovered ? 'scale-110' : 'scale-100'

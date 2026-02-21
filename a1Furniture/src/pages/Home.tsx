@@ -6,90 +6,94 @@ import { localBusiness } from '../data/localBusiness';
 import { services as servicesSchema } from '../data/services';
 import { reviews, aggregateRating } from '../data/reviews';
 import HeroBanner from '../components/HeroBanner';
-import PromoBanner from '../components/PromoBanner';
-import ShopByCategories from '../components/ShopByCategories';
-import ServiceAreas from '../components/ServiceAreas';
-import StickyWhatsApp from '../components/StickyWhatsApp';
-import StickyBookButton from '../components/StickyBookButton';
 import TrustBadges from '../components/TrustBadges';
+import MobileCategoryScroll from '../components/MobileCategoryScroll';
+import ShopByCategories from '../components/ShopByCategories';
+import PopularServices from '../components/PopularServices';
+import PromoBanner from '../components/PromoBanner';
+import OurProcess from '../components/OurProcess';
+import CustomerPhotos from '../components/CustomerPhotos';
+import ServiceAreas from '../components/ServiceAreas';
+import QuickQuoteCalculator from '../components/QuickQuoteCalculator';
 import FAQSection from '../components/FAQSection';
 import ContactCTA from '../components/ContactCTA';
 
-// Lazy load heavier sections
-const PopularServices = lazy(() => import('../components/PopularServices'));
-const OurProcess = lazy(() => import('../components/OurProcess'));
-const CustomerPhotos = lazy(() => import('../components/CustomerPhotos'));
-const QuickQuoteCalculator = lazy(() => import('../components/QuickQuoteCalculator'));
-
 const Home = () => {
   return (
-    <>
-      <SEOHead
-        title="A1 Furniture Polish — Professional Wooden Furniture Polishing in Mumbai"
-        description="Leading furniture polishing services in Mumbai. We restore and polish your wooden furniture to perfection with eco-friendly products and skilled craftsmen. Expert sofa, bed, door, table, wardrobe polish. 6 months warranty. Book now!"
-        keywords="furniture polish Mumbai, wood polishing services, sofa polish, bed polish, door polish, table polish, wardrobe polish, furniture restoration Mumbai, A1 furniture polish"
-        ogImage="/assets/Sofa And chair.webp"
-        canonical={getCanonicalURL('/')}
-      />
-      <JsonLd data={localBusiness} />
-      <JsonLd data={servicesSchema} />
-      {reviews.map((review, index) => (
-        <JsonLd key={`review-${index}`} data={review} />
-      ))}
-      <JsonLd data={aggregateRating} />
-
-      {/* Sticky Buttons */}
-      <StickyWhatsApp />
-      <StickyBookButton />
-
-      {/* Desktop: Banner first, Services second | Mobile: Services first, Banner second */}
-      <div className="flex flex-col">
-        {/* Popular Services — shows first on mobile (order-1), second on desktop (md:order-2) */}
-        <div className="order-1 md:order-2">
-          <Suspense fallback={<div className="py-10 bg-white" />}>
-            <PopularServices />
-          </Suspense>
-        </div>
-
-        {/* Hero Banner — shows second on mobile (order-2), first on desktop (md:order-1) */}
-        <div className="order-2 md:order-1">
-          <HeroBanner />
-        </div>
+    <main className="bg-gray-50 min-h-screen">
+      {/* Mobile Category Scroll - Only on mobile, positioned at top */}
+      <div className="md:hidden">
+        <MobileCategoryScroll />
       </div>
 
-      {/* 3. Sales Promo — Golden Polish Sale with service highlights */}
-      <PromoBanner />
+      {/* Hero Banner - Full width on mobile, below categories */}
+      <section className="relative w-full bg-white md:hidden">
+        <HeroBanner />
+      </section>
 
-      {/* 4. Service By Categories — Tabbed product grid with hover image swap */}
-      <ShopByCategories />
+      {/* Hero Banner - Desktop only, at top */}
+      <section className="hidden md:block relative w-full bg-white">
+        <HeroBanner />
+      </section>
 
-      {/* 4. Trust Badges */}
-      <TrustBadges />
+      {/* Trust Badges */}
+      <section className="bg-white">
+        <TrustBadges />
+      </section>
 
-      {/* 5. Our Process */}
-      <Suspense fallback={<div className="py-16 bg-white" />}>
-        <OurProcess />
-      </Suspense>
+      {/* Shop By Categories: Tabbed grid - Hidden on mobile, shown on desktop */}
+      <section className="hidden md:block max-w-[1600px] mx-auto px-4 py-8">
+        <ShopByCategories />
+      </section>
 
-      {/* 6. Customer Photos */}
-      <Suspense fallback={<div className="py-16" />}>
-        <CustomerPhotos />
-      </Suspense>
+      {/* Popular Services: Horizontal scroll, icons, and highlights */}
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
+        <Suspense fallback={<div className="py-10 bg-white" />}>
+          <PopularServices />
+        </Suspense>
+      </section>
 
-      {/* 7. Service Areas — Mumbai locations */}
-      <ServiceAreas />
+      {/* Promo Banner: Golden Polish Sale with service highlights */}
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
+        <PromoBanner />
+      </section>
 
-      {/* 8. Quick Quote Calculator */}
-      <Suspense fallback={<div className="py-16" />}>
-        <QuickQuoteCalculator />
-      </Suspense>
+      {/* Our Process: Step-by-step visual */}
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
+        <Suspense fallback={<div className="py-16 bg-white" />}>
+          <OurProcess />
+        </Suspense>
+      </section>
 
-      {/* 9. FAQ */}
-      <FAQSection />
+      {/* Customer Photos: Gallery grid */}
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
+        <Suspense fallback={<div className="py-16" />}>
+          <CustomerPhotos />
+        </Suspense>
+      </section>
 
-      {/* 10. Contact CTA */}
-      <ContactCTA />
-    </>
+      {/* Service Areas: Mumbai locations */}
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
+        <ServiceAreas />
+      </section>
+
+      {/* Quick Quote Calculator */}
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
+        <Suspense fallback={<div className="py-16" />}>
+          <QuickQuoteCalculator />
+        </Suspense>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
+        <FAQSection />
+      </section>
+
+      {/* Contact CTA */}
+      <section className="max-w-[1600px] mx-auto px-4 py-8">
+        <ContactCTA />
+      </section>
+    </main>
   );
 };
 

@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{a as e,B as s}from"./BedRepairPageTemplate-DpgFj3Bb.js";import"./index-CH9GRaaw.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const i=()=>{const i=e.find(o=>"solid-wood"===o.id);return o.jsx(s,{pageType:"wood-type",woodType:i})};export{i as default};

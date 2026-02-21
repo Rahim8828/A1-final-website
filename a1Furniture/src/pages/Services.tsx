@@ -288,85 +288,20 @@ const Services = () => {
         {/* Header - Enhanced UI with Cart Icon */}
         <header className="bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 border-b-2 border-amber-200 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4 md:py-6">
-            <div className="flex items-center justify-between gap-4">
-              {/* Left - Back/Home Button (Optional) */}
-              <div className="flex items-center">
-                <div className="w-10 md:w-12 flex items-center justify-center">
-                  {/* Placeholder for future back button */}
-                </div>
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                  Furniture Wood Polish
+                </h1>
               </div>
-              
-              {/* Center - Title with Icon */}
-              <div className="flex-1 text-center">
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  <svg 
-                    className="w-6 h-6 md:w-7 md:h-7 text-amber-600 hidden sm:block" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                    Furniture Wood Polish
-                  </h1>
-                </div>
-                <p className="text-gray-600 text-xs sm:text-sm md:text-base font-medium">
-                  Professional polishing • 6 Months Warranty • Expert Craftsmen
-                </p>
-              </div>
-              
-              {/* Right - Cart Icon with Enhanced Badge */}
-              <div className="flex items-center">
-                <CartIcon
-                  itemCount={selectedServices.length}
-                  onClick={handleViewCart}
-                />
-              </div>
+              <p className="text-gray-600 text-xs sm:text-sm md:text-base font-medium">
+                Professional polishing • 6 Months Warranty • Expert Craftsmen
+              </p>
             </div>
           </div>
         </header>
 
-      {/* Category Grid Section */}
-      <section className="bg-white py-4 sm:py-5 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4">
-          {/* Grid Header with View All */}
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-base sm:text-lg font-bold text-gray-900">Browse by Category</h2>
-            <button
-              onClick={() => window.scrollTo({ top: document.querySelector('main')?.offsetTop || 500, behavior: 'smooth' })}
-              className="text-amber-600 hover:text-amber-700 text-xs sm:text-sm font-semibold transition-colors"
-            >
-              View All ↓
-            </button>
-          </div>
-          {/* Mobile: 4-col square grid / Desktop: wider grid */}
-          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2 sm:gap-3">
-            {polishServices.map((service) => (
-              <button
-                key={service.id}
-                onClick={() => handleViewDetails(service.id)}
-                className="flex flex-col items-center gap-1.5 p-2 bg-gray-50 rounded-lg hover:shadow-md active:shadow-sm transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-amber-600 group"
-                aria-label={`View ${service.name} options`}
-                type="button"
-              >
-                <div className="w-full aspect-square bg-white rounded-lg overflow-hidden flex items-center justify-center group-hover:bg-gray-50 transition-colors border border-gray-100">
-                  <img
-                    src={service.image}
-                    alt={service.name}
-                    className="w-full h-full object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-[10px] sm:text-xs font-medium text-gray-800 text-center line-clamp-2 w-full leading-tight">
-                  {service.name}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Section-wise Service Cards - Urban Company Style */}
       <main className="max-w-7xl mx-auto px-4 py-8 space-y-8">
@@ -435,11 +370,11 @@ const Services = () => {
                   {/* Right Side - Image and Add Button (Compact) */}
                   <div className="flex flex-col items-center gap-2 w-32 sm:w-40 flex-shrink-0">
                     {/* Service Image */}
-                    <div className="w-full aspect-square bg-gray-50 rounded-lg overflow-hidden flex items-center justify-center">
+                    <div className="w-full aspect-square rounded-xl overflow-hidden shadow-sm group">
                       <img
                         src={service.image}
                         alt={service.name}
-                        className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         loading="lazy"
                       />
                     </div>
@@ -694,13 +629,7 @@ const Services = () => {
         </div>
       )}
 
-      {/* Floating Cart Button - Shows after scrolling */}
-      {!showCart && (
-        <FloatingCartButton
-          itemCount={selectedServices.length}
-          onClick={handleViewCart}
-        />
-      )}
+
 
       {/* Toast Notification - Mobile Friendly */}
       {toastMessage && (

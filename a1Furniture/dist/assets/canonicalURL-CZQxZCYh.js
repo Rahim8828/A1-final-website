@@ -1,0 +1,1 @@
+const t={baseURL:"https://a1furniturepolish.com"};function n(n){const e=function(t){let n=t;return n.length>1&&n.endsWith("/")&&(n=n.slice(0,-1)),n.startsWith("/")||(n="/"+n),n}(n),{baseURL:s}=t;return`${s.endsWith("/")?s.slice(0,-1):s}${e}`}function e(){return"undefined"==typeof window?t.baseURL:n(window.location.pathname)}export{e as a,n as g};

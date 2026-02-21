@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{a as e,B as s}from"./BedRepairPageTemplate-DpgFj3Bb.js";import"./index-CH9GRaaw.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const t=()=>{const t=e.find(o=>"teakwood"===o.id);return o.jsx(s,{pageType:"wood-type",woodType:t})};export{t as default};

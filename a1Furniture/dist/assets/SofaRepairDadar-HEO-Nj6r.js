@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-KZb78xUY.js";import{a,S as s}from"./SofaRepairPageTemplate-BJPNRt0e.js";import"./index-CH9GRaaw.js";import"./ScrollAnimations-DHrjgPFQ.js";import"./TypesOfWoodWePolish-DGIsEfBh.js";const i=()=>{const i=a.find(o=>"dadar"===o.id);return o.jsx(s,{pageType:"location",location:i})};export{i as default};

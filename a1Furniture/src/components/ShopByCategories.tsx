@@ -10,24 +10,24 @@ const ShopByCategories: React.FC = () => {
     <section className="py-14 md:py-20 bg-white">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-2">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-3">
           Service By Categories
         </h2>
-        <p className="text-gray-500 text-center mb-8 text-sm">
+        <p className="text-gray-600 text-center mb-10 text-base">
           Explore our furniture polishing services by category
         </p>
 
         {/* Category Tabs */}
-        <div className="flex justify-center mb-10">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+        <div className="flex justify-center mb-12">
+          <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
+                className={`px-6 py-3 rounded-full text-base font-semibold transition-all duration-200 border-2 ${
                   activeTab === cat.id
-                    ? 'bg-white text-amber-700 border-amber-600 shadow-sm'
-                    : 'bg-transparent text-gray-600 border-gray-200 hover:border-gray-400 hover:text-gray-800'
+                    ? 'bg-amber-600 text-white border-amber-600 shadow-lg scale-105'
+                    : 'bg-white text-gray-700 border-gray-300 hover:border-amber-400 hover:text-amber-600 hover:shadow-md'
                 }`}
               >
                 {cat.label}
@@ -36,8 +36,8 @@ const ShopByCategories: React.FC = () => {
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-6">
+        {/* Products Grid - Significantly Larger Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -45,8 +45,8 @@ const ShopByCategories: React.FC = () => {
 
         {/* Empty state */}
         {filteredProducts.length === 0 && (
-          <div className="text-center py-12 text-gray-400">
-            <p className="text-lg">No products in this category yet.</p>
+          <div className="text-center py-16 text-gray-400">
+            <p className="text-xl">No products in this category yet.</p>
           </div>
         )}
       </div>

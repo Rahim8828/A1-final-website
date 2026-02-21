@@ -87,23 +87,27 @@ const ServiceAreas: React.FC = () => {
               ))}
             </div>
 
-            {/* CTA Buttons — pill shaped, outlined, matching reference */}
-            <div className="flex gap-3 max-w-md mx-auto">
+            {/* CTA Buttons — Grid structure with centered icons and text */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
               <a
                 href="tel:+918828709945"
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border-2 border-amber-500 text-amber-600 text-sm font-semibold hover:bg-amber-50 transition-colors"
+                className="flex flex-col items-center justify-center gap-2 py-4 sm:py-5 px-3 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-amber-500 to-amber-600 text-white hover:from-amber-600 hover:to-amber-700 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
               >
-                <Phone className="w-4 h-4" />
-                Visit Nearest Centre
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="text-xs sm:text-sm md:text-base font-bold text-center leading-tight">
+                  Visit Polish<br />Centre
+                </span>
               </a>
               <a
                 href="https://wa.me/918828709945"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full border-2 border-amber-500 text-amber-600 text-sm font-semibold hover:bg-amber-50 transition-colors"
+                className="flex flex-col items-center justify-center gap-2 py-4 sm:py-5 px-3 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
               >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp Us
+                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span className="text-xs sm:text-sm md:text-base font-bold text-center leading-tight">
+                  Get Free<br />Quote
+                </span>
               </a>
             </div>
 

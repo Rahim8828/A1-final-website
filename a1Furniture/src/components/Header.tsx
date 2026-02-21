@@ -2,7 +2,24 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Phone, MessageCircle, Search, Heart, ShoppingCart } from 'lucide-react';
 import { servicePageData } from '../data/servicePageData';
-import { products } from '../data/productCatalog';
+import { products, categories } from '../data/productCatalog';
+
+// Category images for the category bar
+const categoryImages: Record<string, string> = {
+  all: '/products/front_page_service_products/sofa_polish.webp',
+  sofas: '/products/sofa/1_seater_sofa/darkWooden1seaterSofa.webp',
+  beds: '/products/bed/king_bed/darkWoodenKing.webp',
+  'dining-tables': '/products/dining_set/6_seater/darkbrown6seater.webp',
+  'wardrobes-storage': '/products/wardrobe/double/darkWoodendoubleWardrobe.webp',
+  shelves: '/products/shelves/brownShelve.webp',
+  'tv-units': '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp',
+  doors: '/products/doors/single_door/darkWoodensingle.webp',
+  'wood-polish': '/products/FloorPoshining/wooden_polish.webp',
+  'pu-polish': '/products/pu_polish/glass_pu_polish.webp',
+  'deco-paint': '/products/deco_paint/solid_decoPaint.webp',
+  mandir: '/products/mandir/darkBrownmandir.webp',
+  antique: '/products/antique/largeAntiqueImage.png',
+};
 
 // Searchable items index
 interface SearchItem {
@@ -111,7 +128,7 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-white sticky top-0 z-50 shadow-sm">
+    <header className="bg-white shadow-sm">
       {/* Main Header */}
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-[72px] gap-4">
@@ -175,14 +192,6 @@ const Header = () => {
 
           {/* Right Icons */}
           <div className="flex items-center gap-1 sm:gap-3">
-            {/* Mobile search trigger */}
-            <button
-              onClick={() => { setIsSearchFocused(!isSearchFocused); }}
-              className="md:hidden p-2 text-gray-600 hover:text-amber-600"
-            >
-              <Search className="w-5 h-5" />
-            </button>
-
             {/* Wishlist */}
             <button className="relative flex flex-col items-center p-2 text-gray-600 hover:text-amber-600 transition-colors">
               <Heart className="w-5 h-5 md:w-6 md:h-6" />
@@ -234,6 +243,33 @@ const Header = () => {
               </Link>
             ))}
           </nav>
+        </div>
+      </div>
+
+      {/* Category Bar with larger icons - Hidden on mobile */}
+      <div className="border-t border-gray-100 bg-gray-50 hidden md:block">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-4">
+          <div className="flex overflow-x-auto gap-6 hide-scrollbar pb-2">
+            {categories.map((cat) => (
+              <Link
+                key={cat.id}
+                to={cat.id === 'all' ? '/' : '/services'}
+                className="flex flex-col items-center min-w-[100px] px-3 focus:outline-none group"
+              >
+                <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center mb-2 overflow-hidden border-2 border-gray-200 group-hover:border-amber-400 transition-all duration-200 shadow-sm group-hover:shadow-md">
+                  <img
+                    src={categoryImages[cat.id]}
+                    alt={cat.label}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+                <span className="text-sm font-semibold text-gray-700 whitespace-nowrap group-hover:text-amber-600 transition-colors">
+                  {cat.label}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 

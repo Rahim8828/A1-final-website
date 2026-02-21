@@ -175,7 +175,7 @@ const ProductDetail: React.FC = () => {
     const variant = product.colorVariants.find((v) => v.id === selectedColor);
     if (variant?.image) return variant.image;
     const fallback = product.colorVariants.find((v) => v.image);
-    return fallback?.image || '/assets/placeholder.webp';
+    return fallback?.image 
   };
 
   const discountPercent = Math.round(
@@ -278,7 +278,7 @@ const ProductDetail: React.FC = () => {
 
                   {/* Image */}
                   <img
-                    src={imgError ? '/assets/placeholder.webp' : getImageForColor()}
+                    src={getImageForColor()}
                     alt={`${product.name} - ${selectedColor} finish - Professional wood polish service in Mumbai`}
                     className="w-full h-full object-cover p-4 md:p-6 transition-transform duration-300 hover:scale-105"
                     onError={() => setImgError(true)}
@@ -779,7 +779,7 @@ const ProductDetail: React.FC = () => {
                     >
                       <div className="relative bg-gray-50 aspect-[4/3] overflow-hidden">
                         <img
-                          src={rp.colorVariants[0]?.image || '/assets/placeholder.webp'}
+                          src={rp.colorVariants[0]?.image }
                           alt={rp.name}
                           className="w-full h-full object-cover p-2 group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"

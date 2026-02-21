@@ -10,20 +10,20 @@ interface ServiceItem {
 }
 
 const services: ServiceItem[] = [
-  { id: 'sofa', name: 'Sofa Polish', image: '/products/front_page_service_products/whiteseater_6_front.webp', link: '/services?service=sofa-polish' },
-  { id: 'bed', name: 'Bed Polish', image: '/products/front_page_service_products/redqueenSize_front.webp', link: '/services?service=bed-polish' },
-  { id: 'wardrobe', name: 'Wardrobe Polish', image: '/products/front_page_service_products/darkSingle_front.webp', link: '/services?service=wardrobe-polish' },
-  { id: 'door', name: 'Door Polish', image: '/products/front_page_service_products/doubke_door_front.webp', link: '/services?service=door-polish' },
-  { id: 'dining', name: 'Dining Set', image: '/products/front_page_service_products/whitechair_single_front.webp', link: '/services?service=dining-set-polish' },
-  { id: 'table', name: 'Table Polish', image: '/products/table/center_table/darkWoodenTable.webp', link: '/services?service=table-polish' },
-  { id: 'cabinet', name: 'Cabinet Polish', image: '/products/cabinet/five_Drawer_cabinet/singleCabinet.jpeg', link: '/services?service=cabinet-polish' },
-  { id: 'shelf', name: 'Shelf Polish', image: '/products/front_page_service_products/lightWhite_shelve_front.webp', link: '/services?service=wooden-shelf-polish' },
-  { id: 'tv-unit', name: 'TV Unit', image: '/products/tvUnitPolish/solidWood/darkBrown_solidwood.webp', link: '/services?service=tv-unit-polish' },
-  { id: 'jhula', name: 'Jhula Polish', image: '/products/front_page_service_products/darkWoodenJhula_front.webp', link: '/services?service=jhula-polish' },
-  { id: 'pu-polish', name: 'PU Polish', image: '/products/pu_polish/puPolish_title/pu_polish_title.webp', link: '/wood-polishing-services' },
-  { id: 'deco-paint', name: 'Deco Paint', image: '/products/deco_paint/decoPaint_Header/deco_paint_page_header.webp', link: '/deco-paint-services' },
-  { id: 'mandir', name: 'Mandir Polish', image: '/products/mandir/darkWoodenMandir.webp', link: '/services?service=mandir-polish' },
-  { id: 'antique', name: 'Antique Polish', image: '/products/antique/mediumAntique.webp', link: '/services?service=antique-polish' },
+  { id: 'sofa', name: 'Sofa Polish', image: '/products/front_page_service_products/sofa_polish.webp', link: '/services?service=sofa-polish' },
+  { id: 'bed', name: 'Bed Polish', image: '/products/front_page_service_products/bed_polish.webp', link: '/services?service=bed-polish' },
+  { id: 'wardrobe', name: 'Wardrobe Polish', image: '/products/front_page_service_products/wardrobe_polish.webp', link: '/services?service=wardrobe-polish' },
+  { id: 'door', name: 'Door Polish', image: '/products/front_page_service_products/door_polish.webp', link: '/services?service=door-polish' },
+  { id: 'dining', name: 'Dining Set Polish', image: '/products/front_page_service_products/dining_set_polish.webp', link: '/services?service=dining-set-polish' },
+  { id: 'table', name: 'Table Polish', image: '/products/front_page_service_products/table_polish.webp', link: '/services?service=table-polish' },
+  { id: 'crockery', name: 'Crockery Polish', image: '/products/front_page_service_products/crokery_polish.webp', link: '/services?service=cabinet-polish' },
+  { id: 'shelf', name: 'Shelve Polish', image: '/products/front_page_service_products/shelve_polish.webp', link: '/services?service=wooden-shelf-polish' },
+  { id: 'tv-unit', name: 'TV Polish', image: '/products/front_page_service_products/tv_polish.webp', link: '/services?service=tv-unit-polish' },
+  { id: 'jhula', name: 'Jhula Polish', image: '/products/front_page_service_products/jhula_polish.webp', link: '/services?service=jhula-polish' },
+  { id: 'pu-polish', name: 'PU Polish', image: '/products/front_page_service_products/pu_polish_front.webp', link: '/wood-polishing-services' },
+  { id: 'deco-paint', name: 'Deco Paint', image: '/products/front_page_service_products/deco_paint_front.webp', link: '/deco-paint-services' },
+  { id: 'mandir', name: 'Mandir Polish', image: '/products/front_page_service_products/mandir_polish.webp', link: '/services?service=mandir-polish' },
+  { id: 'antique', name: 'Antique Polish', image: '/products/front_page_service_products/antique_polish.png', link: '/services?service=antique-carving-furniture' },
 ];
 
 const PopularServices: React.FC = () => {
