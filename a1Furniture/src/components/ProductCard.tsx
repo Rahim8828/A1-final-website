@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import type { Product } from '../data/productCatalog';
+import { furnitureProducts } from '../data/furnitureProducts';
+import type { ColorVariant as FurnitureColorVariant } from '../data/furnitureProducts';
 
 interface ProductCardProps {
   product: Product;
@@ -15,6 +17,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [imgError, setImgError] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
+  // Find matching product in furnitureProducts for actual color variant data
+  const furnitureProduct = furnitureProducts.find(fp => fp.id === product.id);
+  
+  // Check if this is a deco-paint product (should hide color selector)
+  const isDecoPaint = product.category === 'deco-paint';
+
   const handleLike = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -27,41 +35,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     setSelectedColor(color);
   };
 
-  // Generate image path based on selected color
+  // Map local color variant to furniture product color variant
+  const mapColorVariant = (color: ColorVariant): FurnitureColorVariant => {
+    if (color === 'dark') return 'dark-brown';
+    if (color === 'light') return 'light-brown';
+    return 'white';
+  };
+
+  // Get image from furnitureProducts data if available, otherwise fallback to old logic
   const getImageForColor = (color: ColorVariant): string => {
-    const basePath = product.image;
-    
-    // Extract directory and filename
-    const lastSlash = basePath.lastIndexOf('/');
-    const directory = basePath.substring(0, lastSlash + 1);
-    const filename = basePath.substring(lastSlash + 1);
-    
-    // Map color variants to actual file patterns
-    let newFilename = filename;
-    
-    if (color === 'dark') {
-      // Keep original dark image or find dark variant
-      if (filename.toLowerCase().includes('light') || filename.toLowerCase().includes('white')) {
-        newFilename = filename
-          .replace(/light[Bb]rown[s]?/gi, 'darkWooden')
-          .replace(/light[Bb]rown/gi, 'darkBrown')
-          .replace(/white/gi, 'darkWooden');
+    if (furnitureProduct && furnitureProduct.colorVariants) {
+      const variantId = mapColorVariant(color);
+      const variant = furnitureProduct.colorVariants.find(v => v.id === variantId);
+      if (variant && variant.image) {
+        return variant.image;
       }
-    } else if (color === 'light') {
-      // Find light variant
-      newFilename = filename
-        .replace(/dark[Ww]ooden/gi, 'lightBrown')
-        .replace(/dark[Bb]rown/gi, 'lightBrown')
-        .replace(/white/gi, 'lightBrown');
-    } else if (color === 'white') {
-      // Find white variant
-      newFilename = filename
-        .replace(/dark[Ww]ooden/gi, 'white')
-        .replace(/dark[Bb]rown/gi, 'white')
-        .replace(/light[Bb]rown[s]?/gi, 'white');
     }
     
-    return directory + newFilename;
+    // Fallback to product.image if no furniture product data found
+    return product.image;
   };
 
   const currentImage = getImageForColor(selectedColor);
@@ -107,42 +99,31 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           />
         </button>
 
-        {/* Color Selector */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
-          <button
-            onClick={(e) => handleColorChange(e, 'dark')}
-            className={`w-7 h-7 rounded-full border-2 transition-all duration-200 ${
-              selectedColor === 'dark'
-                ? 'border-amber-500 ring-2 ring-amber-200 scale-110'
-                : 'border-gray-300 hover:border-gray-400'
-            }`}
-            style={{ backgroundColor: '#3E2723' }}
-            aria-label="Dark Brown"
-            title="Dark Brown"
-          />
-          <button
-            onClick={(e) => handleColorChange(e, 'light')}
-            className={`w-7 h-7 rounded-full border-2 transition-all duration-200 ${
-              selectedColor === 'light'
-                ? 'border-amber-500 ring-2 ring-amber-200 scale-110'
-                : 'border-gray-300 hover:border-gray-400'
-            }`}
-            style={{ backgroundColor: '#8D6E63' }}
-            aria-label="Light Brown"
-            title="Light Brown"
-          />
-          <button
-            onClick={(e) => handleColorChange(e, 'white')}
-            className={`w-7 h-7 rounded-full border-2 transition-all duration-200 ${
-              selectedColor === 'white'
-                ? 'border-amber-500 ring-2 ring-amber-200 scale-110'
-                : 'border-gray-300 hover:border-gray-400'
-            }`}
-            style={{ backgroundColor: '#F5F5F5' }}
-            aria-label="White"
-            title="White"
-          />
-        </div>
+        {/* Color Selector - Hidden for deco-paint products */}
+        {!isDecoPaint && furnitureProduct && furnitureProduct.colorVariants && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-full shadow-lg">
+            {furnitureProduct.colorVariants.map((variant) => {
+              const localColor: ColorVariant = 
+                variant.id === 'dark-brown' ? 'dark' : 
+                variant.id === 'light-brown' ? 'light' : 'white';
+              
+              return (
+                <button
+                  key={variant.id}
+                  onClick={(e) => handleColorChange(e, localColor)}
+                  className={`w-7 h-7 rounded-full border-2 transition-all duration-200 ${
+                    selectedColor === localColor
+                      ? 'border-amber-500 ring-2 ring-amber-200 scale-110'
+                      : 'border-gray-300 hover:border-gray-400'
+                  }`}
+                  style={{ backgroundColor: variant.hex }}
+                  aria-label={variant.label}
+                  title={variant.label}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
       <p className="text-sm font-medium text-gray-800 text-center tracking-wide uppercase group-hover:text-amber-700 transition-colors duration-200">
         {product.name}{!product.name.toLowerCase().includes('polish') && !product.name.toLowerCase().includes('paint') ? ' Polish' : ''}
