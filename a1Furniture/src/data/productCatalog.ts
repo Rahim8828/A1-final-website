@@ -100,7 +100,7 @@ export const products: Product[] = [
     category: 'dining-tables',
     image: '/products/dining_set/4_seater/4seaterDark.webp',
     hoverImage: '/products/dining_set/4_seater/4seaterlight.webp',
-    startingPrice: 3949,
+    startingPrice: 3899,
     serviceLink: '/services?service=dining-set-polish',
   },
   {
@@ -109,7 +109,7 @@ export const products: Product[] = [
     category: 'dining-tables',
     image: '/products/dining_set/6_seater/darkbrown6seater.webp',
     hoverImage: '/products/dining_set/6_seater/lightBrowb6seater.webp',
-    startingPrice: 5449,
+    startingPrice: 5399,
     serviceLink: '/services?service=dining-set-polish',
   },
   {
@@ -118,7 +118,7 @@ export const products: Product[] = [
     category: 'dining-tables',
     image: '/products/dining_set/chair/darkbrownChair.webp',
     hoverImage: '/products/dining_set/chair/lightBrown.webp',
-    startingPrice: 799,
+    startingPrice: 999,
     serviceLink: '/services?service=dining-set-polish',
   },
 
@@ -147,7 +147,7 @@ export const products: Product[] = [
     category: 'dining-tables',
     image: '/products/table/study_table/darkbrownStdytable.webp',
     hoverImage: '/products/table/study_table/lightBrown_study.webp',
-    startingPrice: 1999,
+    startingPrice: 3899,
     serviceLink: '/services?service=table-polish',
   },
 
@@ -167,7 +167,7 @@ export const products: Product[] = [
     category: 'wardrobes-storage',
     image: '/products/wardrobe/double/darkWoodendoubleWardrobe.webp',
     hoverImage: '/products/wardrobe/double/lightBrowndoeublewardrobe.webp',
-    startingPrice: 3899,
+    startingPrice: 3499,
     serviceLink: '/services?service=wardrobe-polish',
   },
 
@@ -178,7 +178,7 @@ export const products: Product[] = [
     category: 'shelves',
     image: '/products/shelves/brownShelve.webp',
     hoverImage: '/products/shelves/lightBrownShelve.webp',
-    startingPrice: 1299,
+    startingPrice: 999,
     serviceLink: '/services?service=wooden-shelf-polish',
   },
 
@@ -204,14 +204,14 @@ export const products: Product[] = [
     serviceLink: '/services?service=door-polish',
   },
 
-  // Wood Polish — 8 Types
+  // Wood Polish — 8 Types (prices from furnitureProducts.ts)
   {
     id: 'french-polish',
     name: 'French Polish',
     category: 'wood-polish',
     image: '/products/FloorPoshining/french_polishh.webp',
     hoverImage: '/products/FloorPoshining/wooden_polish.webp',
-    startingPrice: 1499,
+    startingPrice: 1699,
     serviceLink: '/services/french-polish',
   },
   {
@@ -220,7 +220,7 @@ export const products: Product[] = [
     category: 'wood-polish',
     image: '/products/FloorPoshining/lamination_polishing.webp',
     hoverImage: '/products/FloorPoshining/melamine_polish.webp',
-    startingPrice: 1799,
+    startingPrice: 1999,
     serviceLink: '/services/lamination-polish',
   },
   {
@@ -229,7 +229,7 @@ export const products: Product[] = [
     category: 'wood-polish',
     image: '/products/FloorPoshining/melamine_polish.webp',
     hoverImage: '/products/FloorPoshining/lamination_polishing.webp',
-    startingPrice: 1999,
+    startingPrice: 2199,
     serviceLink: '/services/melamine-polish',
   },
   {
@@ -238,7 +238,7 @@ export const products: Product[] = [
     category: 'wood-polish',
     image: '/products/FloorPoshining/morgon_monocoat.webp',
     hoverImage: '/products/FloorPoshining/french_polishh.webp',
-    startingPrice: 2499,
+    startingPrice: 2799,
     serviceLink: '/services/monocoat-polish',
   },
   {
@@ -247,7 +247,7 @@ export const products: Product[] = [
     category: 'wood-polish',
     image: '/products/FloorPoshining/pu_polish.webp',
     hoverImage: '/products/FloorPoshining/water_pu_polish.webp',
-    startingPrice: 2999,
+    startingPrice: 3299,
     serviceLink: '/services/pu-polish-wood',
   },
   {
@@ -256,7 +256,7 @@ export const products: Product[] = [
     category: 'wood-polish',
     image: '/products/FloorPoshining/water_pu_polish.webp',
     hoverImage: '/products/FloorPoshining/pu_polish.webp',
-    startingPrice: 2799,
+    startingPrice: 2999,
     serviceLink: '/services/water-pu-polish',
   },
   {
@@ -265,7 +265,7 @@ export const products: Product[] = [
     category: 'wood-polish',
     image: '/products/FloorPoshining/wax_polish.webp',
     hoverImage: '/products/FloorPoshining/wooden_polish.webp',
-    startingPrice: 1299,
+    startingPrice: 1499,
     serviceLink: '/services/wax-polish',
   },
   {
@@ -274,18 +274,18 @@ export const products: Product[] = [
     category: 'wood-polish',
     image: '/products/FloorPoshining/wooden_polish.webp',
     hoverImage: '/products/FloorPoshining/french_polishh.webp',
-    startingPrice: 1399,
+    startingPrice: 1599,
     serviceLink: '/services/wooden-polish',
   },
 
-  // PU Polish
+  // PU Polish (prices from furnitureProducts.ts)
   {
     id: 'pu-polish-gloss',
     name: 'PU Gloss Polish',
     category: 'pu-polish',
     image: '/products/pu_polish/glass_pu_polish.webp',
     hoverImage: '/products/pu_polish/glass_pu_polish.webp',
-    startingPrice: 3499,
+    startingPrice: 3799,
     serviceLink: '/services/pu-polish-gloss',
   },
   {
@@ -294,7 +294,7 @@ export const products: Product[] = [
     category: 'pu-polish',
     image: '/products/pu_polish/pu_matt_polish.webp',
     hoverImage: '/products/pu_polish/pu_matt_polish.webp',
-    startingPrice: 3299,
+    startingPrice: 3599,
     serviceLink: '/services/pu-polish-matt',
   },
   {
@@ -303,18 +303,18 @@ export const products: Product[] = [
     category: 'pu-polish',
     image: '/products/pu_polish/pu_satin_finish.webp',
     hoverImage: '/products/pu_polish/pu_satin_finish.webp',
-    startingPrice: 3699,
+    startingPrice: 3999,
     serviceLink: '/services/pu-polish-satin',
   },
 
-  // Deco Paint
+  // Deco Paint (prices from furnitureProducts.ts)
   {
     id: 'deco-paint-solid',
     name: 'Solid Colour Deco Paint',
     category: 'deco-paint',
     image: '/products/deco_paint/solid_decoPaint.webp',
     hoverImage: '/products/deco_paint/solid_decoPaint.webp',
-    startingPrice: 2999,
+    startingPrice: 3299,
     serviceLink: '/services/deco-paint-solid',
   },
   {
@@ -323,7 +323,7 @@ export const products: Product[] = [
     category: 'deco-paint',
     image: '/products/deco_paint/texture_deco_paint.webp',
     hoverImage: '/products/deco_paint/texture_deco_paint.webp',
-    startingPrice: 3499,
+    startingPrice: 3899,
     serviceLink: '/services/deco-paint-texture',
   },
   {
@@ -332,7 +332,7 @@ export const products: Product[] = [
     category: 'deco-paint',
     image: '/products/deco_paint/designer_deco_paint.webp',
     hoverImage: '/products/deco_paint/designer_deco_paint.webp',
-    startingPrice: 4499,
+    startingPrice: 4999,
     serviceLink: '/services/deco-paint-designer',
   },
 
@@ -343,7 +343,7 @@ export const products: Product[] = [
     category: 'mandir',
     image: '/products/mandir/darkBrownmandir.webp',
     hoverImage: '/products/mandir/lightBrownMandir.webp',
-    startingPrice: 3999,
+    startingPrice: 2999,
     serviceLink: '/services?service=mandir-polish',
   },
 

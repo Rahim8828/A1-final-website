@@ -172,10 +172,18 @@ const ProductDetail: React.FC = () => {
   }
 
   const getImageForColor = (): string => {
+    // If product has a direct image property (no color variants), use it
+    if (product.image) return product.image;
+    
+    // Otherwise, use color variants
+    if (!product.colorVariants || product.colorVariants.length === 0) {
+      return '/products/placeholder.webp'; // Fallback
+    }
+    
     const variant = product.colorVariants.find((v) => v.id === selectedColor);
     if (variant?.image) return variant.image;
     const fallback = product.colorVariants.find((v) => v.image);
-    return fallback?.image 
+    return fallback?.image || '/products/placeholder.webp';
   };
 
   const discountPercent = Math.round(
@@ -285,35 +293,37 @@ const ProductDetail: React.FC = () => {
                   />
                 </div>
 
-                {/* Color Thumbnails */}
-                <div className="flex items-center gap-3 justify-center">
-                  {product.colorVariants.map((variant) => (
-                    <button
-                      key={variant.id}
-                      onClick={() => { setSelectedColor(variant.id); setImgError(false); }}
-                      className={`relative w-16 h-16 rounded-xl border-2 transition-all duration-200 overflow-hidden ${
-                        selectedColor === variant.id
-                          ? 'border-amber-500 ring-2 ring-amber-200 shadow-md'
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      <div
-                        className="w-full h-full flex items-center justify-center"
-                        style={{ backgroundColor: variant.hex + '30' }}
+                {/* Color Thumbnails - Only show if colorVariants exist and more than 1 */}
+                {product.colorVariants && product.colorVariants.length > 1 && (
+                  <div className="flex items-center gap-3 justify-center">
+                    {product.colorVariants.map((variant) => (
+                      <button
+                        key={variant.id}
+                        onClick={() => { setSelectedColor(variant.id); setImgError(false); }}
+                        className={`relative w-16 h-16 rounded-xl border-2 transition-all duration-200 overflow-hidden ${
+                          selectedColor === variant.id
+                            ? 'border-amber-500 ring-2 ring-amber-200 shadow-md'
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
                       >
                         <div
-                          className="w-8 h-8 rounded-full border"
-                          style={{ backgroundColor: variant.hex, borderColor: variant.hex === '#F5F0E8' ? '#d1d5db' : variant.hex }}
-                        />
-                      </div>
-                      {selectedColor === variant.id && (
-                        <div className="absolute inset-x-0 bottom-0 bg-amber-600 text-white text-[8px] font-bold text-center py-0.5">
-                          {variant.label}
+                          className="w-full h-full flex items-center justify-center"
+                          style={{ backgroundColor: variant.hex + '30' }}
+                        >
+                          <div
+                            className="w-8 h-8 rounded-full border"
+                            style={{ backgroundColor: variant.hex, borderColor: variant.hex === '#F5F0E8' ? '#d1d5db' : variant.hex }}
+                          />
                         </div>
-                      )}
-                    </button>
-                  ))}
-                </div>
+                        {selectedColor === variant.id && (
+                          <div className="absolute inset-x-0 bottom-0 bg-amber-600 text-white text-[8px] font-bold text-center py-0.5">
+                            {variant.label}
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* RIGHT — Product Details */}
@@ -365,33 +375,35 @@ const ProductDetail: React.FC = () => {
                   {product.description}
                 </p>
 
-                {/* Color Selection */}
-                <div>
-                  <p className="text-sm font-semibold text-gray-900 mb-2">Select Polish Shade</p>
-                  <div className="flex items-center gap-3">
-                    {product.colorVariants.map((variant) => (
-                      <button
-                        key={variant.id}
-                        onClick={() => { setSelectedColor(variant.id); setImgError(false); }}
-                        className={`flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all ${
-                          selectedColor === variant.id
-                            ? 'border-amber-500 bg-amber-50'
-                            : 'border-gray-200 hover:border-gray-300'
-                        }`}
-                      >
-                        <div
-                          className="w-5 h-5 rounded-full border"
-                          style={{ backgroundColor: variant.hex, borderColor: variant.hex === '#F5F0E8' ? '#d1d5db' : variant.hex }}
-                        />
-                        <span className={`text-xs font-medium ${
-                          selectedColor === variant.id ? 'text-amber-700' : 'text-gray-600'
-                        }`}>
-                          {variant.label}
-                        </span>
-                      </button>
-                    ))}
+                {/* Color Selection - Only show if colorVariants exist and more than 1 */}
+                {product.colorVariants && product.colorVariants.length > 1 && (
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900 mb-2">Select Polish Shade</p>
+                    <div className="flex items-center gap-3">
+                      {product.colorVariants.map((variant) => (
+                        <button
+                          key={variant.id}
+                          onClick={() => { setSelectedColor(variant.id); setImgError(false); }}
+                          className={`flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all ${
+                            selectedColor === variant.id
+                              ? 'border-amber-500 bg-amber-50'
+                              : 'border-gray-200 hover:border-gray-300'
+                          }`}
+                        >
+                          <div
+                            className="w-5 h-5 rounded-full border"
+                            style={{ backgroundColor: variant.hex, borderColor: variant.hex === '#F5F0E8' ? '#d1d5db' : variant.hex }}
+                          />
+                          <span className={`text-xs font-medium ${
+                            selectedColor === variant.id ? 'text-amber-700' : 'text-gray-600'
+                          }`}>
+                            {variant.label}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Features */}
                 <div className="flex flex-wrap gap-2">

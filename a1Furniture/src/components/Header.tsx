@@ -1,25 +1,8 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Phone, MessageCircle, Search, Heart, ShoppingCart } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle, Search } from 'lucide-react';
 import { servicePageData } from '../data/servicePageData';
-import { products, categories } from '../data/productCatalog';
-
-// Category images for the category bar
-const categoryImages: Record<string, string> = {
-  all: '/products/front_page_service_products/sofa_polish.webp',
-  sofas: '/products/sofa/1_seater_sofa/darkWooden1seaterSofa.webp',
-  beds: '/products/bed/king_bed/darkWoodenKing.webp',
-  'dining-tables': '/products/dining_set/6_seater/darkbrown6seater.webp',
-  'wardrobes-storage': '/products/wardrobe/double/darkWoodendoubleWardrobe.webp',
-  shelves: '/products/shelves/brownShelve.webp',
-  'tv-units': '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp',
-  doors: '/products/doors/single_door/darkWoodensingle.webp',
-  'wood-polish': '/products/FloorPoshining/wooden_polish.webp',
-  'pu-polish': '/products/pu_polish/glass_pu_polish.webp',
-  'deco-paint': '/products/deco_paint/solid_decoPaint.webp',
-  mandir: '/products/mandir/darkBrownmandir.webp',
-  antique: '/products/antique/largeAntiqueImage.png',
-};
+import { products } from '../data/productCatalog';
 
 // Searchable items index
 interface SearchItem {
@@ -71,14 +54,14 @@ const categoryNav = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
   { name: 'About Us', href: '/about' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [wishlistCount] = useState(0);
-  const [cartCount] = useState(0);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
@@ -121,14 +104,53 @@ const Header = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
+    { name: 'About Us', href: '/about' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
 
+  const [showPromo, setShowPromo] = useState(true);
+
   return (
-    <header className="bg-white shadow-sm">
+    <header className="sticky top-0 z-[100] bg-white shadow-md">
+      {/* Promotional Banner */}
+      {showPromo && (
+        <div style={{ background: 'linear-gradient(90deg, #3B1A08 0%, #7B3F00 40%, #A0522D 60%, #3B1A08 100%)' }}>
+          <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
+            <div className="flex items-center justify-between py-2 sm:py-2.5">
+              <div className="flex items-center gap-2 sm:gap-3 flex-1">
+                {/* Tag Icon */}
+                <div className="flex-shrink-0">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#F5DEB3' }}>
+                    <path fillRule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                {/* Offer Text */}
+                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap text-xs sm:text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                  <span className="font-bold tracking-wide" style={{ color: '#F5DEB3' }}>✦ FIRST BOOKING OFFER:</span>
+                  <span className="font-medium" style={{ color: '#FAEBD7' }}>Get 10% OFF | Code:</span>
+                  <span className="px-2 py-0.5 rounded font-extrabold tracking-widest text-xs" style={{ background: '#F5DEB3', color: '#3B1A08', letterSpacing: '0.1em' }}>FIRST10</span>
+                  <span className="font-medium hidden sm:inline" style={{ color: '#FAEBD7' }}>• New Customers Only!</span>
+                </div>
+              </div>
+              {/* Close Button */}
+              <button
+                onClick={() => setShowPromo(false)}
+                className="flex-shrink-0 ml-2 p-1 rounded-full transition-colors"
+                style={{ color: '#F5DEB3' }}
+                aria-label="Close promotional banner"
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Main Header */}
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-[72px] gap-4">
@@ -190,29 +212,27 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Right Icons */}
-          <div className="flex items-center gap-1 sm:gap-3">
-            {/* Wishlist */}
-            <button className="relative flex flex-col items-center p-2 text-gray-600 hover:text-amber-600 transition-colors">
-              <Heart className="w-5 h-5 md:w-6 md:h-6" />
-              {wishlistCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-amber-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                  {wishlistCount}
-                </span>
-              )}
-              <span className="hidden lg:block text-[10px] text-gray-500 mt-0.5">Wishlist</span>
-            </button>
+          {/* Right Icons - Call and WhatsApp */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Call Button */}
+            <a
+              href="tel:+918828709945"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg sm:rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+            >
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline text-sm font-semibold">Call Now</span>
+            </a>
 
-            {/* Cart */}
-            <button className="relative flex flex-col items-center p-2 text-gray-600 hover:text-amber-600 transition-colors">
-              <ShoppingCart className="w-5 h-5 md:w-6 md:h-6" />
-              {cartCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-amber-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-              <span className="hidden lg:block text-[10px] text-gray-500 mt-0.5">Cart</span>
-            </button>
+            {/* WhatsApp Button */}
+            <a
+              href="https://wa.me/918828709945"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg sm:rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+            >
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline text-sm font-semibold">WhatsApp</span>
+            </a>
 
             {/* Mobile menu */}
             <button
@@ -243,33 +263,6 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-        </div>
-      </div>
-
-      {/* Category Bar with larger icons - Hidden on mobile */}
-      <div className="border-t border-gray-100 bg-gray-50 hidden md:block">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-4">
-          <div className="flex overflow-x-auto gap-6 hide-scrollbar pb-2">
-            {categories.map((cat) => (
-              <Link
-                key={cat.id}
-                to={cat.id === 'all' ? '/' : '/services'}
-                className="flex flex-col items-center min-w-[100px] px-3 focus:outline-none group"
-              >
-                <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center mb-2 overflow-hidden border-2 border-gray-200 group-hover:border-amber-400 transition-all duration-200 shadow-sm group-hover:shadow-md">
-                  <img
-                    src={categoryImages[cat.id]}
-                    alt={cat.label}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                </div>
-                <span className="text-sm font-semibold text-gray-700 whitespace-nowrap group-hover:text-amber-600 transition-colors">
-                  {cat.label}
-                </span>
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -327,23 +320,6 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-
-          {/* Mobile Categories */}
-          <div className="px-4 pb-3 border-t border-gray-50 pt-3">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 px-3">Categories</p>
-            <div className="grid grid-cols-3 gap-1">
-              {categoryNav.map((cat) => (
-                <Link
-                  key={cat.name}
-                  to={cat.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-center text-sm text-gray-600 hover:text-amber-600 py-2 rounded-lg hover:bg-gray-50"
-                >
-                  {cat.name}
-                </Link>
-              ))}
-            </div>
-          </div>
 
           {/* Mobile Contact */}
           <div className="px-4 pb-4 flex gap-2">

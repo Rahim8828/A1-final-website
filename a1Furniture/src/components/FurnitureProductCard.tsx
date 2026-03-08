@@ -29,11 +29,19 @@ const FurnitureProductCard: React.FC<FurnitureProductCardProps> = ({ product, vi
 
   // Get image for selected color
   const getImageForColor = (): string => {
+    // If product has a direct image property (no color variants), use it
+    if (product.image) return product.image;
+    
+    // Otherwise, use color variants
+    if (!product.colorVariants || product.colorVariants.length === 0) {
+      return '/products/placeholder.webp'; // Fallback
+    }
+    
     const variant = product.colorVariants.find((v) => v.id === selectedColor);
     if (variant && variant.image) return variant.image;
     // fallback to first variant with image
     const fallback = product.colorVariants.find((v) => v.image);
-    return fallback?.image 
+    return fallback?.image || '/products/placeholder.webp';
   };
 
   const discountPercent = Math.round(
@@ -121,26 +129,28 @@ const FurnitureProductCard: React.FC<FurnitureProductCardProps> = ({ product, vi
 
         {/* Content */}
         <div className={`p-3 ${isCompact ? 'p-2.5' : 'p-4'} space-y-2`}>
-          {/* Color Swatches */}
-          <div className="flex items-center gap-2">
-            {product.colorVariants.map((variant) => (
-              <button
-                key={variant.id}
-                onClick={(e) => handleColorSelect(e, variant.id)}
-                className={`w-6 h-6 rounded-full border-2 transition-all duration-200 hover:scale-110 ${
-                  selectedColor === variant.id
-                    ? 'border-amber-500 ring-2 ring-amber-200 ring-offset-1 scale-110'
-                    : 'border-gray-200 hover:border-gray-400'
-                }`}
-                style={{ backgroundColor: variant.hex }}
-                title={variant.label}
-                aria-label={`Select ${variant.label} color`}
-              />
-            ))}
-            <span className="text-[10px] text-gray-400 ml-1">
-              {product.colorVariants.find((v) => v.id === selectedColor)?.label}
-            </span>
-          </div>
+          {/* Color Swatches - Only show if colorVariants exist and more than 1 */}
+          {product.colorVariants && product.colorVariants.length > 1 && (
+            <div className="flex items-center gap-2">
+              {product.colorVariants.map((variant) => (
+                <button
+                  key={variant.id}
+                  onClick={(e) => handleColorSelect(e, variant.id)}
+                  className={`w-6 h-6 rounded-full border-2 transition-all duration-200 hover:scale-110 ${
+                    selectedColor === variant.id
+                      ? 'border-amber-500 ring-2 ring-amber-200 ring-offset-1 scale-110'
+                      : 'border-gray-200 hover:border-gray-400'
+                  }`}
+                  style={{ backgroundColor: variant.hex }}
+                  title={variant.label}
+                  aria-label={`Select ${variant.label} color`}
+                />
+              ))}
+              <span className="text-[10px] text-gray-400 ml-1">
+                {product.colorVariants.find((v) => v.id === selectedColor)?.label}
+              </span>
+            </div>
+          )}
 
           {/* Name */}
           <h3

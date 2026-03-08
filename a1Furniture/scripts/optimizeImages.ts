@@ -8,8 +8,11 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const config = {
-  inputDir: path.join(__dirname, '../assets'),
-  outputDir: path.join(__dirname, '../public/assets/optimized'),
+  inputDirs: [
+    { input: path.join(__dirname, '../assets'), output: path.join(__dirname, '../public/assets/optimized') },
+    { input: path.join(__dirname, '../public/products'), output: path.join(__dirname, '../public/products/optimized') },
+    { input: path.join(__dirname, '../public/media'), output: path.join(__dirname, '../public/media/optimized') },
+  ],
   formats: ['avif', 'webp', 'jpg'] as const,
   quality: {
     avif: 80,
@@ -29,7 +32,7 @@ function ensureDir(dir: string) {
   }
 }
 
-// Get all image files from directory
+// Get all image files from directory (recursive)
 function getImageFiles(dir: string): string[] {
   const files: string[] = [];
   
@@ -40,12 +43,14 @@ function getImageFiles(dir: string): string[] {
     const stat = fs.statSync(fullPath);
     
     if (stat.isDirectory()) {
-      continue; // Skip directories
-    }
-    
-    const ext = path.extname(item).toLowerCase();
-    if (supportedFormats.includes(ext)) {
-      files.push(fullPath);
+      // Recursively get files from subdirectories
+      const subFiles = getImageFiles(fullPath);
+      files.push(...subFiles);
+    } else {
+      const ext = path.extname(item).toLowerCase();
+      if (supportedFormats.includes(ext)) {
+        files.push(fullPath);
+      }
     }
   }
   
@@ -53,13 +58,13 @@ function getImageFiles(dir: string): string[] {
 }
 
 // Generate optimized images
-async function optimizeImage(inputPath: string) {
+async function optimizeImage(inputPath: string, inputDir: string, outputDir: string) {
   const filename = path.basename(inputPath, path.extname(inputPath));
-  const relativePath = path.relative(config.inputDir, inputPath);
+  const relativePath = path.relative(inputDir, inputPath);
   const relativeDir = path.dirname(relativePath);
   
   // Create output directory structure
-  const outputSubDir = path.join(config.outputDir, relativeDir);
+  const outputSubDir = path.join(outputDir, relativeDir);
   ensureDir(outputSubDir);
   
   console.log(`Processing: ${filename}`);
@@ -133,21 +138,44 @@ async function optimizeImage(inputPath: string) {
 async function main() {
   console.log('🖼️  Starting image optimization...\n');
   
-  // Ensure output directory exists
-  ensureDir(config.outputDir);
+  let totalProcessed = 0;
   
-  // Get all image files
-  const imageFiles = getImageFiles(config.inputDir);
-  
-  console.log(`Found ${imageFiles.length} images to process\n`);
-  
-  // Process images sequentially to avoid memory issues
-  for (const imagePath of imageFiles) {
-    await optimizeImage(imagePath);
+  // Process each input directory
+  for (const dirConfig of config.inputDirs) {
+    const { input: inputDir, output: outputDir } = dirConfig;
+    
+    console.log(`\n📁 Processing directory: ${path.relative(__dirname, inputDir)}`);
+    
+    // Check if input directory exists
+    if (!fs.existsSync(inputDir)) {
+      console.log(`  ⚠️  Directory not found, skipping...`);
+      continue;
+    }
+    
+    // Ensure output directory exists
+    ensureDir(outputDir);
+    
+    // Get all image files (recursive)
+    const imageFiles = getImageFiles(inputDir);
+    
+    console.log(`  Found ${imageFiles.length} images to process\n`);
+    
+    // Process images sequentially to avoid memory issues
+    for (const imagePath of imageFiles) {
+      await optimizeImage(imagePath, inputDir, outputDir);
+      totalProcessed++;
+    }
+    
+    console.log(`  ✅ Completed: ${imageFiles.length} images`);
+    console.log(`  Output: ${path.relative(__dirname, outputDir)}`);
   }
   
   console.log('\n✅ Image optimization complete!');
-  console.log(`Output directory: ${config.outputDir}`);
+  console.log(`📊 Total images processed: ${totalProcessed}`);
+  console.log('\n📂 Output directories:');
+  config.inputDirs.forEach(({ output }) => {
+    console.log(`   • ${path.relative(__dirname, output)}`);
+  });
 }
 
 // Run the script
