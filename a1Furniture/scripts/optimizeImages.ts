@@ -7,19 +7,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Configuration
+// OPTIMIZED: Reduced from 6 sizes → 3, dropped AVIF (very slow encoder),
+//            added caching, parallel processing.
 const config = {
   inputDirs: [
     { input: path.join(__dirname, '../assets'), output: path.join(__dirname, '../public/assets/optimized') },
     { input: path.join(__dirname, '../public/products'), output: path.join(__dirname, '../public/products/optimized') },
     { input: path.join(__dirname, '../public/media'), output: path.join(__dirname, '../public/media/optimized') },
   ],
-  formats: ['avif', 'webp', 'jpg'] as const,
+  formats: ['webp', 'jpg'] as const,
   quality: {
-    avif: 80,
     webp: 85,
-    jpg: 90,
+    jpg: 85,
   },
-  sizes: [320, 640, 768, 1024, 1280, 1920],
+  // 3 breakpoints cover mobile / tablet / desktop — sufficient for srcset
+  sizes: [480, 768, 1280],
+  // Max concurrent image encode operations (tune to CPU core count)
+  concurrency: 4,
 };
 
 // Supported input formats
@@ -57,95 +61,111 @@ function getImageFiles(dir: string): string[] {
   return files;
 }
 
-// Generate optimized images
+// Returns true if the output file exists and is newer than the source file (cache hit)
+function isCached(outputPath: string, inputMtime: number): boolean {
+  if (!fs.existsSync(outputPath)) return false;
+  return fs.statSync(outputPath).mtimeMs >= inputMtime;
+}
+
+// Generate optimized images for one source file
 async function optimizeImage(inputPath: string, inputDir: string, outputDir: string) {
   const filename = path.basename(inputPath, path.extname(inputPath));
   const relativePath = path.relative(inputDir, inputPath);
   const relativeDir = path.dirname(relativePath);
-  
+
   // Create output directory structure
   const outputSubDir = path.join(outputDir, relativeDir);
   ensureDir(outputSubDir);
-  
-  console.log(`Processing: ${filename}`);
-  
+
+  const inputMtime = fs.statSync(inputPath).mtimeMs;
+
   try {
-    // Get image metadata
-    const image = sharp(inputPath);
-    const metadata = await image.metadata();
-    const originalWidth = metadata.width || 1920;
-    
-    // Generate images for each size
+    const metadata = await sharp(inputPath).metadata();
+    const originalWidth = metadata.width || 1280;
+
+    let generated = 0;
+    let skipped = 0;
+
     for (const width of config.sizes) {
-      // Skip if size is larger than original
-      if (width > originalWidth) {
-        continue;
-      }
-      
-      // Resize image
-      const resizedImage = sharp(inputPath).resize(width, null, {
-        withoutEnlargement: true,
-        fit: 'inside',
-      });
-      
-      // Generate AVIF
-      await resizedImage
-        .clone()
-        .avif({ quality: config.quality.avif })
-        .toFile(path.join(outputSubDir, `${filename}-${width}w.avif`));
-      
-      // Generate WebP
-      await resizedImage
-        .clone()
-        .webp({ quality: config.quality.webp })
-        .toFile(path.join(outputSubDir, `${filename}-${width}w.webp`));
-      
-      // Generate JPG (fallback)
-      await resizedImage
-        .clone()
-        .jpeg({ quality: config.quality.jpg })
-        .toFile(path.join(outputSubDir, `${filename}-${width}w.jpg`));
-      
-      console.log(`  ✓ Generated ${width}w versions`);
+      // Skip sizes larger than the original image
+      if (width > originalWidth) continue;
+
+      // All format outputs for this width — generate in parallel
+      await Promise.all(
+        config.formats.map(async (fmt) => {
+          const outPath = path.join(outputSubDir, `${filename}-${width}w.${fmt === 'jpg' ? 'jpg' : fmt}`);
+
+          // Cache: skip if already up-to-date
+          if (isCached(outPath, inputMtime)) {
+            skipped++;
+            return;
+          }
+
+          const base = sharp(inputPath).resize(width, null, {
+            withoutEnlargement: true,
+            fit: 'inside',
+          });
+
+          if (fmt === 'webp') {
+            await base.webp({ quality: config.quality.webp }).toFile(outPath);
+          } else {
+            await base.jpeg({ quality: config.quality.jpg }).toFile(outPath);
+          }
+          generated++;
+        })
+      );
     }
-    
-    // Also generate full-size versions
-    const fullSizeImage = sharp(inputPath);
-    
-    await fullSizeImage
-      .clone()
-      .avif({ quality: config.quality.avif })
-      .toFile(path.join(outputSubDir, `${filename}.avif`));
-    
-    await fullSizeImage
-      .clone()
-      .webp({ quality: config.quality.webp })
-      .toFile(path.join(outputSubDir, `${filename}.webp`));
-    
-    await fullSizeImage
-      .clone()
-      .jpeg({ quality: config.quality.jpg })
-      .toFile(path.join(outputSubDir, `${filename}.jpg`));
-    
-    console.log(`  ✓ Generated full-size versions`);
-    
+
+    if (skipped > 0 && generated === 0) {
+      console.log(`  ⏭  Skipped (cached): ${filename}`);
+    } else {
+      console.log(`  ✓ ${filename} — generated ${generated}, skipped ${skipped} (cached)`);
+    }
   } catch (error) {
     console.error(`  ✗ Error processing ${filename}:`, error);
   }
 }
 
+// Run an array of async tasks with a maximum concurrency cap
+async function runWithConcurrency<T>(tasks: (() => Promise<T>)[], limit: number): Promise<T[]> {
+  const results: T[] = [];
+  const executing: Promise<void>[] = [];
+
+  for (const task of tasks) {
+    const p = task().then((r) => { results.push(r); }) as Promise<void>;
+    executing.push(p);
+    if (executing.length >= limit) {
+      await Promise.race(executing);
+      // Remove settled promises
+      for (let i = executing.length - 1; i >= 0; i--) {
+        // @ts-ignore — check settled via a flag trick
+        if (await Promise.race([executing[i], Promise.resolve('pending')]) !== 'pending') {
+          executing.splice(i, 1);
+        }
+      }
+    }
+  }
+
+  await Promise.all(executing);
+  return results;
+}
+
 // Main function
 async function main() {
   console.log('🖼️  Starting image optimization...\n');
-  
+  console.log(`   Sizes:       ${config.sizes.join(', ')}w`);
+  console.log(`   Formats:     ${config.formats.join(', ')}`);
+  console.log(`   Concurrency: ${config.concurrency}`);
+  console.log(`   Cache:       enabled (skips unchanged images)\n`);
+
   let totalProcessed = 0;
-  
+
   // Process each input directory
   for (const dirConfig of config.inputDirs) {
     const { input: inputDir, output: outputDir } = dirConfig;
-    
+
     console.log(`\n📁 Processing directory: ${path.relative(__dirname, inputDir)}`);
-    
+
     // Check if input directory exists
     if (!fs.existsSync(inputDir)) {
       console.log(`  ⚠️  Directory not found, skipping...`);
@@ -157,15 +177,15 @@ async function main() {
     
     // Get all image files (recursive)
     const imageFiles = getImageFiles(inputDir);
-    
-    console.log(`  Found ${imageFiles.length} images to process\n`);
-    
-    // Process images sequentially to avoid memory issues
-    for (const imagePath of imageFiles) {
-      await optimizeImage(imagePath, inputDir, outputDir);
-      totalProcessed++;
-    }
-    
+
+    console.log(`  Found ${imageFiles.length} images\n`);
+
+    // Process images in parallel batches (respects concurrency limit)
+    const tasks = imageFiles.map((imgPath) => () => optimizeImage(imgPath, inputDir, outputDir));
+    await runWithConcurrency(tasks, config.concurrency);
+
+    totalProcessed += imageFiles.length;
+
     console.log(`  ✅ Completed: ${imageFiles.length} images`);
     console.log(`  Output: ${path.relative(__dirname, outputDir)}`);
   }

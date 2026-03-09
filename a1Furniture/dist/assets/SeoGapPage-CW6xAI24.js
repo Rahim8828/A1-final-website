@@ -1,0 +1,1 @@
+import{j as a}from"./vendor-tG9ALZsn.js";import{S as t}from"./ServicePageTemplate-CGmS6Y1G.js";import"./SEOHead-B-NypUeY.js";import"./canonicalURL-CZQxZCYh.js";import"./StickyWhatsApp-DQXjmevC.js";import"./OptimizedImage--HxiPs3D.js";import"./ScrollAnimations-tKwALNlt.js";import"./imageHelpers-qSMgXOFz.js";const e=({pageData:e})=>a.jsx(t,{pageData:e});export{e as default};
