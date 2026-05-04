@@ -1,0 +1,6 @@
+node_modules
+.kiro
+.idx
+./dist
+dist
+.vscode
