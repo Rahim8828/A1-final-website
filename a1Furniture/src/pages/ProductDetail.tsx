@@ -38,15 +38,13 @@ function findServiceData(product: FurnitureProduct) {
     tables: ['table-polish'],
     wardrobes: ['wardrobe-polish'],
     cabinets: ['cabinet-polish'],
-    shelves: ['shelf-polish'],
     'tv-units': ['tvunit-polish'],
     doors: ['door-polish'],
     jhula: ['jhula-polish'],
     mandir: ['mandir-polish'],
-    antique: ['antique-polish'],
-    'wood-polish': ['wooden-furniture-polish'],
-    'pu-polish': ['pu-polish'],
-    'deco-paint': ['deco-paint'],
+    'floor-polish': ['wooden-furniture-polish'],
+    consultation: ['wooden-furniture-polish'],
+    'color-refresh': ['deco-paint'],
   };
 
   const possibleIds = categoryMap[product.category] || [];
@@ -63,32 +61,32 @@ const categoryTestimonials: Record<string, typeof testimonials> = {
   sofas: [
     { name: 'Kavita Nair', location: 'Bandra West', rating: 5, text: 'My 10-year-old sofa set looks absolutely brand new! The team handled the carving details perfectly. Worth every rupee.', date: '2 weeks ago' },
     { name: 'Arun Sharma', location: 'Goregaon', rating: 5, text: 'Sofa polish done in exactly 2.5 hours. Very clean work. No mess left behind. My wife is thrilled!', date: '1 month ago' },
-    { name: 'Deepa Menon', location: 'Andheri', rating: 4, text: 'Was hesitant at first but the melamine finish on our L-shaped sofa turned out beautiful. 6-month warranty is a big plus.', date: '3 weeks ago' },
+    { name: 'Deepa Menon', location: 'Andheri', rating: 4, text: 'The finish on our wooden sofa turned out beautiful. The colour depth and the 6-month warranty made it feel like a smart upgrade.', date: '3 weeks ago' },
   ],
   beds: [
     { name: 'Sunita Verma', location: 'Malad', rating: 5, text: 'My queen-size bed looks like it came from the showroom yesterday! The headboard finish is stunning. Highly recommend.', date: '1 week ago' },
-    { name: 'Rakesh Gupta', location: 'Powai', rating: 5, text: 'Both our king bed and kids bunk bed polished in one day. Flawless work and great communication throughout.', date: '3 weeks ago' },
-    { name: 'Priyanka Jain', location: 'Borivali', rating: 4, text: 'The diwan bed polish turned out better than expected. Light brown shade matches our room perfectly.', date: '1 month ago' },
+    { name: 'Rakesh Gupta', location: 'Powai', rating: 5, text: 'Our king bed polish was finished the same day and the final coat feels premium. Great communication throughout.', date: '3 weeks ago' },
+    { name: 'Priyanka Jain', location: 'Borivali', rating: 4, text: 'The queen bed polish turned out better than expected. The light brown shade matches our room perfectly.', date: '1 month ago' },
   ],
   dining: [
     { name: 'Rahul Deshmukh', location: 'Dadar', rating: 5, text: 'Our 6-seater dining set was looking dull after 5 years. Now it shines like new! Heat-resistant coating is a great touch.', date: '2 weeks ago' },
     { name: 'Nisha Patel', location: 'Khar', rating: 5, text: 'Dining table and 4 chairs all polished beautifully. The food-safe finish gives me peace of mind.', date: '1 month ago' },
     { name: 'Vikram Singh', location: 'Vile Parle', rating: 4, text: 'Professional team, on-time arrival. The water-resistant coating on the dining table is exactly what we needed.', date: '3 weeks ago' },
   ],
-  'wood-polish': [
-    { name: 'Anita Desai', location: 'Bandra', rating: 5, text: 'Got French polish on our antique cabinet. The depth and warmth of the finish is absolutely gorgeous!', date: '1 week ago' },
-    { name: 'Mohan Iyer', location: 'Juhu', rating: 5, text: 'Melamine polish on all bedroom furniture — the team was fast, clean, and the results speak for themselves.', date: '2 weeks ago' },
-    { name: 'Shalini Rao', location: 'Santa Cruz', rating: 5, text: 'Water PU polish was the perfect eco-friendly choice for our kids room. No smell, dries fast, looks amazing.', date: '3 weeks ago' },
+  'floor-polish': [
+    { name: 'Anita Desai', location: 'Bandra', rating: 5, text: 'The machine polish gave our living room floor an even premium gloss. It genuinely lifted the whole home.', date: '1 week ago' },
+    { name: 'Mohan Iyer', location: 'Juhu', rating: 5, text: 'We chose hand polish for a more natural look and the grain came alive beautifully. Very clean, very professional.', date: '2 weeks ago' },
+    { name: 'Shalini Rao', location: 'Santa Cruz', rating: 5, text: 'Clear pricing per square foot and the final finish looks far more expensive than what we paid.', date: '3 weeks ago' },
   ],
-  'pu-polish': [
-    { name: 'Arjun Malhotra', location: 'Powai', rating: 5, text: 'The PU gloss on our wardrobe doors is literally like a mirror. Factory-quality finish at home! Incredible.', date: '1 week ago' },
-    { name: 'Neha Kapoor', location: 'Goregaon', rating: 5, text: 'PU satin finish on our bedroom set is elegant and subtle. Exactly the premium look we wanted.', date: '2 weeks ago' },
-    { name: 'Rajat Mehta', location: 'Andheri', rating: 4, text: 'PU matt finish hides fingerprints perfectly. Great for our door panels. Very satisfied with the quality.', date: '1 month ago' },
+  consultation: [
+    { name: 'Pooja Bhatt', location: 'Bandra', rating: 5, text: 'The ₹99 visit was worth it. We got a clear recommendation, accurate pricing, and booked the right polish service with confidence.', date: '2 weeks ago' },
+    { name: 'Sameer Khan', location: 'Dadar', rating: 5, text: 'The expert explained the finish options properly during the consultation and helped us avoid an expensive wrong choice.', date: '3 weeks ago' },
+    { name: 'Ritika Joshi', location: 'Versova', rating: 4, text: 'Fast visit, practical advice, and no sales pressure. It made the booking process feel very trustworthy.', date: '1 month ago' },
   ],
-  'deco-paint': [
-    { name: 'Pooja Bhatt', location: 'Bandra', rating: 5, text: 'Transformed our old brown cabinet into a gorgeous white piece! Solid colour deco paint is magical.', date: '2 weeks ago' },
-    { name: 'Sameer Khan', location: 'Dadar', rating: 5, text: 'Designer deco paint with metallic accents on our TV unit. It is the showpiece of our living room now!', date: '3 weeks ago' },
-    { name: 'Ritika Joshi', location: 'Versova', rating: 4, text: 'Texture deco paint gave our old wardrobe a completely new life. The stone effect looks very premium.', date: '1 month ago' },
+  'color-refresh': [
+    { name: 'Amit Tiwari', location: 'Malad', rating: 5, text: 'We changed our chair finish from dark brown to a warm walnut tone and the result feels custom-made.', date: '2 weeks ago' },
+    { name: 'Meera Shah', location: 'Powai', rating: 5, text: 'The door colour change made our entrance look brand new without replacing the woodwork. Very premium finish.', date: '3 weeks ago' },
+    { name: 'Nitin Joshi', location: 'Goregaon', rating: 4, text: 'Booked a frame colour change for our bed and study table base. The updated shade modernised the room instantly.', date: '1 month ago' },
   ],
 };
 
@@ -192,7 +190,7 @@ const ProductDetail: React.FC = () => {
 
   const faqs = serviceData?.faqs || [
     { question: `How long does ${product.name} polishing take?`, answer: `Our ${product.name} polish service typically takes ${product.estimatedTime || '2-4 hours'} depending on the condition. Our expert craftsmen ensure thorough work without compromising quality.` },
-    { question: 'What polish brands do you use?', answer: 'We use premium quality Melamine and PU polish from trusted brands. Both are eco-friendly, durable, and provide an excellent long-lasting finish.' },
+    { question: 'What polish brands do you use?', answer: 'We use premium quality Melamine polish from trusted brands. It is eco-friendly, durable, and provides an excellent long-lasting finish.' },
     { question: 'Do you provide a warranty?', answer: 'Yes! All our wood polish services come with a 6-month warranty against peeling, flaking, or fading under normal use conditions.' },
     { question: 'Can I choose the polish shade?', answer: 'Absolutely! We offer three standard finishes — Light Brown, Dark Brown, and White. Custom shades can be matched on request at no extra cost.' },
     { question: 'Do I need to move the furniture?', answer: 'No, our professionals work on-site at your home. We recommend clearing the area around the furniture for easy access. We use protective sheets to keep your space clean.' },
@@ -236,7 +234,7 @@ const ProductDetail: React.FC = () => {
         canonical={getCanonicalURL(`/services/${product.id}`)}
       />
 
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
         {/* Breadcrumb */}
         <nav className="bg-white border-b border-gray-100 py-2.5 px-4" aria-label="Breadcrumb">
           <div className="max-w-7xl mx-auto flex items-center gap-1.5 text-xs text-gray-500">
@@ -428,8 +426,8 @@ const ProductDetail: React.FC = () => {
                   ))}
                 </div>
 
-                {/* CTA Buttons */}
-                <div className="flex gap-3 pt-2">
+                {/* CTA Buttons - Visible on all screen sizes */}
+                <div className="flex gap-3 pt-6 pb-4">
                   <a
                     href={`https://wa.me/918828709945?text=Hi!%20I%27m%20interested%20in%20${encodeURIComponent(product.name)}%20polish%20service%20(₹${product.price}).%20Please%20share%20details.`}
                     target="_blank"
@@ -514,7 +512,7 @@ const ProductDetail: React.FC = () => {
                 {
                   icon: <Paintbrush className="w-7 h-7" />,
                   title: 'Premium Materials',
-                  desc: 'We use only top-grade Melamine and PU polish for a durable, showroom-quality finish.',
+                  desc: 'We use only top-grade Melamine polish for a durable, showroom-quality finish.',
                 },
                 {
                   icon: <Users className="w-7 h-7" />,
@@ -580,7 +578,7 @@ const ProductDetail: React.FC = () => {
                   Looking for the <strong>best {product.name.toLowerCase()} service in Mumbai</strong>? A1 Furniture Polish
                   offers premium wood polishing services starting at just <strong>₹{product.price.toLocaleString('en-IN')}</strong>.
                   Our expert craftsmen specialize in restoring the natural beauty of your wooden furniture using top-quality
-                  Melamine and PU polish that lasts for years.
+                  Melamine polish that lasts for years.
                 </p>
 
                 <div className="not-prose bg-amber-50 rounded-xl p-6 border border-amber-100">
@@ -629,7 +627,6 @@ const ProductDetail: React.FC = () => {
                 <div className="not-prose grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {[
                     { name: 'Melamine Polish', desc: 'Most popular choice. Durable, affordable, and gives a smooth natural finish. Ideal for everyday furniture.' },
-                    { name: 'PU Polish', desc: 'Premium glossy or matte finish. Extremely durable and water-resistant. Best for high-end furniture.' },
                     { name: 'Italian / Duco Polish', desc: 'Ultra-premium piano-like finish. Perfect for designer furniture and luxury homes.' },
                   ].map((type, i) => (
                     <div key={i} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
@@ -831,7 +828,7 @@ const ProductDetail: React.FC = () => {
         {/* ═══════════════════════════════════════════════
             STICKY BOTTOM BAR — Mobile
         ═══════════════════════════════════════════════ */}
-        <div className="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-gray-200 shadow-2xl md:hidden safe-area-pb">
+        <div className="fixed bottom-16 inset-x-0 z-40 bg-white border-t border-gray-200 shadow-2xl md:hidden">
           <div className="flex items-center gap-3 px-4 py-3">
             <div className="flex-1">
               <p className="text-lg font-bold text-gray-900">₹{product.price.toLocaleString('en-IN')}</p>

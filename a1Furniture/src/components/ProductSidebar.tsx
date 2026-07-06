@@ -59,7 +59,7 @@ const ProductSidebar: React.FC<ProductSidebarProps> = ({
     '1-seater': '1 Seater / Single',
     '2-seater': '2 Seater / Double',
     '3-seater': '3 Seater / King',
-    '4-seater': '4 Seater / L-Shape',
+    '4-seater': '4 Seater / Large',
     '6-seater': '6 Seater',
   };
 

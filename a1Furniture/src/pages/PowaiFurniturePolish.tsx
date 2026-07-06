@@ -14,7 +14,6 @@ const PowaiFurniturePolish = () => {
     'Wooden Furniture Polish',
     'Sofa & Chair Polishing',
     'Table & Bed Polishing',
-    'Antique Furniture Restoration',
     'Scratch Repair & Touch-up',
     'Commercial Furniture Polish',
     'Cabinet & Wardrobe Polish',

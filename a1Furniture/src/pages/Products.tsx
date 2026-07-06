@@ -96,6 +96,15 @@ const Products: React.FC = () => {
   // Ref for scrolling to product section on category click
   const productSectionRef = useRef<HTMLDivElement>(null);
 
+  // Handle hash navigation to products section
+  useEffect(() => {
+    if (window.location.hash === '#products' && productSectionRef.current) {
+      setTimeout(() => {
+        productSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, []);
+
   // Category thumbnail data — maps each service to a product image from assets folder
   const categoryThumbnails: { filterCategory: FurnitureCategory; label: string; image: string }[] = [
     { filterCategory: 'sofas', label: 'Sofa Wood Polish', image: '/products/front_page_service_products/sofa_polish.webp' },
@@ -104,15 +113,13 @@ const Products: React.FC = () => {
     { filterCategory: 'tables', label: 'Table Wood Polish', image: '/products/front_page_service_products/table_polish.webp' },
     { filterCategory: 'wardrobes', label: 'Wardrobe Wood Polish', image: '/products/front_page_service_products/wardrobe_polish.webp' },
     { filterCategory: 'dining', label: 'Dining Set Polish', image: '/products/front_page_service_products/dining_set_polish.webp' },
-    { filterCategory: 'cabinets', label: 'Cabinet Wood Polish', image: '/products/front_page_service_products/crokery_polish.webp' },
-    { filterCategory: 'shelves', label: 'Wooden Shelf Polish', image: '/products/front_page_service_products/shelve_polish.webp' },
-    { filterCategory: 'mandir', label: 'Mandir Polish', image: '/products/front_page_service_products/mandir_polish.webp' },
-    { filterCategory: 'jhula', label: 'Jhula Polish', image: '/products/front_page_service_products/jhula_polish.webp' },
-    { filterCategory: 'tv-units', label: 'TV Unit Polish', image: '/products/front_page_service_products/tv_polish.webp' },
-    { filterCategory: 'wood-polish', label: 'Floor Polishing', image: '/products/FloorPoshining/wooden_polish.webp' },
-    { filterCategory: 'pu-polish', label: 'PU Polish', image: '/products/pu_polish/pu_matt_polish.webp' },
-    { filterCategory: 'deco-paint', label: 'Deco Paint', image: '/products/deco_paint/designer_deco_paint.webp' },
-    { filterCategory: 'antique', label: 'Antique / Carving Furniture', image: '/products/front_page_service_products/antique_polish.png' },
+    { filterCategory: 'cabinets', label: 'Crockery Shelf Polish', image: '/products/front_page_service_products/crokery_polish.webp' },
+    { filterCategory: 'mandir', label: 'Mandir Polish', image: 'products/mandir/darkBrownmandir.webp' },
+    { filterCategory: 'jhula', label: 'Jhula Polish', image: '/products/jhula/darkWoodenJhula.webp' },
+    { filterCategory: 'tv-units', label: 'TV Unit Polish', image: '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp' },
+    { filterCategory: 'floor-polish', label: 'Floor Polishing', image: '/products/FloorPoshining/lamination_polishing.webp' },
+    { filterCategory: 'consultation', label: 'Consultation Visit', image: '/products/consultation/visiting.png' },
+    { filterCategory: 'color-refresh', label: 'Colour Change', image: '/products/consultation/visiting2.png' },
   ];
 
   // Click a category thumbnail → set filter + scroll to products
@@ -190,16 +197,14 @@ const Products: React.FC = () => {
       dining: 'Your dining set deserves a finish that handles daily life. We polish tables and chairs with a heat-resistant, water-resistant, and food-safe coating — keeping your dining area elegant and ready to impress.',
       tables: 'Coffee tables, center tables, study desks, side tables — we give every surface a scratch-resistant, food-safe finish that looks stunning and lasts. Expert polishing for every type of table in your home.',
       wardrobes: 'Complete inside and outside wardrobe polish with careful attention to handles, hinges, and fittings. We deliver a premium, long-lasting finish that protects your wardrobe and adds elegance to your bedroom.',
-      cabinets: 'Inside, outside, handles, hinges, and glass fronts — we polish every detail of your cabinets. Expert coverage that restores the wood and gives your storage a refined, polished appearance.',
-      shelves: 'Bookshelves and display shelves polished to perfection with premium materials. Includes thorough post-service cleaning so your shelves are ready to style immediately.',
+      cabinets: 'Crockery shelves, cabinets, and display storage polished with detail-first care. We restore visible wood grain, edge finish, and presentation quality for premium living spaces.',
       'tv-units': 'Give your entertainment area a showroom-quality upgrade. Our TV unit polish uses premium materials for a flawless, fingerprint-resistant finish that complements your living room.',
       doors: 'Both sides polished, frame included. Our door wood polish service uses durable coatings that withstand daily use, weather exposure, and still look stunning year after year.',
       jhula: 'Traditional jhula polish with special attention to joints, chains, and carved details. We use heritage-grade finishing techniques for lasting beauty and structural care.',
-      mandir: 'Sacred furniture deserves sacred care. Our mandir polish service respects intricate carvings and traditional designs while applying a premium protective finish.',
-      antique: 'Preserve history, restore beauty. Our antique furniture restoration service protects original carvings, respects patina, and applies traditional finishing techniques trusted by collectors.',
-      'wood-polish': 'Choose from 8 premium wood polish types — French Polish, Melamine, PU, Monocoat, Lamination, Wax, Water PU, and classic Wooden Polish. Each crafted for different needs, budgets, and aesthetics. All with 6-month warranty.',
-      'pu-polish': 'PU (Polyurethane) polish delivers a factory-grade, ultra-durable finish — available in Gloss, Matt, and Satin. Water-resistant, heat-resistant, and built to last. The premium choice for luxury interiors.',
-      'deco-paint': 'Transform tired furniture with designer deco paint — solid colours, textures, metallic accents, and hand-painted motifs. Give any piece a completely new look with our professional deco paint service.',
+      mandir: 'Sacred furniture deserves sacred care. Our mandir polish service respects intricate designs while applying a premium protective finish.',
+      'floor-polish': 'Floor polishing by hand or machine, priced transparently per square foot. Built for homes that want a clean, even, high-value finish with long-lasting surface protection.',
+      consultation: 'Start with a low-friction ₹99 consultation visit. We assess the furniture, suggest the best finish, and help you book the right service with total price clarity.',
+      'color-refresh': 'Chair, door, and frame colour change services for clients who want a fresh look without buying new furniture. We handle prep, tone shift, and protective finishing end to end.',
     };
     return descriptions[filters.category] || descriptions.all;
   }, [filters.category]);
@@ -213,16 +218,14 @@ const Products: React.FC = () => {
       dining: 'Dine in Style, Every Single Day',
       tables: 'Flawless Finish for Every Table',
       wardrobes: 'Premium Wardrobe Polish Service',
-      cabinets: 'Expert Cabinet Restoration & Polish',
-      shelves: 'Perfect Finish for Every Shelf',
+      cabinets: 'Premium Storage & Crockery Refinishing',
       'tv-units': 'Showroom-Quality TV Unit Polish',
       doors: 'Stunning Door Polish, Both Sides',
       jhula: 'Traditional Jhula Polish & Care',
       mandir: 'Sacred Finish for Your Mandir',
-      antique: 'Heritage Restoration Specialists',
-      'wood-polish': '8 Premium Wood Polish Types',
-      'pu-polish': 'Ultra-Premium PU Polish Finishes',
-      'deco-paint': 'Designer Deco Paint Makeovers',
+      'floor-polish': 'Hand & Machine Floor Polish',
+      consultation: 'Book an Expert Home Visit',
+      'color-refresh': 'Colour Change for Wooden Pieces',
     };
     return taglines[filters.category] || taglines.all;
   }, [filters.category]);
@@ -258,16 +261,19 @@ const Products: React.FC = () => {
             <div className="flex items-center justify-between mb-5">
               <div className="flex-1 text-center">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-                  Furniture Wood Polish
+                  Furniture Polish & Colour Studio
                 </h1>
                 <p className="mt-1.5 text-xs sm:text-sm text-gray-500 font-medium">
-                  Professional polishing &bull; 6 Months Warranty &bull; Expert Craftsmen
+                  {categoryTagline} • Premium finishing • Transparent pricing
+                </p>
+                <p className="mt-3 max-w-3xl mx-auto text-sm sm:text-[15px] text-gray-600 leading-relaxed">
+                  {categoryDescription}
                 </p>
               </div>
             </div>
 
             {/* Category Thumbnail Grid — square images with zoom effect */}
-            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-9 gap-3 md:gap-4">
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-12 gap-3 md:gap-4">
               {categoryThumbnails.map((item, index) => (
                 <button
                   key={index}
@@ -298,7 +304,7 @@ const Products: React.FC = () => {
         {/* ══════════════════════════════════════════
             MAIN CONTENT: SIDEBAR + PRODUCTS
         ══════════════════════════════════════════ */}
-        <div ref={productSectionRef} className="max-w-[1400px] mx-auto px-4 py-6">
+        <div ref={productSectionRef} data-products-section className="max-w-[1400px] mx-auto px-4 py-6">
           {/* Sort Bar */}
           <div className="flex items-center justify-between mb-5 bg-white rounded-xl border border-gray-200 px-4 py-3 shadow-sm">
             <div className="flex items-center gap-3">
@@ -518,12 +524,7 @@ const CategoryIcon: React.FC<{ icon: string; isActive: boolean }> = ({ icon, isA
         <circle cx="12" cy="11" r="2" />
       </svg>
     ),
-    antique: (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 3l1.5 4.5H18l-3.5 2.5L16 14.5 12 12l-4 2.5 1.5-4.5L6 7.5h4.5L12 3z" />
-        <rect x="6" y="16" width="12" height="4" rx="1" />
-      </svg>
-    ),
+
     polish: (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 3h6v4l-1 1H10L9 7V3z" />

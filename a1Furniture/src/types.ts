@@ -224,6 +224,8 @@ export interface PageData {
   h1: string;
   url: string;
   canonicalUrl: string;
+  heroImage?: string;
+  ogImage?: string;
 
   // Service Information
   serviceCategory: string;

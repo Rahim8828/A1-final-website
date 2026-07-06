@@ -21,6 +21,29 @@ const Cart: React.FC<CartProps> = ({
   const [couponCode, setCouponCode] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [couponError, setCouponError] = useState('');
+  const [showCouponModal, setShowCouponModal] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Handle navbar show/hide on scroll
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < lastScrollY || currentScrollY < 50) {
+        // Scrolling up or at top - show navbar
+        setShowNavbar(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // Scrolling down - hide navbar
+        setShowNavbar(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   // Valid coupons
   const validCoupons = {
@@ -29,7 +52,6 @@ const Cart: React.FC<CartProps> = ({
 
   // Calculate totals
   const itemTotal = selectedServices.reduce((sum, service) => sum + service.price * service.quantity, 0);
-  const taxesAndFee = Math.round(itemTotal * 0.08); // 8% taxes
   
   // Apply coupon discount
   let discount = 0;
@@ -37,10 +59,7 @@ const Cart: React.FC<CartProps> = ({
     discount = Math.round(itemTotal * validCoupons[appliedCoupon as keyof typeof validCoupons].discount);
   }
   
-  const totalAmount = itemTotal + taxesAndFee - discount;
-  const advancePayment = 49; // Fixed advance payment
-  const amountToPay = advancePayment;
-  const payableAfterService = totalAmount - advancePayment;
+  const totalAmount = itemTotal - discount;
 
   // Handle coupon application
   const handleApplyCoupon = () => {
@@ -48,6 +67,7 @@ const Cart: React.FC<CartProps> = ({
     if (validCoupons[code as keyof typeof validCoupons]) {
       setAppliedCoupon(code);
       setCouponError('');
+      setShowCouponModal(false);
     } else {
       setCouponError('Invalid coupon code');
       setAppliedCoupon(null);
@@ -68,21 +88,24 @@ const Cart: React.FC<CartProps> = ({
         keywords="furniture polish cart, booking review, service checkout, Mumbai furniture services"
       />
       <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-3 py-2 md:py-4 flex items-center gap-2 md:gap-4">
+        {/* Header - Auto-hide on scroll */}
+        <header className={`bg-white border-b border-gray-200 fixed top-0 left-0 right-0 z-30 transition-transform duration-300 ${
+          showNavbar ? 'translate-y-0' : '-translate-y-full'
+        }`}>
+        <div className="max-w-3xl mx-auto px-3 py-3 md:py-4 flex items-center gap-2 md:gap-4">
           <button
             onClick={() => navigate(-1)}
-            className="p-1.5 hover:bg-gray-100 rounded-full transition-colors touch-manipulation"
+            className="p-1.5 hover:bg-gray-100 rounded-full transition-colors"
             aria-label="Go back"
           >
-            <ArrowLeft className="w-4 h-4 md:w-6 md:h-6" />
+            <ArrowLeft className="w-5 h-5 md:w-6 md:h-6" />
           </button>
-          <h1 className="text-base md:text-xl font-bold">Your cart</h1>
+          <h1 className="text-lg md:text-xl font-bold">Your cart</h1>
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-3 py-3 space-y-3 md:space-y-6 pb-28 md:pb-24">
+      {/* Main Content - Add sufficient top padding for fixed header */}
+      <main className="max-w-3xl mx-auto px-3 pt-20 md:pt-24 pb-32 md:pb-8 space-y-4 md:space-y-6">
         {/* Checkout Section */}
         <section className="bg-white rounded-lg p-3 md:p-6 shadow-sm">
           <h2 className="text-base md:text-xl font-bold mb-3">Checkout</h2>
@@ -98,7 +121,7 @@ const Cart: React.FC<CartProps> = ({
                   
                   <div className="flex items-center justify-between sm:justify-end gap-3">
                     {/* Quantity Selector */}
-                    <div className="flex items-center gap-1 border border-purple-600 rounded px-1.5 py-1">
+                    <div className="flex items-center gap-2 border-2 border-orange-500 rounded-lg px-3 py-1.5">
                       <button
                         onClick={() => {
                           if (service.quantity > 1) {
@@ -107,17 +130,17 @@ const Cart: React.FC<CartProps> = ({
                             onRemoveService(service.serviceId, service.optionId);
                           }
                         }}
-                        className="text-purple-600 font-bold text-sm w-6 h-6 flex items-center justify-center touch-manipulation"
+                        className="text-orange-600 font-bold text-lg w-6 h-6 flex items-center justify-center"
                         aria-label="Decrease quantity"
                       >
                         −
                       </button>
-                      <span className="font-semibold text-purple-600 min-w-[16px] text-center text-sm">
+                      <span className="font-semibold text-orange-600 min-w-[24px] text-center text-base">
                         {service.quantity}
                       </span>
                       <button
                         onClick={() => onUpdateQuantity(service.serviceId, service.optionId, service.quantity + 1)}
-                        className="text-purple-600 font-bold text-sm w-6 h-6 flex items-center justify-center touch-manipulation"
+                        className="text-orange-600 font-bold text-lg w-6 h-6 flex items-center justify-center"
                         aria-label="Increase quantity"
                       >
                         +
@@ -135,49 +158,39 @@ const Cart: React.FC<CartProps> = ({
           </div>
         </section>
 
-        {/* Coupons Section */}
-        <section className="bg-white rounded-lg p-3 md:p-6 shadow-sm">
-          <div className="flex items-center gap-1.5 mb-2">
-            <Tag className="w-4 h-4 text-green-600" />
-            <h3 className="font-semibold text-gray-900 text-xs md:text-base">Apply Coupon</h3>
-          </div>
-          
-          {!appliedCoupon ? (
-            <div className="space-y-2">
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input
-                  type="text"
-                  value={couponCode}
-                  onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                  placeholder="Enter coupon code"
-                  className="flex-1 px-2 py-2 md:py-2 border border-gray-300 rounded focus:ring-1 focus:ring-orange-500 focus:border-orange-500 uppercase text-xs md:text-base"
-                />
-                <button
-                  onClick={handleApplyCoupon}
-                  className="px-3 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors font-semibold text-xs md:text-base touch-manipulation"
-                >
-                  Apply
-                </button>
+        {/* Coupons Section - Clickable Button */}
+        <section className="bg-white rounded-lg p-4 md:p-6 shadow-sm">
+          <button
+            onClick={() => setShowCouponModal(true)}
+            className="w-full flex items-center justify-between p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Tag className="w-5 h-5 text-green-600" />
               </div>
-              {couponError && (
-                <p className="text-xs text-red-600">{couponError}</p>
-              )}
-              <div className="mt-2 p-2 bg-green-50 rounded border border-green-200">
-                <p className="text-xs font-semibold text-green-800 mb-0.5">Available Offer:</p>
-                <p className="text-xs text-green-700">Use code <span className="font-bold">FIRST10</span> for 10% OFF on first booking</p>
+              <div className="text-left">
+                <p className="font-semibold text-gray-900 text-sm md:text-base">Apply Coupon</p>
+                <p className="text-xs text-gray-600">Tap to apply coupon code</p>
               </div>
             </div>
-          ) : (
-            <div className="flex items-center justify-between p-2 bg-green-50 rounded border border-green-200">
+            <svg className="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          
+          {/* Show applied coupon if exists */}
+          {appliedCoupon && (
+            <div className="mt-3 flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-200">
               <div className="flex-1">
-                <p className="font-semibold text-green-800 text-xs md:text-base">{appliedCoupon}</p>
+                <p className="font-semibold text-green-800 text-sm">{appliedCoupon} Applied ✓</p>
                 <p className="text-xs text-green-700">
                   {validCoupons[appliedCoupon as keyof typeof validCoupons].description}
                 </p>
               </div>
               <button
                 onClick={handleRemoveCoupon}
-                className="p-1 hover:bg-green-100 rounded transition-colors touch-manipulation"
+                className="p-1.5 hover:bg-green-100 rounded-full transition-colors flex-shrink-0"
+                aria-label="Remove coupon"
               >
                 <X className="w-4 h-4 text-green-700" />
               </button>
@@ -186,60 +199,113 @@ const Cart: React.FC<CartProps> = ({
         </section>
 
         {/* Payment Summary */}
-        <section className="bg-white rounded-lg p-3 md:p-6 shadow-sm space-y-2">
-          <h2 className="text-base md:text-xl font-bold">Payment summary</h2>
+        <section className="bg-white rounded-lg p-4 md:p-6 shadow-sm space-y-3">
+          <h2 className="text-lg md:text-xl font-bold text-gray-900">Payment Summary</h2>
           
-          <div className="space-y-2">
-            <div className="flex justify-between text-gray-700 text-xs md:text-base">
+          <div className="space-y-3">
+            <div className="flex justify-between text-gray-700 text-sm md:text-base">
               <span>Item total</span>
-              <span className="font-semibold">₹{itemTotal.toLocaleString()}</span>
+              <span className="font-semibold">₹{itemTotal.toLocaleString('en-IN')}</span>
             </div>
             
-            <div className="flex justify-between text-gray-700 text-xs md:text-base">
-              <span>Taxes and Fee</span>
-              <span className="font-semibold">₹{taxesAndFee.toLocaleString()}</span>
-            </div>
-            
-            {discount > 0 && (
-              <div className="flex justify-between text-green-600 text-xs md:text-base">
+            {appliedCoupon && discount > 0 && (
+              <div className="flex justify-between text-green-600 text-sm md:text-base">
                 <span>Coupon Discount ({appliedCoupon})</span>
-                <span className="font-semibold">-₹{discount.toLocaleString()}</span>
+                <span className="font-semibold">-₹{discount.toLocaleString('en-IN')}</span>
               </div>
             )}
             
-            <div className="border-t border-gray-200 pt-2 flex justify-between text-gray-900">
-              <span className="font-bold text-xs md:text-base">Total amount</span>
-              <span className="font-bold text-xs md:text-base">₹{totalAmount.toLocaleString()}</span>
-            </div>
-            
-            <div className="flex justify-between text-gray-700 text-xs md:text-base">
-              <span>Advance payment</span>
-              <span className="font-semibold">₹{advancePayment}</span>
-            </div>
-            
-            <p className="text-xs text-gray-600">
-              ₹{payableAfterService.toLocaleString()} payable after service
-            </p>
-            
-            <div className="border-t border-gray-200 pt-2 flex justify-between text-gray-900">
-              <span className="font-bold text-sm md:text-lg">Amount to pay</span>
-              <span className="font-bold text-sm md:text-lg">₹{amountToPay}</span>
+            <div className="border-t border-gray-200 pt-3 flex justify-between text-gray-900">
+              <span className="font-bold text-base md:text-xl">Total</span>
+              <span className="font-bold text-base md:text-xl">₹{totalAmount.toLocaleString('en-IN')}</span>
             </div>
           </div>
         </section>
       </main>
 
-      {/* Bottom CTA */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3 shadow-lg mb-20 md:mb-0 z-20">
+      {/* Bottom CTA - Fixed at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg z-40">
         <div className="max-w-3xl mx-auto">
           <button
             onClick={onProceedToCheckout}
-            className="w-full bg-purple-600 text-white font-semibold py-3 md:py-3 rounded hover:bg-purple-700 transition-colors text-sm md:text-lg touch-manipulation"
+            className="w-full bg-orange-600 text-white font-bold py-4 rounded-lg hover:bg-orange-700 transition-colors text-base shadow-lg active:scale-[0.98]"
           >
-            Login/Sign up to proceed
+            Book Now
           </button>
         </div>
       </div>
+
+      {/* Coupon Modal */}
+      {showCouponModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-end md:items-center md:justify-center">
+          {/* Modal Content */}
+          <div className="bg-white w-full md:max-w-lg md:rounded-2xl rounded-t-2xl max-h-[80vh] overflow-y-auto animate-slide-up">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between">
+              <h3 className="text-xl font-bold text-gray-900">Apply Coupon</h3>
+              <button
+                onClick={() => setShowCouponModal(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-6 h-6 text-gray-600" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-6">
+              {/* Coupon Input */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Coupon Code
+                </label>
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                  placeholder="Enter coupon code"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 uppercase text-base"
+                  autoFocus
+                />
+                {couponError && (
+                  <p className="mt-2 text-sm text-red-600">{couponError}</p>
+                )}
+              </div>
+
+              {/* Available Coupons */}
+              <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                <p className="text-sm font-semibold text-gray-800 mb-3">Available Coupons:</p>
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2">
+                    <div className="flex-1">
+                      <p className="font-bold text-gray-900 text-base">FIRST10</p>
+                      <p className="text-sm text-gray-600">First Booking - 10% OFF</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setCouponCode('FIRST10');
+                        setCouponError('');
+                      }}
+                      className="text-xs font-semibold text-orange-600 hover:text-orange-700 px-3 py-1 border border-orange-600 rounded-md"
+                    >
+                      Apply
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Apply Button */}
+              <button
+                onClick={handleApplyCoupon}
+                disabled={!couponCode.trim()}
+                className="w-full bg-orange-600 text-white font-bold py-4 rounded-lg hover:bg-orange-700 transition-colors text-base disabled:bg-gray-400 disabled:cursor-not-allowed"
+              >
+                Apply Coupon
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </>
   );

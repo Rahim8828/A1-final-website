@@ -14,7 +14,6 @@ const popularServices = [
   { name: 'Dining Set Polish', image: '/products/front_page_service_products/whitechair_single_front.webp', link: '/services?service=dining-set-polish' },
   { name: 'Table Polish', image: '/products/table/center_table/darkWoodenTable.webp', link: '/services?service=table-polish' },
   { name: 'Cabinet Polish', image: '/products/cabinet/five_Drawer_cabinet/singleCabinet.jpeg', link: '/services?service=cabinet-polish' },
-  { name: 'Shelf Polish', image: '/products/front_page_service_products/lightWhite_shelve_front.webp', link: '/services?service=wooden-shelf-polish' },
   { name: 'TV Unit Polish', image: '/products/tvUnitPolish/solidWood/darkBrown_solidwood.webp', link: '/services?service=tv-unit-polish' },
   { name: 'Mandir Polish', image: '/products/mandir/darkWoodenMandir.webp', link: '/services?service=mandir-polish' },
 ];
@@ -32,22 +31,13 @@ const woodTypes = [
 /* ───────── Our Polishing Services (Detail cards) ───────── */
 const polishingServices = [
   {
-    name: 'PU Polish (Polyurethane)',
-    image: '/products/pu_polish/glass_pu_polish.webp',
-    finish: 'Available in matte, semi-gloss, and high gloss.',
-    base: 'Oil or water-based.',
-    use: 'High-end furniture, kitchen cabinets.',
-    pros: 'Scratch & water-resistant, long-lasting.',
-    cons: 'Slightly costly.',
-  },
-  {
     name: 'Melamine Polish',
     image: '/products/FloorPoshining/melamine_polish.webp',
     finish: 'Matte / Glossy.',
     base: 'Synthetic resin.',
     use: 'Modern furniture, interior panels.',
     pros: 'Durable, water-resistant.',
-    cons: 'Slightly less natural feel than PU.',
+    cons: 'Requires professional application.',
   },
   {
     name: 'Natural Wood Polish',
@@ -58,19 +48,11 @@ const polishingServices = [
     cons: 'Needs frequent maintenance.',
   },
   {
-    name: 'Water-Based PU Polish',
-    image: '/products/FloorPoshining/water_pu_polish.webp',
-    finish: 'Clear and matte.',
-    use: 'Eco-friendly furniture, low VOC.',
-    pros: 'No odor, quick drying, safe for homes.',
-    cons: 'Slightly less durable than oil-based PU.',
-  },
-  {
     name: 'French Polish',
     image: '/products/FloorPoshining/french_polishh.webp',
     finish: 'High-gloss, mirror-like sheen.',
     base: 'Shellac dissolved in alcohol.',
-    use: 'Antique furniture, heritage pieces.',
+    use: 'Heritage furniture, traditional pieces.',
     pros: 'Beautiful deep finish, enhances wood grain.',
     cons: 'Not scratch-resistant, needs care.',
   },
@@ -88,7 +70,7 @@ const polishingServices = [
     image: '/products/FloorPoshining/wax_polish.webp',
     finish: 'Soft satin sheen.',
     base: 'Natural beeswax or carnauba.',
-    use: 'Antique furniture, solid wood pieces.',
+    use: 'Traditional furniture, solid wood pieces.',
     pros: 'Natural, easy to apply, pleasant aroma.',
     cons: 'Needs re-application, not water-resistant.',
   },
@@ -135,7 +117,7 @@ const faqs = [
   },
   {
     q: 'Which wood polish is best for kitchen cabinets?',
-    a: 'PU (Polyurethane) polish is the best choice for kitchen cabinets due to its superior scratch-resistance, water-resistance, and long-lasting durability. Available in gloss, matte, and satin finishes.',
+    a: 'Melamine polish is the best choice for kitchen cabinets due to its superior scratch-resistance, water-resistance, and long-lasting durability. Available in gloss and matte finishes.',
   },
   {
     q: 'How much does furniture polish cost in Mumbai?',
@@ -146,8 +128,8 @@ const faqs = [
     a: 'Yes! Our skilled technicians specialize in removing scratches, water marks, heat stains, and other blemishes before applying a fresh coat of polish to restore your furniture\'s beauty.',
   },
   {
-    q: 'What is the difference between PU Polish and French Polish?',
-    a: 'PU Polish provides a durable, scratch-resistant film ideal for modern furniture and high-traffic areas. French Polish gives a deep, mirror-like finish using shellac — perfect for antique or heritage pieces but requires more delicate care.',
+    q: 'What is the difference between French Polish and Melamine Polish?',
+    a: 'French Polish gives a deep, mirror-like finish using shellac — perfect for heritage pieces but requires more delicate care. Melamine Polish provides a durable, scratch-resistant film ideal for modern furniture and high-traffic areas.',
   },
   {
     q: 'Do you offer on-site polishing or pickup/delivery service?',
@@ -223,10 +205,10 @@ const WoodPolishingServices: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Wood Polishing Services in Mumbai | PU, French, Melamine, Wax Polish — A1 Furniture Polish"
-        description="Professional wood polishing services in Mumbai. Expert PU polish, French polish, Melamine, Water-based PU, Wax, Monocoat & Lamination polish for all wooden furniture. 30+ years experience, 6-month warranty. Starting ₹1,299. Call now!"
-        keywords="wood polishing services mumbai, furniture polish mumbai, PU polish, french polish, melamine polish, wax polish, monocoat, lamination polish, wooden furniture polishing, best wood polish mumbai, furniture restoration, wood refinishing mumbai"
-        ogImage="/products/pu_polish/puPolish_title/pu_polish_title.webp"
+        title="Wood Polishing Services in Mumbai | French, Melamine, Wax Polish — A1 Furniture Polish"
+        description="Professional wood polishing services in Mumbai. Expert French polish, Melamine, Wax, Monocoat & Lamination polish for all wooden furniture. 30+ years experience, 6-month warranty. Starting ₹1,299. Call now!"
+        keywords="wood polishing services mumbai, furniture polish mumbai, french polish, melamine polish, wax polish, monocoat, lamination polish, wooden furniture polishing, best wood polish mumbai, furniture restoration, wood refinishing mumbai"
+        ogImage="/products/FloorPoshining/wooden_polish.webp"
         canonical={getCanonicalURL('/wood-polishing-services')}
       />
       <JsonLd data={localBusinessSchema} />
@@ -252,7 +234,7 @@ const WoodPolishingServices: React.FC = () => {
       <section className="relative overflow-hidden">
         <div className="relative w-full h-64 sm:h-80 md:h-[420px] lg:h-[480px]">
           <img
-            src="/products/pu_polish/puPolish_title/pu_polish_title.webp"
+            src="/products/FloorPoshining/wooden_polish.webp"
             alt="Professional Wood Polishing Services in Mumbai — A1 Furniture Polish"
             className="w-full h-full object-cover"
             loading="eager"
@@ -357,7 +339,7 @@ const WoodPolishingServices: React.FC = () => {
             <div className="text-center lg:text-left">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Types of Wood We Polish</h2>
               <p className="text-gray-600 leading-relaxed">
-                Colorwale we bring 30+ years of craftsmanship and expertise in premium wood polishing — from classic French Polish to modern PU, Monocoat, Melamine, Water-based PU, and high-gloss Polyester Lamination. Whether it's open grain or smooth filled finish, our skilled team ensures perfection in every stroke.
+                We bring 30+ years of craftsmanship and expertise in premium wood polishing — from classic French Polish to modern Melamine, Monocoat, and high-gloss Polyester Lamination. Whether it's open grain or smooth filled finish, our skilled team ensures perfection in every stroke.
               </p>
               <div className="mt-6 flex flex-wrap gap-3 justify-center lg:justify-start">
                 <div className="flex items-center gap-2 text-sm text-gray-700">
@@ -381,7 +363,7 @@ const WoodPolishingServices: React.FC = () => {
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Our Wood Polishing Services</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Choose from 8+ professional wood polish types. Each polish is carefully selected based on your furniture type, usage, and desired finish.
+              Choose from 6+ professional wood polish types. Each polish is carefully selected based on your furniture type, usage, and desired finish.
             </p>
           </div>
 
@@ -485,13 +467,13 @@ const WoodPolishingServices: React.FC = () => {
               <strong>A1 Furniture Polish</strong> is Mumbai's most trusted name for professional <strong>wood polishing services</strong>. With over <strong>30 years of experience</strong> and a team of skilled craftsmen, we specialize in restoring and refinishing all types of wooden furniture — from antique heirlooms to modern modular pieces.
             </p>
             <p>
-              Our comprehensive range of wood polish options includes <strong>PU Polish (Polyurethane)</strong> for high-durability finishes, <strong>French Polish</strong> for classic mirror-shine beauty, <strong>Melamine Polish</strong> for budget-friendly waterproofing, <strong>Water-based PU</strong> for eco-friendly homes, <strong>Wax Polish</strong> for natural wood warmth, <strong>Monocoat Oil</strong> for single-coat hardwood protection, and <strong>Lamination (Polyester) Polish</strong> for ultra-glossy modern furniture.
+              Our comprehensive range of wood polish options includes <strong>French Polish</strong> for classic mirror-shine beauty, <strong>Melamine Polish</strong> for durable waterproofing, <strong>Wax Polish</strong> for natural wood warmth, <strong>Monocoat Oil</strong> for single-coat hardwood protection, and <strong>Lamination (Polyester) Polish</strong> for ultra-glossy modern furniture.
             </p>
             <p>
               We polish all types of wood including <strong>Teakwood, Walnut, Veneer, MDF, Solid Wood, and Plywood</strong>. Our services cover sofas, beds, dining tables, wardrobes, doors, cabinets, TV units, bookshelves, mandirs, jhulas, kitchen cabinets, and more.
             </p>
             <p>
-              Whether you need <strong>furniture restoration in Andheri</strong>, <strong>PU polish in Bandra</strong>, <strong>French polish in Goregaon</strong>, or <strong>wood refinishing in Powai</strong> — A1 Furniture Polish delivers factory-quality results at your doorstep. We serve all areas across <strong>Mumbai, Navi Mumbai, and Thane</strong>.
+              Whether you need <strong>furniture restoration in Andheri</strong>, <strong>French polish in Bandra</strong>, <strong>Melamine polish in Goregaon</strong>, or <strong>wood refinishing in Powai</strong> — A1 Furniture Polish delivers factory-quality results at your doorstep. We serve all areas across <strong>Mumbai, Navi Mumbai, and Thane</strong>.
             </p>
             <p>
               Every project comes with a <strong>6-month warranty</strong>, premium eco-friendly materials, and our commitment to 100% customer satisfaction. <strong>Starting from just ₹1,299</strong>, professional wood polishing has never been more affordable.

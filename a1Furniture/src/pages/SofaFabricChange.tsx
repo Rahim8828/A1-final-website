@@ -19,7 +19,6 @@ const sofaService = {
         { name: '1 seater Sofa', price: 3499 },
         { name: '2 seater Sofa', price: 4499 },
         { name: '3 seater Sofa', price: 5999 },
-        { name: 'L shape Sofa', price: 8999 },
         { name: 'Sofa cumbed', price: 5999 },
         { name: 'Bed side 3 side', price: 3499 },
       ],
@@ -128,7 +127,7 @@ const SofaFabricChange: React.FC = () => {
     <>
       <SEOHead
         title="Sofa Fabric Change Services in Mumbai | A1 Furniture Polish"
-        description="Professional sofa fabric change services in Mumbai. Get the best prices for 1, 2, 3-seater, L-shape sofas, recliners, and more."
+        description="Professional sofa fabric change services in Mumbai. Get the best prices for 1, 2, 3-seater sofas, recliners, and more."
         keywords={'sofa fabric change, sofa repair, furniture upholstery, mumbai, recliner fabric change'}
         canonical={getCanonicalURL('/sofa-fabric-change')}
       />

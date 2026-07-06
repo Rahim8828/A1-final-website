@@ -253,7 +253,6 @@ const WoodenFurniturePolish = () => {
             <h4 className="font-semibold text-lg mb-4">Explore Our Specialized Services</h4>
             <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-amber-600">
               <a href="/commercial-polishing" className="hover:underline">Commercial Polishing</a>
-              <a href="/antique-restoration" className="hover:underline">Antique Restoration</a>
               <a href="/" className="hover:underline">Homepage</a>
             </div>
           </div>

@@ -154,7 +154,7 @@ export const servicePageData: ServiceData[] = [
       {
         id: 'bed-single',
         name: 'Single Bed',
-        price: 2449,
+        price: 3899,
         rating: 4.8,
         reviewCount: 342,
         estimatedTime: '3 hrs',
@@ -162,19 +162,9 @@ export const servicePageData: ServiceData[] = [
         image: '/products/bed/single_bed/darkWoodensinglebed.webp'
       },
       {
-        id: 'bed-diwan',
-        name: 'Diwan',
-        price: 2999,
-        rating: 4.8,
-        reviewCount: 156,
-        estimatedTime: '2.5 hrs',
-        description: 'Expert polish restoration for diwan beds. Covers all wooden surfaces including decorative elements. Perfect for refreshing your day bed or sitting area.',
-        image: '/products/bed/diwan/darkWoodenDiwan.webp'
-      },
-      {
         id: 'bed-queen',
         name: 'Queen Size Bed',
-        price: 3449,
+        price: 4500,
         rating: 4.9,
         reviewCount: 521,
         estimatedTime: '3.5 hrs',
@@ -184,7 +174,7 @@ export const servicePageData: ServiceData[] = [
       {
         id: 'bed-king',
         name: 'King Size Bed',
-        price: 3799,
+        price: 5899,
         rating: 4.8,
         reviewCount: 284,
         estimatedTime: '4 hrs',
@@ -201,21 +191,11 @@ export const servicePageData: ServiceData[] = [
         description: 'Specialized polish service for sofa-cum-bed furniture. Covers both sofa and bed mechanisms wooden components with care for moving parts and joints.',
         image: '/products/sofa_cum_bed/darkBrownSofaCumBed.webp'
       },
-      {
-        id: 'bed-bunk',
-        name: 'Bunk Bed',
-        price: 5799,
-        rating: 4.7,
-        reviewCount: 100,
-        estimatedTime: '5 hrs',
-        description: 'Complete polish restoration for bunk beds. Includes upper and lower frames, ladder, and all safety rails. Extra time ensures thorough coverage of all levels.',
-        image: '/products/climbing_bed/darkWoodenBunkerBed.webp'
-      },
     ],
     selectedOption: -1,
     priceIncludes: [
       'Material & labour cost (Hand Polish)',
-      'Premium polish brand (Melamine/PU)',
+      'Premium polish brand (Melamine)',
       'Post-service cleaning',
       'Scratch removal & surface preparation',
       '6 months warranty on polish',
@@ -318,7 +298,7 @@ export const servicePageData: ServiceData[] = [
       { id: 'door-4door', name: '4 Door', price: 5899, rating: 4.8, reviewCount: 277, estimatedTime: '4 hrs', image: '/products/front_page_service_products/door_polish.webp' },
     ],
     selectedOption: -1,
-    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine/PU)', 'Post-service cleaning', 'Both sides polishing', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
+    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine)', 'Post-service cleaning', 'Both sides polishing', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
     materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp', '/assets/filling-gaps-polish-application.webp', '/assets/drying-finishing.webp'],
     processSteps: [
       { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
@@ -356,7 +336,7 @@ export const servicePageData: ServiceData[] = [
       { id: 'table-study', name: 'Study Table', price: 3899, rating: 4.7, reviewCount: 310, estimatedTime: '3 hrs', image: '/products/front_page_service_products/table_polish.webp' },
     ],
     selectedOption: -1,
-    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine/PU)', 'Post-service cleaning', 'Scratch removal & surface preparation', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
+    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine)', 'Post-service cleaning', 'Scratch removal & surface preparation', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
     materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp', '/assets/filling-gaps-polish-application.webp', '/assets/drying-finishing.webp'],
     processSteps: [
       { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
@@ -394,7 +374,7 @@ export const servicePageData: ServiceData[] = [
       { id: 'wardrobe-sliding', name: 'Sliding Door Wardrobe', price: 6799, rating: 4.8, reviewCount: 319, estimatedTime: '4 hrs', image: '/products/front_page_service_products/wardrobe_polish.webp' },
     ],
     selectedOption: -1,
-    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine/PU)', 'Post-service cleaning', 'Inside & outside polishing', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
+    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine)', 'Post-service cleaning', 'Inside & outside polishing', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
     materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp', '/assets/filling-gaps-polish-application.webp', '/assets/drying-finishing.webp'],
     processSteps: [
       { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
@@ -433,7 +413,7 @@ export const servicePageData: ServiceData[] = [
       { id: 'single-chair', name: 'Single Chair Polish', price: 999, rating: 4.7, reviewCount: 189, estimatedTime: '1 hr', image: '/products/front_page_service_products/dining_set_polish.webp' }
     ],
     selectedOption: -1,
-    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine/PU)', 'Post-service cleaning', 'Complete polish for table and chairs', 'Heat and water-resistant finish', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
+    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine)', 'Post-service cleaning', 'Complete polish for table and chairs', 'Heat and water-resistant finish', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
     materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp', '/assets/filling-gaps-polish-application.webp', '/assets/drying-finishing.webp'],
     processSteps: [
       { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
@@ -471,7 +451,7 @@ export const servicePageData: ServiceData[] = [
       { id: 'cabinet-crockery', name: 'Crockery Self', price: 3999, rating: 4.8, reviewCount: 310, estimatedTime: '3.5 hrs', image: '/products/front_page_service_products/crokery_polish.webp' },
     ],
     selectedOption: -1,
-    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine/PU)', 'Post-service cleaning', 'Inside & outside polishing', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
+    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand (Melamine)', 'Post-service cleaning', 'Inside & outside polishing', '6 months warranty on polish', 'Machine Polish: Extra ₹1,749/-'],
     materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp', '/assets/filling-gaps-polish-application.webp', '/assets/drying-finishing.webp'],
     processSteps: [
       { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
@@ -491,72 +471,6 @@ export const servicePageData: ServiceData[] = [
       { icon: 'shield-check', text: 'Background verified professionals' },
       { icon: 'wrench', text: '300+ hours of training' },
       { icon: 'medal', text: 'Certified under Skill India Programme' }
-    ]
-  },
-  {
-    id: 'bookshelf-rack-polish',
-    name: 'Bookshelf / Rack Polish',
-    category: 'furniture-polish',
-    rating: 4.8,
-    reviewCount: 1234,
-    duration: '~3 hrs',
-    features: ['6 Months Polished Warranty', 'Choice of clear or coloured finishes', 'All Materials & Labour Cost'],
-    image: '/products/front_page_service_products/shelve_polish.webp',
-    options: [
-      { id: 'shelf-3', name: '3 Shelf', price: 1999, rating: 4.8, reviewCount: 345, estimatedTime: '2 hrs', image: '/products/front_page_service_products/shelve_polish.webp' },
-      { id: 'shelf-5', name: '5 Shelf', price: 2799, rating: 4.9, reviewCount: 567, estimatedTime: '2.5 hrs', image: '/products/front_page_service_products/shelve_polish.webp' },
-      { id: 'shelf-7', name: '7 Shelf', price: 3499, rating: 4.8, reviewCount: 322, estimatedTime: '3.5 hrs', image: '/products/front_page_service_products/shelve_polish.webp' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand', 'Post-service cleaning', '6 months warranty', 'Machine Polish: Extra ₹1,749/-'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Preparation', description: 'Our professionals clean and sand the bookshelf surface to remove old polish and scratches.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Polish Shade Selection', description: 'Choose from clear or colored finishes that match your furniture and home décor.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'Gap Filling & Polish Application', description: 'We fill any gaps or cracks, then apply premium quality polish evenly.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Drying & Finishing', description: 'Allow proper drying time and apply finishing coats for a smooth, glossy finish.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect finish. We clean up and hand over your refreshed bookshelf.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'How long does bookshelf polishing take?', answer: 'Typically 2-3.5 hours depending on size.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
-  {
-    id: 'wooden-shelf-polish',
-    name: 'Wooden Shelf Polish',
-    category: 'furniture-polish',
-    rating: 4.7,
-    reviewCount: 654,
-    duration: '~1 hr',
-    features: ['6 Months Polished Warranty', 'Choice of clear or coloured finishes', 'All Materials & Labour Cost'],
-    image: '/products/front_page_service_products/shelve_polish.webp',
-    options: [
-      { id: 'shelf-small', name: 'Small', price: 999, rating: 4.7, reviewCount: 234, estimatedTime: '1 hr', image: '/products/front_page_service_products/shelve_polish.webp' },
-      { id: 'shelf-medium', name: 'Medium', price: 1449, rating: 4.8, reviewCount: 245, estimatedTime: '1.5 hrs', image: '/products/front_page_service_products/shelve_polish.webp' },
-      { id: 'shelf-large', name: 'Large', price: 1999, rating: 4.7, reviewCount: 175, estimatedTime: '2 hrs', image: '/products/front_page_service_products/shelve_polish.webp' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost (Hand Polish)', 'Premium polish brand', 'Post-service cleaning', '6 months warranty', 'Machine Polish: Extra ₹1,749/-'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Preparation', description: 'Our professionals clean and sand the shelf surface to remove old polish and scratches.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Polish Shade Selection', description: 'Choose from clear or colored finishes that match your furniture and home décor.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'Gap Filling & Polish Application', description: 'We fill any gaps or cracks, then apply premium quality polish evenly.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Drying & Finishing', description: 'Allow proper drying time and apply finishing coats for a smooth, glossy finish.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect finish. We clean up and hand over your refreshed shelf.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'How long does shelf polishing take?', answer: 'Typically 1-2 hours depending on size.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
     ]
   },
   {
@@ -663,11 +577,11 @@ export const servicePageData: ServiceData[] = [
     rating: 4.9,
     reviewCount: 2345,
     duration: 'Varies by area',
-    features: ['Professional floor polishing service', 'Restores shine and protects wooden floors', 'Eco-friendly polishing materials', 'Hand Polish: ₹219/sqft | Machine Polish: ₹249/sqft'],
-    image: '/products/front_page_service_products/pu_polish_front.webp',
+    features: ['Professional floor polishing service', 'Restores shine and protects wooden floors', 'Eco-friendly polishing materials', 'Hand Polish: ₹80/sqft | Machine Polish: ₹96/sqft'],
+    image: '/products/FloorPoshining/darkBrownLamination.webp',
     options: [
-      { id: 'floor-hand', name: 'Hand Polish (per sqft)', price: 219, rating: 4.9, reviewCount: 1234, estimatedTime: 'Varies', image: '/products/front_page_service_products/pu_polish_front.webp' },
-      { id: 'floor-machine', name: 'Machine Polish (per sqft)', price: 249, rating: 4.9, reviewCount: 1111, estimatedTime: 'Varies', image: '/products/front_page_service_products/pu_polish_front.webp' }
+      { id: 'floor-hand', name: 'Hand Polish (per sqft)', price: 80, rating: 4.9, reviewCount: 1234, estimatedTime: 'Varies', image: '/products/FloorPoshining/lamination_polishing.webp' },
+      { id: 'floor-machine', name: 'Machine Polish (per sqft)', price: 96, rating: 4.9, reviewCount: 1111, estimatedTime: 'Varies', image: '/products/FloorPoshining/darkBrownMachinePolish.webp' }
     ],
     selectedOption: -1,
     priceIncludes: ['Material & labour cost', 'Premium polish brand', 'Post-service cleaning', 'Floor protection'],
@@ -686,109 +600,6 @@ export const servicePageData: ServiceData[] = [
     trustBadges: [
       { icon: 'shield-check', text: 'Background verified professionals' },
       { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
-  {
-    id: 'pu-polish',
-    name: 'PU Polish',
-    category: 'furniture-polish',
-    rating: 4.8,
-    reviewCount: 856,
-    duration: 'Varies by area',
-    features: ['Premium PU finish', 'Durable coating', 'Professional application', 'Travelling cost extra'],
-    image: '/products/front_page_service_products/pu_polish_front.webp',
-    options: [
-      { id: 'pu-standard', name: 'PU Polish (per sqft)', price: 270, rating: 4.8, reviewCount: 456, estimatedTime: 'Varies', image: '/products/front_page_service_products/pu_polish_front.webp' },
-      { id: 'pu-premium', name: 'Premium PU Polish (per sqft)', price: 320, rating: 4.9, reviewCount: 400, estimatedTime: 'Varies', image: '/products/front_page_service_products/pu_polish_front.webp' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost', 'Premium PU coating', 'Surface preparation', 'Professional application'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Preparation', description: 'Our professionals clean and prepare the surface thoroughly for PU polish application.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Surface Priming', description: 'Apply primer coat to ensure better adhesion of PU polish.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'PU Polish Application', description: 'Apply premium quality PU polish evenly for durable finish.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Drying & Finishing', description: 'Allow proper drying time and apply finishing coats for a smooth, glossy finish.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect finish. We clean up and hand over your furniture.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'What is PU polish?', answer: 'PU (Polyurethane) polish is a premium coating that provides excellent durability and finish.' },
-      { question: 'Is travelling cost included?', answer: 'No, travelling cost is charged separately based on location.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
-  {
-    id: 'deco-polish',
-    name: 'Deco Paint',
-    category: 'furniture-polish',
-    rating: 4.7,
-    reviewCount: 723,
-    duration: 'Varies by area',
-    features: ['Decorative finish', 'Multiple color options', 'Professional application', 'Travelling cost extra'],
-    image: '/products/front_page_service_products/deco_paint_front.webp',
-    options: [
-      { id: 'deco-standard', name: 'Deco Polish (per sqft)', price: 249, rating: 4.7, reviewCount: 389, estimatedTime: 'Varies', image: '/products/front_page_service_products/deco_paint_front.webp' },
-      { id: 'deco-premium', name: 'Premium Deco Polish (per sqft)', price: 279, rating: 4.8, reviewCount: 334, estimatedTime: 'Varies', image: '/products/front_page_service_products/deco_paint_front.webp' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost', 'Decorative coating', 'Surface preparation', 'Professional application'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Booking', description: 'Book your service online or via WhatsApp. Our team will confirm your appointment.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Surface Preparation', description: 'Our professionals clean and prepare the surface thoroughly for Deco polish application.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Color Selection', description: 'Choose from multiple decorative colors that match your interior décor.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 4, title: 'Deco Polish Application', description: 'Apply premium quality Deco polish evenly for aesthetic finish.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Drying & Finishing', description: 'Allow proper drying time and apply finishing coats for a smooth finish.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Quality Check & Handover', description: 'Final inspection to ensure perfect finish. We clean up and hand over your furniture.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'What is Deco polish?', answer: 'Deco polish is a decorative coating available in multiple colors for aesthetic finish.' },
-      { question: 'Is travelling cost included?', answer: 'No, travelling cost is charged separately based on location.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' }
-    ]
-  },
-  {
-    id: 'antique-carving-furniture',
-    name: 'Antique / Carving Furniture',
-    category: 'furniture-polish',
-    rating: 4.9,
-    reviewCount: 456,
-    duration: '~4-6 hrs',
-    features: ['Antique Wood Restoration', 'Intricate Carving Preservation', 'Traditional Finishing', 'Detail Enhancement'],
-    image: '/products/front_page_service_products/antique_polish.png',
-    options: [
-      { id: 'antique-small', name: 'Small Antique Furniture', price: 2449, rating: 4.9, reviewCount: 156, estimatedTime: '4 hrs', image: '/products/front_page_service_products/antique_polish.png' },
-      { id: 'antique-medium', name: 'Medium Antique Furniture', price: 2999, rating: 4.9, reviewCount: 189, estimatedTime: '5 hrs', image: '/products/front_page_service_products/antique_polish.png' },
-      { id: 'antique-large', name: 'Large Antique Furniture', price: 3799, rating: 4.8, reviewCount: 111, estimatedTime: '6 hrs', image: '/products/front_page_service_products/antique_polish.png' }
-    ],
-    selectedOption: -1,
-    priceIncludes: ['Material & labour cost', 'Antique wood restoration', 'Carving preservation', 'Traditional polish finish', '6 months warranty on polish'],
-    materials: ['/assets/select-wood-polish-shade.webp', '/assets/Cleaning & Sanding.webp', '/assets/filling-gaps-polish-application.webp', '/assets/drying-finishing.webp'],
-    processSteps: [
-      { step: 1, title: 'Consultation & Assessment', description: 'Expert assessment of antique furniture condition and restoration requirements.', image: '/assets/consultation-booking.webp' },
-      { step: 2, title: 'Gentle Cleaning & Preparation', description: 'Careful cleaning of antique wood and intricate carvings with specialized tools.', image: '/assets/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Restoration Work', description: 'Repair damaged areas, fill cracks, and restore original beauty of carvings.', image: '/assets/filling-gaps-polish-application.webp' },
-      { step: 4, title: 'Traditional Polish Application', description: 'Apply authentic traditional polish that enhances antique character.', image: '/assets/select-wood-polish-shade.webp' },
-      { step: 5, title: 'Detail Enhancement', description: 'Highlight intricate carvings and restore original luster with premium finish.', image: '/assets/drying-finishing.webp' },
-      { step: 6, title: 'Final Inspection', description: 'Thorough quality check ensuring antique furniture restored to its former glory.', image: '/assets/wooden furniture .webp' }
-    ],
-    faqs: [
-      { question: 'How long does antique furniture restoration take?', answer: 'Restoration time varies from 4-6 hours depending on the size and condition of the antique piece. We ensure careful, unhurried work.' },
-      { question: 'Do you work with all types of antique wood?', answer: 'Yes, we have expertise in restoring various antique wood types including teak, rosewood, sheesham, and mahogany.' },
-      { question: 'Will the carving details be preserved?', answer: 'Absolutely! We use specialized techniques and tools to carefully preserve and enhance all intricate carving details.' },
-      { question: 'What type of polish do you use for antique furniture?', answer: 'We use traditional polish methods and premium materials suitable for antique wood that enhance its natural character and patina.' }
-    ],
-    trustBadges: [
-      { icon: 'shield-check', text: 'Background verified professionals' },
-      { icon: 'wrench', text: '300+ hours of training' },
-      { icon: 'medal', text: 'Antique restoration experts' }
     ]
   },
 
@@ -959,7 +770,6 @@ export const servicePageData: ServiceData[] = [
     options: [
       { id: 'ikea-sofa', name: 'Sofa assembly', price: 1449, rating: 4.87, reviewCount: 1000, estimatedTime: '1.5 hrs' },
       { id: 'ikea-chaise-lounger', name: 'Chaise lounger assembly', price: 1449, rating: 4.68, reviewCount: 44, estimatedTime: '1 hr 15 mins' },
-      { id: 'ikea-lshaped-sofa', name: 'L-shaped sofa assembly', price: 1599, rating: 4.81, reviewCount: 315, estimatedTime: '2 hrs' },
       { id: 'ikea-corner-sofa', name: 'Corner sofa assembly', price: 1599, rating: 4.80, reviewCount: 166, estimatedTime: '2 hrs' },
       { id: 'ikea-sofa-cum-bed', name: 'Sofa cum bed assembly', price: 1549, rating: 4.87, reviewCount: 802, estimatedTime: '1.5 hrs' },
       { id: 'ikea-recliner', name: 'Recliner assembly', price: 1399, rating: 4.78, reviewCount: 557, estimatedTime: '1 hr' },
@@ -1061,3 +871,4 @@ export const servicePageData: ServiceData[] = [
     ]
   }
 ];
+

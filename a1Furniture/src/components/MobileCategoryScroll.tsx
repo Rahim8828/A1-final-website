@@ -9,31 +9,13 @@ const categoryImages: Record<string, string> = {
   beds: '/products/bed/king_bed/darkWoodenKing.webp',
   'dining-tables': '/products/dining_set/6_seater/darkbrown6seater.webp',
   'wardrobes-storage': '/products/wardrobe/double/darkWoodendoubleWardrobe.webp',
-  shelves: '/products/shelves/brownShelve.webp',
   'tv-units': '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp',
   doors: '/products/doors/single_door/darkWoodensingle.webp',
-  'wood-polish': '/products/FloorPoshining/wooden_polish.webp',
-  'pu-polish': '/products/pu_polish/glass_pu_polish.webp',
-  'deco-paint': '/products/deco_paint/solid_decoPaint.webp',
+  'floor-polish': '/products/FloorPoshining/lamination_polishing.webp',
   mandir: '/products/mandir/darkBrownmandir.webp',
-  antique: '/products/antique/largeAntiqueImage.png',
-};
-
-// Map category IDs to service IDs
-const categoryToServiceMap: Record<string, string> = {
-  all: '',
-  sofas: 'sofa-polish',
-  beds: 'bed-polish',
-  'dining-tables': 'dining-set-polish',
-  'wardrobes-storage': 'wardrobe-polish',
-  shelves: 'wooden-shelf-polish',
-  'tv-units': 'tv-unit-polish',
-  doors: 'door-polish',
-  'wood-polish': 'floor-polishing',
-  'pu-polish': 'pu-polish',
-  'deco-paint': 'deco-polish',
-  mandir: 'mandir-polish',
-  antique: 'antique-carving-furniture',
+  jhula: '/products/jhula/darkWoodenJhula.webp',
+  consultation: '/products/consultation/visiting.png',
+  'color-refresh': '/products/consultation/visiting2.png',
 };
 
 const MobileCategoryScroll: React.FC = () => {
@@ -140,8 +122,7 @@ const MobileCategoryScroll: React.FC = () => {
         >
           <div className="inline-grid grid-rows-2 grid-flow-col gap-3 pb-2">
             {categories.slice(1).map((cat) => {
-              const serviceId = categoryToServiceMap[cat.id];
-              const linkTo = cat.id === 'all' ? '/' : serviceId ? `/services?service=${serviceId}` : '/services';
+              const linkTo = cat.id === 'all' ? '/' : `/services?category=${cat.id}#products`;
               
               return (
                 <Link

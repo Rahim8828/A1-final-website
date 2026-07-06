@@ -254,7 +254,6 @@ const TableAndBedPolishing = () => {
             <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-amber-600">
               <a href="/wooden-furniture-polish" className="hover:underline">Wooden Furniture Polish</a>
               <a href="/sofa-chair-polishing" className="hover:underline">Sofa & Chair Polishing</a>
-              <a href="/antique-restoration" className="hover:underline">Antique Restoration</a>
               <a href="/commercial-polishing" className="hover:underline">Commercial Polishing</a>
               <a href="/" className="hover:underline">Homepage</a>
             </div>

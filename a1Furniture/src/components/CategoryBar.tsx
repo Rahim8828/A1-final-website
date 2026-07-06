@@ -6,14 +6,13 @@ const categoryImages: Record<string, string> = {
   beds: '/products/bed/king_bed/darkWoodenKing.webp',
   'dining-tables': '/products/dining_set/6_seater/darkbrown6seater.webp',
   'wardrobes-storage': '/products/wardrobe/double/darkWoodendoubleWardrobe.webp',
-  shelves: '/products/shelves/brownShelve.webp',
   'tv-units': '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp',
   doors: '/products/doors/single_door/darkWoodensingle.webp',
-  'wood-polish': '/products/FloorPoshining/wooden_polish.webp',
-  'pu-polish': '/products/pu_polish/glass_pu_polish.webp',
-  'deco-paint': '/products/deco_paint/solid_decoPaint.webp',
+  'floor-polish': '/products/FloorPoshining/wooden_polish.webp',
   mandir: '/products/mandir/darkBrownmandir.webp',
-  antique: '/products/antique/largeAntiqueImage.png',
+  jhula: '/products/jhula/darkWoodenJhula.webp',
+  consultation: '/products/consultation/visiting.png',
+  'color-refresh': '/products/consultation/visiting2.png',
 };
 
 const CategoryBar: React.FC = () => (

@@ -45,18 +45,6 @@ const AffordableWoodPolishingMumbai = lazy(() => import('./pages/generated/Affor
 const TopRatedWoodPolishingMumbai = lazy(() => import('./pages/generated/TopRatedWoodPolishingMumbai'));
 const ProfessionalWoodPolishingMumbai = lazy(() => import('./pages/generated/ProfessionalWoodPolishingMumbai'));
 const BestWoodPolishingMumbai = lazy(() => import('./pages/generated/BestWoodPolishingMumbai'));
-const AffordablePuPolishMumbai = lazy(() => import('./pages/generated/AffordablePuPolishMumbai'));
-const TopRatedPuPolishMumbai = lazy(() => import('./pages/generated/TopRatedPuPolishMumbai'));
-const ProfessionalPuPolishMumbai = lazy(() => import('./pages/generated/ProfessionalPuPolishMumbai'));
-const BestPuPolishMumbai = lazy(() => import('./pages/generated/BestPuPolishMumbai'));
-const AffordablePuGlossPolishMumbai = lazy(() => import('./pages/generated/AffordablePuGlossPolishMumbai'));
-const TopRatedPuGlossPolishMumbai = lazy(() => import('./pages/generated/TopRatedPuGlossPolishMumbai'));
-const ProfessionalPuGlossPolishMumbai = lazy(() => import('./pages/generated/ProfessionalPuGlossPolishMumbai'));
-const BestPuGlossPolishMumbai = lazy(() => import('./pages/generated/BestPuGlossPolishMumbai'));
-const AffordablePuMattPolishMumbai = lazy(() => import('./pages/generated/AffordablePuMattPolishMumbai'));
-const TopRatedPuMattPolishMumbai = lazy(() => import('./pages/generated/TopRatedPuMattPolishMumbai'));
-const ProfessionalPuMattPolishMumbai = lazy(() => import('./pages/generated/ProfessionalPuMattPolishMumbai'));
-const BestPuMattPolishMumbai = lazy(() => import('./pages/generated/BestPuMattPolishMumbai'));
 const AffordableMelaminePolishMumbai = lazy(() => import('./pages/generated/AffordableMelaminePolishMumbai'));
 const TopRatedMelaminePolishMumbai = lazy(() => import('./pages/generated/TopRatedMelaminePolishMumbai'));
 const ProfessionalMelaminePolishMumbai = lazy(() => import('./pages/generated/ProfessionalMelaminePolishMumbai'));
@@ -124,17 +112,6 @@ const BestFurniturePolishingGoregaon = lazy(() => import('./pages/generated/Best
 const AffordableWoodPolishingMalad = lazy(() => import('./pages/generated/AffordableWoodPolishingMalad'));
 const TopRatedWoodPolishingKandivali = lazy(() => import('./pages/generated/TopRatedWoodPolishingKandivali'));
 const ProfessionalWoodPolishingBorivali = lazy(() => import('./pages/generated/ProfessionalWoodPolishingBorivali'));
-const AffordablePuPolishBandra = lazy(() => import('./pages/generated/AffordablePuPolishBandra'));
-const TopRatedPuPolishKhar = lazy(() => import('./pages/generated/TopRatedPuPolishKhar'));
-const ProfessionalPuPolishSantaCruz = lazy(() => import('./pages/generated/ProfessionalPuPolishSantaCruz'));
-const BestPuPolishVileParle = lazy(() => import('./pages/generated/BestPuPolishVileParle'));
-const AffordablePuGlossPolishJuhu = lazy(() => import('./pages/generated/AffordablePuGlossPolishJuhu'));
-const TopRatedPuGlossPolishLokhandwala = lazy(() => import('./pages/generated/TopRatedPuGlossPolishLokhandwala'));
-const ProfessionalPuGlossPolishDadar = lazy(() => import('./pages/generated/ProfessionalPuGlossPolishDadar'));
-const AffordablePuMattPolishMatunga = lazy(() => import('./pages/generated/AffordablePuMattPolishMatunga'));
-const TopRatedPuMattPolishKurla = lazy(() => import('./pages/generated/TopRatedPuMattPolishKurla'));
-const ProfessionalPuMattPolishGhatkopar = lazy(() => import('./pages/generated/ProfessionalPuMattPolishGhatkopar'));
-const BestPuMattPolishVikhroli = lazy(() => import('./pages/generated/BestPuMattPolishVikhroli'));
 const AffordableMelaminePolishBhandup = lazy(() => import('./pages/generated/AffordableMelaminePolishBhandup'));
 const TopRatedMelaminePolishMulund = lazy(() => import('./pages/generated/TopRatedMelaminePolishMulund'));
 const ProfessionalMelaminePolishThane = lazy(() => import('./pages/generated/ProfessionalMelaminePolishThane'));
@@ -272,18 +249,6 @@ function App() {
               <Route path="/services/top-rated-wood-polishing-mumbai" element={<TopRatedWoodPolishingMumbai />} />
               <Route path="/services/professional-wood-polishing-mumbai" element={<ProfessionalWoodPolishingMumbai />} />
               <Route path="/services/best-wood-polishing-mumbai" element={<BestWoodPolishingMumbai />} />
-              <Route path="/services/affordable-pu-polish-mumbai" element={<AffordablePuPolishMumbai />} />
-              <Route path="/services/top-rated-pu-polish-mumbai" element={<TopRatedPuPolishMumbai />} />
-              <Route path="/services/professional-pu-polish-mumbai" element={<ProfessionalPuPolishMumbai />} />
-              <Route path="/services/best-pu-polish-mumbai" element={<BestPuPolishMumbai />} />
-              <Route path="/services/affordable-pu-gloss-polish-mumbai" element={<AffordablePuGlossPolishMumbai />} />
-              <Route path="/services/top-rated-pu-gloss-polish-mumbai" element={<TopRatedPuGlossPolishMumbai />} />
-              <Route path="/services/professional-pu-gloss-polish-mumbai" element={<ProfessionalPuGlossPolishMumbai />} />
-              <Route path="/services/best-pu-gloss-polish-mumbai" element={<BestPuGlossPolishMumbai />} />
-              <Route path="/services/affordable-pu-matt-polish-mumbai" element={<AffordablePuMattPolishMumbai />} />
-              <Route path="/services/top-rated-pu-matt-polish-mumbai" element={<TopRatedPuMattPolishMumbai />} />
-              <Route path="/services/professional-pu-matt-polish-mumbai" element={<ProfessionalPuMattPolishMumbai />} />
-              <Route path="/services/best-pu-matt-polish-mumbai" element={<BestPuMattPolishMumbai />} />
               <Route path="/services/affordable-melamine-polish-mumbai" element={<AffordableMelaminePolishMumbai />} />
               <Route path="/services/top-rated-melamine-polish-mumbai" element={<TopRatedMelaminePolishMumbai />} />
               <Route path="/services/professional-melamine-polish-mumbai" element={<ProfessionalMelaminePolishMumbai />} />
@@ -351,17 +316,6 @@ function App() {
               <Route path="/services/affordable-wood-polishing-malad" element={<AffordableWoodPolishingMalad />} />
               <Route path="/services/top-rated-wood-polishing-kandivali" element={<TopRatedWoodPolishingKandivali />} />
               <Route path="/services/professional-wood-polishing-borivali" element={<ProfessionalWoodPolishingBorivali />} />
-              <Route path="/services/affordable-pu-polish-bandra" element={<AffordablePuPolishBandra />} />
-              <Route path="/services/top-rated-pu-polish-khar" element={<TopRatedPuPolishKhar />} />
-              <Route path="/services/professional-pu-polish-santa-cruz" element={<ProfessionalPuPolishSantaCruz />} />
-              <Route path="/services/best-pu-polish-vile-parle" element={<BestPuPolishVileParle />} />
-              <Route path="/services/affordable-pu-gloss-polish-juhu" element={<AffordablePuGlossPolishJuhu />} />
-              <Route path="/services/top-rated-pu-gloss-polish-lokhandwala" element={<TopRatedPuGlossPolishLokhandwala />} />
-              <Route path="/services/professional-pu-gloss-polish-dadar" element={<ProfessionalPuGlossPolishDadar />} />
-              <Route path="/services/affordable-pu-matt-polish-matunga" element={<AffordablePuMattPolishMatunga />} />
-              <Route path="/services/top-rated-pu-matt-polish-kurla" element={<TopRatedPuMattPolishKurla />} />
-              <Route path="/services/professional-pu-matt-polish-ghatkopar" element={<ProfessionalPuMattPolishGhatkopar />} />
-              <Route path="/services/best-pu-matt-polish-vikhroli" element={<BestPuMattPolishVikhroli />} />
               <Route path="/services/affordable-melamine-polish-bhandup" element={<AffordableMelaminePolishBhandup />} />
               <Route path="/services/top-rated-melamine-polish-mulund" element={<TopRatedMelaminePolishMulund />} />
               <Route path="/services/professional-melamine-polish-thane" element={<ProfessionalMelaminePolishThane />} />

@@ -113,9 +113,11 @@ URL: ${window.location.href}`;
           <option>Cabinet Wood Polish</option>
           <option>Table Wood Polish</option>
           <option>Dining Set Polish</option>
+          <option>Consultation Booking</option>
+          <option>Chair Colour Change</option>
+          <option>Door Colour Change</option>
+          <option>Frame Colour Change</option>
           <option>Wooden Door Frame Polish</option>
-          <option>Bookshelf / Rack Polish</option>
-          <option>Wooden Shelf Polish</option>
           <option>Mandir Polish</option>
           <option>Jula Polish</option>
           <option>Sofa Polish</option>

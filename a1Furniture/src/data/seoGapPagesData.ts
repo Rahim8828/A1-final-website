@@ -1,6 +1,7 @@
 /**
  * SEO Gap Pages Data Generator
- * Creates PageData for 50 high-priority SEO gap pages:
+ * Creates PageData for the core SEO gap pages plus
+ * 100 high-intent location + problem pages:
  * - "Near me" pages (2)
  * - Location hub pages (10)
  * - "Wooden polishing in {location}" (10)
@@ -11,7 +12,7 @@
  * Generated: 2026-02-14
  */
 
-import { PageData } from '../types';
+import { PageData, PricingInfo } from '../types';
 import { locationCoordinates, businessInfo, commonProcessSteps, commonPricingFactors } from './commonPageData';
 
 // ============================================================
@@ -154,6 +155,38 @@ const locations: Record<string, LocationInfo> = {
     pincode: '400703',
     landmarks: ['Vashi Station', 'Inorbit Mall Vashi', 'APMC Market', 'Palm Beach Road', 'Vashi Bridge'],
     nearbyAreas: ['Sector 1-30', 'Sanpada', 'Turbhe', 'Kopar Khairane', 'Nerul', 'Palm Beach Road', 'CBD Belapur', 'Kharghar', 'Airoli', 'Ghansoli'],
+    zone: 'Harbour'
+  },
+  santacruz: {
+    name: 'Santacruz',
+    slug: 'santacruz',
+    pincode: '400054',
+    landmarks: ['Santacruz Station', 'SV Road', 'Podar School', 'Milan Subway', 'Kalina University'],
+    nearbyAreas: ['Santacruz West', 'Santacruz East', 'Kalina', 'Vakola', 'Khar West', 'Vile Parle', 'Juhu', 'Milan Subway', 'Golibar', 'Hasnabad Lane'],
+    zone: 'Western'
+  },
+  ghatkopar: {
+    name: 'Ghatkopar',
+    slug: 'ghatkopar',
+    pincode: '400077',
+    landmarks: ['Ghatkopar Station', 'R City Mall', 'LBS Marg', 'MG Road', 'Pant Nagar'],
+    nearbyAreas: ['Ghatkopar East', 'Ghatkopar West', 'Pant Nagar', 'Amrut Nagar', 'Asalpha', 'Vidyavihar', 'Tilak Road', 'M G Road', 'LBS Marg', 'Kannamwar Nagar'],
+    zone: 'Central'
+  },
+  kurla: {
+    name: 'Kurla',
+    slug: 'kurla',
+    pincode: '400070',
+    landmarks: ['Kurla Station', 'Phoenix Marketcity', 'BKC Connector', 'Nehru Nagar', 'CST Road'],
+    nearbyAreas: ['Kurla East', 'Kurla West', 'Nehru Nagar', 'LBS Marg', 'Kalina', 'Chunabhatti', 'Sakinaka', 'BKC', 'CST Road', 'Tilak Nagar'],
+    zone: 'Central'
+  },
+  naviMumbai: {
+    name: 'Navi Mumbai',
+    slug: 'navi-mumbai',
+    pincode: '400705',
+    landmarks: ['Palm Beach Road', 'CBD Belapur', 'Seawoods Grand Central', 'Nerul Station', 'Airoli Bridge'],
+    nearbyAreas: ['Vashi', 'Nerul', 'Seawoods', 'CBD Belapur', 'Airoli', 'Ghansoli', 'Kharghar', 'Sanpada', 'Turbhe', 'Kopar Khairane'],
     zone: 'Harbour'
   }
 };
@@ -942,7 +975,588 @@ export const bedRepairPages: Record<string, PageData> = {
 };
 
 // ============================================================
-// MASTER LIST OF ALL 50 PAGES (for routing/sitemap)
+// 7. HIGH-INTENT LOCATION + PROBLEM PAGES (100)
+// ============================================================
+
+const highIntentLocationPageKeys = [
+  'thane',
+  'andheri',
+  'bandra',
+  'malad',
+  'mulund',
+  'kandivali',
+  'borivali',
+  'jogeshwari',
+  'chembur',
+  'vileParle',
+  'goregaon',
+  'powai',
+  'dadar',
+  'khar',
+  'juhu',
+  'vashi',
+  'santacruz',
+  'ghatkopar',
+  'kurla',
+  'naviMumbai',
+] as const;
+
+interface HighIntentServiceConfig {
+  key: string;
+  category: string;
+  serviceName: string;
+  pathPrefix: string;
+  problemSlug: string;
+  heroImage: string;
+  ogImage?: string;
+  title: (loc: LocationInfo) => string;
+  metaDescription: (loc: LocationInfo) => string;
+  h1: (loc: LocationInfo) => string;
+  introduction: (loc: LocationInfo) => string;
+  services: PageData['services'];
+  process: (loc: LocationInfo) => PageData['process'];
+  pricing: PricingInfo;
+  whyChooseUs: (loc: LocationInfo) => PageData['whyChooseUs'];
+  faqs: (loc: LocationInfo) => PageData['faqs'];
+  relatedServices: (loc: LocationInfo) => PageData['relatedServices'];
+  primaryKeyword: (loc: LocationInfo) => string;
+  secondaryKeywords: (loc: LocationInfo) => string[];
+}
+
+function createHighIntentWhyChooseUs(
+  loc: LocationInfo,
+  focus: string,
+  pricePoint: string,
+  turnaround: string
+): PageData['whyChooseUs'] {
+  return [
+    {
+      title: `${loc.name} Doorstep Team`,
+      description: `Our team covers ${loc.nearbyAreas.slice(0, 5).join(', ')} and nearby pockets daily, so ${focus.toLowerCase()} bookings in ${loc.name} get quick response and practical on-site guidance.`
+    },
+    {
+      title: 'Problem-First Assessment',
+      description: `We do not push generic packages. Every ${focus.toLowerCase()} request starts with condition checking, surface inspection, finish recommendation, and a solution matched to the actual problem.`
+    },
+    {
+      title: `Transparent Pricing from ${pricePoint}`,
+      description: `You get written pricing before work starts. Rates depend on area, condition, color choice, and finishing system, but our pricing remains clear and easy to approve.`
+    },
+    {
+      title: `${turnaround} Turnaround`,
+      description: `We plan the work around your home schedule and aim for fast completion without cutting corners on sanding, preparation, drying, or finishing quality.`
+    },
+    {
+      title: 'Premium Materials',
+      description: 'We use proven coatings, sealers, stains, and polish systems suited for Mumbai humidity, daily wear, and cleaner long-term maintenance.'
+    },
+    {
+      title: 'Support After Completion',
+      description: `After your ${focus.toLowerCase()} service, we share care instructions, finishing guidance, and follow-up support so the finish lasts longer and looks better.`
+    }
+  ];
+}
+
+const consultationVisitServices: PageData['services'] = [
+  { name: 'Home Consultation Visit', description: 'A technician visits your home, inspects furniture, doors, floors, or frames, and recommends the right restoration or color-change solution.' },
+  { name: 'Problem Diagnosis', description: 'We identify finish damage, peeling, fading, water marks, scratches, shade mismatch, polish failure, and structural prep needs before quoting.' },
+  { name: 'Estimate & Scope Planning', description: 'You receive a clear service scope with probable timelines, cost expectations, and material recommendations for your exact job.' },
+  { name: 'Finish & Shade Guidance', description: 'We help you choose between polish, color refresh, stain, PU, matt, gloss, or machine finish based on the current condition and desired output.' },
+  { name: 'Multi-Service Planning', description: 'If your home has a mix of furniture, floor, door, and frame work, we combine the sequence into one workable site plan.' },
+  { name: 'Priority Booking Support', description: 'Consultation visits are used to lock dates faster for urgent home refresh, handover, rental, resale, festival, or interior update projects.' }
+];
+
+const handFloorPolishServices: PageData['services'] = [
+  { name: 'Hand Floor Sanding', description: 'Manual floor preparation for sensitive wooden floors, corners, edges, low-noise areas, and homes needing controlled hand-finished detailing.' },
+  { name: 'Scratch & Dullness Removal', description: 'We reduce visible scratches, patchy polish, footfall wear, and faded topcoats to restore warmth and clarity.' },
+  { name: 'Color Balancing', description: 'Uneven floor tone, sun-faded spots, and patch repairs are blended to create a more consistent and premium-looking surface.' },
+  { name: 'Protective Hand Polish Coats', description: 'Multiple coats are applied with proper prep and drying to improve durability, sheen control, and everyday maintenance.' },
+  { name: 'Edge & Border Detailing', description: 'Skirting edges, corners, and tricky border areas are corrected carefully where large machines are less effective.' },
+  { name: 'Floor Care Guidance', description: 'You receive aftercare support for mopping, furniture movement, curing, and traffic control so the fresh finish lasts longer.' }
+];
+
+const machineFloorPolishServices: PageData['services'] = [
+  { name: 'Machine Sanding & Levelling', description: 'High-efficiency machine sanding removes old topcoats, deeper scratches, and uneven wear while flattening the surface properly.' },
+  { name: 'Fast Floor Revival', description: 'Machine polishing is ideal when larger floor areas need more speed, consistency, and sharper finish recovery.' },
+  { name: 'Buffing & Smooth Finish', description: 'Professional buffing improves touch, sheen, and reflection while reducing the tired appearance of worn wooden floors.' },
+  { name: 'Protective Recoating', description: 'Fresh coats are added after machine prep to lock the floor, improve durability, and maintain a cleaner finish for daily use.' },
+  { name: 'Traffic Wear Restoration', description: 'Hallways, living areas, office floors, and rental homes with high movement get special treatment where polish loss is worst.' },
+  { name: 'Commercial & Residential Coverage', description: 'We handle both homes and business spaces where large floor sections need structured execution and better consistency.' }
+];
+
+const doorColorChangeServices: PageData['services'] = [
+  { name: 'Door Shade Change', description: 'We change outdated or faded door colors to a cleaner, richer, and more modern finish that matches your interiors.' },
+  { name: 'Surface Preparation & Sanding', description: 'Old polish, loose coats, scratches, and patchy color are prepared properly before new stain or finish is applied.' },
+  { name: 'Primer, Stain & Color Matching', description: 'Depending on the existing door condition, we use suitable base prep and color systems to achieve the selected shade.' },
+  { name: 'Gloss, Matt & Satin Finish Options', description: 'Choose between bold glossy, soft matt, or balanced satin looks based on the style of your home and the amount of daily use.' },
+  { name: 'Frame and Trim Coordination', description: 'We help align the door finish with nearby frames, wardrobes, flooring, or interior wood elements for a more complete look.' },
+  { name: 'Final Protection Coating', description: 'A finishing layer helps protect the refreshed door against moisture, touch wear, and normal household use.' }
+];
+
+const frameColorChangeServices: PageData['services'] = [
+  { name: 'Frame Color Refresh', description: 'Window and door frames with old polish, faded stain, or mismatched color are refinished for a sharper and cleaner look.' },
+  { name: 'Corner & Joint Repair Prep', description: 'We clean, sand, fill, and smooth frame sections so the new finish sits evenly and the final appearance improves noticeably.' },
+  { name: 'Custom Shade Matching', description: 'Frames are matched with doors, wall panels, floors, furniture, or fresh paint themes for more cohesive interiors.' },
+  { name: 'Moisture-Exposed Frame Treatment', description: 'Frames near balconies, windows, kitchens, and bathrooms receive finish guidance suited to higher wear and moisture exposure.' },
+  { name: 'Trim and Border Finishing', description: 'Detailed brushwork and careful finishing improve narrow sections, grooves, borders, and visible trim lines.' },
+  { name: 'Touch-Up & Maintenance Advice', description: 'We explain cleaning, curing, and touch-up timing so the new frame color stays stable for longer.' }
+];
+
+function createConsultationFAQs(loc: LocationInfo): PageData['faqs'] {
+  return [
+    {
+      question: `What happens during a consultation visit in ${loc.name}?`,
+      answer: `During the consultation visit in ${loc.name}, our expert checks the current condition, understands your problem, recommends suitable polish or color-change options, and shares a service plan with pricing guidance.`
+    },
+    {
+      question: `How much is the consultation visit fee in ${loc.name}?`,
+      answer: `The standard consultation visit fee in ${loc.name} starts from ₹99. For larger homes or mixed work scopes, the final quote depends on service size, but the visit itself stays affordable and transparent.`
+    },
+    {
+      question: `Can I book a consultation visit for multiple services together?`,
+      answer: `Yes. Many ${loc.name} customers combine furniture inspection, floor assessment, door color change, frame color refresh, or polish planning in one visit so the execution can be organized more efficiently.`
+    },
+    {
+      question: `Do you give an estimate during the consultation itself?`,
+      answer: `Yes, in most ${loc.name} visits we provide an immediate estimate after inspection. If a project is larger or has multiple finish options, we follow up with a clearer written scope and quote.`
+    },
+    {
+      question: `Is the consultation useful if I am not sure which finish I want?`,
+      answer: `Absolutely. The visit is designed for that exact situation. We help compare matt, gloss, PU, color change, hand polish, and machine polish options based on the problem and your desired look.`
+    },
+    {
+      question: `How quickly can I book a consultation visit in ${loc.name}?`,
+      answer: `We usually schedule consultation visits in ${loc.name} within 24 hours, and urgent slots may be available faster in areas around ${loc.landmarks[0]} and ${loc.landmarks[1]}.`
+    },
+    {
+      question: `Do I need to prepare anything before the visit?`,
+      answer: `Just keep the affected area accessible and, if possible, share a few photos on WhatsApp before the ${loc.name} visit. That helps us arrive prepared with better guidance.`
+    },
+    {
+      question: `Will the consultation help me decide between repair, polish, and color change?`,
+      answer: `Yes. That is one of the main goals of the visit. We explain whether the best outcome will come from repair, hand polish, machine polish, stain work, or a complete color-change approach.`
+    }
+  ];
+}
+
+function createHandFloorFAQs(loc: LocationInfo): PageData['faqs'] {
+  return [
+    {
+      question: `What is hand floor polish and when is it better in ${loc.name}?`,
+      answer: `Hand floor polish is a more controlled refinishing method used for wooden floors needing edge work, detailed correction, smaller areas, or gentler restoration. It is often preferred in occupied ${loc.name} homes with sensitive corners and trim.`
+    },
+    {
+      question: `What is the hand floor polish rate in ${loc.name}?`,
+      answer: `Hand floor polish in ${loc.name} starts from ₹160 per sq.ft. The final cost depends on floor condition, old coating, stain correction, detailing, and the polish system selected.`
+    },
+    {
+      question: `Can hand floor polish remove scratches and dull patches?`,
+      answer: `Yes. Hand floor polish is useful for scratched, patchy, faded, and uneven wooden floors, especially where the problem is visible along borders, corners, and high-attention sections.`
+    },
+    {
+      question: `How long does hand floor polishing take in ${loc.name}?`,
+      answer: `For most ${loc.name} homes, hand floor polishing takes 1 to 3 days depending on area size, drying requirements, and how much correction is needed before the fresh finish is applied.`
+    },
+    {
+      question: `Do you also polish floor edges and corners properly?`,
+      answer: `Yes. Edge detailing is one of the main strengths of hand floor polish. We work carefully around corners, borders, and tight areas where a more controlled finish is needed.`
+    },
+    {
+      question: `Is hand floor polish suitable for occupied homes?`,
+      answer: `Yes, especially for smaller or phased work. We plan the execution room by room where possible so homeowners in ${loc.name} can manage movement and downtime more comfortably.`
+    },
+    {
+      question: `Can you recommend the right shade for my wooden floor?`,
+      answer: `Yes. During assessment in ${loc.name}, we suggest tones that work with your wall colors, doors, furniture, and light levels so the final floor finish feels more premium and balanced.`
+    },
+    {
+      question: `How do I maintain the floor after hand polishing?`,
+      answer: `We share aftercare instructions for curing time, dry mopping, spill handling, furniture movement, and regular maintenance so the new finish stays cleaner and lasts longer.`
+    }
+  ];
+}
+
+function createMachineFloorFAQs(loc: LocationInfo): PageData['faqs'] {
+  return [
+    {
+      question: `When should I choose machine floor polish in ${loc.name}?`,
+      answer: `Machine floor polish is best when the floor is large, heavily worn, visibly dull, or uneven. It helps restore consistency faster across bigger spaces in ${loc.name} homes and offices.`
+    },
+    {
+      question: `What is the machine floor polish rate in ${loc.name}?`,
+      answer: `Machine floor polish in ${loc.name} starts from ₹170 per sq.ft. Final pricing depends on area, floor condition, levelling needs, coating type, and how much restoration is required.`
+    },
+    {
+      question: `Can machine polishing fix old and rough wooden flooring?`,
+      answer: `Yes. Machine sanding and polishing are commonly used to revive old, rough, scratched, and tired-looking wooden floors by removing the damaged upper layer and rebuilding the finish.`
+    },
+    {
+      question: `Is machine floor polish faster than hand polishing?`,
+      answer: `Generally yes. Machine polishing is usually faster and more consistent for wider areas, while hand polishing is often better for finer detailing and smaller zones.`
+    },
+    {
+      question: `Do you handle residential and commercial floors in ${loc.name}?`,
+      answer: `Yes. We work on living rooms, bedrooms, office cabins, retail sections, and other wooden floor areas across ${loc.name}, based on site condition and access.`
+    },
+    {
+      question: `Will there be dust and how is it managed?`,
+      answer: `There can be sanding residue during machine floor work, but we manage the site carefully, isolate zones, and plan cleanup so disruption stays controlled and practical.`
+    },
+    {
+      question: `How long before the floor can be used again?`,
+      answer: `Light movement timing depends on the coating system, but we guide every ${loc.name} customer on safe re-entry, curing, and furniture placement after the finish is complete.`
+    },
+    {
+      question: `Can you inspect first and suggest whether hand or machine polish is better?`,
+      answer: `Yes. We inspect the existing floor, the damage pattern, access, and finish expectations before recommending whether hand floor polish or machine floor polish will give a stronger result.`
+    }
+  ];
+}
+
+function createDoorColorFAQs(loc: LocationInfo): PageData['faqs'] {
+  return [
+    {
+      question: `Can you change the color of old wooden doors in ${loc.name}?`,
+      answer: `Yes. We refinish old, faded, stained, or outdated wooden doors in ${loc.name} and shift them to more modern or better-matched color tones after proper surface preparation.`
+    },
+    {
+      question: `What is the door color change price in ${loc.name}?`,
+      answer: `Door color change in ${loc.name} starts from ₹4,500. Pricing depends on door size, current finish, shade shift complexity, preparation needs, and the final coating system.`
+    },
+    {
+      question: `Can you change dark doors to a lighter shade?`,
+      answer: `In many cases yes, though the exact result depends on the existing wood, old coating, and the target finish. During inspection we explain what is realistically achievable and durable.`
+    },
+    {
+      question: `How long does a door color change take?`,
+      answer: `A standard door color change in ${loc.name} usually takes 1 to 2 days including preparation, sanding, coating, and drying, depending on the number of doors and finish selected.`
+    },
+    {
+      question: `Do you work on both sides of the door?`,
+      answer: `Yes. We can refinish both sides along with visible borders and trim so the refreshed look feels complete rather than partial.`
+    },
+    {
+      question: `Will the new door color match my furniture or floor?`,
+      answer: `That is part of the planning. We guide shade selection based on your furniture, frames, walls, and floor tone so the final color change feels coordinated and premium.`
+    },
+    {
+      question: `Can you remove patchy polish before recoloring the door?`,
+      answer: `Yes. Surface preparation is essential. We remove loose or patchy layers, smooth the surface, and rebuild the finish before applying the new color system.`
+    },
+    {
+      question: `Is door color change better than replacing the door?`,
+      answer: `In many ${loc.name} homes, yes. Color change is usually far more affordable than replacement and can make a good existing door look fresh, updated, and more design-friendly.`
+    }
+  ];
+}
+
+function createFrameColorFAQs(loc: LocationInfo): PageData['faqs'] {
+  return [
+    {
+      question: `Can you change the color of wooden frames in ${loc.name}?`,
+      answer: `Yes. We refinish wooden frames in ${loc.name} when they look faded, yellowed, dark, patchy, or mismatched with newly updated doors, furniture, or wall paint.`
+    },
+    {
+      question: `What is the frame color change price in ${loc.name}?`,
+      answer: `Frame color change in ${loc.name} starts from ₹3,899. The quote depends on frame length, profile complexity, current finish, and the amount of sanding or prep needed.`
+    },
+    {
+      question: `Do you work on door frames and window frames both?`,
+      answer: `Yes. We handle both door and window frame color refresh work, subject to surface condition and the finish system needed for the specific location in your home.`
+    },
+    {
+      question: `Can frames be matched to new door colors?`,
+      answer: `Yes. Many customers in ${loc.name} book frame color change specifically to align frames with refreshed doors, new flooring, or lighter interior themes.`
+    },
+    {
+      question: `How long does frame color change take?`,
+      answer: `Most frame color refresh jobs in ${loc.name} take around 1 day for smaller scopes and longer for multiple openings, depending on preparation and drying requirements.`
+    },
+    {
+      question: `Will frame grooves and corners be finished neatly?`,
+      answer: `Yes. Detailed sections are one of the key focus points in frame work, and we pay extra attention to grooves, inner edges, border lines, and visible joints.`
+    },
+    {
+      question: `Is frame color change suitable for moisture-prone areas?`,
+      answer: `Yes, provided the right surface system is selected. We inspect the location and suggest coatings better suited to kitchen-adjacent, balcony-adjacent, or other higher-moisture areas.`
+    },
+    {
+      question: `Can you inspect old frames before promising a shade change?`,
+      answer: `Yes. Inspection is important because some older frames need repair, filling, or deeper prep before a successful and durable color change can be done.`
+    }
+  ];
+}
+
+const consultationVisitConfig: HighIntentServiceConfig = {
+  key: 'consultationVisit',
+  category: 'consultation-visit',
+  serviceName: 'Consultation Visit',
+  pathPrefix: 'book-consultation-visit',
+  problemSlug: 'for-furniture-quote',
+  heroImage: '/products/consultation/visiting.png',
+  ogImage: '/products/consultation/visiting.png',
+  title: (loc) => `Book Consultation Visit for Furniture Quote in ${loc.name} | Same-Day Inspection`,
+  metaDescription: (loc) => `Book a consultation visit in ${loc.name} for furniture polish, floor work, door color change, or frame refresh. Visit fee from ₹99. Fast inspection, clear quote, and expert finish guidance.`,
+  h1: (loc) => `Book a Consultation Visit in ${loc.name} for Furniture, Floor, Door & Frame Work`,
+  introduction: (loc) => `Need expert guidance before starting furniture polish, floor restoration, or color-change work in ${loc.name}? Our consultation visit helps you understand the problem, compare finish options, and get a practical quote before committing. We cover ${loc.nearbyAreas.slice(0, 4).join(', ')} and nearby areas with quick scheduling and honest site assessment.`,
+  services: consultationVisitServices,
+  process: (loc) => [
+    { step: 1, title: 'Visit Booking', description: `Share your location in ${loc.name}, preferred timing, and service issue. We confirm the visit slot and note the surfaces that need inspection.`, image: '/products/consultation/visiting.png' },
+    { step: 2, title: 'On-Site Inspection', description: 'We inspect furniture, floors, doors, or frames for damage, fading, scratches, old finish problems, and site-specific execution needs.', image: '/products/consultation/visiting2.png' },
+    { step: 3, title: 'Finish Recommendation', description: 'You get guidance on the right service approach, material system, shade direction, and whether repair, polish, or color change is the better path.', image: '/assets/optimized/select-wood-polish-shade-768w.webp' },
+    { step: 4, title: 'Estimate & Timeline', description: 'We explain pricing, probable turnaround time, and how the work can be phased for convenience inside your home.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Execution Planning', description: `Once approved, we help schedule the work in ${loc.name} for the earliest suitable date with a clear scope and expectation set.`, image: '/assets/optimized/drying-finishing.webp' }
+  ],
+  pricing: {
+    startingPrice: 99,
+    priceRange: '₹99 - ₹499',
+    factors: ['Visit scope and number of surfaces', 'Inspection complexity', 'Distance and local access', 'Whether same-day execution planning is needed', 'Final service mix after inspection']
+  },
+  whyChooseUs: (loc) => createHighIntentWhyChooseUs(loc, 'Consultation Visit', '₹99', 'Quick'),
+  faqs: createConsultationFAQs,
+  relatedServices: (loc) => [
+    { name: `Hand Floor Polish in ${loc.name}`, url: `/hand-floor-polish-for-scratched-wooden-floor-in-${loc.slug}` },
+    { name: `Machine Floor Polish in ${loc.name}`, url: `/machine-floor-polish-for-dull-wooden-floor-in-${loc.slug}` },
+    { name: `Door Color Change in ${loc.name}`, url: `/door-color-change-for-faded-wooden-doors-in-${loc.slug}` },
+    { name: `Frame Color Change in ${loc.name}`, url: `/frame-color-change-for-old-wooden-frames-in-${loc.slug}` }
+  ],
+  primaryKeyword: (loc) => `consultation visit in ${loc.name}`,
+  secondaryKeywords: (loc) => [
+    `book visit in ${loc.name}`,
+    `furniture consultation ${loc.name}`,
+    `home inspection for furniture polish ${loc.name}`,
+    `visit fee furniture service ${loc.name}`,
+    `doorstep consultation ${loc.name}`,
+    `furniture quote visit ${loc.name}`
+  ]
+};
+
+const handFloorPolishConfig: HighIntentServiceConfig = {
+  key: 'handFloorPolish',
+  category: 'hand-floor-polish',
+  serviceName: 'Hand Floor Polish',
+  pathPrefix: 'hand-floor-polish',
+  problemSlug: 'for-scratched-wooden-floor',
+  heroImage: '/products/FloorPoshining/lamination_polishing.webp',
+  ogImage: '/products/FloorPoshining/lamination_polishing.webp',
+  title: (loc) => `Hand Floor Polish for Scratched Wooden Floor in ${loc.name} | Expert On-Site Service`,
+  metaDescription: (loc) => `Restore scratched and dull wooden floors in ${loc.name} with expert hand floor polish. Rates from ₹160/sq.ft with controlled edge detailing, shade correction, and doorstep service.`,
+  h1: (loc) => `Hand Floor Polish in ${loc.name} for Scratched, Dull & Patchy Wooden Floors`,
+  introduction: (loc) => `If your wooden floor in ${loc.name} looks scratched, faded, or uneven, our hand floor polish service is built for controlled restoration and detailed edge finishing. We work carefully across ${loc.nearbyAreas.slice(0, 4).join(', ')} and surrounding pockets where homeowners want a cleaner finish without over-processing delicate floor sections.`,
+  services: handFloorPolishServices,
+  process: (loc) => [
+    { step: 1, title: 'Floor Inspection', description: `We inspect the wooden floor in your ${loc.name} property, identify scratches, worn paths, patchy sheen, and decide the right hand-prep strategy.`, image: '/products/FloorPoshining/lamination_polishing.webp' },
+    { step: 2, title: 'Hand Preparation', description: 'Edges, corners, and damaged sections are prepared manually for more control and better surface correction where needed.', image: '/assets/optimized/Cleaning & Sanding.webp' },
+    { step: 3, title: 'Scratch & Tone Correction', description: 'We smooth visible damage, balance uneven areas, and prepare the surface for a more premium-looking final coat.', image: '/assets/optimized/Cleaning & Sanding (2).webp' },
+    { step: 4, title: 'Hand Polish Application', description: 'Fresh polish coats are applied with close attention to consistency, tone, and room-by-room finish quality.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Drying & Care Handover', description: `After the finish settles, we share curing and maintenance guidance so your ${loc.name} floor keeps its improved look for longer.`, image: '/assets/optimized/drying-finishing.webp' }
+  ],
+  pricing: {
+    startingPrice: 160,
+    priceRange: '₹160/sq.ft - ₹220/sq.ft',
+    factors: ['Total floor area', 'Existing floor damage and scratch depth', 'Edge and corner detailing needed', 'Shade correction requirements', 'Finish type and number of coats']
+  },
+  whyChooseUs: (loc) => createHighIntentWhyChooseUs(loc, 'Hand Floor Polish', '₹160/sq.ft', '1-3 day'),
+  faqs: createHandFloorFAQs,
+  relatedServices: (loc) => [
+    { name: `Machine Floor Polish in ${loc.name}`, url: `/machine-floor-polish-for-dull-wooden-floor-in-${loc.slug}` },
+    { name: `Consultation Visit in ${loc.name}`, url: `/book-consultation-visit-for-furniture-quote-in-${loc.slug}` },
+    { name: 'Wood Polishing Near Me', url: '/wood-polishing-near-me' },
+    { name: 'Wooden Polishing in Thane', url: '/wooden-polishing-in-thane' }
+  ],
+  primaryKeyword: (loc) => `hand floor polish in ${loc.name}`,
+  secondaryKeywords: (loc) => [
+    `wooden floor polish ${loc.name}`,
+    `hand polish for wooden floor ${loc.name}`,
+    `scratched floor repair ${loc.name}`,
+    `floor polish rate ${loc.name}`,
+    `wood floor shine service ${loc.name}`,
+    `manual floor polishing ${loc.name}`
+  ]
+};
+
+const machineFloorPolishConfig: HighIntentServiceConfig = {
+  key: 'machineFloorPolish',
+  category: 'machine-floor-polish',
+  serviceName: 'Machine Floor Polish',
+  pathPrefix: 'machine-floor-polish',
+  problemSlug: 'for-dull-wooden-floor',
+  heroImage: '/products/FloorPoshining/darkBrownMachinePolish.webp',
+  ogImage: '/products/FloorPoshining/darkBrownMachinePolish.webp',
+  title: (loc) => `Machine Floor Polish for Dull Wooden Floor in ${loc.name} | Fast Floor Revival`,
+  metaDescription: (loc) => `Book machine floor polish in ${loc.name} for dull, worn, and uneven wooden floors. Rates from ₹170/sq.ft with sanding, buffing, recoating, and site-ready execution.`,
+  h1: (loc) => `Machine Floor Polish in ${loc.name} for Dull, Worn & Uneven Wooden Floors`,
+  introduction: (loc) => `Our machine floor polish service in ${loc.name} is ideal when larger wooden floor areas have lost shine, developed wear paths, or need faster, more consistent restoration. We cover homes and commercial spaces around ${loc.nearbyAreas.slice(0, 4).join(', ')} with a process focused on levelling, polishing, and durable recoating.`,
+  services: machineFloorPolishServices,
+  process: (loc) => [
+    { step: 1, title: 'Site Assessment', description: `We assess the floor condition in ${loc.name}, surface wear, access, and whether machine restoration is the right method for the area size and damage level.`, image: '/products/FloorPoshining/darkBrownMachinePolish.webp' },
+    { step: 2, title: 'Machine Sanding', description: 'Old finish build-up, visible wear, and roughness are reduced through structured machine preparation.', image: '/assets/optimized/Cleaning & Sanding.webp' },
+    { step: 3, title: 'Levelling & Buffing', description: 'The floor is refined for better smoothness, consistency, and overall finish quality before recoating.', image: '/assets/optimized/Cleaning & Sanding (2).webp' },
+    { step: 4, title: 'Recoating', description: 'Fresh floor polish coats are applied to revive sheen, improve protection, and create a cleaner-looking wood surface.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Final Inspection', description: `We review the finished floor with you and explain safe usage timing for your ${loc.name} property.`, image: '/assets/optimized/drying-finishing.webp' }
+  ],
+  pricing: {
+    startingPrice: 170,
+    priceRange: '₹170/sq.ft - ₹260/sq.ft',
+    factors: ['Total floor area and access', 'Floor wear and levelling requirement', 'Machine sanding depth needed', 'Recoating system selected', 'Residential vs commercial execution scope']
+  },
+  whyChooseUs: (loc) => createHighIntentWhyChooseUs(loc, 'Machine Floor Polish', '₹170/sq.ft', 'Fast'),
+  faqs: createMachineFloorFAQs,
+  relatedServices: (loc) => [
+    { name: `Hand Floor Polish in ${loc.name}`, url: `/hand-floor-polish-for-scratched-wooden-floor-in-${loc.slug}` },
+    { name: `Consultation Visit in ${loc.name}`, url: `/book-consultation-visit-for-furniture-quote-in-${loc.slug}` },
+    { name: 'Wood Polishing Near Me', url: '/wood-polishing-near-me' },
+    { name: 'Furniture Polish Near Me', url: '/furniture-polish-near-me' }
+  ],
+  primaryKeyword: (loc) => `machine floor polish in ${loc.name}`,
+  secondaryKeywords: (loc) => [
+    `machine wooden floor polish ${loc.name}`,
+    `floor sanding polishing ${loc.name}`,
+    `dull floor restoration ${loc.name}`,
+    `wood floor machine polish rate ${loc.name}`,
+    `floor buffing service ${loc.name}`,
+    `wood floor recoating ${loc.name}`
+  ]
+};
+
+const doorColorChangeConfig: HighIntentServiceConfig = {
+  key: 'doorColorChange',
+  category: 'door-color-change',
+  serviceName: 'Door Color Change',
+  pathPrefix: 'door-color-change',
+  problemSlug: 'for-faded-wooden-doors',
+  heroImage: '/products/front_page_service_products/door_polish.webp',
+  ogImage: '/products/consultation/visiting2.png',
+  title: (loc) => `Door Color Change for Faded Wooden Doors in ${loc.name} | Refresh Old Doors`,
+  metaDescription: (loc) => `Refresh faded wooden doors in ${loc.name} with expert door color change. Pricing from ₹4,500 with sanding, shade matching, modern finish options, and doorstep execution.`,
+  h1: (loc) => `Door Color Change in ${loc.name} for Faded, Old & Outdated Wooden Doors`,
+  introduction: (loc) => `When old doors in ${loc.name} look faded, too dark, patchy, or simply out of sync with the rest of your interiors, our door color change service helps refresh them without full replacement. We work across ${loc.nearbyAreas.slice(0, 4).join(', ')} and nearby locations with sanding, recoloring, and finish systems planned around your home style.`,
+  services: doorColorChangeServices,
+  process: (loc) => [
+    { step: 1, title: 'Door Assessment', description: `We inspect the doors at your ${loc.name} property, check the old finish, wood condition, hardware masking needs, and discuss your target shade.`, image: '/products/front_page_service_products/door_polish.webp' },
+    { step: 2, title: 'Surface Preparation', description: 'The old finish is prepared carefully so the new color system holds better and looks cleaner after completion.', image: '/assets/optimized/Cleaning & Sanding.webp' },
+    { step: 3, title: 'Color Planning', description: 'We match the new door tone with your furniture, wall colors, frames, and floor direction before application starts.', image: '/products/consultation/visiting2.png' },
+    { step: 4, title: 'Coating & Finish Build', description: 'Selected coats are applied in sequence to achieve the new shade and the desired matt, satin, or gloss finish.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Drying & Handover', description: `We complete final checks and share safe use guidance so the refreshed doors in ${loc.name} cure properly and stay looking sharp.`, image: '/assets/optimized/drying-finishing.webp' }
+  ],
+  pricing: {
+    startingPrice: 4500,
+    priceRange: '₹4,500 - ₹9,999',
+    factors: ['Door size and count', 'Existing door finish condition', 'Shade change complexity', 'Required sanding and prep effort', 'Selected topcoat finish']
+  },
+  whyChooseUs: (loc) => createHighIntentWhyChooseUs(loc, 'Door Color Change', '₹4,500', '1-2 day'),
+  faqs: createDoorColorFAQs,
+  relatedServices: (loc) => [
+    { name: `Frame Color Change in ${loc.name}`, url: `/frame-color-change-for-old-wooden-frames-in-${loc.slug}` },
+    { name: `Consultation Visit in ${loc.name}`, url: `/book-consultation-visit-for-furniture-quote-in-${loc.slug}` },
+    { name: `Furniture Polish in ${loc.name}`, url: `/furniture-polish-in-${loc.slug}` },
+    { name: 'Door Polish Service', url: '/services?service=door-polish' }
+  ],
+  primaryKeyword: (loc) => `door color change in ${loc.name}`,
+  secondaryKeywords: (loc) => [
+    `wooden door color change ${loc.name}`,
+    `door repaint polish ${loc.name}`,
+    `door shade change ${loc.name}`,
+    `old door refresh ${loc.name}`,
+    `door finish service ${loc.name}`,
+    `door color update ${loc.name}`
+  ]
+};
+
+const frameColorChangeConfig: HighIntentServiceConfig = {
+  key: 'frameColorChange',
+  category: 'frame-color-change',
+  serviceName: 'Frame Color Change',
+  pathPrefix: 'frame-color-change',
+  problemSlug: 'for-old-wooden-frames',
+  heroImage: '/products/consultation/visiting2.png',
+  ogImage: '/products/consultation/visiting2.png',
+  title: (loc) => `Frame Color Change for Old Wooden Frames in ${loc.name} | Refresh Door & Window Frames`,
+  metaDescription: (loc) => `Book frame color change in ${loc.name} for old wooden door and window frames. Pricing from ₹3,899 with sanding, prep, color matching, and neat edge finishing.`,
+  h1: (loc) => `Frame Color Change in ${loc.name} for Old, Faded & Mismatched Wooden Frames`,
+  introduction: (loc) => `Old frames often make a newly refreshed interior still feel unfinished. Our frame color change service in ${loc.name} helps update faded, dark, or mismatched door and window frames so they work better with your current doors, walls, and furniture. We serve ${loc.nearbyAreas.slice(0, 4).join(', ')} and surrounding pockets with detail-focused frame preparation and finishing.`,
+  services: frameColorChangeServices,
+  process: (loc) => [
+    { step: 1, title: 'Frame Condition Review', description: `We inspect the visible frame sections in your ${loc.name} property, note finish failure, edge wear, moisture marks, and your target color direction.`, image: '/products/consultation/visiting2.png' },
+    { step: 2, title: 'Cleaning & Sanding', description: 'Frames are prepared carefully with attention to joints, grooves, borders, and narrow sections that need cleaner detailing.', image: '/assets/optimized/Cleaning & Sanding.webp' },
+    { step: 3, title: 'Repair & Shade Matching', description: 'Small imperfections are corrected where needed and the new tone is matched against nearby doors, floors, or furniture.', image: '/assets/optimized/Cleaning & Sanding (2).webp' },
+    { step: 4, title: 'Color Change Application', description: 'The selected finish system is applied evenly across the visible frame surfaces for a neater and more updated look.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Final Detailing', description: `We complete touch-ups and hand over your refreshed ${loc.name} frame work with aftercare advice.`, image: '/assets/optimized/drying-finishing.webp' }
+  ],
+  pricing: {
+    startingPrice: 3899,
+    priceRange: '₹3,899 - ₹8,499',
+    factors: ['Frame length and profile complexity', 'Door vs window frame scope', 'Condition of existing finish', 'Color transition difficulty', 'Prep and touch-up requirement']
+  },
+  whyChooseUs: (loc) => createHighIntentWhyChooseUs(loc, 'Frame Color Change', '₹3,899', 'Quick'),
+  faqs: createFrameColorFAQs,
+  relatedServices: (loc) => [
+    { name: `Door Color Change in ${loc.name}`, url: `/door-color-change-for-faded-wooden-doors-in-${loc.slug}` },
+    { name: `Consultation Visit in ${loc.name}`, url: `/book-consultation-visit-for-furniture-quote-in-${loc.slug}` },
+    { name: `Wood Polishing in ${loc.name}`, url: `/wood-polishing-in-${loc.slug}` },
+    { name: 'Door Polish Service', url: '/services?service=door-polish' }
+  ],
+  primaryKeyword: (loc) => `frame color change in ${loc.name}`,
+  secondaryKeywords: (loc) => [
+    `wooden frame color change ${loc.name}`,
+    `door frame polish color change ${loc.name}`,
+    `window frame color change ${loc.name}`,
+    `old frame refresh ${loc.name}`,
+    `frame repaint service ${loc.name}`,
+    `frame shade change ${loc.name}`
+  ]
+};
+
+const highIntentServiceConfigs: HighIntentServiceConfig[] = [
+  consultationVisitConfig,
+  handFloorPolishConfig,
+  machineFloorPolishConfig,
+  doorColorChangeConfig,
+  frameColorChangeConfig,
+];
+
+function generateHighIntentLocationPage(locKey: keyof typeof locations, config: HighIntentServiceConfig): PageData {
+  const loc = locations[locKey];
+  const url = `/${config.pathPrefix}-${config.problemSlug}-in-${loc.slug}`;
+
+  return {
+    title: config.title(loc),
+    metaDescription: config.metaDescription(loc),
+    h1: config.h1(loc),
+    url,
+    canonicalUrl: `https://www.a1furniturepolish.com${url}`,
+    heroImage: config.heroImage,
+    ogImage: config.ogImage || config.heroImage,
+    serviceCategory: config.category,
+    serviceName: config.serviceName,
+    location: loc.name,
+    titleVariation: 'professional',
+    introduction: config.introduction(loc),
+    services: config.services,
+    process: config.process(loc),
+    locationAreas: loc.nearbyAreas,
+    serviceAreaDescription: `We provide ${config.serviceName.toLowerCase()} services across ${loc.name}, including ${loc.nearbyAreas.join(', ')}. Whether your property is near ${loc.landmarks[0]}, ${loc.landmarks[1]}, or another nearby pocket, we plan the work around local access, timing, and the exact condition of the surface.`,
+    pricing: config.pricing,
+    whyChooseUs: config.whyChooseUs(loc),
+    faqs: config.faqs(loc),
+    relatedServices: config.relatedServices(loc),
+    schema: generateSchema(`${config.serviceName} ${loc.name}`, loc.name, url, config.services),
+    primaryKeyword: config.primaryKeyword(loc),
+    secondaryKeywords: config.secondaryKeywords(loc),
+  };
+}
+
+export const highIntentLocationProblemPages: Record<string, PageData> = Object.fromEntries(
+  highIntentServiceConfigs.flatMap((config) =>
+    highIntentLocationPageKeys.map((locKey) => {
+      const page = generateHighIntentLocationPage(locKey, config);
+      return [`${config.key}_${locKey}`, page];
+    })
+  )
+);
+
+// ============================================================
+// MASTER LIST OF ALL SEO PAGES (for routing/sitemap)
 // ============================================================
 
 export interface SeoGapPage {
@@ -969,4 +1583,12 @@ export const allSeoGapPages: SeoGapPage[] = [
   ...Object.entries(sofaRepairPages).map(([locKey, data]) => ({ key: `sofaRepair_${locKey}`, componentName: `SofaRepairIn${data.location.replace(/\s/g, '')}`, path: data.url, data, category: 'sofa-repair' })),
   // Bed Repair (4)
   ...Object.entries(bedRepairPages).map(([locKey, data]) => ({ key: `bedRepair_${locKey}`, componentName: `BedRepairIn${data.location.replace(/\s/g, '')}`, path: data.url, data, category: 'bed-repair' })),
+  // High-Intent Location + Problem Pages (100)
+  ...Object.entries(highIntentLocationProblemPages).map(([pageKey, data]) => ({
+    key: pageKey,
+    componentName: data.title.replace(/[^a-zA-Z0-9]+/g, ''),
+    path: data.url,
+    data,
+    category: data.serviceCategory
+  })),
 ];

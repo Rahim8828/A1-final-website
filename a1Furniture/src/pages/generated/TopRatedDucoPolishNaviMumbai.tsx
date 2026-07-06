@@ -140,7 +140,7 @@ const pageData: PageData = {
     },
     {
       "question": "What types of polish do you offer?",
-      "answer": "We offer PU polish (gloss and matt), melamine polish, duco polish, natural wood polish, and specialized finishes. Our experts will recommend the best option based on your furniture type, wood species, and desired appearance. All materials are premium quality for lasting results."
+      "answer": "We offer melamine polish, duco polish, natural wood polish, French polish, and specialized finishes. Our experts will recommend the best option based on your furniture type, wood species, and desired appearance. All materials are premium quality for lasting results."
     },
     {
       "question": "Do you provide service in Navi Mumbai?",

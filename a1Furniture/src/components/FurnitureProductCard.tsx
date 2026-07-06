@@ -200,24 +200,6 @@ const FurnitureProductCard: React.FC<FurnitureProductCardProps> = ({ product, vi
               ))}
             </div>
           )}
-
-          {/* Book Now CTA */}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              window.location.href = `/services/${product.id}`;
-            }}
-            className={`w-full mt-2 font-semibold rounded-lg border-2 border-amber-600 transition-all duration-200 active:scale-95 ${
-              isCompact ? 'py-1.5 text-xs' : 'py-2 text-sm'
-            } ${
-              isHovered
-                ? 'bg-amber-600 text-white shadow-md'
-                : 'bg-white text-amber-600 hover:bg-amber-50'
-            }`}
-          >
-            Book Polish Service
-          </button>
         </div>
       </div>
     </Link>

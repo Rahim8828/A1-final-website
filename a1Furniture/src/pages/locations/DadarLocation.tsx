@@ -418,7 +418,7 @@ const DadarLocation = () => {
                     </li>
                     <li className="flex items-center text-xs md:text-sm text-gray-700">
                       <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                      <span>PU Polish Application</span>
+                      <span>Premium Polish Application</span>
                     </li>
                   </ul>
                   <a

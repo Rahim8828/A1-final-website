@@ -309,7 +309,7 @@ const Services = () => {
           const minPrice = Math.min(...service.options.map(opt => opt.price));
           
           // Check if service is per sqft based
-          const isPerSqft = ['floor-polishing', 'pu-polish', 'deco-polish', 'metal-almirah-paint', 'metal-bed-powder-coating', 'steel-bed-buffing', 'kitchen-trolley-buffing'].includes(service.id);
+          const isPerSqft = ['floor-polishing', 'metal-almirah-paint', 'metal-bed-powder-coating', 'steel-bed-buffing', 'kitchen-trolley-buffing'].includes(service.id);
           
           return (
             <section key={service.id} className="space-y-4">

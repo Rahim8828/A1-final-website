@@ -33,6 +33,8 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
     metaDescription,
     h1,
     canonicalUrl,
+    heroImage,
+    ogImage,
     introduction,
     services,
     process,
@@ -49,6 +51,8 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
   } = pageData;
 
   const [activeModal, setActiveModal] = useState<number | null>(null);
+  const pageImage = heroImage || '/assets/wooden furniture .webp';
+  const socialImage = ogImage || pageImage;
 
   return (
     <>
@@ -61,7 +65,7 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
         structuredData={[schema.localBusiness, schema.service]}
         ogTitle={title}
         ogDescription={metaDescription}
-        ogImage="/assets/wooden furniture .webp"
+        ogImage={socialImage}
       />
 
       <StickyWhatsApp />
@@ -142,7 +146,7 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
               <FadeIn delay={200}>
                 <div className="relative">
                   <OptimizedImage
-                    src="/assets/wooden furniture .webp"
+                    src={pageImage}
                     alt={`${serviceName} service in ${location}`}
                     width={1920}
                     height={1080}

@@ -62,7 +62,7 @@ const SofaAndChairPolishing = () => {
         name: 'What is the best polish for dining chairs?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'For high-use items like dining chairs, we recommend durable finishes like Melamine or PU polish. They offer excellent protection against spills, scratches, and daily wear and tear.',
+          text: 'For high-use items like dining chairs, we recommend durable finishes like Melamine polish. It offers excellent protection against spills, scratches, and daily wear and tear.',
         },
       },
       {
@@ -149,7 +149,7 @@ const SofaAndChairPolishing = () => {
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 font-bold mr-2">✔</span>
-                  <div><strong>Attention to Detail:</strong> From simple stools to chairs with intricate carvings, we provide a flawless finish every time for homes across South Mumbai.</div>
+                  <div><strong>Attention to Detail:</strong> From simple stools to chairs with intricate designs, we provide a flawless finish every time for homes across South Mumbai.</div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 font-bold mr-2">✔</span>
@@ -289,7 +289,6 @@ const SofaAndChairPolishing = () => {
             <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-amber-600">
               <a href="/wooden-furniture-polish" className="hover:underline">Wooden Furniture Polish</a>
               <a href="/table-bed-polishing" className="hover:underline">Table & Bed Polishing</a>
-              <a href="/antique-restoration" className="hover:underline">Antique Restoration</a>
               <a href="/commercial-polishing" className="hover:underline">Commercial Polishing</a>
               <a href="/" className="hover:underline">Homepage</a>
             </div>

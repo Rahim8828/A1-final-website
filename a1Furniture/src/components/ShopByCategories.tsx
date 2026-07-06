@@ -11,10 +11,10 @@ const ShopByCategories: React.FC = () => {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-3">
-          Service By Categories
+          Best-Selling Polish Categories
         </h2>
-        <p className="text-gray-600 text-center mb-10 text-base">
-          Explore our furniture polishing services by category
+        <p className="text-gray-600 text-center mb-10 text-base max-w-2xl mx-auto">
+          Curated pricing for the most in-demand furniture polish, colour change, and consultation services.
         </p>
 
         {/* Category Tabs */}
