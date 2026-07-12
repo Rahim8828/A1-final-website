@@ -11,10 +11,10 @@ const ShopByCategories: React.FC = () => {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-3">
-          Best-Selling Polish Categories
+          Our Polishing Services
         </h2>
         <p className="text-gray-600 text-center mb-10 text-base max-w-2xl mx-auto">
-          Curated pricing for the most in-demand furniture polish, colour change, and consultation services.
+          Choose from our most popular wood polishing, repair, and premium coating services in Mumbai.
         </p>
 
         {/* Category Tabs */}
@@ -36,7 +36,7 @@ const ShopByCategories: React.FC = () => {
           </div>
         </div>
 
-        {/* Products Grid - Significantly Larger Cards */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
@@ -46,7 +46,7 @@ const ShopByCategories: React.FC = () => {
         {/* Empty state */}
         {filteredProducts.length === 0 && (
           <div className="text-center py-16 text-gray-400">
-            <p className="text-xl">No products in this category yet.</p>
+            <p className="text-xl">No services in this category yet.</p>
           </div>
         )}
       </div>

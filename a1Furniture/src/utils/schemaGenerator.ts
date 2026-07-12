@@ -13,10 +13,18 @@ import type { LocalBusinessSchema, ServiceSchema } from '../types';
  * @param url - The page URL
  * @returns LocalBusiness schema object
  */
+export interface LocationGeoData {
+  latitude?: number;
+  longitude?: number;
+  postalCode?: string;
+  streetAddress?: string;
+}
+
 export function generateLocalBusinessSchema(
   serviceName: string,
   location: string,
-  url: string
+  url: string,
+  geoData?: LocationGeoData
 ): LocalBusinessSchema {
   const schema: LocalBusinessSchema = {
     '@context': 'https://schema.org',
@@ -25,20 +33,20 @@ export function generateLocalBusinessSchema(
     image: 'https://a1furniturepolish.com/logo.png',
     '@id': 'https://a1furniturepolish.com',
     url: url,
-    telephone: '+91-9819519345',
+    telephone: '+91-8828709945',
     priceRange: '₹₹',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Mumbai',
+      streetAddress: geoData?.streetAddress || 'Shop No 18, Akbar Ali Compound, Relief Road, near HK College, Oshiwara, Jogeshwari West',
       addressLocality: location,
       addressRegion: 'Maharashtra',
-      postalCode: '400001',
+      postalCode: geoData?.postalCode || '400102',
       addressCountry: 'IN',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 19.0760,
-      longitude: 72.8777,
+      latitude: geoData?.latitude || 19.1358,
+      longitude: geoData?.longitude || 72.8347,
     },
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',

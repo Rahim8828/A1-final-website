@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Star, Clock, ShieldCheck } from 'lucide-react';
+import { Star, Clock, ShieldCheck } from 'lucide-react';
 import type { FurnitureProduct, ColorVariant } from '../data/furnitureProducts';
 
 interface FurnitureProductCardProps {
@@ -10,15 +10,8 @@ interface FurnitureProductCardProps {
 
 const FurnitureProductCard: React.FC<FurnitureProductCardProps> = ({ product, viewMode }) => {
   const [selectedColor, setSelectedColor] = useState<ColorVariant>('dark-brown');
-  const [isLiked, setIsLiked] = useState(false);
   const [imgError, setImgError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
-  const handleLike = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsLiked((prev) => !prev);
-  };
 
   const handleColorSelect = (e: React.MouseEvent, color: ColorVariant) => {
     e.preventDefault();
@@ -73,27 +66,7 @@ const FurnitureProductCard: React.FC<FurnitureProductCardProps> = ({ product, vi
             </div>
           )}
 
-          {/* Discount badge */}
-          {discountPercent > 0 && (
-            <div className="absolute top-3 right-14 z-10 bg-red-500 text-white px-2 py-0.5 rounded text-[10px] font-bold">
-              -{discountPercent}%
-            </div>
-          )}
 
-          {/* Wishlist */}
-          <button
-            onClick={handleLike}
-            className={`absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm shadow-md transition-all duration-200 hover:shadow-lg ${
-              isLiked ? 'scale-110' : ''
-            }`}
-            aria-label={isLiked ? 'Remove from wishlist' : 'Add to wishlist'}
-          >
-            <Heart
-              className={`w-[18px] h-[18px] transition-all duration-200 ${
-                isLiked ? 'text-red-500 fill-red-500' : 'text-gray-400 hover:text-red-400'
-              }`}
-            />
-          </button>
 
           {/* Product Image */}
           <img

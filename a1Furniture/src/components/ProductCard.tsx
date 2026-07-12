@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart } from 'lucide-react';
 import type { Product } from '../data/productCatalog';
 import { furnitureProducts } from '../data/furnitureProducts';
 import type { ColorVariant as FurnitureColorVariant } from '../data/furnitureProducts';
@@ -15,7 +14,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [selectedColor, setSelectedColor] = useState<ColorVariant>('dark');
   const [imgError, setImgError] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
 
   // Find matching product in furnitureProducts for actual color variant data
   const furnitureProduct = furnitureProducts.find(fp => fp.id === product.id);
@@ -23,11 +21,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   // Check if this is a deco-paint product (should hide color selector)
   const isDecoPaint = product.category === 'deco-paint';
 
-  const handleLike = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsLiked((prev) => !prev);
-  };
+
 
   const handleColorChange = (e: React.MouseEvent, color: ColorVariant) => {
     e.preventDefault();
@@ -84,20 +78,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           isHovered ? 'opacity-100' : 'opacity-0'
         }`} />
 
-        {/* Heart / Wishlist Icon */}
-        <button
-          onClick={handleLike}
-          className="absolute top-3 right-3 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-200 group/heart"
-          aria-label={isLiked ? 'Remove from wishlist' : 'Add to wishlist'}
-        >
-          <Heart
-            className={`w-[18px] h-[18px] transition-all duration-200 ${
-              isLiked
-                ? 'text-red-500 fill-red-500 scale-110'
-                : 'text-gray-400 group-hover/heart:text-red-400'
-            }`}
-          />
-        </button>
 
         {/* Color Selector - Hidden for deco-paint products */}
         {!isDecoPaint && furnitureProduct && furnitureProduct.colorVariants && (

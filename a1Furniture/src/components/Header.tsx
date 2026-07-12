@@ -115,44 +115,9 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-[100] bg-white shadow-md">
-      {/* Promotional Banner */}
-      {showPromo && (
-        <div style={{ background: 'linear-gradient(90deg, #3B1A08 0%, #7B3F00 40%, #A0522D 60%, #3B1A08 100%)' }}>
-          <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
-            <div className="flex items-center justify-between py-2 sm:py-2.5">
-              <div className="flex items-center gap-2 sm:gap-3 flex-1">
-                {/* Tag Icon */}
-                <div className="flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20" style={{ color: '#F5DEB3' }}>
-                    <path fillRule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                {/* Offer Text */}
-                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap text-xs sm:text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  <span className="font-bold tracking-wide" style={{ color: '#F5DEB3' }}>✦ FIRST BOOKING OFFER:</span>
-                  <span className="font-medium" style={{ color: '#FAEBD7' }}>Get 10% OFF | Code:</span>
-                  <span className="px-2 py-0.5 rounded font-extrabold tracking-widest text-xs" style={{ background: '#F5DEB3', color: '#3B1A08', letterSpacing: '0.1em' }}>FIRST10</span>
-                  <span className="font-medium hidden sm:inline" style={{ color: '#FAEBD7' }}>• New Customers Only!</span>
-                </div>
-              </div>
-              {/* Close Button */}
-              <button
-                onClick={() => setShowPromo(false)}
-                className="flex-shrink-0 ml-2 p-1 rounded-full transition-colors"
-                style={{ color: '#F5DEB3' }}
-                aria-label="Close promotional banner"
-              >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
       
       {/* Main Header */}
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-[72px] gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 flex-shrink-0">
@@ -165,18 +130,72 @@ const Header = () => {
             </div>
           </Link>
 
-          {/* Search Bar */}
-          <div className="flex-1 max-w-xl mx-4 hidden md:block" ref={searchRef}>
-            <div className="relative">
-              <div className={`flex items-center border rounded-xl transition-all duration-200 ${isSearchFocused ? 'border-amber-400 shadow-md ring-2 ring-amber-100' : 'border-gray-200 hover:border-gray-300'}`}>
+          {/* Navigation Links in Header Middle */}
+          <nav className="hidden md:flex items-center justify-center gap-8 flex-1 mx-4">
+            {categoryNav.map((cat) => (
+              <Link
+                key={cat.name}
+                to={cat.href}
+                className={`text-[15px] font-semibold transition-colors whitespace-nowrap px-1 ${
+                  isActive(cat.href)
+                    ? 'text-amber-600'
+                    : 'text-gray-700 hover:text-amber-600'
+                }`}
+              >
+                {cat.name}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right Icons - Call and WhatsApp */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Call Button */}
+            <a
+              href="tel:+918828709945"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg sm:rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+            >
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline text-sm font-semibold">Call Now</span>
+            </a>
+
+            {/* WhatsApp Button */}
+            <a
+              href="https://wa.me/918828709945"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-[#25D366] hover:bg-[#20BA56] text-white rounded-lg sm:rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+            >
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 fill-white" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              <span className="hidden sm:inline text-sm font-semibold">WhatsApp</span>
+            </a>
+
+            {/* Mobile menu */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-md text-gray-700 hover:text-amber-600"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Search Bar in Navigation Bar Slot */}
+      <div className="border-t border-gray-100 hidden md:block py-2 bg-gray-50/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex justify-center" ref={searchRef}>
+            <div className="relative w-full max-w-xl">
+              <div className={`flex items-center border rounded-xl bg-white transition-all duration-200 ${isSearchFocused ? 'border-amber-400 shadow-md ring-2 ring-amber-100' : 'border-gray-200 hover:border-gray-300'}`}>
                 <input
                   ref={inputRef}
                   type="text"
-                  placeholder="Search Products, Services & More..."
+                  placeholder="Search Services & Locations..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setIsSearchFocused(true)}
-                  className="flex-1 px-4 py-2.5 text-sm text-gray-700 bg-transparent outline-none placeholder:text-gray-400"
+                  className="flex-1 px-4 py-2 text-sm text-gray-700 bg-transparent outline-none placeholder:text-gray-400"
                 />
                 <button className="flex items-center justify-center w-10 h-10 text-gray-400 hover:text-amber-600 transition-colors">
                   <Search className="w-5 h-5" />
@@ -211,58 +230,6 @@ const Header = () => {
               )}
             </div>
           </div>
-
-          {/* Right Icons - Call and WhatsApp */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Call Button */}
-            <a
-              href="tel:+918828709945"
-              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg sm:rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
-            >
-              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="hidden sm:inline text-sm font-semibold">Call Now</span>
-            </a>
-
-            {/* WhatsApp Button */}
-            <a
-              href="https://wa.me/918828709945"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg sm:rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
-            >
-              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="hidden sm:inline text-sm font-semibold">WhatsApp</span>
-            </a>
-
-            {/* Mobile menu */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-amber-600"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation Bar */}
-      <div className="border-t border-gray-100 hidden md:block">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
-          <nav className="flex items-center gap-8 h-11">
-            {categoryNav.map((cat) => (
-              <Link
-                key={cat.name}
-                to={cat.href}
-                className={`flex-shrink-0 text-[15px] font-medium transition-colors whitespace-nowrap px-1 ${
-                  isActive(cat.href)
-                    ? 'text-amber-600 font-semibold'
-                    : 'text-gray-700 hover:text-amber-600'
-                }`}
-              >
-                {cat.name}
-              </Link>
-            ))}
-          </nav>
         </div>
       </div>
 
@@ -274,7 +241,7 @@ const Header = () => {
             <div className={`flex items-center border rounded-lg ${isSearchFocused ? 'border-amber-400' : 'border-gray-200'}`}>
               <input
                 type="text"
-                placeholder="Search services, products..."
+                placeholder="Search services, locations..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchFocused(true)}
@@ -334,9 +301,11 @@ const Header = () => {
               href="https://wa.me/918828709945"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 bg-green-500 text-white py-2.5 rounded-lg text-sm font-medium"
+              className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BA56] text-white py-2.5 rounded-lg text-sm font-medium"
             >
-              <MessageCircle className="w-4 h-4" />
+              <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
               WhatsApp
             </a>
           </div>

@@ -7,6 +7,32 @@
   /* System font stack provides optimal performance with font-display: swap behavior by default */
   
   /* Prevent white space below bottom navigation on mobile */
+  /* Base root font size */
+  html {
+    font-size: 16px;
+  }
+
+  /* Scale down layout dimensions and text sizes on tablet/small desktop */
+  @media (min-width: 1024px) {
+    html {
+      font-size: 14.5px;
+    }
+  }
+
+  /* Scale down layout dimensions and text sizes on standard desktop */
+  @media (min-width: 1280px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  /* Scale down layout dimensions and text sizes on large monitor */
+  @media (min-width: 1536px) {
+    html {
+      font-size: 13.5px;
+    }
+  }
+
   html, body {
     @apply bg-white;
     overscroll-behavior: none;
@@ -126,6 +152,7 @@
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

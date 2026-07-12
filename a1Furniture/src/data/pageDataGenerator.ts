@@ -60,7 +60,7 @@ function generatePageData(
   const benefits = ['Expert craftsmen', 'Quality materials', 'Affordable rates'];
   const metaDescription = generateMetaDescription(serviceName, location.name, benefits);
   const h1 = `${serviceName} in ${location.name}`;
-  const canonicalUrl = `https://www.a1furniturepolish.com${url}`;
+  const canonicalUrl = `https://a1furniturepolish.com${url}`;
   
   // Generate content sections
   const introduction = generateIntroduction(serviceName, location.name, titleVariation.type);

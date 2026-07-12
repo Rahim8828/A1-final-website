@@ -20,8 +20,8 @@ const categoryImages: Record<string, string> = {
 const ServiceCategoryBar = () => {
   return (
     <div className="border-t border-gray-100 bg-gray-50">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-4">
-        <div className="flex overflow-x-auto gap-6 hide-scrollbar pb-2">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+        <div className="flex overflow-x-auto md:justify-center gap-6 hide-scrollbar pb-2">
           {categories.map((cat) => (
             <Link
               key={cat.id}

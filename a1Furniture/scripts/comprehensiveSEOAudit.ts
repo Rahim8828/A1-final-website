@@ -275,11 +275,15 @@ class ComprehensiveSEOAuditor {
     const staticPages: SEOPage[] = [
       {
         url: '/',
-        title: 'A1 Furniture Polish - Professional Furniture Polishing Services in Mumbai',
-        metaDescription: 'Professional furniture polishing services in Mumbai. Expert wood polish, sofa repair, and furniture restoration. Book online for quality service.',
+        title: 'Furniture Polish Services in Mumbai | A1 Furniture Polish',
+        metaDescription: 'Professional furniture polishing services in Mumbai. Expert wood polish, sofa repair, bed polish & more. Same-day booking & 6-month warranty. Book now!',
         h1Tag: 'Professional Furniture Polishing Services in Mumbai',
         wordCount: 500,
-        internalLinks: [],
+        internalLinks: [
+          { sourceUrl: '/', targetUrl: '/about', anchorText: 'About Us', linkType: 'internal', isNoFollow: false, context: 'header' },
+          { sourceUrl: '/', targetUrl: '/services', anchorText: 'Services', linkType: 'internal', isNoFollow: false, context: 'header' },
+          { sourceUrl: '/', targetUrl: '/contact', anchorText: 'Contact', linkType: 'internal', isNoFollow: false, context: 'header' },
+        ],
         outgoingLinks: [],
         canonicalUrl: 'https://a1furniturepolish.in/',
         openGraphTags: {
@@ -845,7 +849,7 @@ async function main(): Promise<void> {
 }
 
 // Run the audit
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && (process.argv[1].endsWith('comprehensiveSEOAudit.ts') || process.argv[1].endsWith('comprehensiveSEOAudit'))) {
   main();
 }
 

@@ -144,7 +144,7 @@ export function generateMetaDescription(
   
   // Ensure minimum length of 150 characters
   if (description.length < 150) {
-    description = `${baseDescription} Expert craftsmen, quality materials, affordable pricing. Same-day service available. Book your appointment online now!`;
+    description = `${baseDescription} Expert craftsmen, quality materials, affordable pricing. Same-day service available. Book your appointment online today!`;
   }
   
   // Final check - truncate if too long

@@ -152,7 +152,7 @@ const Products: React.FC = () => {
     // Color filter - show products that have the selected color variant
     if (filters.selectedColor) {
       result = result.filter((p) =>
-        p.colorVariants.some((v) => v.id === filters.selectedColor && v.image)
+        p.colorVariants?.some((v) => v.id === filters.selectedColor && v.image)
       );
     }
 
@@ -188,23 +188,23 @@ const Products: React.FC = () => {
     return cat?.label || 'All Products';
   }, [filters.category]);
 
-  // Category description text
+  // Category description text - Shortened for a cleaner layout
   const categoryDescription = useMemo(() => {
     const descriptions: Record<string, string> = {
-      all: 'Transform your home with our professional furniture wood polish services. Our expert craftsmen use premium-grade materials and proven techniques to restore, protect, and beautify every piece of wooden furniture — backed by a 6-month service warranty.',
-      sofas: 'Your sofa is the centrepiece of your living room — it defines the character of your décor. Our specialist polish service restores the natural grain, removes scratches, and applies a lasting protective coat that brings your wooden sofa back to showroom glory.',
-      beds: 'Wake up to a bed that looks brand new. From single to king-size, our professional wood polish service covers headboards, footboards, side rails, and slats — delivering a smooth, luxurious finish that lasts for months.',
-      dining: 'Your dining set deserves a finish that handles daily life. We polish tables and chairs with a heat-resistant, water-resistant, and food-safe coating — keeping your dining area elegant and ready to impress.',
-      tables: 'Coffee tables, center tables, study desks, side tables — we give every surface a scratch-resistant, food-safe finish that looks stunning and lasts. Expert polishing for every type of table in your home.',
-      wardrobes: 'Complete inside and outside wardrobe polish with careful attention to handles, hinges, and fittings. We deliver a premium, long-lasting finish that protects your wardrobe and adds elegance to your bedroom.',
-      cabinets: 'Crockery shelves, cabinets, and display storage polished with detail-first care. We restore visible wood grain, edge finish, and presentation quality for premium living spaces.',
-      'tv-units': 'Give your entertainment area a showroom-quality upgrade. Our TV unit polish uses premium materials for a flawless, fingerprint-resistant finish that complements your living room.',
-      doors: 'Both sides polished, frame included. Our door wood polish service uses durable coatings that withstand daily use, weather exposure, and still look stunning year after year.',
-      jhula: 'Traditional jhula polish with special attention to joints, chains, and carved details. We use heritage-grade finishing techniques for lasting beauty and structural care.',
-      mandir: 'Sacred furniture deserves sacred care. Our mandir polish service respects intricate designs while applying a premium protective finish.',
-      'floor-polish': 'Floor polishing by hand or machine, priced transparently per square foot. Built for homes that want a clean, even, high-value finish with long-lasting surface protection.',
-      consultation: 'Start with a low-friction ₹99 consultation visit. We assess the furniture, suggest the best finish, and help you book the right service with total price clarity.',
-      'color-refresh': 'Chair, door, and frame colour change services for clients who want a fresh look without buying new furniture. We handle prep, tone shift, and protective finishing end to end.',
+      all: 'Professional furniture wood polishing to restore and protect your wooden pieces with a 6-month warranty.',
+      sofas: 'Restore the natural grain and remove scratches from your wooden sofas with a lasting protective coat.',
+      beds: 'Professional bed wood polishing from headboards to slats, delivering a smooth, luxury finish.',
+      dining: 'Heat-resistant, water-resistant, and food-safe polishing for dining tables and chairs.',
+      tables: 'Scratch-resistant, water-proof polishing for coffee, center, study, and side tables.',
+      wardrobes: 'Complete inside and outside wardrobe polish with high durability and premium wood care.',
+      cabinets: 'Detailed polishing for crockery shelves, cabinets, and premium display storage.',
+      'tv-units': 'Showroom-quality TV unit polishing with a flawless, fingerprint-resistant finish.',
+      doors: 'Durable, weather-resistant door wood polishing (both sides and frame included).',
+      jhula: 'Traditional jhula polishing with special attention to carved details and joint care.',
+      mandir: 'Respectful polishing for sacred wooden mandirs with premium protective finishes.',
+      'floor-polish': 'Hand & machine floor polishing with transparent per-square-foot rates.',
+      consultation: 'Low-friction ₹99 home visit for expert assessment and total price clarity.',
+      'color-refresh': 'Professional tone shift and color refresh for wooden furniture without buying new.',
     };
     return descriptions[filters.category] || descriptions.all;
   }, [filters.category]);
@@ -261,13 +261,10 @@ const Products: React.FC = () => {
             <div className="flex items-center justify-between mb-5">
               <div className="flex-1 text-center">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-                  Furniture Polish & Colour Studio
+                  A1 Furniture Polish & Colour Studio
                 </h1>
                 <p className="mt-1.5 text-xs sm:text-sm text-gray-500 font-medium">
                   {categoryTagline} • Premium finishing • Transparent pricing
-                </p>
-                <p className="mt-3 max-w-3xl mx-auto text-sm sm:text-[15px] text-gray-600 leading-relaxed">
-                  {categoryDescription}
                 </p>
               </div>
             </div>

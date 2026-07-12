@@ -3,21 +3,21 @@ export const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'FurnitureStore',
   name: 'A1 Furniture Polish',
-  image: 'https://a1furniturepolish.com/logo.png', // Replace with your actual logo URL
+  image: 'https://a1furniturepolish.com/android-chrome-512x512.png',
   url: 'https://a1furniturepolish.com',
   telephone: '+918828709945',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '123, Furniture Lane',
+    streetAddress: 'Shop No 18, Akbar Ali Compound, Relief Road, near HK College, Oshiwara, Jogeshwari West',
     addressLocality: 'Mumbai',
-    postalCode: '400058',
+    postalCode: '400102',
     addressRegion: 'MH',
     addressCountry: 'IN',
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 19.0760, // Replace with your actual latitude
-    longitude: 72.8777, // Replace with your actual longitude
+    latitude: 19.1358,
+    longitude: 72.8347,
   },
   openingHoursSpecification: [
     {
@@ -31,13 +31,13 @@ export const localBusiness = {
         'Saturday',
         'Sunday',
       ],
-      opens: '09:00',
-      closes: '18:00',
+      opens: '00:00',
+      closes: '23:59',
     },
   ],
   sameAs: [
-    'https://www.facebook.com/a1furniturepolish', // Replace with your actual Facebook URL
-    'https://www.instagram.com/a1furniturepolish', // Replace with your actual Instagram URL
+    'https://www.facebook.com/a1furniturepolish',
+    'https://www.instagram.com/a1furniturepolish',
   ],
   priceRange: '$$',
   areaServed: [
@@ -45,7 +45,7 @@ export const localBusiness = {
       '@type': 'GeoCircle',
       geoMidpoint: {
         '@type': 'GeoCoordinates',
-        latitude: 19.1136, // Jogeshwari
+        latitude: 19.1136,
         longitude: 72.8694,
       },
       geoRadius: '5000',
@@ -54,7 +54,7 @@ export const localBusiness = {
       '@type': 'GeoCircle',
       geoMidpoint: {
         '@type': 'GeoCoordinates',
-        latitude: 19.1194, // Andheri
+        latitude: 19.1194,
         longitude: 72.8465,
       },
       geoRadius: '5000',
@@ -63,10 +63,11 @@ export const localBusiness = {
       '@type': 'GeoCircle',
       geoMidpoint: {
         '@type': 'GeoCoordinates',
-        latitude: 19.1645, // Goregaon
+        latitude: 19.1645,
         longitude: 72.8493,
       },
       geoRadius: '5000',
     },
   ],
 };
+
