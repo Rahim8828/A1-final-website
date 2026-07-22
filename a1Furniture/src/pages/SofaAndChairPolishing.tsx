@@ -87,8 +87,9 @@ const SofaAndChairPolishing = () => {
   return (
     <>
       <SEOHead
-        title="Sofa & Chair Polishing in Mumbai | A1 Furniture Polish"
-        description="Expert sofa and chair polishing in Mumbai. We restore all types of wooden seating in Bandra, Andheri, Juhu & South Mumbai. Call for a free quote!"
+        title="Sofa & Chair Polishing Service in Mumbai | Wood Frame Restoration — A1 Furniture Polish"
+        description="Best sofa and dining chair polishing service in Mumbai. We restore wooden sofa frames, armchairs & dining sets in Bandra, Andheri, Juhu & South Mumbai. Free doorstep quote!"
+        keywords="sofa polishing Mumbai, chair polishing service Mumbai, dining chair polish Mumbai, wooden sofa polish, sofa repair and polish Mumbai"
         canonical={getCanonicalURL('/sofa-chair-polishing')}
       />
       <JsonLd data={localBusinessSchema} />

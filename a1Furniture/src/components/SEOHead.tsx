@@ -1,4 +1,5 @@
-import { getCanonicalURL, getCurrentCanonicalURL } from '../utils/canonicalURL';
+import React from 'react';
+import { getCurrentCanonicalURL } from '../utils/canonicalURL';
 
 interface SEOHeadProps {
   title: string;
@@ -40,6 +41,14 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   // Use canonical URL for OG URL if not provided
   const openGraphUrl = ogUrl || canonicalUrl;
   
+  // Default OG image fallback — always absolute URL
+  const defaultOgImage = 'https://a1furniturepolish.com/android-chrome-512x512.png';
+  const resolvedOgImage = ogImage
+    ? ogImage.startsWith('http')
+      ? ogImage
+      : `https://a1furniturepolish.com${ogImage}`
+    : defaultOgImage;
+  
   return (
     <>
       <title>{title}</title>
@@ -51,6 +60,12 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       
       {/* Canonical URL - Always included */}
       <link rel="canonical" href={canonicalUrl} />
+      
+      {/* Geo Local SEO Meta Tags — Mumbai Targeting */}
+      <meta name="geo.region" content="IN-MH" />
+      <meta name="geo.placename" content="Mumbai" />
+      <meta name="geo.position" content="19.1358;72.8347" />
+      <meta name="ICBM" content="19.1358, 72.8347" />
       
       {/* Open Graph / Facebook */}
       {openGraphTags ? (
@@ -64,9 +79,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           <meta property="og:title" content={ogTitle || title} />
           <meta property="og:description" content={ogDescription || description} />
           <meta property="og:type" content={ogType || 'website'} />
-          {ogImage && <meta property="og:image" content={ogImage} />}
+          <meta property="og:image" content={resolvedOgImage} />
           <meta property="og:url" content={openGraphUrl} />
           <meta property="og:site_name" content="A1 Furniture Polish" />
+          <meta property="og:locale" content="en_IN" />
         </>
       )}
       
@@ -82,7 +98,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={ogTitle || title} />
           <meta name="twitter:description" content={ogDescription || description} />
-          {ogImage && <meta name="twitter:image" content={ogImage} />}
+          <meta name="twitter:image" content={resolvedOgImage} />
+          <meta name="twitter:site" content="@a1furniturepolish" />
         </>
       )}
       

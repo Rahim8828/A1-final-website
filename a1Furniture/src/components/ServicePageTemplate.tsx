@@ -54,16 +54,27 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
   const pageImage = heroImage || '/assets/wooden furniture .webp';
   const socialImage = ogImage || pageImage;
 
+  // Override schema type to correct HomeAndConstructionBusiness
+  const enrichedLocalBusiness = {
+    ...schema.localBusiness,
+    '@type': 'HomeAndConstructionBusiness',
+  };
+
+  // Enrich title with brand suffix if not present
+  const enrichedTitle = title.includes('A1 Furniture Polish')
+    ? title
+    : `${title} | Expert Service — A1 Furniture Polish`;
+
   return (
     <>
       {/* SEO Head Section */}
       <SEOHead
-        title={title}
+        title={enrichedTitle}
         description={metaDescription}
         keywords={[primaryKeyword, ...secondaryKeywords].join(', ')}
         canonical={canonicalUrl}
-        structuredData={[schema.localBusiness, schema.service]}
-        ogTitle={title}
+        structuredData={[enrichedLocalBusiness, schema.service]}
+        ogTitle={enrichedTitle}
         ogDescription={metaDescription}
         ogImage={socialImage}
       />

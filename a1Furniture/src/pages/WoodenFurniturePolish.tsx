@@ -87,8 +87,9 @@ const WoodenFurniturePolish = () => {
   return (
     <>
       <SEOHead
-        title="Wooden Furniture Polish in Mumbai | A1 Furniture Polish"
-        description="Expert wooden furniture polishing in Mumbai. We restore sofas, chairs, tables, beds, and more. Get a free quote for services in Bandra, Andheri, Juhu, and South Mumbai."
+        title="Wooden Furniture Polish Service in Mumbai | Wood Polishing Expert — A1 Furniture Polish"
+        description="Professional wooden furniture polishing service in Mumbai. We restore wooden sofas, dining tables, beds & doors in Andheri, Bandra, Juhu, Thane & South Mumbai. 6 months warranty. Get a free quote!"
+        keywords="wooden furniture polish Mumbai, wood polishing service Mumbai, wood polish price Mumbai, furniture polishing near me, wooden table polish Mumbai"
         canonical={getCanonicalURL('/wooden-furniture-polish')}
       />
       <JsonLd data={localBusinessSchema} />
