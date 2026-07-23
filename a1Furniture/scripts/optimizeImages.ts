@@ -37,7 +37,7 @@ function ensureDir(dir: string) {
 }
 
 // Get all image files from directory (recursive)
-function getImageFiles(dir: string): string[] {
+function getImageFiles(dir: string, excludeDir?: string): string[] {
   const files: string[] = [];
   
   const items = fs.readdirSync(dir);
@@ -47,8 +47,12 @@ function getImageFiles(dir: string): string[] {
     const stat = fs.statSync(fullPath);
     
     if (stat.isDirectory()) {
+      // Skip the output directory to prevent infinite loops
+      if (excludeDir && fullPath === excludeDir) {
+        continue;
+      }
       // Recursively get files from subdirectories
-      const subFiles = getImageFiles(fullPath);
+      const subFiles = getImageFiles(fullPath, excludeDir);
       files.push(...subFiles);
     } else {
       const ext = path.extname(item).toLowerCase();
@@ -175,8 +179,8 @@ async function main() {
     // Ensure output directory exists
     ensureDir(outputDir);
     
-    // Get all image files (recursive)
-    const imageFiles = getImageFiles(inputDir);
+    // Get all image files (recursive), excluding the output directory to prevent infinite loops
+    const imageFiles = getImageFiles(inputDir, outputDir);
 
     console.log(`  Found ${imageFiles.length} images\n`);
 
