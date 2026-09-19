@@ -13,10 +13,9 @@ interface ServiceSelectionSummaryProps {
  * Displays a sticky bottom bar showing:
  * - Number of items selected
  * - Total price
- * - Done button to proceed to cart
+ * - Done / View Cart button to proceed to checkout
  * 
- * This is a standalone component that can be used independently
- * of ServiceDetailModal, making it resilient to modal changes.
+ * Styled with Teakwood theme and safe bottom area for mobile and desktop.
  */
 const ServiceSelectionSummary: React.FC<ServiceSelectionSummaryProps> = ({
   selectedCount,
@@ -30,14 +29,14 @@ const ServiceSelectionSummary: React.FC<ServiceSelectionSummaryProps> = ({
   }
 
   return (
-    <div className="sticky bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-2xl z-50 flex-shrink-0 safe-area-bottom">
-      <div className="px-4 py-3 md:py-4 flex items-center justify-between gap-3 max-w-7xl mx-auto">
+    <div className="flex-shrink-0 bg-gradient-to-t from-[#F5EBE0] to-[#FDF8F3] border-t border-[#D2B48C]/30 px-4 py-3.5 pb-6 md:pb-4 rounded-b-3xl md:rounded-b-2xl shadow-inner z-20">
+      <div className="flex items-center justify-between gap-3 max-w-2xl mx-auto">
         {/* Left Side - Summary */}
         <div className="flex flex-col flex-1 min-w-0">
-          <p className="text-xs sm:text-sm text-gray-600">
-            {selectedCount} item{selectedCount > 1 ? 's' : ''} added
+          <p className="text-xs text-[#5D3A1A]/70 uppercase font-medium tracking-wide">
+            {selectedCount} {selectedCount === 1 ? 'service' : 'services'} selected
           </p>
-          <p className="text-base sm:text-lg md:text-xl font-bold text-gray-900">
+          <p className="text-base sm:text-lg md:text-xl font-bold text-[#5D3A1A] truncate">
             Total: ₹{totalPrice.toLocaleString()}
           </p>
         </div>
@@ -46,11 +45,16 @@ const ServiceSelectionSummary: React.FC<ServiceSelectionSummaryProps> = ({
         <button
           onClick={onDone}
           disabled={isLoading}
-          className="px-8 py-3 md:py-3.5 bg-amber-600 text-white text-base md:text-lg font-semibold rounded-lg hover:bg-amber-700 disabled:bg-amber-400 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl active:scale-95 whitespace-nowrap min-w-[100px]"
+          className="px-6 sm:px-8 py-3 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D]
+                     text-white text-sm sm:text-base font-semibold rounded-xl
+                     hover:from-[#8B4513] hover:via-[#A0522D] hover:to-[#CD853F]
+                     active:scale-[0.98] transition-all duration-200
+                     shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#8B4513] focus:ring-offset-2
+                     disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap min-w-[120px]"
           type="button"
           aria-label="Proceed to cart"
         >
-          {isLoading ? 'Loading...' : 'Done'}
+          {isLoading ? 'Loading...' : 'View Cart →'}
         </button>
       </div>
     </div>
@@ -58,3 +62,4 @@ const ServiceSelectionSummary: React.FC<ServiceSelectionSummaryProps> = ({
 };
 
 export default ServiceSelectionSummary;
+

@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
-import { FaTimes } from 'react-icons/fa';
+import ReactDOM from 'react-dom';
+import { X, Calendar } from 'lucide-react';
 
 interface BookingModalProps {
   service: string;
@@ -31,67 +31,103 @@ Address: ${address}`;
     onClose();
   };
 
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-8 shadow-lg max-w-sm w-full">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Book Service</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-800">
-            <FaTimes />
-          </button>
-        </div>
-        <div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Service</label>
-            <p>{service} - {price}</p>
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="name">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="phone">
-              Phone
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="address">
-              Address
-            </label>
-            <textarea
-              id="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
-            />
-          </div>
+  const modalContent = (
+    <div className="fixed inset-0 z-[99999] flex flex-col justify-end md:justify-center md:items-center p-0 md:p-6 overflow-hidden">
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-black/70 backdrop-blur-sm"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      {/* Modal Dialog */}
+      <div className="relative w-full md:max-w-md bg-white rounded-t-3xl md:rounded-2xl shadow-2xl flex flex-col z-10 animate-slide-up md:animate-scale-in max-h-[88vh] overflow-hidden border border-[#D2B48C]/30">
+        {/* Header */}
+        <div className="flex-shrink-0 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] px-5 py-4">
           <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 text-white">
+              <Calendar className="w-5 h-5 text-white" />
+              <h2 className="text-lg font-bold text-white">Book Service</h2>
+            </div>
             <button
-              onClick={handleSubmit}
-              className="bg-amber-600 text-white font-bold py-2 px-4 rounded-full w-full hover:bg-amber-700"
+              onClick={onClose}
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+              type="button"
+              aria-label="Close"
             >
-              Confirm Booking
+              <X className="w-5 h-5 text-white" />
             </button>
           </div>
         </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-5 space-y-4">
+          <div className="p-3.5 bg-[#FDF8F3] border border-[#D2B48C]/40 rounded-xl flex items-center justify-between">
+            <div>
+              <p className="text-xs uppercase font-semibold text-[#5D3A1A]/70">Selected Service</p>
+              <p className="font-bold text-[#5D3A1A] text-sm sm:text-base">{service}</p>
+            </div>
+            <span className="font-bold text-[#8B4513] text-base">{price}</span>
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-[#5D3A1A] mb-1" htmlFor="book-name">
+              Your Name
+            </label>
+            <input
+              type="text"
+              id="book-name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. Rahul Sharma"
+              className="w-full px-4 py-2.5 border border-[#D2B48C] rounded-xl focus:ring-2 focus:ring-[#8B4513] focus:border-[#8B4513] outline-none text-gray-900"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-[#5D3A1A] mb-1" htmlFor="book-phone">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="book-phone"
+              value={phone}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. 9876543210"
+              className="w-full px-4 py-2.5 border border-[#D2B48C] rounded-xl focus:ring-2 focus:ring-[#8B4513] focus:border-[#8B4513] outline-none text-gray-900"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-[#5D3A1A] mb-1" htmlFor="book-address">
+              Address / Location in Mumbai
+            </label>
+            <textarea
+              id="book-address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="e.g. Bandra West, Mumbai"
+              rows={3}
+              className="w-full px-4 py-2.5 border border-[#D2B48C] rounded-xl focus:ring-2 focus:ring-[#8B4513] focus:border-[#8B4513] outline-none text-gray-900 resize-none"
+            />
+          </div>
+
+          <button
+            onClick={handleSubmit}
+            className="w-full bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] text-white font-bold py-3.5 rounded-xl hover:from-[#8B4513] hover:via-[#A0522D] hover:to-[#CD853F] transition-all shadow-md active:scale-[0.98]"
+            type="button"
+          >
+            Confirm Booking on WhatsApp
+          </button>
+        </div>
+
+        {/* Safe Area padding on mobile */}
+        <div className="h-6 md:hidden"></div>
       </div>
     </div>
   );
+
+  return ReactDOM.createPortal(modalContent, document.body);
 };
 
 export default BookingModal;

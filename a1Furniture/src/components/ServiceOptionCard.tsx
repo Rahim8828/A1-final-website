@@ -94,32 +94,32 @@ const ServiceOptionCard: React.FC<ServiceOptionCardProps> = ({
           {!isSelected ? (
             <button
               onClick={onAdd}
-              className="w-full px-2 py-1 sm:py-1.5 rounded-md font-medium text-xs transition-all duration-200 ease-out
-                         focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-1
+              className="w-full px-2 py-1.5 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 ease-out
+                         focus:outline-none focus:ring-2 focus:ring-[#8B4513] focus:ring-offset-1
                          active:scale-95 flex items-center justify-center shadow-sm hover:shadow-md
-                         bg-white text-amber-600 border-2 border-amber-600 hover:bg-amber-50
-                         min-h-[32px] sm:min-h-[36px]"
+                         bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] text-white hover:from-[#8B4513] hover:to-[#CD853F]
+                         min-h-[34px] sm:min-h-[38px]"
               aria-label={`Add ${option.name} to booking for ${option.price} rupees`}
               type="button"
             >
               Add
             </button>
           ) : (
-            <div className="flex items-center justify-center gap-1 sm:gap-2 border-2 border-amber-600 rounded-lg px-1.5 sm:px-2 py-1 sm:py-1.5 bg-white relative z-10">
+            <div className="flex items-center justify-between border-2 border-[#8B4513] rounded-lg px-2 py-1 bg-white/90 shadow-sm relative z-10">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onDecrease();
                 }}
-                className="text-amber-600 font-bold text-lg sm:text-xl min-w-[32px] min-h-[32px] sm:min-w-[36px] sm:min-h-[36px] 
-                           flex items-center justify-center hover:bg-amber-50 rounded transition-colors
-                           active:bg-amber-100 touch-manipulation cursor-pointer"
+                className="text-[#5D3A1A] font-bold text-lg sm:text-xl min-w-[30px] min-h-[30px] sm:min-w-[34px] sm:min-h-[34px] 
+                           flex items-center justify-center hover:bg-[#D2B48C]/30 rounded transition-colors
+                           active:bg-[#D2B48C]/50 touch-manipulation cursor-pointer"
                 aria-label="Decrease quantity"
                 type="button"
               >
                 −
               </button>
-              <span className="font-semibold text-amber-600 min-w-[24px] text-center text-base sm:text-lg pointer-events-none">
+              <span className="font-bold text-[#5D3A1A] min-w-[24px] text-center text-sm sm:text-base pointer-events-none">
                 {quantity}
               </span>
               <button
@@ -127,9 +127,9 @@ const ServiceOptionCard: React.FC<ServiceOptionCardProps> = ({
                   e.stopPropagation();
                   onIncrease();
                 }}
-                className="text-amber-600 font-bold text-lg sm:text-xl min-w-[32px] min-h-[32px] sm:min-w-[36px] sm:min-h-[36px]
-                           flex items-center justify-center hover:bg-amber-50 rounded transition-colors
-                           active:bg-amber-100 touch-manipulation cursor-pointer"
+                className="text-[#5D3A1A] font-bold text-lg sm:text-xl min-w-[30px] min-h-[30px] sm:min-w-[34px] sm:min-h-[34px]
+                           flex items-center justify-center hover:bg-[#D2B48C]/30 rounded transition-colors
+                           active:bg-[#D2B48C]/50 touch-manipulation cursor-pointer"
                 aria-label="Increase quantity"
                 type="button"
               >

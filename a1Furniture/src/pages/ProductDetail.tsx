@@ -828,17 +828,17 @@ const ProductDetail: React.FC = () => {
         {/* ═══════════════════════════════════════════════
             STICKY BOTTOM BAR — Mobile
         ═══════════════════════════════════════════════ */}
-        <div className="fixed bottom-16 inset-x-0 z-40 bg-white border-t border-gray-200 shadow-2xl md:hidden">
-          <div className="flex items-center gap-3 px-4 py-3">
-            <div className="flex-1">
-              <p className="text-lg font-bold text-gray-900">₹{product.price.toLocaleString('en-IN')}</p>
+        <div className="fixed bottom-14 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#D2B48C]/30 shadow-2xl md:hidden">
+          <div className="flex items-center gap-3 px-4 py-2.5">
+            <div className="flex-1 min-w-0">
+              <p className="text-lg font-bold text-[#5D3A1A]">₹{product.price.toLocaleString('en-IN')}</p>
               <p className="text-xs text-gray-400 line-through">₹{product.originalPrice.toLocaleString('en-IN')}</p>
             </div>
             <a
               href={`https://wa.me/918828709945?text=Hi!%20I%27m%20interested%20in%20${encodeURIComponent(product.name)}%20polish%20(₹${product.price}).`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-green-600 text-white px-5 py-3 rounded-xl font-bold text-sm active:scale-[0.97]"
+              className="flex items-center gap-2 bg-gradient-to-r from-[#059669] to-[#047857] text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md active:scale-[0.97]"
             >
               <MessageCircle className="w-4 h-4" />
               Book Now

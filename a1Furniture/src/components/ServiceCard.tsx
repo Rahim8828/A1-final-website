@@ -113,7 +113,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
           <button
             onClick={handleViewDetails}
-            className="flex-1 text-amber-600 font-medium text-xs sm:text-sm hover:text-amber-700 hover:underline transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2 rounded-lg py-2 sm:py-0 min-h-[44px] sm:min-h-0 flex items-center justify-center active:scale-95"
+            className="flex-1 text-[#5D3A1A] font-semibold text-xs sm:text-sm hover:text-[#8B4513] hover:underline transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#8B4513] focus:ring-offset-2 rounded-lg py-2 sm:py-0 min-h-[44px] sm:min-h-0 flex items-center justify-center active:scale-95"
             aria-label={`View details for ${service.name}`}
             type="button"
           >
@@ -121,7 +121,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           </button>
           <button
             onClick={handleQuickAdd}
-            className="px-4 sm:px-6 py-2.5 sm:py-2 bg-amber-600 text-white font-medium text-xs sm:text-sm rounded-lg hover:bg-amber-700 hover:shadow-md active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2 min-h-[44px] flex items-center justify-center shadow-sm"
+            className="px-5 sm:px-6 py-2.5 sm:py-2 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] text-white font-semibold text-xs sm:text-sm rounded-xl hover:from-[#8B4513] hover:via-[#A0522D] hover:to-[#CD853F] hover:shadow-md active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#8B4513] focus:ring-offset-2 min-h-[44px] flex items-center justify-center shadow-sm"
             aria-label={`Add ${service.name} to booking`}
             type="button"
           >

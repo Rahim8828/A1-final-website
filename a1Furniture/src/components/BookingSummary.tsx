@@ -95,28 +95,28 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({
         )}
 
         {/* Collapsed/Bottom Bar - Always Visible, touch-friendly */}
-        <div className="px-3 sm:px-4 py-3 sm:py-4 bg-gradient-to-r from-gray-50 to-white">
-          <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4">
+        <div className="px-4 py-3 pb-16 md:pb-3.5 bg-gradient-to-t from-[#F5EBE0] to-[#FDF8F3] border-t border-[#D2B48C]/30 shadow-inner">
+          <div className="flex items-center justify-between gap-2 sm:gap-3 md:gap-4 max-w-7xl mx-auto">
             {/* Left Side - Summary Info - Touch-friendly */}
             <button
               onClick={toggleExpand}
-              className="flex-1 text-left min-h-[44px] flex items-center rounded-lg hover:bg-gray-100 active:bg-gray-200 px-2 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2"
+              className="flex-1 text-left min-h-[44px] flex items-center rounded-lg hover:bg-white/60 active:bg-white/80 px-2 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-[#8B4513] focus:ring-offset-2"
               aria-label={isExpanded ? 'Collapse booking summary' : 'Expand booking summary to view selected services'}
               aria-expanded={isExpanded}
               type="button"
             >
               <div className="flex items-center gap-2 w-full">
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs sm:text-sm text-gray-600">
+                  <p className="text-xs text-[#5D3A1A]/70 uppercase font-medium">
                     {itemCount} {itemText} selected
                   </p>
-                  <p className="text-base sm:text-lg font-bold text-gray-900 truncate" aria-label={`Total price ${totalPrice} rupees`}>
+                  <p className="text-base sm:text-lg font-bold text-[#5D3A1A] truncate" aria-label={`Total price ${totalPrice} rupees`}>
                     Total: ₹{totalPrice.toLocaleString()}
                   </p>
                 </div>
                 {!isExpanded && (
                   <svg
-                    className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 flex-shrink-0 transition-transform duration-300 ease-out"
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-[#8B4513] flex-shrink-0 transition-transform duration-300 ease-out"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -137,16 +137,16 @@ const BookingSummary: React.FC<BookingSummaryProps> = ({
             {showDoneButton ? (
               <button
                 onClick={onViewCart}
-                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-amber-600 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-amber-700 hover:shadow-xl active:scale-95 transition-all duration-200 ease-out shadow-md flex-shrink-0 min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2"
+                className="px-5 sm:px-7 py-2.5 sm:py-3 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] text-white text-sm sm:text-base font-semibold rounded-xl hover:from-[#8B4513] hover:via-[#A0522D] hover:to-[#CD853F] hover:shadow-xl active:scale-95 transition-all duration-200 ease-out shadow-md flex-shrink-0 min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#8B4513] focus:ring-offset-2"
                 aria-label="View cart"
                 type="button"
               >
-                View Cart
+                View Cart →
               </button>
             ) : (
               <button
                 onClick={onBookNow}
-                className="px-4 sm:px-6 py-2.5 sm:py-3 bg-[#059669] text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-[#047857] hover:shadow-xl active:scale-95 transition-all duration-200 ease-out shadow-md flex-shrink-0 min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
+                className="px-5 sm:px-7 py-2.5 sm:py-3 bg-gradient-to-r from-[#059669] to-[#047857] text-white text-sm sm:text-base font-semibold rounded-xl hover:from-[#047857] hover:to-[#065f46] hover:shadow-xl active:scale-95 transition-all duration-200 ease-out shadow-md flex-shrink-0 min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2"
                 aria-label={`Book ${itemCount} ${itemText} via WhatsApp for ${totalPrice} rupees`}
                 type="button"
               >

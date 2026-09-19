@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { X, ArrowLeft, Shield, Wrench, Award, Umbrella, FileCheck, ChevronDown, ChevronLeft, ChevronRight, UserCheck, GraduationCap, BadgeCheck } from 'lucide-react';
 import { ServiceData, ServiceOption } from '../types';
 import ServiceOptionCard from './ServiceOptionCard';
@@ -189,70 +190,67 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
 
   if (!isOpen || !service) return null;
 
-  return (
+  const modalContent = (
     <div
-      className="fixed inset-0 z-50 overflow-hidden animate-fade-in"
+      className="fixed inset-0 z-[99999] flex flex-col justify-end md:justify-center md:items-center p-0 md:p-6 overflow-hidden"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       {/* Backdrop */}
-      {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black bg-opacity-50 animate-fade-in"
+        className="fixed inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Modal Container - Full-screen on mobile, overlay on desktop */}
-      <div className="fixed inset-0 flex items-stretch md:items-center md:justify-center pb-16 md:pb-0">
-        {/* Modal Content - Full-screen mobile (< 768px), overlay desktop (>= 768px) */}
-        <div
-          ref={modalRef}
-          tabIndex={-1}
-          className="relative w-full h-full md:h-auto md:max-h-[90vh] md:max-w-2xl md:w-auto bg-white 
-                     md:rounded-2xl shadow-2xl flex flex-col z-50
-                     animate-slide-up md:animate-scale-in"
-        >
-          {/* Header - Sticky, touch-friendly buttons (min 44x44px) */}
-          <div className="sticky top-0 z-10 bg-white border-b border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
-              {/* Back Button - Touch-friendly 44x44px minimum */}
-              <button
-                onClick={onClose}
-                className="flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-full 
-                         hover:bg-gray-100 active:scale-90 transition-all duration-150 ease-out
-                         focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2"
-                aria-label="Go back to service list"
-                type="button"
-              >
-                <ArrowLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-700" aria-hidden="true" />
-              </button>
+      {/* Modal Dialog */}
+      <div
+        ref={modalRef}
+        tabIndex={-1}
+        className="relative w-full max-h-[88vh] sm:max-h-[90vh] md:max-h-[90vh] md:max-w-2xl md:w-full bg-white 
+                   rounded-t-3xl md:rounded-2xl shadow-2xl flex flex-col z-10
+                   animate-slide-up md:animate-scale-in border border-[#D2B48C]/30 overflow-hidden"
+      >
+        {/* Header - Teakwood Gradient */}
+        <div className="flex-shrink-0 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] rounded-t-3xl md:rounded-t-2xl">
+          <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-3.5">
+            {/* Back Button */}
+            <button
+              onClick={onClose}
+              className="flex items-center justify-center w-9 h-9 rounded-full 
+                       bg-white/10 hover:bg-white/20 active:scale-95 transition-all duration-150
+                       focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label="Go back to service list"
+              type="button"
+            >
+              <ArrowLeft className="w-5 h-5 text-white" aria-hidden="true" />
+            </button>
 
-              {/* Service Name - Responsive text size */}
-              <h2
-                id="modal-title"
-                className="flex-1 text-center text-base md:text-lg lg:text-xl font-semibold text-gray-900 px-2 md:px-4 truncate"
-              >
-                {service.name}
-              </h2>
+            {/* Service Name */}
+            <h2
+              id="modal-title"
+              className="flex-1 text-center text-base md:text-lg font-semibold text-[#FDF8F3] px-2 md:px-4 truncate"
+            >
+              {service.name}
+            </h2>
 
-              {/* Close Button - Touch-friendly 44x44px minimum */}
-              <button
-                onClick={onClose}
-                className="flex items-center justify-center min-w-[44px] min-h-[44px] w-11 h-11 rounded-full 
-                         hover:bg-gray-100 active:scale-90 transition-all duration-150 ease-out
-                         focus:outline-none focus:ring-2 focus:ring-amber-600 focus:ring-offset-2"
-                aria-label="Close service details"
-                type="button"
-              >
-                <X className="w-5 h-5 md:w-6 md:h-6 text-gray-700" aria-hidden="true" />
-              </button>
-            </div>
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="flex items-center justify-center w-9 h-9 rounded-full 
+                       bg-white/10 hover:bg-white/20 active:scale-95 transition-all duration-150
+                       focus:outline-none focus:ring-2 focus:ring-white/50"
+              aria-label="Close service details"
+              type="button"
+            >
+              <X className="w-5 h-5 text-white" aria-hidden="true" />
+            </button>
           </div>
+        </div>
 
-          {/* Scrollable Content - Responsive padding and spacing */}
-          <div className="flex-1 overflow-y-auto overscroll-contain scroll-smooth webkit-overflow-scrolling-touch">
+        {/* Scrollable Content - Responsive padding and spacing */}
+        <div className="flex-1 overflow-y-auto overscroll-contain scroll-smooth webkit-overflow-scrolling-touch">
             <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-5 md:space-y-6 pb-4">
               {/* Service Options Section - With Auto-Scroll */}
               <section aria-labelledby="service-options-heading" className="bg-gray-50 -mx-3 sm:-mx-4 md:mx-0 px-3 sm:px-4 md:px-0 py-3 sm:py-4 md:py-0 md:bg-transparent rounded-lg md:rounded-none">
@@ -537,8 +535,12 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             }}
           />
         </div>
-      </div>
+    </div>
+  );
 
+  return (
+    <>
+      {ReactDOM.createPortal(modalContent, document.body)}
       {/* Product Detail Modal - Opens when clicking on a service option */}
       {selectedProductOption && service && (
         <ProductDetailModal
@@ -555,7 +557,7 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           onDecrease={() => handleDecrease(selectedProductOption.index)}
         />
       )}
-    </div>
+    </>
   );
 };
 

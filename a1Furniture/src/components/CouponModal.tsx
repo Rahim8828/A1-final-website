@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import { X, Tag } from 'lucide-react';
 
 interface Coupon {
   discount: number;
@@ -54,28 +56,39 @@ const CouponModal: React.FC<CouponModalProps> = ({
 
   if (!isOpen) return null;
 
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end md:items-center md:justify-center overflow-y-auto p-0 md:p-4">
-      <div className="bg-white w-full md:max-w-md rounded-t-2xl md:rounded-2xl animate-slide-up md:animate-scale-in max-h-[95vh] md:max-h-[90vh] overflow-y-auto my-auto flex flex-col">
-        {/* Header - Sticky on mobile */}
-        <div className="sticky top-0 bg-white z-10 px-6 pt-6 pb-4 border-b border-gray-100">
+  const modalContent = (
+    <div className="fixed inset-0 z-[99999] flex flex-col justify-end md:justify-center md:items-center p-0 md:p-6 overflow-hidden">
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-black/70 backdrop-blur-sm"
+        onClick={handleClose}
+        aria-hidden="true"
+      />
+
+      {/* Modal Dialog */}
+      <div className="relative w-full md:max-w-md bg-white rounded-t-3xl md:rounded-2xl shadow-2xl flex flex-col z-10 animate-slide-up md:animate-scale-in max-h-[85vh] md:max-h-[90vh] overflow-hidden border border-[#D2B48C]/30">
+        {/* Header */}
+        <div className="flex-shrink-0 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] px-5 py-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900">Apply Coupon</h2>
+            <div className="flex items-center gap-2 text-white">
+              <Tag className="w-5 h-5 text-white" />
+              <h2 className="text-lg font-bold text-white">Apply Coupon</h2>
+            </div>
             <button
               onClick={handleClose}
-              className="text-gray-500 hover:text-gray-700 p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
               type="button"
               aria-label="Close coupon modal"
             >
-              <span className="text-2xl">✕</span>
+              <X className="w-5 h-5 text-white" />
             </button>
           </div>
         </div>
 
-        {/* Content - Scrollable */}
-        <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-5 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-[#5D3A1A] mb-1.5">
               Coupon Code
             </label>
             <input
@@ -85,33 +98,46 @@ const CouponModal: React.FC<CouponModalProps> = ({
                 setCouponCode(e.target.value.toUpperCase());
                 setCouponError('');
               }}
-              placeholder="Enter coupon code"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent"
+              placeholder="e.g. FIRST10"
+              className="w-full px-4 py-3 border border-[#D2B48C] rounded-xl focus:ring-2 focus:ring-[#8B4513] focus:border-[#8B4513] text-gray-900 font-medium uppercase outline-none"
               aria-label="Coupon code input"
             />
           </div>
 
           {couponError && (
-            <p className="text-sm text-red-600" role="alert">
+            <p className="text-sm text-red-600 font-medium" role="alert">
               {couponError}
             </p>
           )}
 
           {/* Available Coupons */}
-          <div className="bg-amber-50 p-3 rounded-lg">
-            <p className="text-sm text-gray-700 font-semibold mb-2">
-              Available Coupons:
+          <div className="bg-[#FDF8F3] border border-[#D2B48C]/40 p-4 rounded-xl space-y-2">
+            <p className="text-xs uppercase font-bold text-[#5D3A1A]/80 tracking-wider">
+              Available Offers:
             </p>
             {Object.entries(validCoupons).map(([code, coupon]) => (
-              <div key={code} className="text-sm text-gray-700 mb-1">
-                <span className="font-semibold">{code}</span> - {coupon.description}
+              <div 
+                key={code} 
+                onClick={() => {
+                  setCouponCode(code);
+                  setCouponError('');
+                }}
+                className="flex items-center justify-between p-2.5 bg-white rounded-lg border border-[#D2B48C]/30 hover:border-[#8B4513] cursor-pointer transition-all"
+              >
+                <div>
+                  <span className="font-bold text-[#5D3A1A] text-sm">{code}</span>
+                  <p className="text-xs text-[#5D3A1A]/70">{coupon.description}</p>
+                </div>
+                <span className="text-xs font-semibold text-[#8B4513] bg-[#F5EBE0] px-2.5 py-1 rounded-md">
+                  Tap to use
+                </span>
               </div>
             ))}
           </div>
 
           <button
             onClick={handleApply}
-            className="w-full bg-amber-600 text-white font-semibold py-3 rounded-lg hover:bg-amber-700 transition-colors"
+            className="w-full bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] text-white font-semibold py-3.5 rounded-xl hover:from-[#8B4513] hover:via-[#A0522D] hover:to-[#CD853F] transition-all shadow-md active:scale-[0.98]"
             type="button"
           >
             Apply Coupon
@@ -120,19 +146,22 @@ const CouponModal: React.FC<CouponModalProps> = ({
           {appliedCoupon && (
             <button
               onClick={handleRemove}
-              className="w-full bg-gray-200 text-gray-900 font-semibold py-3 rounded-lg hover:bg-gray-300 transition-colors"
+              className="w-full bg-red-50 text-red-700 font-semibold py-3 rounded-xl hover:bg-red-100 transition-colors border border-red-200"
               type="button"
             >
-              Remove Coupon
+              Remove Applied Coupon
             </button>
           )}
         </div>
         
-        {/* Bottom Padding for mobile safe area */}
+        {/* Safe Area padding on mobile */}
         <div className="h-6 md:hidden"></div>
       </div>
     </div>
   );
+
+  return ReactDOM.createPortal(modalContent, document.body);
 };
 
 export default CouponModal;
+
