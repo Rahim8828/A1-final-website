@@ -17,7 +17,6 @@ import {
 } from 'lucide-react';
 import { PageData } from '../types';
 import SEOHead from '../../src/components/SEOHead';
-import StickyWhatsApp from './StickyWhatsApp';
 import OptimizedImage from '../../src/components/OptimizedImage';
 import { FadeIn } from './ScrollAnimations';
 import { COMMON_SIZES } from '../../src/utils/imageHelpers';
@@ -51,7 +50,7 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
   } = pageData;
 
   const [activeModal, setActiveModal] = useState<number | null>(null);
-  const pageImage = heroImage || '/assets/wooden furniture .webp';
+  const pageImage = heroImage || '/assets/Antique Restoration.jpg';
   const socialImage = ogImage || pageImage;
 
   // Override schema type to correct HomeAndConstructionBusiness
@@ -78,8 +77,6 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
         ogDescription={metaDescription}
         ogImage={socialImage}
       />
-
-      <StickyWhatsApp />
 
       {/* Content without Header/Footer as they're in App.tsx layout */}
         {/* Breadcrumb Navigation */}
@@ -284,6 +281,9 @@ const ServicePageTemplate: React.FC<ServicePageTemplateProps> = ({ pageData }) =
                             alt={step.title} 
                             className="w-full h-full object-cover" 
                             loading="lazy" 
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = '/assets/Antique Restoration.jpg';
+                            }}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                         </div>

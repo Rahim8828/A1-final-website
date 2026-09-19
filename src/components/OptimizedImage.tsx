@@ -63,7 +63,10 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         decoding="async"
         fetchPriority={fetchPriority as 'high' | 'low' | 'auto'}
         onLoad={handleLoad}
-        onError={handleError}
+        onError={(e) => {
+          handleError();
+          (e.target as HTMLImageElement).src = '/assets/Antique Restoration.jpg';
+        }}
         className={`w-full h-full ${objectFitClass} object-center transition-opacity duration-300 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}
@@ -73,9 +76,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       {hasError && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
           <img
-            src="/assets/wooden furniture .webp"
+            src="/assets/Antique Restoration.jpg"
             alt={alt}
-            className="w-full h-full object-cover opacity-50"
+            className="w-full h-full object-cover"
           />
         </div>
       )}

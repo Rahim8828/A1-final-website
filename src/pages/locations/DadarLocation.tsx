@@ -5,7 +5,6 @@ import SEOHead from '../../components/SEOHead';
 import JsonLd from '../../components/JsonLd';
 import { FadeIn } from '../../components/ScrollAnimations';
 import { getCanonicalURL } from '../../utils/canonicalURL';
-import StickyWhatsApp from '../../components/StickyWhatsApp';
 import OptimizedImage from '../../components/OptimizedImage';
 import { COMMON_SIZES } from '../../utils/imageHelpers';
 
@@ -267,7 +266,6 @@ const DadarLocation = () => {
       <JsonLd data={localBusinessSchema} />
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={serviceSchema} />
-      <StickyWhatsApp />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-12 md:py-20 overflow-hidden">

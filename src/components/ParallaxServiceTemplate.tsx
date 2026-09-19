@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { PageData } from '../types';
 import SEOHead from './SEOHead';
-import StickyWhatsApp from './StickyWhatsApp';
 import DraggablePricingModal from './DraggablePricingModal';
 import ParallaxSection from './ParallaxSection';
 
@@ -63,8 +62,6 @@ const ParallaxServiceTemplate: React.FC<ParallaxServiceTemplateProps> = ({ pageD
         ogDescription={metaDescription}
         ogImage="/assets/wooden furniture .webp"
       />
-
-      <StickyWhatsApp />
 
       {/* Breadcrumb */}
       <section className="bg-gray-50 py-3 border-b border-gray-200 sticky top-0 z-40 backdrop-blur-sm bg-opacity-90">

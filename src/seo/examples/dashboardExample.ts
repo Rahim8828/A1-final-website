@@ -70,7 +70,7 @@ export async function demonstrateDashboard() {
       openGraphTags: {
         title: 'Professional Furniture Polish Services in Mumbai',
         description: 'Get expert furniture polishing services in Mumbai. Professional wood polish, restoration, and repair services.',
-        image: '/images/furniture-polish-mumbai.jpg',
+        image: '/assets/Antique Restoration.jpg',
         url: '/furniture-polish-mumbai',
         type: 'website',
         siteName: 'A1 Furniture Polish'
@@ -79,7 +79,7 @@ export async function demonstrateDashboard() {
         card: 'summary_large_image',
         title: 'Professional Furniture Polish Services in Mumbai',
         description: 'Get expert furniture polishing services in Mumbai. Professional wood polish, restoration, and repair services.',
-        image: '/images/furniture-polish-mumbai.jpg',
+        image: '/assets/Antique Restoration.jpg',
         site: '@A1FurniturePolish'
       },
       structuredData: {

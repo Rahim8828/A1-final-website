@@ -364,7 +364,7 @@ export class MetaManager implements IMetaManager {
 
   private generateImageUrl(location?: string | null, service?: string | null): string {
     // Generate appropriate image URL based on location and service
-    const baseUrl = '/assets/optimized/';
+    const baseUrl = '/assets/';
     
     if (service?.toLowerCase().includes('sofa')) {
       return `${baseUrl}Sofa And chair-640w.webp`;

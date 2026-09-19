@@ -2,12 +2,12 @@ import React from 'react';
 import { FadeIn } from './ScrollAnimations';
 
 const woodTypes = [
-  { name: 'TEAKWOOD', image: '/assets/seo/bed/wooden_types/teakwood.png' },
-  { name: 'VENEER', image: '/assets/seo/bed/wooden_types/veneeer.png' },
-  { name: 'WALNUT', image: '/assets/seo/bed/wooden_types/walnut.png' },
-  { name: 'MDF', image: '/assets/seo/bed/wooden_types/mdf.png' },
-  { name: 'SOLID WOOD', image: '/assets/seo/bed/wooden_types/solidwood.png' },
-  { name: 'PLYWOOD', image: '/assets/seo/bed/wooden_types/plywood.png' },
+  { name: 'TEAKWOOD', image: '/assets/Antique Restoration.jpg' },
+  { name: 'VENEER', image: '/assets/Antique Restoration.jpg' },
+  { name: 'WALNUT', image: '/assets/Antique Restoration.jpg' },
+  { name: 'MDF', image: '/assets/Antique Restoration.jpg' },
+  { name: 'SOLID WOOD', image: '/assets/Antique Restoration.jpg' },
+  { name: 'PLYWOOD', image: '/assets/Antique Restoration.jpg' },
 ];
 
 interface TypesOfWoodWePolishProps {
@@ -34,6 +34,9 @@ const TypesOfWoodWePolish: React.FC<TypesOfWoodWePolishProps> = ({ locationName 
                       alt={`${wood.name} wood polishing`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = '/assets/Antique Restoration.jpg';
+                      }}
                     />
                   </div>
                   <p className="text-center py-2.5 text-xs sm:text-sm font-bold text-gray-800 tracking-wide">

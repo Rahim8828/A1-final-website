@@ -5,7 +5,6 @@ import SEOHead from '../../src/components/SEOHead';
 import JsonLd from '../components/JsonLd';
 import { FadeIn } from '../components/ScrollAnimations';
 import { getCanonicalURL } from '../utils/canonicalURL';
-import StickyWhatsApp from '../components/StickyWhatsApp';
 import OptimizedImage from '../../src/components/OptimizedImage';
 import { COMMON_SIZES } from '../../src/utils/imageHelpers';
 
@@ -131,7 +130,6 @@ const PowaiFurniturePolish = () => {
         canonical={getCanonicalURL('/powai-furniture-polish')}
       />
       <JsonLd data={localBusinessSchema} />
-      <StickyWhatsApp />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-12 md:py-20">

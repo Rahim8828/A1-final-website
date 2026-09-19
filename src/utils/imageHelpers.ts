@@ -9,7 +9,7 @@ export type ImageFormat = 'avif' | 'webp' | 'jpg';
 
 /**
  * Get the image path - simplified for build compatibility
- * @param src - Original image path (e.g., '/assets/hero.jpg')
+ * @param src - Original image path (e.g., '/assets/Antique Restoration.jpg')
  * @param width - Desired width (optional, not used currently)
  * @param format - Image format (not used currently)
  * @returns Original image path

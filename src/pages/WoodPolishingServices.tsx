@@ -7,25 +7,25 @@ import { getCanonicalURL } from '../utils/canonicalURL';
 
 /* ───────── Popular Services (Circular cards) ───────── */
 const popularServices = [
-  { name: 'Sofa Polish', image: '/products/front_page_service_products/whiteseater_6_front.webp', link: '/services?service=sofa-polish' },
-  { name: 'Bed Polish', image: '/products/front_page_service_products/redqueenSize_front.webp', link: '/services?service=bed-polish' },
-  { name: 'Wardrobe Polish', image: '/products/front_page_service_products/darkSingle_front.webp', link: '/services?service=wardrobe-polish' },
-  { name: 'Door Polish', image: '/products/front_page_service_products/doubke_door_front.webp', link: '/services?service=door-polish' },
-  { name: 'Dining Set Polish', image: '/products/front_page_service_products/whitechair_single_front.webp', link: '/services?service=dining-set-polish' },
-  { name: 'Table Polish', image: '/products/table/center_table/darkWoodenTable.webp', link: '/services?service=table-polish' },
-  { name: 'Cabinet Polish', image: '/products/cabinet/five_Drawer_cabinet/singleCabinet.jpeg', link: '/services?service=cabinet-polish' },
-  { name: 'TV Unit Polish', image: '/products/tvUnitPolish/solidWood/darkBrown_solidwood.webp', link: '/services?service=tv-unit-polish' },
-  { name: 'Mandir Polish', image: '/products/mandir/darkWoodenMandir.webp', link: '/services?service=mandir-polish' },
+  { name: 'Sofa Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=sofa-polish' },
+  { name: 'Bed Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=bed-polish' },
+  { name: 'Wardrobe Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=wardrobe-polish' },
+  { name: 'Door Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=door-polish' },
+  { name: 'Dining Set Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=dining-set-polish' },
+  { name: 'Table Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=table-polish' },
+  { name: 'Cabinet Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=cabinet-polish' },
+  { name: 'TV Unit Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=tv-unit-polish' },
+  { name: 'Mandir Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=mandir-polish' },
 ];
 
 /* ───────── Types of Wood We Polish ───────── */
 const woodTypes = [
-  { name: 'TEAKWOOD', image: '/products/seo/bed/wooden_types/teakwood.webp' },
-  { name: 'VENEER', image: '/products/seo/bed/wooden_types/veneeer.webp' },
-  { name: 'WALNUT', image: '/products/seo/bed/wooden_types/walnut.webp' },
-  { name: 'MDF', image: '/products/seo/bed/wooden_types/mdf.webp' },
-  { name: 'SOLID WOOD', image: '/products/seo/bed/wooden_types/solidwood.webp' },
-  { name: 'PLYWOOD', image: '/products/seo/bed/wooden_types/plywood.webp' },
+  { name: 'TEAKWOOD', image: '/assets/Antique Restoration.jpg' },
+  { name: 'VENEER', image: '/assets/Antique Restoration.jpg' },
+  { name: 'WALNUT', image: '/assets/Antique Restoration.jpg' },
+  { name: 'MDF', image: '/assets/Antique Restoration.jpg' },
+  { name: 'SOLID WOOD', image: '/assets/Antique Restoration.jpg' },
+  { name: 'PLYWOOD', image: '/assets/Antique Restoration.jpg' },
 ];
 
 /* ───────── Our Polishing Services (Detail cards) ───────── */

@@ -5,7 +5,6 @@ import SEOHead from '../../components/SEOHead';
 import JsonLd from '../../components/JsonLd';
 import { FadeIn } from '../../components/ScrollAnimations';
 import { getCanonicalURL } from '../../utils/canonicalURL';
-import StickyWhatsApp from '../../components/StickyWhatsApp';
 import OptimizedImage from '../../components/OptimizedImage';
 import { COMMON_SIZES } from '../../utils/imageHelpers';
 
@@ -641,8 +640,6 @@ const ThaneLocation: React.FC = () => {
             </div>
           </div>
         </section>
-
-        <StickyWhatsApp />
       </div>
     </>
   );

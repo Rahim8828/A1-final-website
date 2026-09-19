@@ -22,7 +22,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import SEOHead from './SEOHead';
-import StickyWhatsApp from './StickyWhatsApp';
 import { FadeIn } from './ScrollAnimations';
 import TypesOfWoodWePolish from './TypesOfWoodWePolish';
 import type {
@@ -253,7 +252,6 @@ const SofaRepairPageTemplate: React.FC<SofaRepairPageProps> = ({
         ogDescription={meta.description}
         ogImage="/assets/sofa-polish.webp"
       />
-      <StickyWhatsApp />
 
       {/* ── Breadcrumb ────────────────────────────────────────────── */}
       <section className="bg-gray-50 py-3 border-b border-gray-200">
@@ -354,10 +352,13 @@ const SofaRepairPageTemplate: React.FC<SofaRepairPageProps> = ({
               <div className="relative">
                 <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                   <img
-                    src="/assets/seo/sofa/sofa_repair.png"
+                    src={problem?.images?.hero || "/assets/Antique Restoration.jpg"}
                     alt={`${problem?.name || 'Sofa Repair'} service in ${locName}`}
                     className="w-full h-64 md:h-80 object-cover"
                     loading="eager"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/assets/Antique Restoration.jpg';
+                    }}
                   />
                   <div className="p-5">
                     <div className="flex items-center justify-between">
@@ -386,10 +387,13 @@ const SofaRepairPageTemplate: React.FC<SofaRepairPageProps> = ({
                 {/* Secondary sofa image */}
                 <div className="mt-4 rounded-2xl overflow-hidden shadow-lg">
                   <img
-                    src="/assets/seo/sofa/darkBrownDouble.png"
+                    src="/assets/Antique Restoration.jpg"
                     alt="Professional sofa polishing service - 2 seater sofa"
                     className="w-full h-48 md:h-56 object-cover"
                     loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/assets/Antique Restoration.jpg';
+                    }}
                   />
                 </div>
               </div>

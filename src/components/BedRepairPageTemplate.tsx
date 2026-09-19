@@ -23,7 +23,6 @@ import {
   TreePine,
 } from 'lucide-react';
 import SEOHead from './SEOHead';
-import StickyWhatsApp from './StickyWhatsApp';
 import { FadeIn } from './ScrollAnimations';
 import TypesOfWoodWePolish from './TypesOfWoodWePolish';
 import type {
@@ -269,9 +268,8 @@ const BedRepairPageTemplate: React.FC<BedRepairPageProps> = ({
         structuredData={[localBusinessSchema, serviceSchema, faqSchema]}
         ogTitle={meta.title}
         ogDescription={meta.description}
-        ogImage="/assets/bed/bed-polish.webp"
+        ogImage="/assets/Antique Restoration.jpg"
       />
-      <StickyWhatsApp />
 
       {/* ── Breadcrumb ── */}
       <section className="bg-gray-50 py-3 border-b border-gray-200">
@@ -375,10 +373,13 @@ const BedRepairPageTemplate: React.FC<BedRepairPageProps> = ({
               <div className="relative">
                 <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                   <img
-                    src="/assets/seo/bed/bed_effected.png"
+                    src={problem?.images?.hero || "/assets/Antique Restoration.jpg"}
                     alt={`${problem?.name || woodType?.name || 'Bed Repair'} service in ${locName}`}
                     className="w-full h-64 md:h-80 object-cover"
                     loading="eager"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/assets/Antique Restoration.jpg';
+                    }}
                   />
                   <div className="p-5">
                     <div className="flex items-center justify-between">

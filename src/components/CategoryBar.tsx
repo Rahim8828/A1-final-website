@@ -24,7 +24,7 @@ const CategoryBar: React.FC = () => (
       >
         <div className="w-14 h-14 rounded-xl bg-gray-100 flex items-center justify-center mb-1 overflow-hidden border border-gray-200">
           <img
-            src={categoryImages[cat.id] || '/assets/placeholder.webp'}
+            src={categoryImages[cat.id] || '/assets/Antique Restoration.jpg'}
             alt={cat.label}
             className="w-full h-full object-cover"
             loading="lazy"

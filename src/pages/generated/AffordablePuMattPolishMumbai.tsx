@@ -55,31 +55,31 @@ const pageData: PageData = {
       "step": 1,
       "title": "Free Consultation & Quote",
       "description": "Contact us for a free consultation. Our experts assess your furniture and provide a detailed quote with no hidden charges.",
-      "image": "/assets/optimized/consultation-booking.webp"
+      "image": "/assets/consultation-booking.webp"
     },
     {
       "step": 2,
       "title": "Cleaning & Preparation",
       "description": "We thoroughly clean your furniture, removing dust, dirt, and old polish. Surface preparation ensures optimal adhesion.",
-      "image": "/assets/optimized/Cleaning & Sanding.webp"
+      "image": "/assets/Cleaning & Sanding.webp"
     },
     {
       "step": 3,
       "title": "Repair & Sanding",
       "description": "Any damages, scratches, or dents are repaired. We sand the surface smooth for a perfect finish.",
-      "image": "/assets/optimized/Cleaning & Sanding (2).webp"
+      "image": "/assets/Cleaning & Sanding (2).webp"
     },
     {
       "step": 4,
       "title": "Polish Application",
       "description": "Multiple coats of premium polish are applied with proper drying time between each layer for durability.",
-      "image": "/assets/optimized/filling-gaps-polish-application.webp"
+      "image": "/assets/filling-gaps-polish-application.webp"
     },
     {
       "step": 5,
       "title": "Finishing & Quality Check",
       "description": "Final finishing touches and thorough quality inspection ensure flawless results that exceed expectations.",
-      "image": "/assets/optimized/drying-finishing.webp"
+      "image": "/assets/drying-finishing.webp"
     }
   ],
   "locationAreas": [

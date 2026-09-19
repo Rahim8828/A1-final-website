@@ -884,11 +884,11 @@ function generateSofaRepairPage(locKey: string): PageData {
     introduction: `Need sofa repair in ${loc.name}? A1 Furniture Polish provides complete sofa repair and restoration services at your doorstep in ${loc.name}. Whether your sofa needs fabric change, cushion refilling, frame repair, spring replacement, recliner mechanism fix, or leather restoration — our skilled craftsmen handle it all. We serve ${loc.nearbyAreas.slice(0, 6).join(', ')} and all ${loc.name} areas. With 500+ fabric options, premium HR foam cushions, and expert carpenters, we transform old, sagging sofas into comfortable, beautiful seating. Save 50-70% vs buying new. Free home inspection, transparent pricing, and warranty on all repair work.`,
     services: sofaRepairServices,
     process: [
-      { step: 1, title: 'Free Home Inspection', description: `Our expert visits your ${loc.name} home, inspects the sofa, discusses requirements, and provides a detailed written quote. No obligation.`, image: '/assets/optimized/consultation-booking.webp' },
-      { step: 2, title: 'Material Selection', description: 'Choose from 500+ fabric samples, foam densities, and finish options. Our expert helps you pick the perfect combination for your needs and budget.', image: '/assets/optimized/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Repair & Restoration', description: 'Our skilled craftsmen repair the frame, replace springs/webbing, install new foam cushions, and apply chosen fabric with expert finishing.', image: '/assets/optimized/Cleaning & Sanding (2).webp' },
-      { step: 4, title: 'Quality Check & Delivery', description: 'Thorough quality inspection of comfort, appearance, and durability. Final touches and cleanup. Pay only after your complete satisfaction.', image: '/assets/optimized/drying-finishing.webp' },
-      { step: 5, title: 'After-Service Support', description: 'Warranty card provided. We follow up after 1 week to ensure satisfaction. Free minor adjustments within warranty period.', image: '/assets/optimized/filling-gaps-polish-application.webp' }
+      { step: 1, title: 'Free Home Inspection', description: `Our expert visits your ${loc.name} home, inspects the sofa, discusses requirements, and provides a detailed written quote. No obligation.`, image: '/assets/consultation-booking.webp' },
+      { step: 2, title: 'Material Selection', description: 'Choose from 500+ fabric samples, foam densities, and finish options. Our expert helps you pick the perfect combination for your needs and budget.', image: '/assets/Cleaning & Sanding.webp' },
+      { step: 3, title: 'Repair & Restoration', description: 'Our skilled craftsmen repair the frame, replace springs/webbing, install new foam cushions, and apply chosen fabric with expert finishing.', image: '/assets/Cleaning & Sanding (2).webp' },
+      { step: 4, title: 'Quality Check & Delivery', description: 'Thorough quality inspection of comfort, appearance, and durability. Final touches and cleanup. Pay only after your complete satisfaction.', image: '/assets/drying-finishing.webp' },
+      { step: 5, title: 'After-Service Support', description: 'Warranty card provided. We follow up after 1 week to ensure satisfaction. Free minor adjustments within warranty period.', image: '/assets/filling-gaps-polish-application.webp' }
     ],
     locationAreas: loc.nearbyAreas,
     serviceAreaDescription: `Our sofa repair team in ${loc.name} covers all areas: ${loc.nearbyAreas.join(', ')}. We bring all tools, materials, and fabric samples to your doorstep. No need to transport heavy sofas anywhere. From luxury apartments near ${loc.landmarks[0]} to homes near ${loc.landmarks[1]}, we service all ${loc.name} localities.`,
@@ -930,11 +930,11 @@ function generateBedRepairPage(locKey: string): PageData {
     introduction: `Need bed repair in ${loc.name}? A1 Furniture Polish provides expert bed repair and restoration services at your doorstep across ${loc.name}. From broken slats and wobbly frames to hydraulic bed mechanism fixes and complete bed refinishing — our skilled carpenters handle every bed issue. Serving ${loc.nearbyAreas.slice(0, 6).join(', ')} and all ${loc.name} areas. We repair all bed types: single, double, queen, king, bunk beds, baby cots, storage beds, and divan beds. Our combined repair + polish service gives your bed a brand-new makeover at 50-70% less than replacement cost. Free inspection, transparent pricing, warranty included.`,
     services: bedRepairServices,
     process: [
-      { step: 1, title: 'Free Bed Inspection', description: `Our carpenter visits your ${loc.name} home, inspects the bed thoroughly, identifies all issues, and provides a transparent repair quote.`, image: '/assets/optimized/consultation-booking.webp' },
-      { step: 2, title: 'Structural Repair', description: 'Fix broken slats, reinforce joints, repair/replace damaged wood, tighten the frame, and ensure structural stability for years of use.', image: '/assets/optimized/Cleaning & Sanding.webp' },
-      { step: 3, title: 'Mechanism Fix', description: 'For hydraulic/storage beds: replace gas lifts, repair hinges, fix storage box mechanisms, and ensure smooth, reliable operation.', image: '/assets/optimized/Cleaning & Sanding (2).webp' },
-      { step: 4, title: 'Polish & Refinish', description: 'Complete bed frame refinishing with chosen polish (PU/Melamine/Duco). Includes sanding, color selection, multiple coats, and protective finish.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
-      { step: 5, title: 'Quality Check', description: 'Thorough testing of structural stability, mechanism operation, finish quality, and overall appearance. Pay after your complete satisfaction.', image: '/assets/optimized/drying-finishing.webp' }
+      { step: 1, title: 'Free Bed Inspection', description: `Our carpenter visits your ${loc.name} home, inspects the bed thoroughly, identifies all issues, and provides a transparent repair quote.`, image: '/assets/consultation-booking.webp' },
+      { step: 2, title: 'Structural Repair', description: 'Fix broken slats, reinforce joints, repair/replace damaged wood, tighten the frame, and ensure structural stability for years of use.', image: '/assets/Cleaning & Sanding.webp' },
+      { step: 3, title: 'Mechanism Fix', description: 'For hydraulic/storage beds: replace gas lifts, repair hinges, fix storage box mechanisms, and ensure smooth, reliable operation.', image: '/assets/Cleaning & Sanding (2).webp' },
+      { step: 4, title: 'Polish & Refinish', description: 'Complete bed frame refinishing with chosen polish (PU/Melamine/Duco). Includes sanding, color selection, multiple coats, and protective finish.', image: '/assets/filling-gaps-polish-application.webp' },
+      { step: 5, title: 'Quality Check', description: 'Thorough testing of structural stability, mechanism operation, finish quality, and overall appearance. Pay after your complete satisfaction.', image: '/assets/drying-finishing.webp' }
     ],
     locationAreas: loc.nearbyAreas,
     serviceAreaDescription: `Our bed repair team serves all of ${loc.name}: ${loc.nearbyAreas.join(', ')}. We carry all tools and materials needed for on-site bed repair. From homes near ${loc.landmarks[0]} to apartments near ${loc.landmarks[1]}, every ${loc.name} address is covered.`,
@@ -1303,9 +1303,9 @@ const consultationVisitConfig: HighIntentServiceConfig = {
   process: (loc) => [
     { step: 1, title: 'Visit Booking', description: `Share your location in ${loc.name}, preferred timing, and service issue. We confirm the visit slot and note the surfaces that need inspection.`, image: '/products/consultation/visiting.png' },
     { step: 2, title: 'On-Site Inspection', description: 'We inspect furniture, floors, doors, or frames for damage, fading, scratches, old finish problems, and site-specific execution needs.', image: '/products/consultation/visiting2.png' },
-    { step: 3, title: 'Finish Recommendation', description: 'You get guidance on the right service approach, material system, shade direction, and whether repair, polish, or color change is the better path.', image: '/assets/optimized/select-wood-polish-shade-768w.webp' },
-    { step: 4, title: 'Estimate & Timeline', description: 'We explain pricing, probable turnaround time, and how the work can be phased for convenience inside your home.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
-    { step: 5, title: 'Execution Planning', description: `Once approved, we help schedule the work in ${loc.name} for the earliest suitable date with a clear scope and expectation set.`, image: '/assets/optimized/drying-finishing.webp' }
+    { step: 3, title: 'Finish Recommendation', description: 'You get guidance on the right service approach, material system, shade direction, and whether repair, polish, or color change is the better path.', image: '/assets/Antique Restoration.jpg' },
+    { step: 4, title: 'Estimate & Timeline', description: 'We explain pricing, probable turnaround time, and how the work can be phased for convenience inside your home.', image: '/assets/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Execution Planning', description: `Once approved, we help schedule the work in ${loc.name} for the earliest suitable date with a clear scope and expectation set.`, image: '/assets/drying-finishing.webp' }
   ],
   pricing: {
     startingPrice: 99,
@@ -1346,10 +1346,10 @@ const handFloorPolishConfig: HighIntentServiceConfig = {
   services: handFloorPolishServices,
   process: (loc) => [
     { step: 1, title: 'Floor Inspection', description: `We inspect the wooden floor in your ${loc.name} property, identify scratches, worn paths, patchy sheen, and decide the right hand-prep strategy.`, image: '/products/FloorPoshining/lamination_polishing.webp' },
-    { step: 2, title: 'Hand Preparation', description: 'Edges, corners, and damaged sections are prepared manually for more control and better surface correction where needed.', image: '/assets/optimized/Cleaning & Sanding.webp' },
-    { step: 3, title: 'Scratch & Tone Correction', description: 'We smooth visible damage, balance uneven areas, and prepare the surface for a more premium-looking final coat.', image: '/assets/optimized/Cleaning & Sanding (2).webp' },
-    { step: 4, title: 'Hand Polish Application', description: 'Fresh polish coats are applied with close attention to consistency, tone, and room-by-room finish quality.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
-    { step: 5, title: 'Drying & Care Handover', description: `After the finish settles, we share curing and maintenance guidance so your ${loc.name} floor keeps its improved look for longer.`, image: '/assets/optimized/drying-finishing.webp' }
+    { step: 2, title: 'Hand Preparation', description: 'Edges, corners, and damaged sections are prepared manually for more control and better surface correction where needed.', image: '/assets/Cleaning & Sanding.webp' },
+    { step: 3, title: 'Scratch & Tone Correction', description: 'We smooth visible damage, balance uneven areas, and prepare the surface for a more premium-looking final coat.', image: '/assets/Cleaning & Sanding (2).webp' },
+    { step: 4, title: 'Hand Polish Application', description: 'Fresh polish coats are applied with close attention to consistency, tone, and room-by-room finish quality.', image: '/assets/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Drying & Care Handover', description: `After the finish settles, we share curing and maintenance guidance so your ${loc.name} floor keeps its improved look for longer.`, image: '/assets/drying-finishing.webp' }
   ],
   pricing: {
     startingPrice: 160,
@@ -1390,10 +1390,10 @@ const machineFloorPolishConfig: HighIntentServiceConfig = {
   services: machineFloorPolishServices,
   process: (loc) => [
     { step: 1, title: 'Site Assessment', description: `We assess the floor condition in ${loc.name}, surface wear, access, and whether machine restoration is the right method for the area size and damage level.`, image: '/products/FloorPoshining/darkBrownMachinePolish.webp' },
-    { step: 2, title: 'Machine Sanding', description: 'Old finish build-up, visible wear, and roughness are reduced through structured machine preparation.', image: '/assets/optimized/Cleaning & Sanding.webp' },
-    { step: 3, title: 'Levelling & Buffing', description: 'The floor is refined for better smoothness, consistency, and overall finish quality before recoating.', image: '/assets/optimized/Cleaning & Sanding (2).webp' },
-    { step: 4, title: 'Recoating', description: 'Fresh floor polish coats are applied to revive sheen, improve protection, and create a cleaner-looking wood surface.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
-    { step: 5, title: 'Final Inspection', description: `We review the finished floor with you and explain safe usage timing for your ${loc.name} property.`, image: '/assets/optimized/drying-finishing.webp' }
+    { step: 2, title: 'Machine Sanding', description: 'Old finish build-up, visible wear, and roughness are reduced through structured machine preparation.', image: '/assets/Cleaning & Sanding.webp' },
+    { step: 3, title: 'Levelling & Buffing', description: 'The floor is refined for better smoothness, consistency, and overall finish quality before recoating.', image: '/assets/Cleaning & Sanding (2).webp' },
+    { step: 4, title: 'Recoating', description: 'Fresh floor polish coats are applied to revive sheen, improve protection, and create a cleaner-looking wood surface.', image: '/assets/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Final Inspection', description: `We review the finished floor with you and explain safe usage timing for your ${loc.name} property.`, image: '/assets/drying-finishing.webp' }
   ],
   pricing: {
     startingPrice: 170,
@@ -1434,10 +1434,10 @@ const doorColorChangeConfig: HighIntentServiceConfig = {
   services: doorColorChangeServices,
   process: (loc) => [
     { step: 1, title: 'Door Assessment', description: `We inspect the doors at your ${loc.name} property, check the old finish, wood condition, hardware masking needs, and discuss your target shade.`, image: '/products/front_page_service_products/door_polish.webp' },
-    { step: 2, title: 'Surface Preparation', description: 'The old finish is prepared carefully so the new color system holds better and looks cleaner after completion.', image: '/assets/optimized/Cleaning & Sanding.webp' },
+    { step: 2, title: 'Surface Preparation', description: 'The old finish is prepared carefully so the new color system holds better and looks cleaner after completion.', image: '/assets/Cleaning & Sanding.webp' },
     { step: 3, title: 'Color Planning', description: 'We match the new door tone with your furniture, wall colors, frames, and floor direction before application starts.', image: '/products/consultation/visiting2.png' },
-    { step: 4, title: 'Coating & Finish Build', description: 'Selected coats are applied in sequence to achieve the new shade and the desired matt, satin, or gloss finish.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
-    { step: 5, title: 'Drying & Handover', description: `We complete final checks and share safe use guidance so the refreshed doors in ${loc.name} cure properly and stay looking sharp.`, image: '/assets/optimized/drying-finishing.webp' }
+    { step: 4, title: 'Coating & Finish Build', description: 'Selected coats are applied in sequence to achieve the new shade and the desired matt, satin, or gloss finish.', image: '/assets/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Drying & Handover', description: `We complete final checks and share safe use guidance so the refreshed doors in ${loc.name} cure properly and stay looking sharp.`, image: '/assets/drying-finishing.webp' }
   ],
   pricing: {
     startingPrice: 4500,
@@ -1478,10 +1478,10 @@ const frameColorChangeConfig: HighIntentServiceConfig = {
   services: frameColorChangeServices,
   process: (loc) => [
     { step: 1, title: 'Frame Condition Review', description: `We inspect the visible frame sections in your ${loc.name} property, note finish failure, edge wear, moisture marks, and your target color direction.`, image: '/products/consultation/visiting2.png' },
-    { step: 2, title: 'Cleaning & Sanding', description: 'Frames are prepared carefully with attention to joints, grooves, borders, and narrow sections that need cleaner detailing.', image: '/assets/optimized/Cleaning & Sanding.webp' },
-    { step: 3, title: 'Repair & Shade Matching', description: 'Small imperfections are corrected where needed and the new tone is matched against nearby doors, floors, or furniture.', image: '/assets/optimized/Cleaning & Sanding (2).webp' },
-    { step: 4, title: 'Color Change Application', description: 'The selected finish system is applied evenly across the visible frame surfaces for a neater and more updated look.', image: '/assets/optimized/filling-gaps-polish-application.webp' },
-    { step: 5, title: 'Final Detailing', description: `We complete touch-ups and hand over your refreshed ${loc.name} frame work with aftercare advice.`, image: '/assets/optimized/drying-finishing.webp' }
+    { step: 2, title: 'Cleaning & Sanding', description: 'Frames are prepared carefully with attention to joints, grooves, borders, and narrow sections that need cleaner detailing.', image: '/assets/Cleaning & Sanding.webp' },
+    { step: 3, title: 'Repair & Shade Matching', description: 'Small imperfections are corrected where needed and the new tone is matched against nearby doors, floors, or furniture.', image: '/assets/Cleaning & Sanding (2).webp' },
+    { step: 4, title: 'Color Change Application', description: 'The selected finish system is applied evenly across the visible frame surfaces for a neater and more updated look.', image: '/assets/filling-gaps-polish-application.webp' },
+    { step: 5, title: 'Final Detailing', description: `We complete touch-ups and hand over your refreshed ${loc.name} frame work with aftercare advice.`, image: '/assets/drying-finishing.webp' }
   ],
   pricing: {
     startingPrice: 3899,

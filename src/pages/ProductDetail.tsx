@@ -184,13 +184,13 @@ const ProductDetail: React.FC = () => {
     
     // Otherwise, use color variants
     if (!product.colorVariants || product.colorVariants.length === 0) {
-      return '/products/placeholder.webp'; // Fallback
+      return '/assets/Antique Restoration.jpg'; // Fallback
     }
     
     const variant = product.colorVariants.find((v) => v.id === selectedColor);
     if (variant?.image) return variant.image;
     const fallback = product.colorVariants.find((v) => v.image);
-    return fallback?.image || '/products/placeholder.webp';
+    return fallback?.image || '/assets/Antique Restoration.jpg';
   };
 
   const discountPercent = Math.round(
@@ -797,7 +797,7 @@ const ProductDetail: React.FC = () => {
                     >
                       <div className="relative bg-gray-50 aspect-[4/3] overflow-hidden">
                         <img
-                          src={rp.image || rp.colorVariants?.[0]?.image || '/products/placeholder.webp'}
+                          src={rp.image || rp.colorVariants?.[0]?.image || '/assets/Antique Restoration.jpg'}
                           alt={rp.name}
                           className="w-full h-full object-cover p-2 group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"

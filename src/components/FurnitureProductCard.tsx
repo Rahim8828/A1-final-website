@@ -27,14 +27,14 @@ const FurnitureProductCard: React.FC<FurnitureProductCardProps> = ({ product, vi
     
     // Otherwise, use color variants
     if (!product.colorVariants || product.colorVariants.length === 0) {
-      return '/products/placeholder.webp'; // Fallback
+      return '/assets/Antique Restoration.jpg'; // Fallback
     }
     
     const variant = product.colorVariants.find((v) => v.id === selectedColor);
     if (variant && variant.image) return variant.image;
     // fallback to first variant with image
     const fallback = product.colorVariants.find((v) => v.image);
-    return fallback?.image || '/products/placeholder.webp';
+    return fallback?.image || '/assets/Antique Restoration.jpg';
   };
 
   const discountPercent = Math.round(

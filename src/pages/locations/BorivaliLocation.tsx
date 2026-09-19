@@ -4,7 +4,6 @@ import { Phone, MapPin, Clock, Star, CheckCircle, ArrowRight, Shield, Award, Spa
 import SEOHead from '../../components/SEOHead';
 import JsonLd from '../../components/JsonLd';
 import { getCanonicalURL } from '../../utils/canonicalURL';
-import StickyWhatsApp from '../../components/StickyWhatsApp';
 
 const BorivaliLocation: React.FC = () => {
   const services = [
@@ -495,8 +494,6 @@ const BorivaliLocation: React.FC = () => {
             </div>
           </div>
         </section>
-
-        <StickyWhatsApp />
       </div>
     </>
   );
