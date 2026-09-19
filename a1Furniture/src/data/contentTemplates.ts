@@ -308,15 +308,15 @@ export function generateFAQs(serviceCategory: string, location: string): FAQItem
 
 /**
  * Generates related services based on the current service category
- * Now filters to only show URLs that actually exist in the generated pages
- * UPDATED: Uses diverse title variations for better internal linking
+ * FIXED: Now generates UNIQUE services only (no duplicates)
+ * Each service appears ONCE with a diverse title variation
  */
 export function generateRelatedServices(
   currentServiceCategory: string,
   currentLocation: string,
   existingUrls?: Set<string>
 ): { name: string; url: string }[] {
-  // Map of service categories to their related services (EXPANDED to 6 services each)
+  // Map of service categories to their related services (UNIQUE - no duplicates)
   const relatedServicesMap: Record<string, string[]> = {
     'furniture-polishing': ['wood-polishing', 'pu-polish', 'wardrobe-polishing', 'dining-table-polishing', 'door-polishing', 'teak-wood-polish'],
     'wood-polishing': ['furniture-polishing', 'teak-wood-polish', 'door-polishing', 'cabinet-wood-polish', 'wardrobe-polishing', 'pu-polish'],
@@ -342,97 +342,60 @@ export function generateRelatedServices(
 
   const related = relatedServicesMap[currentServiceCategory] || ['furniture-polishing', 'wood-polishing', 'pu-polish', 'wardrobe-polishing', 'door-polishing', 'teak-wood-polish'];
   
-  // Title variations to use for related services - DIVERSE MIX
-  // Rotate through all 4 variations to ensure even distribution
-  const titleVariations = ['affordable', 'top-rated', 'professional', 'best'];
+  // Title variations - use different variations for different services
+  const titleVariations = ['affordable', 'top-rated', 'professional', 'best', 'affordable', 'top-rated'];
   
-  // Generate diverse related service URLs (THREE variations per service type for maximum coverage)
-  // This increases from 8 to 12 related services per page
-  const diverseRelated: { name: string; url: string; serviceSlug: string; variation: string }[] = [];
+  const locationSlug = currentLocation.toLowerCase().replace(/\s+/g, '-');
   
-  // First pass: Add one link per service with rotating variations (6 services)
-  for (let i = 0; i < related.length && i < 6; i++) {
+  // Generate UNIQUE related services - each service only appears ONCE
+  const uniqueRelated: { name: string; url: string }[] = [];
+  const addedUrls = new Set<string>();
+  
+  for (let i = 0; i < Math.min(6, related.length); i++) {
     const serviceSlug = related[i];
-    const variation = titleVariations[i % titleVariations.length]; // Rotate through variations
+    const variation = titleVariations[i]; // Each service gets different variation
     const serviceName = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    const locationSlug = currentLocation.toLowerCase().replace(/\s+/g, '-');
-    const url = `/services/${variation}-${serviceSlug}-${locationSlug}`;
     
-    diverseRelated.push({
-      name: serviceName,
-      url,
-      serviceSlug,
-      variation
-    });
-  }
-  
-  // Second pass: Add another variation for each service (different from first pass)
-  for (let i = 0; i < related.length && i < 6; i++) {
-    const serviceSlug = related[i];
-    // Use different variation than first pass (offset by 2)
-    const variation = titleVariations[(i + 2) % titleVariations.length];
-    const serviceName = serviceSlug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    const locationSlug = currentLocation.toLowerCase().replace(/\s+/g, '-');
-    const url = `/services/${variation}-${serviceSlug}-${locationSlug}`;
+    // Try exact location first
+    let url = `/services/${variation}-${serviceSlug}-${locationSlug}`;
     
-    diverseRelated.push({
-      name: serviceName,
-      url,
-      serviceSlug,
-      variation
-    });
-  }
-  
-  // If existingUrls is provided, filter to only show URLs that exist
-  if (existingUrls && existingUrls.size > 0) {
-    const finalRelated: { name: string; url: string }[] = [];
-    const addedUrls = new Set<string>(); // Track to avoid duplicates
-    
-    // Try to find each diverse related service in order
-    for (const relatedService of diverseRelated) {
-      // First try: exact match (same location, diverse variation)
-      if (existingUrls.has(relatedService.url) && !addedUrls.has(relatedService.url)) {
-        finalRelated.push({
-          name: relatedService.name,
-          url: relatedService.url
-        });
-        addedUrls.add(relatedService.url);
-        continue;
-      }
-      
-      // Second try: Mumbai fallback with SAME variation (to maintain diversity)
-      const mumbaiUrl = `/services/${relatedService.variation}-${relatedService.serviceSlug}-mumbai`;
-      if (existingUrls.has(mumbaiUrl) && !addedUrls.has(mumbaiUrl)) {
-        finalRelated.push({
-          name: relatedService.name,
-          url: mumbaiUrl
-        });
-        addedUrls.add(mumbaiUrl);
-        continue;
-      }
-      
-      // Third try: Mumbai fallback with ANY variation (last resort)
-      for (const variation of titleVariations) {
-        const fallbackUrl = `/services/${variation}-${relatedService.serviceSlug}-mumbai`;
-        if (existingUrls.has(fallbackUrl) && !addedUrls.has(fallbackUrl)) {
-          finalRelated.push({
-            name: relatedService.name,
-            url: fallbackUrl
-          });
-          addedUrls.add(fallbackUrl);
-          break;
+    // If existingUrls provided, find best match
+    if (existingUrls && existingUrls.size > 0) {
+      // First try: exact match with specific location
+      if (existingUrls.has(url)) {
+        // Good - exact match exists
+      } else {
+        // Fallback: try Mumbai generic
+        const mumbaiUrl = `/services/${variation}-${serviceSlug}-mumbai`;
+        if (existingUrls.has(mumbaiUrl)) {
+          url = mumbaiUrl;
+        } else {
+          // Last resort: find ANY existing URL for this service
+          let found = false;
+          for (const v of ['affordable', 'top-rated', 'professional', 'best']) {
+            const testUrl = `/services/${v}-${serviceSlug}-mumbai`;
+            if (existingUrls.has(testUrl)) {
+              url = testUrl;
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            // Skip this service if no valid URL found
+            continue;
+          }
         }
       }
-      
-      // If we found 12 services, we're done
-      if (finalRelated.length >= 12) break;
     }
     
-    return finalRelated.slice(0, 12); // Return up to 12 related services
+    // Avoid duplicate URLs
+    if (!addedUrls.has(url)) {
+      uniqueRelated.push({ name: serviceName, url });
+      addedUrls.add(url);
+    }
   }
   
-  // Fallback: return diverse related services (for backward compatibility during generation)
-  return diverseRelated.map(r => ({ name: r.name, url: r.url })).slice(0, 12);
+  return uniqueRelated; // Return 6 unique services (not 12 duplicates)
 }
 
 /**

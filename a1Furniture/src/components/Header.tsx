@@ -182,94 +182,11 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Search Bar in Navigation Bar Slot */}
-      <div className="border-t border-gray-100 hidden md:block py-2 bg-gray-50/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-center" ref={searchRef}>
-            <div className="relative w-full max-w-xl">
-              <div className={`flex items-center border rounded-xl bg-white transition-all duration-200 ${isSearchFocused ? 'border-amber-400 shadow-md ring-2 ring-amber-100' : 'border-gray-200 hover:border-gray-300'}`}>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  placeholder="Search Services & Locations..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setIsSearchFocused(true)}
-                  className="flex-1 px-4 py-2 text-sm text-gray-700 bg-transparent outline-none placeholder:text-gray-400"
-                />
-                <button className="flex items-center justify-center w-10 h-10 text-gray-400 hover:text-amber-600 transition-colors">
-                  <Search className="w-5 h-5" />
-                </button>
-              </div>
 
-              {/* Search Dropdown */}
-              {isSearchFocused && (searchResults.length > 0 || searchQuery.trim()) && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50 max-h-[400px] overflow-y-auto">
-                  {searchResults.length > 0 ? (
-                    searchResults.map((item, i) => (
-                      <button
-                        key={i}
-                        onClick={() => handleSearchSelect(item)}
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left border-b border-gray-50 last:border-0"
-                      >
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-800 truncate">{item.label}</p>
-                          <p className="text-xs text-gray-500 truncate">{item.description}</p>
-                        </div>
-                        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0 uppercase ${typeColors[item.type]}`}>
-                          {item.type}
-                        </span>
-                      </button>
-                    ))
-                  ) : (
-                    <div className="px-4 py-6 text-center text-sm text-gray-400">
-                      No results for "{searchQuery}"
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="md:hidden border-t border-gray-100 bg-white">
-          {/* Mobile Search */}
-          <div className="px-4 py-3 border-b border-gray-50">
-            <div className={`flex items-center border rounded-lg ${isSearchFocused ? 'border-amber-400' : 'border-gray-200'}`}>
-              <input
-                type="text"
-                placeholder="Search services, locations..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                className="flex-1 px-3 py-2 text-sm bg-transparent outline-none"
-              />
-              <Search className="w-4 h-4 text-gray-400 mr-3" />
-            </div>
-            {isSearchFocused && searchResults.length > 0 && (
-              <div className="mt-2 bg-white rounded-lg border border-gray-100 max-h-48 overflow-y-auto">
-                {searchResults.map((item, i) => (
-                  <button
-                    key={i}
-                    onClick={() => { handleSearchSelect(item); setIsMenuOpen(false); }}
-                    className="w-full flex items-center gap-2 px-3 py-2 hover:bg-gray-50 text-left border-b border-gray-50 last:border-0"
-                  >
-                    <div className="flex-1">
-                      <p className="text-sm text-gray-800">{item.label}</p>
-                      <p className="text-xs text-gray-400">{item.description}</p>
-                    </div>
-                    <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase ${typeColors[item.type]}`}>
-                      {item.type}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
           {/* Nav Links */}
           <nav className="px-4 py-3 space-y-1">
             {navLinks.map((item) => (

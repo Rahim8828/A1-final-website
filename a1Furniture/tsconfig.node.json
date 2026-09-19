@@ -10,7 +10,6 @@
   },
   "include": [
     "vite.config.ts",
-    "vitest.config.ts",
     "scripts/**/*",
     "src/seo/**/*.ts",
     "src/data/**/*.ts",

@@ -161,7 +161,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     return (
         <>
             <div
-                className="fixed inset-0 z-[60] overflow-hidden"
+                className="fixed inset-0 z-[70] overflow-hidden"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="product-modal-title"
@@ -174,19 +174,19 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 />
 
                 {/* Modal Container */}
-                <div className="fixed inset-0 flex items-end md:items-center md:justify-center">
+                <div className="fixed inset-0 flex items-end md:items-center md:justify-center p-0 md:p-4 pb-16 md:pb-4">
                     {/* Modal Content - Teakwood Theme */}
                     <div
                         ref={modalRef}
                         tabIndex={-1}
-                        className="relative w-full max-h-[85vh] md:max-h-[80vh] md:max-w-lg md:w-full 
+                        className="relative w-full max-h-[calc(100vh-5rem)] md:max-h-[85vh] md:max-w-lg md:w-full 
                        bg-gradient-to-b from-[#FDF8F3] to-[#F5EBE0]
                        rounded-t-2xl md:rounded-2xl shadow-2xl flex flex-col z-50
                        animate-slide-up md:animate-scale-in
                        border border-[#D2B48C]/30"
                     >
                         {/* Header - Teakwood Gradient */}
-                        <div className="sticky top-0 z-10 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] rounded-t-2xl">
+                        <div className="flex-shrink-0 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] rounded-t-2xl">
                             <div className="flex items-center justify-between px-4 py-3">
                                 <h2
                                     id="product-modal-title"
@@ -368,7 +368,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                         </div>
 
                         {/* Footer - Teakwood Button */}
-                        <div className="sticky bottom-0 bg-gradient-to-t from-[#F5EBE0] to-[#FDF8F3] 
+                        <div className="flex-shrink-0 bg-gradient-to-t from-[#F5EBE0] to-[#FDF8F3] 
                             border-t border-[#D2B48C]/30 p-4 rounded-b-2xl">
                             {!isSelected ? (
                                 <button

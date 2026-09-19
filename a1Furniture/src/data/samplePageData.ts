@@ -179,7 +179,7 @@ export const samplePageData: PageData = {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: 'A1 Furniture Polish - Mumbai',
-      image: 'https://a1furniturepolish.com/assets/wooden furniture .webp',
+      image: 'https://a1furniturepolish.com/assets/wooden-furniture.webp',
       '@id': 'https://a1furniturepolish.com',
       url: 'https://a1furniturepolish.com/services/affordable-furniture-polishing-mumbai',
       telephone: '+918828709945',

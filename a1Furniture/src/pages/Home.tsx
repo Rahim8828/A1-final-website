@@ -9,16 +9,17 @@ import { localBusiness } from '../data/localBusiness';
 import { services as servicesSchema } from '../data/services';
 import { reviews, aggregateRating } from '../data/reviews';
 import TrustBadges from '../components/TrustBadges';
-import MobileCategoryScroll from '../components/MobileCategoryScroll';
-import ShopByCategories from '../components/ShopByCategories';
-import OurProcess from '../components/OurProcess';
-import StatsSection from '../components/StatsSection';
-import CustomerPhotos from '../components/CustomerPhotos';
-import ServiceAreas from '../components/ServiceAreas';
-import QuickQuoteCalculator from '../components/QuickQuoteCalculator';
-import FAQSection from '../components/FAQSection';
-import ContactCTA from '../components/ContactCTA';
 import ServiceCategoryBar from '../components/ServiceCategoryBar';
+import PopularServices from '../components/PopularServices';
+import WhyBookOnline from '../components/WhyBookOnline';
+import FinalCTA from '../components/FinalCTA';
+import FAQSection from '../components/FAQSection';
+
+// Lazy load heavy components
+const OurProcess = lazy(() => import('../components/OurProcess'));
+const StatsCounter = lazy(() => import('../components/StatsCounter'));
+const CustomerPhotos = lazy(() => import('../components/CustomerPhotos'));
+const QuickQuoteCalculator = lazy(() => import('../components/QuickQuoteCalculator'));
 
 // FAQ data for JSON-LD structured data
 const homeFaqs = [
@@ -81,7 +82,7 @@ const Home = () => {
       {/* SEO Meta Tags */}
       <Helmet>
         <title>Furniture Polish Services in Mumbai | A1 Furniture Polish</title>
-        <meta name="description" content="Professional furniture polishing services in Mumbai. Expert wood polish, sofa repair, bed polish & more. Same-day booking & 6-month warranty. Book now!" />
+        <meta name="description" content="Professional furniture polishing services in Mumbai. Expert wood polish, sofa repair, bed polish &amp; more. Same-day booking &amp; 6-month warranty. Book now!" />
         <meta name="keywords" content="furniture polish mumbai, wood polish mumbai, sofa polish, bed polish, wardrobe polish, door polish, antique restoration, furniture polishing near me, best furniture polish services" />
         <link rel="canonical" href={getCanonicalURL('/')} />
         <meta name="robots" content="index, follow" />
@@ -109,7 +110,8 @@ const Home = () => {
           </script>
         ))}
       </Helmet>
-      {/* Unified Premium Hero Section (matching screenshot UI) */}
+
+      {/* Hero Section */}
       <section className="bg-[#FAF6F0] pt-10 pb-16 md:pt-16 md:pb-24 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto flex flex-col items-start text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight mb-4 max-w-4xl">
@@ -144,7 +146,7 @@ const Home = () => {
           {/* Call to Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Link
-              to="/book"
+              to="/services"
               className="inline-flex items-center justify-center gap-2 bg-[#D97706] hover:bg-[#B45F06] text-white px-8 py-3.5 rounded-xl font-bold uppercase text-sm tracking-wider shadow-md hover:shadow-lg transition-all duration-200 active:scale-95"
             >
               Book Now
@@ -169,14 +171,8 @@ const Home = () => {
         <TrustBadges />
       </section>
 
-      {/* Shop By Categories: Tabbed grid - Hidden on mobile, shown on desktop */}
-      <section className="hidden md:block max-w-6xl mx-auto px-4 py-8">
-        <ShopByCategories />
-      </section>
-
-
-
-
+      {/* Popular Services - Most booked services with quick booking */}
+      <PopularServices />
 
       {/* Our Process: Step-by-step visual */}
       <section className="max-w-6xl mx-auto px-4 py-8">
@@ -185,8 +181,10 @@ const Home = () => {
         </Suspense>
       </section>
 
-      {/* Stats Section: Achievements and Numbers */}
-      <StatsSection />
+      {/* Stats Counter: Achievements and Numbers */}
+      <Suspense fallback={<div className="py-16" />}>
+        <StatsCounter />
+      </Suspense>
 
       {/* Customer Photos: Gallery grid */}
       <section className="max-w-6xl mx-auto px-4 py-8">
@@ -195,10 +193,8 @@ const Home = () => {
         </Suspense>
       </section>
 
-      {/* Service Areas: Mumbai locations */}
-      <section className="max-w-6xl mx-auto px-4 py-8">
-        <ServiceAreas />
-      </section>
+      {/* Why Book Online */}
+      <WhyBookOnline />
 
       {/* Quick Quote Calculator */}
       <section className="max-w-6xl mx-auto px-4 py-8">
@@ -212,10 +208,8 @@ const Home = () => {
         <FAQSection />
       </section>
 
-      {/* Contact CTA */}
-      <section className="max-w-6xl mx-auto px-4 py-8">
-        <ContactCTA />
-      </section>
+      {/* Final CTA - Join 50,000+ Happy Customers */}
+      <FinalCTA />
     </main>
   );
 };

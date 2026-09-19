@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white pb-16 md:pb-0">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
@@ -35,13 +35,13 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Our Services */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-amber-400">Our Services</h4>
             <ul className="space-y-2 text-sm">
               <li><Link to="/services/wooden-furniture-polish" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">Wooden Furniture Polish</Link></li>
-              <li><Link to="/sofa-chair-polishing" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">Sofa & Chair Polishing</Link></li>
-              <li><Link to="/services/table-and-bed-polishing" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">Table & Bed Polishing</Link></li>
+              <li><Link to="/sofa-chair-polishing" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">Sofa &amp; Chair Polishing</Link></li>
+              <li><Link to="/services/table-and-bed-polishing" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">Table &amp; Bed Polishing</Link></li>
               <li><Link to="/services/antique-restoration" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">Antique Restoration</Link></li>
               <li><Link to="/services/commercial-polishing" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">Commercial Polishing</Link></li>
             </ul>
@@ -52,17 +52,15 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 text-amber-400">Contact Info</h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-2">
-                <Phone size={16} className="text-amber-400 mt-1" />
-                <div className="flex flex-col">
-                  <a href="tel:+918828709945" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">
-                    +91 8828709945
-                  </a>
-                </div>
+                <Phone size={16} className="text-amber-400 mt-1 flex-shrink-0" />
+                <a href="tel:+918828709945" className="text-gray-300 hover:text-amber-400 transition-colors duration-200">
+                  +91 8828709945
+                </a>
               </div>
               <div className="flex items-start space-x-2">
                 <Mail size={18} className="text-amber-400 flex-shrink-0 mt-1" />
                 <a href="mailto:A1furniturepolishservice@gmail.com" className="text-gray-300 hover:text-amber-400 transition-colors duration-200 text-sm break-all">
-                  contact@furniturepolish.com
+                  A1furniturepolishservice@gmail.com
                 </a>
               </div>
               <div className="flex items-start space-x-2">
@@ -70,7 +68,7 @@ const Footer = () => {
                 <span className="text-gray-300 text-sm">Shop No 18, Akbar Ali Compound, Relief Road, near HK College, Oshiwara, Jogeshwari West, Mumbai, Maharashtra 400102</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Clock size={16} className="text-amber-400" />
+                <Clock size={16} className="text-amber-400 flex-shrink-0" />
                 <span className="text-gray-300 text-sm">24 Hours Service</span>
               </div>
               <a
@@ -89,7 +87,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 A1 Furniture Polish. All rights reserved.
+              © {new Date().getFullYear()} A1 Furniture Polish. All rights reserved.
             </p>
             <p className="text-gray-400 text-sm mt-2 md:mt-0">
               Professional Furniture Polishing Services in Mumbai

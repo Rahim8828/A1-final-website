@@ -1,1 +1,0 @@
-const w={fullWidth:"100vw",hero:"(max-width: 768px) 100vw, 80vw",content:"(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw",grid:"(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"};export{w as C};

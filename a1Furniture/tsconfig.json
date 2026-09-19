@@ -29,8 +29,8 @@
       "@seo/*": ["./src/seo/*"]
     },
 
-    /* Test globals */
-    "types": ["vitest/globals", "node", "@types/jsdom"]
+    /* Types */
+    "types": ["node"]
   },
   "include": [
     "src/**/*.ts",
@@ -41,12 +41,7 @@
     "blog/**/*.tsx",
     "blog/**/*.js",
     "blog/**/*.jsx",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/*.spec.ts",
-    "**/*.spec.tsx",
-    "vite.config.ts",
-    "vitest.config.ts"
+    "vite.config.ts"
   ],
   "exclude": [
     "node_modules",

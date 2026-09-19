@@ -31,14 +31,17 @@ const CommercialPolishing = lazy(() => import('./pages/CommercialPolishing'));
 const SofaServices = lazy(() => import('./pages/SofaServices'));
 const SofaFabricChange = lazy(() => import('./pages/SofaFabricChange'));
 const OfficeChairRepair = lazy(() => import('./pages/OfficeChairRepair'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const Cart = lazy(() => import('./pages/Cart'));
 const IkeaAssembly = lazy(() => import('./pages/IkeaAssembly'));
 const ServiceLocations = lazy(() => import('./pages/ServiceLocations'));
 const GoregaonFurniturePolish = lazy(() => import('./pages/GoregaonFurniturePolish'));
 const PowaiFurniturePolish = lazy(() => import('./pages/PowaiFurniturePolish'));
 const DadarLocation = lazy(() => import('./pages/locations/DadarLocation.tsx'));
+const ThaneLocation = lazy(() => import('./pages/locations/ThaneLocation'));
+const SantacruzLocation = lazy(() => import('./pages/locations/SantacruzLocation'));
+const BorivaliLocation = lazy(() => import('./pages/locations/BorivaliLocation'));
 const Products = lazy(() => import('./pages/Products'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
-const OldServices = lazy(() => import('./pages/Services'));
 
 // Auto-generated page imports
 const AffordableFurniturePolishingMumbai = lazy(() => import('./pages/generated/AffordableFurniturePolishingMumbai'));
@@ -206,10 +209,34 @@ const ProfessionalAntiqueFurniturePolishJuhu = lazy(() => import('./pages/genera
 
 
 
-// Loading component
+// Loading component with retry capability
 const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600"></div>
+  <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-600 mb-4"></div>
+    <p className="text-gray-600">Loading page...</p>
+  </div>
+);
+
+// Route-level error fallback
+const RouteErrorFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
+      <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+      </div>
+      <h2 className="text-xl font-bold text-gray-900 mb-2">Page Loading Issue</h2>
+      <p className="text-gray-600 mb-6">
+        This page is taking longer than expected to load.
+      </p>
+      <button
+        onClick={() => window.location.reload()}
+        className="w-full bg-amber-600 text-white font-semibold py-3 rounded-lg hover:bg-amber-700 transition-colors"
+      >
+        Refresh Page
+      </button>
+    </div>
   </div>
 );
 
@@ -222,13 +249,13 @@ function App() {
           <div className="flex flex-col min-h-screen font-sans bg-white">
             <Header />
             <main className="flex-grow pb-24 md:pb-0 bg-white">
-              <Suspense fallback={<PageLoader />}>
-            <Routes>
+              <ErrorBoundary fallback={<RouteErrorFallback />}>
+                <Suspense fallback={<PageLoader />}>
+                  <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Products />} />
-              <Route path="/services/:productId" element={<ProductDetail />} />
-              <Route path="/book" element={<OldServices />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/book" element={<Services />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<BlogListPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
@@ -241,10 +268,12 @@ function App() {
               <Route path="/services/table-and-bed-polishing" element={<TableAndBedPolishing />} />
               <Route path="/services/antique-restoration" element={<AntiqueRestoration />} />
               <Route path="/services/commercial-polishing" element={<CommercialPolishing />} />
-              <Route path="/sofa-fabric-change" element={<SofaServices />} />
+              <Route path="/sofa-fabric-change" element={<SofaFabricChange />} />
               <Route path="/sofa-services" element={<SofaServices />} />
               <Route path="/ikea-assembly" element={<IkeaAssembly />} />
               <Route path="/office-chair-repair" element={<OfficeChairRepair />} />
+              <Route path="/product/:slug" element={<ProductDetail />} />
+              <Route path="/cart" element={<Cart />} />
               
               {/* Service Locations Page */}
               <Route path="/service-areas-mumbai" element={<ServiceLocations />} />
@@ -253,6 +282,16 @@ function App() {
               <Route path="/goregaon-furniture-polish" element={<GoregaonFurniturePolish />} />
               <Route path="/powai-furniture-polish" element={<PowaiFurniturePolish />} />
               <Route path="/dadar" element={<DadarLocation />} />
+              <Route path="/thane" element={<ThaneLocation />} />
+              <Route path="/thane-furniture-polish" element={<ThaneLocation />} />
+              <Route path="/furniture-polish-service-thane" element={<ThaneLocation />} />
+              <Route path="/furniture-polish-thane" element={<ThaneLocation />} />
+              <Route path="/santacruz" element={<SantacruzLocation />} />
+              <Route path="/santacruz-furniture-polish" element={<SantacruzLocation />} />
+              <Route path="/furniture-polish-service-santacruz" element={<SantacruzLocation />} />
+              <Route path="/borivali" element={<BorivaliLocation />} />
+              <Route path="/borivali-furniture-polish" element={<BorivaliLocation />} />
+              <Route path="/furniture-polish-service-borivali" element={<BorivaliLocation />} />
               
               {/* Redirect /products to /services */}
               <Route path="/products" element={<Navigate to="/services" replace />} />
@@ -434,8 +473,17 @@ function App() {
               <Route path="/services/affordable-antique-furniture-polish-santacruz" element={<AffordableAntiqueFurniturePolishSantacruz />} />
               <Route path="/services/top-rated-antique-furniture-polish-vile-parle" element={<TopRatedAntiqueFurniturePolishVileParle />} />
               <Route path="/services/professional-antique-furniture-polish-juhu" element={<ProfessionalAntiqueFurniturePolishJuhu />} />
+
+              {/* Sofa repair, bed repair, and SEO gap pages (sitemap-indexed) */}
+              {sofaRepairRoutes}
+              {bedRepairRoutes}
+              {seoGapRoutes}
+
+              {/* Catch-all 404 — prevents blank main for unknown/indexed URLs */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
-            </Suspense>
+                </Suspense>
+              </ErrorBoundary>
           </main>
           <Footer />
           <BottomNav />

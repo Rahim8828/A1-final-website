@@ -71,6 +71,18 @@ const Services = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [showCart]);
 
+  // Handle URL parameter for opening cart modal
+  useEffect(() => {
+    if (searchParams.get('cart') === 'open') {
+      setShowCart(true);
+    }
+  }, [searchParams]);
+
+  // Dispatch custom event on cart change so BottomNav badge updates
+  useEffect(() => {
+    window.dispatchEvent(new Event('cart-updated'));
+  }, [selectedServices]);
+
   // Update URL when cart opens/closes
   useEffect(() => {
     if (showCart) {
@@ -288,18 +300,74 @@ const Services = () => {
         {/* Header - Enhanced UI with Cart Icon */}
         <header className="bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 border-b-2 border-amber-200 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4 md:py-6">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-                  Furniture Wood Polish
-                </h1>
+            <div className="flex items-center justify-between gap-4">
+              {/* Left - Back/Home Button (Optional) */}
+              <div className="flex items-center">
+                <div className="w-10 md:w-12 flex items-center justify-center">
+                  {/* Placeholder for future back button */}
+                </div>
               </div>
-              <p className="text-gray-600 text-xs sm:text-sm md:text-base font-medium">
-                Professional polishing • 6 Months Warranty • Expert Craftsmen
-              </p>
+              
+              {/* Center - Title with Icon */}
+              <div className="flex-1 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <svg 
+                    className="w-6 h-6 md:w-7 md:h-7 text-amber-600 hidden sm:block" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+                    Furniture Wood Polish
+                  </h1>
+                </div>
+                <p className="text-gray-600 text-xs sm:text-sm md:text-base font-medium">
+                  Professional polishing • 6 Months Warranty • Expert Craftsmen
+                </p>
+              </div>
+              
+              {/* Right - Cart Icon with Enhanced Badge */}
+              <div className="flex items-center">
+                <CartIcon
+                  itemCount={selectedServices.length}
+                  onClick={handleViewCart}
+                />
+              </div>
             </div>
           </div>
         </header>
+
+      {/* Category Grid Section - Extra Compact */}
+      <section className="bg-gray-50 py-3 sm:py-4">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4">
+          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-1.5 sm:gap-2">
+            {polishServices.map((service) => (
+              <button
+                key={service.id}
+                onClick={() => handleViewDetails(service.id)}
+                className="flex flex-col items-center gap-1 p-1.5 sm:p-2 bg-white rounded-md hover:shadow-md active:shadow-sm transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-amber-600 group"
+                aria-label={`View ${service.name} options`}
+                type="button"
+              >
+                <div className="w-full aspect-square bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1 sm:p-1.5 group-hover:bg-gray-100 transition-colors">
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <span className="text-[9px] sm:text-[10px] font-medium text-gray-900 text-center line-clamp-2 w-full leading-tight">
+                  {service.name}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
 
 
@@ -648,6 +716,14 @@ const Services = () => {
             <span className="font-medium text-gray-900 text-sm sm:text-base">Adding to cart...</span>
           </div>
         </div>
+      )}
+
+      {/* Floating Cart Button - Shows after scrolling */}
+      {!showCart && (
+        <FloatingCartButton
+          itemCount={selectedServices.length}
+          onClick={handleViewCart}
+        />
       )}
     </div>
     </>

@@ -11,7 +11,7 @@ const categoryImages: Record<string, string> = {
   'wardrobes-storage': '/products/wardrobe/double/darkWoodendoubleWardrobe.webp',
   'tv-units': '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp',
   doors: '/products/doors/single_door/darkWoodensingle.webp',
-  'floor-polish': '/products/FloorPoshining/lamination_polishing.webp',
+  'floor-polish': '/assets/Door-polish.webp',
   mandir: '/products/mandir/darkBrownmandir.webp',
   jhula: '/products/jhula/darkWoodenJhula.webp',
   consultation: '/products/consultation/visiting.png',

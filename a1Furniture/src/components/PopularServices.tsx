@@ -65,25 +65,27 @@ const PopularServices: React.FC = () => {
           ))}
         </div>
 
-        {/* ===== Desktop: Circular Grid (7 columns × 2 rows) ===== */}
-        <div className="hidden md:grid md:grid-cols-7 gap-x-6 gap-y-8 justify-items-center">
+        {/* ===== Desktop: Sleek Rounded Rectangular Card Grid ===== */}
+        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 gap-5">
           {services.map((service) => (
             <Link
               key={service.id}
               to={service.link}
-              className="flex flex-col items-center gap-2.5 group"
+              className="flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:border-amber-300 transition-all duration-300 group transform hover:-translate-y-1"
             >
-              <div className="w-[110px] h-[110px] lg:w-[128px] lg:h-[128px] rounded-full overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 border-2 border-gray-100 group-hover:border-amber-300">
+              <div className="w-full aspect-[4/3] overflow-hidden bg-gray-50">
                 <img
                   src={service.image}
                   alt={service.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
-              <span className="text-sm font-semibold text-gray-800 text-center leading-tight group-hover:text-amber-700 transition-colors">
-                {service.name}
-              </span>
+              <div className="p-3 text-center bg-white flex-1 flex items-center justify-center">
+                <span className="text-sm font-semibold text-gray-800 group-hover:text-amber-700 transition-colors leading-tight">
+                  {service.name}
+                </span>
+              </div>
             </Link>
           ))}
         </div>

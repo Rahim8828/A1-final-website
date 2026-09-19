@@ -192,12 +192,23 @@ const ServiceLocations: React.FC = () => {
               {/* Location List */}
               <div className="flex-1 overflow-y-auto px-5 py-3">
                 <div className="grid grid-cols-2 gap-2">
-                  {filteredLocations.map((loc) => (
-                    <a
-                      key={loc.name}
-                      href={`/services?location=${loc.name.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="group flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-amber-300 hover:shadow-md transition-all duration-200"
-                    >
+                    {filteredLocations.map((loc) => {
+                      const getHref = (name: string) => {
+                        const lower = name.toLowerCase();
+                        if (lower === 'thane') return '/thane';
+                        if (lower === 'dadar') return '/dadar';
+                        if (lower === 'powai') return '/powai-furniture-polish';
+                        if (lower === 'goregaon') return '/goregaon-furniture-polish';
+                        if (lower === 'santacruz') return '/santacruz';
+                        if (lower === 'borivali') return '/borivali';
+                        return `/services?location=${lower.replace(/\s+/g, '-')}`;
+                      };
+                      return (
+                        <a
+                          key={loc.name}
+                          href={getHref(loc.name)}
+                          className="group flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-amber-300 hover:shadow-md transition-all duration-200"
+                        >
                       <div className="w-10 h-10 flex-shrink-0 rounded-full bg-amber-50 flex items-center justify-center group-hover:bg-amber-100 transition-colors">
                         <MapPin className="w-4 h-4 text-amber-600" />
                       </div>
@@ -209,7 +220,8 @@ const ServiceLocations: React.FC = () => {
                       </div>
                       <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-amber-500 flex-shrink-0" />
                     </a>
-                  ))}
+                      );
+                    })}
                 </div>
 
                 {filteredLocations.length === 0 && (

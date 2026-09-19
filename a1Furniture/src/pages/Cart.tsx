@@ -5,17 +5,17 @@ import { SelectedService } from '../types';
 import SEO from '../components/SEO';
 
 interface CartProps {
-  selectedServices: SelectedService[];
-  onUpdateQuantity: (serviceId: string, optionId: string, newQuantity: number) => void;
-  onRemoveService: (serviceId: string, optionId: string) => void;
-  onProceedToCheckout: () => void;
+  selectedServices?: SelectedService[];
+  onUpdateQuantity?: (serviceId: string, optionId: string, newQuantity: number) => void;
+  onRemoveService?: (serviceId: string, optionId: string) => void;
+  onProceedToCheckout?: () => void;
 }
 
 const Cart: React.FC<CartProps> = ({
-  selectedServices,
-  onUpdateQuantity,
-  onRemoveService,
-  onProceedToCheckout,
+  selectedServices = [],
+  onUpdateQuantity = () => {},
+  onRemoveService = () => {},
+  onProceedToCheckout = () => {},
 }) => {
   const navigate = useNavigate();
   const [couponCode, setCouponCode] = useState('');

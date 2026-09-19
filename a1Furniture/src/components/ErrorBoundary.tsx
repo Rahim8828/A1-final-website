@@ -8,26 +8,52 @@ interface Props {
 interface State {
   hasError: boolean;
   error: Error | null;
+  isChunkError: boolean;
+}
+
+function isChunkLoadError(error: Error): boolean {
+  return (
+    error.name === 'ChunkLoadError' ||
+    error.message?.includes('Failed to fetch dynamically imported module') ||
+    error.message?.includes('Importing a module script failed') ||
+    error.message?.includes('error loading dynamically imported module')
+  );
 }
 
 class ErrorBoundary extends Component<Props, State> {
   public state: State = {
     hasError: false,
     error: null,
+    isChunkError: false,
   };
 
   public static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, error };
+    return {
+      hasError: true,
+      error,
+      isChunkError: isChunkLoadError(error),
+    };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Error caught and displayed to user
-    // In production, you could send this to an error tracking service like Sentry
+    // Auto-reload once if this is a chunk-load error (stale deployment)
+    if (isChunkLoadError(error)) {
+      const reloadKey = 'error_boundary_chunk_reload';
+      if (!sessionStorage.getItem(reloadKey)) {
+        sessionStorage.setItem(reloadKey, '1');
+        window.location.reload();
+      }
+    }
   }
 
-  private handleReset = () => {
-    this.setState({ hasError: false, error: null });
-    window.location.href = '/services';
+  private handleRefresh = () => {
+    this.setState({ hasError: false, error: null, isChunkError: false });
+    window.location.reload();
+  };
+
+  private handleHome = () => {
+    this.setState({ hasError: false, error: null, isChunkError: false });
+    window.location.href = '/';
   };
 
   public render() {
@@ -36,6 +62,32 @@ class ErrorBoundary extends Component<Props, State> {
         return this.props.fallback;
       }
 
+      // Chunk error — show minimal message (auto-reload is already happening)
+      if (this.state.isChunkError) {
+        return (
+          <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+            <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
+              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-amber-600 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Page Updating…</h2>
+              <p className="text-gray-600 mb-6">
+                We just launched an update! Refreshing the page for you…
+              </p>
+              <button
+                onClick={this.handleRefresh}
+                className="w-full bg-amber-600 text-white font-semibold py-3 rounded-lg hover:bg-amber-700 transition-colors"
+              >
+                Refresh Now
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      // Generic error
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
           <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
@@ -46,14 +98,22 @@ class ErrorBoundary extends Component<Props, State> {
             </div>
             <h2 className="text-xl font-bold text-gray-900 mb-2">Oops! Something went wrong</h2>
             <p className="text-gray-600 mb-6">
-              We're sorry for the inconvenience. Please try refreshing the page.
+              Sorry for the inconvenience. Please refresh the page or go back to Home.
             </p>
-            <button
-              onClick={this.handleReset}
-              className="w-full bg-amber-600 text-white font-semibold py-3 rounded-lg hover:bg-amber-700 transition-colors"
-            >
-              Go Back to Services
-            </button>
+            <div className="flex gap-3">
+              <button
+                onClick={this.handleRefresh}
+                className="flex-1 bg-amber-600 text-white font-semibold py-3 rounded-lg hover:bg-amber-700 transition-colors"
+              >
+                Refresh Page
+              </button>
+              <button
+                onClick={this.handleHome}
+                className="flex-1 border border-amber-600 text-amber-600 font-semibold py-3 rounded-lg hover:bg-amber-50 transition-colors"
+              >
+                Go to Home
+              </button>
+            </div>
           </div>
         </div>
       );
@@ -64,3 +124,4 @@ class ErrorBoundary extends Component<Props, State> {
 }
 
 export default ErrorBoundary;
+

@@ -1,191 +1,151 @@
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import path from 'path';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // import sitemap from 'vite-plugin-sitemap'; // Replaced with custom sitemap generation
-import { blogPosts } from './blog/data/blogPosts';
-import { pagesData } from './src/data/generatedPagesData';
-import { seoGapPagePaths } from './src/routes/seoGapRoutes';
-
-const blogPostRoutes = blogPosts.map(post => `/blog/${post.slug}`);
-const staticRoutes = [
-  '/about',
-  '/services',
-  '/blog',
-  '/contact',
-  '/services/wooden-furniture-polish',
-  '/sofa-chair-polishing',
-  '/services/table-and-bed-polishing',
-  '/services/antique-restoration',
-  '/services/commercial-polishing',
-  '/sofa-fabric-change',
-  '/office-chair-repair',
-  '/goregaon-furniture-polish',
-  '/powai-furniture-polish',
-  '/dadar',
-  '/products',
-  '/wood-polishing-services',
-  '/deco-paint-services'
-];
-
-// Add all 150 generated service pages to sitemap
-const generatedServiceRoutes = pagesData.map(page => page.url);
-
-const dynamicRoutes = [...blogPostRoutes, ...staticRoutes, ...generatedServiceRoutes, ...seoGapPagePaths];
+// Dynamic route calculation for sitemap plugin removed (custom generator used instead)
 
 
-// Custom plugin to serve ../assets as /products during dev
+// Simplified plugin - only serve local assets (no external backup needed)
 function serveExternalAssets() {
-  const assetsRoot = path.resolve(__dirname, '../assets');
+  const localAssetsRoot = path.resolve(__dirname, 'assets');
+
+  const mimeTypes: Record<string, string> = {
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.webp': 'image/webp',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml',
+    '.mp4': 'video/mp4',
+    '.webm': 'video/webm',
+    '.ico': 'image/x-icon',
+    '.js': 'application/javascript',
+    '.css': 'text/css',
+  };
+
   return {
-    name: 'serve-product-images',
+    name: 'serve-local-assets',
     configureServer(server: any) {
-      // Serve /media/* from ../assets root (videos, banners)
-      server.middlewares.use('/media', (req: any, res: any, next: any) => {
-        const filePath = path.join(assetsRoot, decodeURIComponent(req.url || ''));
+      // Serve only local assets folder
+      server.middlewares.use((req: any, res: any, next: any) => {
+        let url = req.url?.split('?')[0] || '';
+        try {
+          url = decodeURIComponent(url);
+        } catch (e) {}
+
+        // Only handle /assets/ requests
+        if (!url.startsWith('/assets/')) {
+          return next();
+        }
+
+        const relative = url.slice(8); // Remove '/assets/'
+        const filePath = path.join(localAssetsRoot, relative);
+        
+        // Security: ensure path is within assets root
+        if (!filePath.startsWith(localAssetsRoot)) {
+          return next();
+        }
+
+        // Serve file if it exists
         if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
           const ext = path.extname(filePath).toLowerCase();
-          const mimeTypes: Record<string, string> = {
-            '.mp4': 'video/mp4', '.webm': 'video/webm',
-            '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
-            '.webp': 'image/webp',
-          };
           res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
           res.setHeader('Cache-Control', 'public, max-age=86400');
-          fs.createReadStream(filePath).pipe(res);
-        } else {
-          next();
+          if (req.method === 'HEAD') {
+            return res.end();
+          }
+          return fs.createReadStream(filePath).pipe(res);
         }
-      });
-      // Serve /products/* from ../assets subfolders
-      server.middlewares.use('/products', (req: any, res: any, next: any) => {
-        const filePath = path.join(assetsRoot, decodeURIComponent(req.url || ''));
-        if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-          const ext = path.extname(filePath).toLowerCase();
-          const mimeTypes: Record<string, string> = {
-            '.png': 'image/png',
-            '.jpg': 'image/jpeg',
-            '.jpeg': 'image/jpeg',
-            '.webp': 'image/webp',
-            '.gif': 'image/gif',
-            '.svg': 'image/svg+xml',
-            '.mp4': 'video/mp4',
-            '.webm': 'video/webm',
-          };
-          res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
-          res.setHeader('Cache-Control', 'public, max-age=86400');
-          fs.createReadStream(filePath).pipe(res);
-        } else {
-          next();
-        }
+
+        next();
       });
     },
   };
 }
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
-    serveExternalAssets(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'public/favicon.ico',
-          dest: '.'
-        },
-        {
-          src: 'public/favicon-16x16.png',
-          dest: '.'
-        },
-        {
-          src: 'public/favicon-32x32.png',
-          dest: '.'
-        },
-        {
-          src: 'public/apple-touch-icon.png',
-          dest: '.'
-        },
-        {
-          src: 'public/android-chrome-192x192.png',
-          dest: '.'
-        },
-        {
-          src: 'public/android-chrome-512x512.png',
-          dest: '.'
-        },
-        {
-          src: 'public/site.webmanifest',
-          dest: '.'
-        },
-        {
-          src: 'public/browserconfig.xml',
-          dest: '.'
-        },
-        {
-          src: 'public/robots.txt',
-          dest: '.'
-        },
-        {
-          src: 'public/_redirects',
-          dest: '.'
-        }
-      ]
-    }),
-    // sitemap({ 
-    //   hostname: 'https://a1furniturepolish.com', 
-    //   dynamicRoutes
-    // }), // Replaced with custom optimized sitemap generation
   ],
   build: {
-    // Optimize build output
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs in production
-        drop_debugger: true
-      }
-    },
-    // Enhanced code splitting for better performance
+    minify: 'esbuild',
+    chunkSizeWarningLimit: 1000,
+    sourcemap: false,
+    cssCodeSplit: true,
+    cssMinify: true,
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          // All node_modules go into vendor chunk to avoid circular dependencies
-          if (id.includes('node_modules/')) {
-            // Markdown libraries - separate chunk (only used in blog)
-            if (id.includes('node_modules/react-markdown') || 
-                id.includes('node_modules/remark-gfm')) {
-              return 'markdown-vendor';
-            }
-            // Everything else from node_modules → single vendor chunk
-            return 'vendor';
+        // Manual chunking: group heavy libraries so routes stay small
+        manualChunks(id) {
+          // Core React ecosystem → vendor-react chunk
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'vendor-react';
+          }
+          // React Router → vendor-router chunk
+          if (id.includes('node_modules/react-router')) {
+            return 'vendor-router';
+          }
+          // UI libraries
+          if (id.includes('node_modules/lucide-react') || id.includes('node_modules/react-icons')) {
+            return 'vendor-icons';
+          }
+          // Other heavy dependencies
+          if (id.includes('node_modules/react-helmet-async')) {
+            return 'vendor-seo';
+          }
+          if (id.includes('node_modules/react-leaflet') || id.includes('node_modules/leaflet')) {
+            return 'vendor-map';
+          }
+          // Page templates — shared by many route chunks
+          if (id.includes('/src/components/ServicePageTemplate') ||
+              id.includes('/src/components/SofaRepairPageTemplate') ||
+              id.includes('/src/components/BedRepairPageTemplate')) {
+            return 'templates';
+          }
+          // Data files that are large
+          if (id.includes('/src/data/sofaRepairConfig') ||
+              id.includes('/src/data/bedRepairConfig') ||
+              id.includes('/src/data/seoGapPagesData') ||
+              id.includes('/src/data/servicePageData')) {
+            return 'page-data';
           }
         },
-        // Optimize chunk file names
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
-      }
+      },
     },
-    // Chunk size warnings
-    chunkSizeWarningLimit: 1000,
-    // Source maps for production debugging (optional)
-    sourcemap: false,
-    // CSS code splitting
-    cssCodeSplit: true,
-    // Optimize CSS
-    cssMinify: true
   },
-  // Dev server: serve parent assets folder as /products
+  // Dev server configuration
   server: {
+    port: 5173,
+    host: true,
+    strictPort: false,
+    cors: true,
     fs: {
-      allow: ['.', '..'],
+      allow: ['..'], // Allow parent directory for blog imports
+      strict: false
     },
+    // Improve watch performance
+    watch: {
+      ignored: ['**/node_modules/**', '**/.git/**', '**/dist/**', '**/.vite/**'],
+      usePolling: false
+    },
+    // Faster HMR
+    hmr: {
+      overlay: true
+    }
   },
   // Optimize dependencies
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'lucide-react']
+    holdUntilCrawlEnd: false,
+    entries: ['index.html', 'src/main.tsx'],
+    include: ['react', 'react-dom', 'react-router-dom', 'lucide-react', 'react-helmet-async', 'react-icons'],
+    exclude: ['@sparticuz/chromium', 'puppeteer-core', 'sharp', 'node-html-to-image']
   }
-});
+}));
