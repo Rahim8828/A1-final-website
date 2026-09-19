@@ -56,8 +56,17 @@ function findServiceData(product: FurnitureProduct) {
   return servicePageData[0];
 }
 
+// ─── Testimonial Interface ───
+interface Testimonial {
+  name: string;
+  location: string;
+  rating: number;
+  text: string;
+  date: string;
+}
+
 // ─── Category-specific testimonials ───
-const categoryTestimonials: Record<string, typeof testimonials> = {
+const categoryTestimonials: Record<string, Testimonial[]> = {
   sofas: [
     { name: 'Kavita Nair', location: 'Bandra West', rating: 5, text: 'My 10-year-old sofa set looks absolutely brand new! The team handled the carving details perfectly. Worth every rupee.', date: '2 weeks ago' },
     { name: 'Arun Sharma', location: 'Goregaon', rating: 5, text: 'Sofa polish done in exactly 2.5 hours. Very clean work. No mess left behind. My wife is thrilled!', date: '1 month ago' },
@@ -90,7 +99,7 @@ const categoryTestimonials: Record<string, typeof testimonials> = {
   ],
 };
 
-const defaultTestimonials = [
+const defaultTestimonials: Testimonial[] = [
   {
     name: 'Priya Sharma',
     location: 'Andheri West',
@@ -788,7 +797,7 @@ const ProductDetail: React.FC = () => {
                     >
                       <div className="relative bg-gray-50 aspect-[4/3] overflow-hidden">
                         <img
-                          src={rp.colorVariants[0]?.image }
+                          src={rp.image || rp.colorVariants?.[0]?.image || '/products/placeholder.webp'}
                           alt={rp.name}
                           className="w-full h-full object-cover p-2 group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
