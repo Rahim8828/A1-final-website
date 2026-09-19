@@ -125,9 +125,12 @@ const Home = () => {
           <div className="relative w-full max-w-4xl rounded-2xl md:rounded-3xl shadow-xl overflow-hidden mb-8 border border-gray-100 aspect-[16/10] bg-gray-50">
             <img
               src="/assets/Homepage-Header.webp"
-              alt="Professional Furniture Polish Service"
+              alt="Professional Furniture Polish Service in Mumbai"
               className="w-full h-full object-cover"
               loading="eager"
+              onError={(e) => {
+                e.currentTarget.src = '/assets/Top Furniture Polish Services in Mumbai.webp';
+              }}
             />
             {/* Rating Overlay */}
             <div className="absolute bottom-4 left-4 bg-white rounded-xl shadow-lg px-4 py-3 border border-gray-50 z-10 flex flex-col items-start">
