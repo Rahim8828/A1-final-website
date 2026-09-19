@@ -17,8 +17,6 @@ const services: ServiceItem[] = [
   { id: 'dining', name: 'Dining Set Polish', image: '/products/front_page_service_products/dining_set_polish.webp', link: '/services?service=dining-set-polish' },
   { id: 'table', name: 'Table Polish', image: '/products/front_page_service_products/table_polish.webp', link: '/services?service=table-polish' },
   { id: 'crockery', name: 'Crockery Polish', image: '/products/front_page_service_products/crokery_polish.webp', link: '/services?service=cabinet-polish' },
-  { id: 'tv-unit', name: 'TV Polish', image: '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp', link: '/services?service=tv-unit-polish' },
-  { id: 'jhula', name: 'Jhula Polish', image: '/products/jhula/darkWoodenJhula.webp', link: '/services?service=jhula-polish' },
   { id: 'mandir', name: 'Mandir Polish', image: '/products/mandir/darkBrownmandir.webp', link: '/services?service=mandir-polish' },
   { id: 'consultation', name: 'Visit Booking', image: '/products/consultation/visiting.png', link: '/services?category=consultation' },
 ];

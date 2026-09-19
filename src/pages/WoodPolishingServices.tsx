@@ -14,7 +14,6 @@ const popularServices = [
   { name: 'Dining Set Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=dining-set-polish' },
   { name: 'Table Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=table-polish' },
   { name: 'Cabinet Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=cabinet-polish' },
-  { name: 'TV Unit Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=tv-unit-polish' },
   { name: 'Mandir Polish', image: '/assets/Antique Restoration.jpg', link: '/services?service=mandir-polish' },
 ];
 

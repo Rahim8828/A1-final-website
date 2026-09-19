@@ -9,9 +9,7 @@ export type FurnitureCategory =
   | 'tables'
   | 'wardrobes'
   | 'cabinets'
-  | 'tv-units'
   | 'doors'
-  | 'jhula'
   | 'mandir'
   | 'floor-polish'
   | 'consultation'
@@ -61,9 +59,7 @@ export const furnitureCategories: CategoryInfo[] = [
   { id: 'tables', label: 'Tables', icon: 'table' },
   { id: 'wardrobes', label: 'Wardrobes', icon: 'wardrobe' },
   { id: 'cabinets', label: 'Cabinets', icon: 'cabinet' },
-  { id: 'tv-units', label: 'TV Units', icon: 'tv' },
   { id: 'doors', label: 'Doors', icon: 'door' },
-  { id: 'jhula', label: 'Jhula', icon: 'jhula' },
   { id: 'mandir', label: 'Mandir', icon: 'mandir' },
   { id: 'floor-polish', label: 'Floor Polish', icon: 'floor' },
   { id: 'consultation', label: 'Consultation', icon: 'sparkles' },
@@ -212,20 +208,6 @@ export const furnitureProducts: FurnitureProduct[] = [
     colorVariants: makeColorVariants('/products/bed/sofa_cum_bed', 'darkBrownSofaCumBed.webp', 'lightBrownSofaCumbed.webp', 'whiteSofaCumbed.webp'),
     features: ['6 Months Warranty', 'Mechanism lubrication', 'Dual-surface polish'],
   },
-  {
-    id: 'bed-single',
-    name: 'Single Bed Polish',
-    category: 'beds',
-    price: 3899,
-    originalPrice: 4999,
-    rating: 4.7,
-    reviewCount: 100,
-    serviceLink: '/services?service=bed-single',
-    estimatedTime: '2.5 hrs',
-    description: 'Affordable single bed polish service ideal for kids and guest rooms. Covers headboard, footboard, side rails, and legs with durable finish.',
-    colorVariants: makeColorVariants('/products/bed/single_bed', 'darkWoodensinglebed.webp', 'lightBrownsinglebed.webp', 'whiteSingleBed.webp'),
-    features: ['6 Months Warranty', 'Quick turnaround', 'Budget-friendly option'],
-  },
 
   // ═══════════════════════════════════════
   // DOORS
@@ -247,70 +229,10 @@ export const furnitureProducts: FurnitureProduct[] = [
     features: ['Both sides polish', 'Weather-resistant finish', 'Handle area care'],
     isBestSeller: true,
   },
-  {
-    id: 'door-2door',
-    name: '2 Door Polish',
-    category: 'doors',
-    seaterType: '2-seater',
-    price: 3899,
-    originalPrice: 5699,
-    rating: 4.8,
-    reviewCount: 789,
-    badge: 'Popular',
-    serviceLink: '/services?service=door-2door',
-    estimatedTime: '3 hrs',
-    description: 'Double door polishing service for main entrance and bedroom doors. Covers both panels inside-out, center meeting edges, and complete frame with anti-fungal treatment.',
-    colorVariants: makeColorVariants('/products/doors/double_door', 'darkbrowndoubledoor.webp', 'lightBrownDoubleDoor.webp', 'whiteDoubleDoor.webp'),
-    features: ['Both sides polish', 'Anti-fungal treatment', 'Center edge finishing'],
-  },
-  {
-    id: 'door-3door',
-    name: '3 Door Polish',
-    category: 'doors',
-    seaterType: '3-seater',
-    price: 4899,
-    originalPrice: 7199,
-    rating: 4.7,
-    reviewCount: 345,
-    serviceLink: '/services?service=door-3door',
-    estimatedTime: '3.5 hrs',
-    description: 'Triple door polish service ideal for large wardrobes and room dividers. Complete coverage of all three panels, joining edges, and frame with moisture protection.',
-    colorVariants: makeColorVariants('/products/doors/triple_doors', 'DarkBrowntripleDoor.webp', 'lightBrowntripleDoor.webp', 'whiteTripledoor.webp'),
-    features: ['Both sides polish', 'Moisture protection', 'Edge alignment care'],
-  },
-  {
-    id: 'door-4door',
-    name: '4 Door Polish',
-    category: 'doors',
-    seaterType: '4-seater',
-    price: 5899,
-    originalPrice: 8699,
-    rating: 4.8,
-    reviewCount: 277,
-    serviceLink: '/services?service=door-4door',
-    estimatedTime: '4 hrs',
-    description: 'Comprehensive four-door polish for large wardrobes and storage units. All panels polished inside-out with special attention to hinges, handles, and alignment.',
-    colorVariants: makeColorVariants('/products/doors/four_doors', 'fourDoordarkBrown.webp', 'lightBrown4door.webp', 'white4doors.webp'),
-    features: ['Both sides polish', 'Hinge care included', 'Alignment check'],
-  },
 
   // ═══════════════════════════════════════
   // TABLES
   // ═══════════════════════════════════════
-  {
-    id: 'table-coffee',
-    name: 'Coffee Table Polish',
-    category: 'tables',
-    price: 1549,
-    originalPrice: 2199,
-    rating: 4.8,
-    reviewCount: 234,
-    serviceLink: '/services?service=table-coffee',
-    estimatedTime: '1.5 hrs',
-    description: 'Compact coffee table polish service with scratch-resistant and water-repellent finish. Perfect for living room centerpieces with daily use protection.',
-    colorVariants: makeColorVariants('/products/table/coffee_table', 'darkwoodenCoffeTable.webp', 'lightBrownCoffeetable.webp', 'whitecofffetable.webp'),
-    features: ['Water-repellent finish', 'Ring mark removal', 'Quick-dry formula'],
-  },
   {
     id: 'table-center',
     name: 'Center Table Polish',
@@ -495,75 +417,7 @@ export const furnitureProducts: FurnitureProduct[] = [
     features: ['Glass-safe materials', 'Display shelf care', 'Non-toxic formula'],
   },
 
-  // ═══════════════════════════════════════
-  // TV UNITS
-  // ═══════════════════════════════════════
- 
-  {
-    id: 'tv-unit-large',
-    name: 'Large TV Unit Polish',
-    category: 'tv-units',
-    price: 6499,
-    originalPrice: 8299,
-    rating: 4.9,
-    reviewCount: 567,
-    badge: 'Best Seller',
-    serviceLink: '/services?service=tv-unit-large',
-    estimatedTime: '4 hrs',
-    description: 'Large-format TV unit polishing for premium entertainment walls and cabinet units. Covers main panel, drawers, side storage, and display sections with a refined scratch-resistant finish.',
-    colorVariants: makeColorVariants('/products/tvUnitPolish/cabinets', 'darkWoodentvunit.webp', 'lightBrowntvUnit.webp', 'whiteTvunit.webp'),
-    features: ['Large cabinet coverage', 'Drawer polish included', 'Scratch-resistant finish'],
-    isBestSeller: true,
-  },
-  {
-    id: 'tv-unit-small',
-    name: 'Small TV Unit Polish',
-    category: 'tv-units',
-    price: 4500,
-    originalPrice: 5999,
-    rating: 4.8,
-    reviewCount: 211,
-    serviceLink: '/services?service=tv-unit-small',
-    estimatedTime: '3.5 hrs',
-    description: 'Compact TV unit polishing for wall-mounted and floating media setups. Includes visible panel care, edge finishing, and a smooth living-room-ready look.',
-    colorVariants: makeColorVariants('/products/tvUnitPolish/WallMounted', 'darkBrownWallMounted.webp', 'lightBrownTvMounte.webp', 'whitewalllmountedTvunit.webp'),
-    features: ['Compact unit pricing', 'Wall-panel care', 'Modern finish'],
-  },
 
-  // ═══════════════════════════════════════
-  // JHULA
-  // ═══════════════════════════════════════
-  {
-    id: 'jhula-small',
-    name: 'Jhula Small Polish',
-    category: 'jhula',
-    seaterType: '1-seater',
-    price: 3199,
-    originalPrice: 4299,
-    rating: 4.8,
-    reviewCount: 465,
-    serviceLink: '/services?service=jhula-small',
-    estimatedTime: '3 hrs',
-    description: 'Traditional small jhula polish covering seat, frame, chains, and carving details. Ideal for balconies, mandir corners, and compact indoor swing setups.',
-    colorVariants: makeColorVariants('/products/jhula', 'darkWoodenJhula.webp', 'lightBrownJhula.webp', 'whiteJhula.webp'),
-    features: ['Compact swing pricing', 'Chain lubrication', 'Carving detail care'],
-  },
-  {
-    id: 'jhula-large',
-    name: 'Jhula Large Polish',
-    category: 'jhula',
-    seaterType: '3-seater',
-    price: 4999,
-    originalPrice: 6499,
-    rating: 4.9,
-    reviewCount: 288,
-    badge: 'Popular',
-    serviceLink: '/services?service=jhula-large',
-    estimatedTime: '4.5 hrs',
-    description: 'Large jhula polishing for grand indoor and veranda swing pieces. Covers full frame restoration, chain finishing, and premium top coat for a rich display finish.',
-    colorVariants: makeColorVariants('/products/jhula', 'darkWoodenJhula.webp', 'lightBrownJhula.webp', 'whiteJhula.webp'),
-    features: ['Large frame coverage', 'Premium display finish', 'Decorative detailing care'],
-  },
   
   // ═══════════════════════════════════════
   // MANDIR

@@ -7,11 +7,9 @@ export type CategoryTab =
   | 'beds'
   | 'dining-tables'
   | 'wardrobes-storage'
-  | 'tv-units'
   | 'doors'
   | 'floor-polish'
   | 'mandir'
-  | 'jhula'
   | 'consultation'
   | 'color-refresh';
 
@@ -35,9 +33,7 @@ export const categories: Category[] = [
   { id: 'beds', label: 'Beds' },
   { id: 'dining-tables', label: 'Dining & Tables' },
   { id: 'wardrobes-storage', label: 'Wardrobes' },
-  { id: 'tv-units', label: 'TV Units' },
   { id: 'doors', label: 'Doors' },
-  { id: 'jhula', label: 'Jhula' },
   { id: 'mandir', label: 'Mandir' },
   { id: 'floor-polish', label: 'Floor Polish' },
   { id: 'consultation', label: 'Consultation' },
@@ -100,15 +96,6 @@ export const products: Product[] = [
     serviceLink: '/services?category=dining',
   },
   {
-    id: 'bed-single',
-    name: 'Single Bed',
-    category: 'beds',
-    image: '/products/bed/single_bed/darkWoodensinglebed.webp',
-    hoverImage: '/products/bed/single_bed/lightBrownsinglebed.webp',
-    startingPrice: 3899,
-    serviceLink: '/services?category=beds',
-  },
-  {
     id: 'bed-queen',
     name: 'Queen Size Bed',
     category: 'beds',
@@ -126,24 +113,7 @@ export const products: Product[] = [
     startingPrice: 5899,
     serviceLink: '/services?category=beds',
   },
-  {
-    id: 'tv-unit-small',
-    name: 'Small TV Unit',
-    category: 'tv-units',
-    image: '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp',
-    hoverImage: '/products/tvUnitPolish/WallMounted/lightBrownTvMounte.webp',
-    startingPrice: 4500,
-    serviceLink: '/services?category=tv-units',
-  },
-  {
-    id: 'tv-unit-large',
-    name: 'Large TV Unit',
-    category: 'tv-units',
-    image: '/products/tvUnitPolish/cabinets/darkWoodentvunit.webp',
-    hoverImage: '/products/tvUnitPolish/cabinets/lightBrowntvUnit.webp',
-    startingPrice: 6499,
-    serviceLink: '/services?category=tv-units',
-  },
+
   {
     id: 'door-polish-premium',
     name: 'Door Polish',
@@ -189,24 +159,7 @@ export const products: Product[] = [
     startingPrice: 2499,
     serviceLink: '/services?category=mandir',
   },
-  {
-    id: 'jhula-small',
-    name: 'Jhula Small',
-    category: 'jhula',
-    image: '/products/jhula/darkWoodenJhula.webp',
-    hoverImage: '/products/jhula/lightBrownJhula.webp',
-    startingPrice: 3199,
-    serviceLink: '/services?category=jhula',
-  },
-  {
-    id: 'jhula-large',
-    name: 'Jhula Large',
-    category: 'jhula',
-    image: '/products/jhula/darkWoodenJhula.webp',
-    hoverImage: '/products/jhula/whiteJhula.webp',
-    startingPrice: 4999,
-    serviceLink: '/services?category=jhula',
-  },
+
   {
     id: 'floor-hand-polish',
     name: 'Floor Polish Hand',

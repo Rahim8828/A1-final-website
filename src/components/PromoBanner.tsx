@@ -33,10 +33,10 @@ const promoCards: PromoCard[] = [
     badge: 'Premium',
   },
   {
-    image: '/products/dining_set/2_seater_bench/darkWooden2seaterbench.webp',
+    image: '/products/dining_set/4_seater/4seaterDark.webp',
     title: 'Dining Set Polish',
-    subtitle: 'Starts at ₹3,449',
-    link: '/services/dining-2seater',
+    subtitle: 'Starts at ₹3,899',
+    link: '/services?service=dining-set-polish',
     badge: 'Trending',
   },
 ];

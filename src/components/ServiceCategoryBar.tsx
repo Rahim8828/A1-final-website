@@ -8,11 +8,9 @@ const categoryImages: Record<string, string> = {
   beds: '/products/bed/king_bed/darkWoodenKing.webp',
   'dining-tables': '/products/dining_set/6_seater/darkbrown6seater.webp',
   'wardrobes-storage': '/products/wardrobe/double/darkWoodendoubleWardrobe.webp',
-  'tv-units': '/products/tvUnitPolish/WallMounted/darkBrownWallMounted.webp',
   doors: '/products/doors/single_door/darkWoodensingle.webp',
   'floor-polish': '/assets/Door-polish.webp',
   mandir: '/products/mandir/darkBrownmandir.webp',
-  jhula: '/products/jhula/darkWoodenJhula.webp',
   consultation: '/products/consultation/visiting.png',
   'color-refresh': '/products/consultation/visiting2.png',
 };

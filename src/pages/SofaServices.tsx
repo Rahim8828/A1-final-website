@@ -28,7 +28,6 @@ const sofaServicesData = [
       { id: 'sofa-1seater', name: '1 Seater Sofa', price: 3499, rating: 4.8, reviewCount: 234, estimatedTime: '3 hrs' },
       { id: 'sofa-2seater', name: '2 Seater Sofa', price: 4499, rating: 4.9, reviewCount: 345, estimatedTime: '4 hrs' },
       { id: 'sofa-3seater', name: '3 Seater Sofa', price: 5999, rating: 4.8, reviewCount: 456, estimatedTime: '5 hrs' },
-      { id: 'sofa-lshape', name: 'L Shape Sofa', price: 8999, rating: 4.9, reviewCount: 234, estimatedTime: '6 hrs' },
       { id: 'sofa-cumbed', name: 'Sofa Cumbed', price: 5999, rating: 4.7, reviewCount: 187, estimatedTime: '5 hrs' },
       { id: 'bed-side-3', name: 'Bed Side 3 Side', price: 3499, rating: 4.8, reviewCount: 123, estimatedTime: '3 hrs' },
       { id: 'recliner-1', name: 'Recliner 1 Seater', price: 4499, rating: 4.9, reviewCount: 156, estimatedTime: '3.5 hrs' },
