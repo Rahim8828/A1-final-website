@@ -158,33 +158,30 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         );
     };
 
-    return (
-        <>
+    const modalContent = (
+        <div
+            className="fixed inset-0 z-[99999] flex flex-col justify-end md:justify-center md:items-center p-0 md:p-6 overflow-hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="product-modal-title"
+        >
+            {/* Backdrop - Standard dark overlay */}
             <div
-                className="fixed inset-0 z-[70] overflow-hidden"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="product-modal-title"
-            >
-                {/* Backdrop - Standard dark overlay */}
-                <div
-                    className="fixed inset-0 bg-black/60 backdrop-blur-sm"
-                    onClick={onClose}
-                    aria-hidden="true"
-                />
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm"
+                onClick={onClose}
+                aria-hidden="true"
+            />
 
-                {/* Modal Container */}
-                <div className="fixed inset-0 flex items-end md:items-center md:justify-center p-0 md:p-4 pb-16 md:pb-4">
-                    {/* Modal Content - Teakwood Theme */}
-                    <div
-                        ref={modalRef}
-                        tabIndex={-1}
-                        className="relative w-full max-h-[calc(100vh-5rem)] md:max-h-[85vh] md:max-w-lg md:w-full 
-                       bg-gradient-to-b from-[#FDF8F3] to-[#F5EBE0]
-                       rounded-t-2xl md:rounded-2xl shadow-2xl flex flex-col z-50
-                       animate-slide-up md:animate-scale-in
-                       border border-[#D2B48C]/30"
-                    >
+            {/* Modal Dialog */}
+            <div
+                ref={modalRef}
+                tabIndex={-1}
+                className="relative w-full max-h-[85vh] sm:max-h-[88vh] md:max-h-[88vh] md:max-w-lg md:w-full 
+               bg-gradient-to-b from-[#FDF8F3] to-[#F5EBE0]
+               rounded-t-3xl md:rounded-2xl shadow-2xl flex flex-col z-10
+               animate-slide-up md:animate-scale-in
+               border border-[#D2B48C]/30 overflow-hidden"
+            >
                         {/* Header - Teakwood Gradient */}
                         <div className="flex-shrink-0 bg-gradient-to-r from-[#5D3A1A] via-[#8B4513] to-[#A0522D] rounded-t-2xl">
                             <div className="flex items-center justify-between px-4 py-3">
@@ -369,7 +366,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
                         {/* Footer - Teakwood Button */}
                         <div className="flex-shrink-0 bg-gradient-to-t from-[#F5EBE0] to-[#FDF8F3] 
-                            border-t border-[#D2B48C]/30 p-4 rounded-b-2xl">
+                            border-t border-[#D2B48C]/30 px-4 py-3.5 pb-6 md:pb-4 rounded-b-3xl md:rounded-b-2xl shadow-inner">
                             {!isSelected ? (
                                 <button
                                     onClick={() => {
@@ -387,11 +384,11 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                                 </button>
                             ) : (
                                 <div className="flex items-center justify-between">
-                                    <span className="text-sm font-medium text-[#5D3A1A]">
+                                    <span className="text-sm font-semibold text-[#5D3A1A]">
                                         Added to cart
                                     </span>
                                     <div className="flex items-center gap-3 border-2 border-[#8B4513] rounded-xl px-4 py-2 
-                                  bg-white/50">
+                                  bg-white/70 shadow-sm">
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -404,7 +401,7 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                                         >
                                             -
                                         </button>
-                                        <span className="font-semibold text-[#5D3A1A] min-w-[24px] text-center text-lg">
+                                        <span className="font-bold text-[#5D3A1A] min-w-[24px] text-center text-lg">
                                             {quantity}
                                         </span>
                                         <button
@@ -424,9 +421,12 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                             )}
                         </div>
                     </div>
-                </div>
-            </div>
+        </div>
+    );
 
+    return (
+        <>
+            {ReactDOM.createPortal(modalContent, document.body)}
             {/* Fullscreen Viewer */}
             {isFullscreen && <FullscreenViewer />}
         </>
