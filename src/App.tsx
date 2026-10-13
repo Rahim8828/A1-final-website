@@ -37,7 +37,7 @@ const IkeaAssembly = lazy(() => import('./pages/IkeaAssembly'));
 const ServiceLocations = lazy(() => import('./pages/ServiceLocations'));
 const GoregaonFurniturePolish = lazy(() => import('./pages/GoregaonFurniturePolish'));
 const PowaiFurniturePolish = lazy(() => import('./pages/PowaiFurniturePolish'));
-const DadarLocation = lazy(() => import('./pages/locations/DadarLocation.tsx'));
+const DadarLocation = lazy(() => import('./pages/locations/DadarLocation'));
 const ThaneLocation = lazy(() => import('./pages/locations/ThaneLocation'));
 const SantacruzLocation = lazy(() => import('./pages/locations/SantacruzLocation'));
 const BorivaliLocation = lazy(() => import('./pages/locations/BorivaliLocation'));
@@ -282,6 +282,9 @@ function App() {
               <Route path="/goregaon-furniture-polish" element={<GoregaonFurniturePolish />} />
               <Route path="/powai-furniture-polish" element={<PowaiFurniturePolish />} />
               <Route path="/dadar" element={<DadarLocation />} />
+              <Route path="/dadar-furniture-polish" element={<DadarLocation />} />
+              <Route path="/furniture-polish-service-dadar" element={<DadarLocation />} />
+              <Route path="/furniture-polish-dadar" element={<DadarLocation />} />
               <Route path="/thane" element={<ThaneLocation />} />
               <Route path="/thane-furniture-polish" element={<ThaneLocation />} />
               <Route path="/furniture-polish-service-thane" element={<ThaneLocation />} />
@@ -289,6 +292,7 @@ function App() {
               <Route path="/santacruz" element={<SantacruzLocation />} />
               <Route path="/santacruz-furniture-polish" element={<SantacruzLocation />} />
               <Route path="/furniture-polish-service-santacruz" element={<SantacruzLocation />} />
+              <Route path="/furniture-polish-santacruz" element={<SantacruzLocation />} />
               <Route path="/borivali" element={<BorivaliLocation />} />
               <Route path="/borivali-furniture-polish" element={<BorivaliLocation />} />
               <Route path="/furniture-polish-service-borivali" element={<BorivaliLocation />} />

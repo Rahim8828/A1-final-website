@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { getCurrentCanonicalURL } from '../utils/canonicalURL';
 
 interface SEOHeadProps {
@@ -50,7 +51,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     : defaultOgImage;
   
   return (
-    <>
+    <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
@@ -122,7 +123,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           </script>
         )
       )}
-    </>
+    </Helmet>
   );
 };
 

@@ -95,7 +95,7 @@ const SantacruzLocation: React.FC = () => {
       'streetAddress': 'Shop No 22, Bharat Seva Chawl, 3, Gazdhar Bandh Rd, opp. APPARTMENT 2, New Gulab Nagar, Govind Nagar',
       'addressLocality': 'Santacruz (West), Mumbai',
       'addressRegion': 'Maharashtra',
-      'postalCode': '400053',
+      'postalCode': '400054',
       'addressCountry': 'IN'
     },
     'geo': {
@@ -119,7 +119,7 @@ const SantacruzLocation: React.FC = () => {
     'aggregateRating': {
       '@type': 'AggregateRating',
       'ratingValue': '5.0',
-      'reviewCount': '2',
+      'reviewCount': '5',
       'bestRating': '5',
       'worstRating': '1'
     }
@@ -207,7 +207,7 @@ const SantacruzLocation: React.FC = () => {
                   </div>
                   <div className="h-6 w-px bg-white/20 hidden sm:block"></div>
                   <div className="text-sm text-slate-200">
-                    <span className="font-bold text-white">2 Google Reviews</span> • 100% Recommended
+                    <span className="font-bold text-white">5 Google Reviews</span> • 100% Recommended
                   </div>
                   <div className="h-6 w-px bg-white/20 hidden sm:block"></div>
                   <div className="flex items-center gap-1.5 text-xs sm:text-sm text-emerald-300 font-medium">
@@ -265,7 +265,7 @@ const SantacruzLocation: React.FC = () => {
                         <Star className="w-4 h-4 fill-current mr-1" />
                         5.0
                       </div>
-                      <span className="text-xs text-gray-400">2 Reviews</span>
+                      <span className="text-xs text-gray-400">5 Reviews</span>
                     </div>
                   </div>
 
@@ -273,7 +273,7 @@ const SantacruzLocation: React.FC = () => {
                     <div className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                       <span>
-                        <strong>Address:</strong> Shop No 22, Bharat Seva Chawl, 3, Gazdhar Bandh Rd, opp. APPARTMENT 2, New Gulab Nagar, Govind Nagar, Santacruz (West), Mumbai, Maharashtra 400053
+                        <strong>Address:</strong> Shop No 22, Bharat Seva Chawl, 3, Gazdhar Bandh Rd, opp. APPARTMENT 2, New Gulab Nagar, Govind Nagar, Santacruz (West), Mumbai, Maharashtra 400054
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -389,13 +389,13 @@ const SantacruzLocation: React.FC = () => {
                   <div>
                     <h4 className="font-bold text-gray-900 text-base mb-1">A1 Furniture Polish Service - Santacruz</h4>
                     <p className="text-gray-600">
-                      Shop No 22, Bharat Seva Chawl, 3, Gazdhar Bandh Rd, opp. APPARTMENT 2, New Gulab Nagar, Govind Nagar, Santacruz (West), Mumbai 400053
+                      Shop No 22, Bharat Seva Chawl, 3, Gazdhar Bandh Rd, opp. APPARTMENT 2, New Gulab Nagar, Govind Nagar, Santacruz (West), Mumbai 400054
                     </p>
                   </div>
                   <div className="border-t border-gray-200 pt-3 flex items-center justify-between">
                     <div>
                       <span className="text-xs text-gray-400 block">Rating</span>
-                      <span className="font-bold text-amber-600">5.0 ★ (2 Google Reviews)</span>
+                      <span className="font-bold text-amber-600">5.0 ★ (5 Google Reviews)</span>
                     </div>
                     <div>
                       <span className="text-xs text-gray-400 block">Opening Hours</span>

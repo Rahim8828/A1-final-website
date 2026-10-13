@@ -108,6 +108,30 @@ const pageConfigs: PageConfig[] = [
     priority: 0.7,
     changeFreq: 'weekly',
     lastModified: new Date('2024-12-11')
+  },
+  {
+    url: `${SITE_URL}/dadar`,
+    priority: 0.9,
+    changeFreq: 'weekly',
+    lastModified: new Date()
+  },
+  {
+    url: `${SITE_URL}/santacruz`,
+    priority: 0.9,
+    changeFreq: 'weekly',
+    lastModified: new Date()
+  },
+  {
+    url: `${SITE_URL}/thane`,
+    priority: 0.8,
+    changeFreq: 'weekly',
+    lastModified: new Date()
+  },
+  {
+    url: `${SITE_URL}/borivali`,
+    priority: 0.8,
+    changeFreq: 'weekly',
+    lastModified: new Date()
   }
 ];
 
@@ -124,7 +148,7 @@ function dedupePageConfigs(configs: PageConfig[]): PageConfig[] {
     }
   }
 
-  return [...unique.values()];
+  return Array.from(unique.values());
 }
 
 function chunkItems<T>(items: T[], chunkSize: number): T[][] {
@@ -140,7 +164,7 @@ function chunkItems<T>(items: T[], chunkSize: number): T[][] {
 function extractRoutePathsFromFile(relativeFilePath: string): string[] {
   const absoluteFilePath = path.join(process.cwd(), relativeFilePath);
   const content = fs.readFileSync(absoluteFilePath, 'utf-8');
-  return [...content.matchAll(/<Route\s+path="([^"]+)"/g)].map(match => match[1]);
+  return Array.from(content.matchAll(/<Route\s+path="([^"]+)"/g)).map(match => match[1]);
 }
 
 function createRouteConfigs(

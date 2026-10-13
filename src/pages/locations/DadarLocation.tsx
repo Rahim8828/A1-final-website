@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Clock, Star, CheckCircle, ArrowRight, Shield, Award, Users, MessageCircle, Sparkles } from 'lucide-react';
+import { Phone, MapPin, Clock, Star, CheckCircle, ArrowRight, Shield, Award, Users, MessageCircle, Sparkles, Navigation, Check } from 'lucide-react';
 import SEOHead from '../../components/SEOHead';
 import JsonLd from '../../components/JsonLd';
 import { FadeIn } from '../../components/ScrollAnimations';
@@ -100,16 +100,20 @@ const DadarLocation = () => {
     }
   ];
 
+  const gmbDirectionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=Shop+No.13+Nikam+wadi+Bhavani+Shankar+Rd+near+Cosmos+Plaza+Dadar+West+Mumbai+400025';
+  const gmbSearchUrl = 'https://www.google.com/maps/search/?api=1&query=A1+Furniture+Polish+Service+Shop+No.13+Bhavani+Shankar+Rd+near+Cosmos+Plaza+Dadar+West+Mumbai+400025';
+
   const localBusinessSchema = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    'name': 'A1 Furniture Polish Service - Dadar to Colaba',
-    'image': 'https://a1furniturepolish.in/assets/Sofa And chair.webp',
-    'description': 'Professional furniture polishing and restoration services covering Dadar, Parel, Lower Parel, Worli, Byculla, Fort, Colaba, and South Mumbai. Expert wooden furniture polish, sofa restoration, and antique furniture restoration. Located at Shop No.13 near Cosmos Plaza, Bhavani Shankar Road, Dadar West.',
-    'priceRange': '₹249-₹999',
+    '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
+    '@id': 'https://a1furniturepolish.com/dadar#localbusiness',
+    'name': 'A1 Furniture Polish Service',
+    'image': 'https://a1furniturepolish.com/assets/Sofa%20And%20chair.webp',
+    'description': 'A1 Furniture Polish Service - Dadar (5.0★ Google Rated). Professional wooden furniture polishing, PU polish, sofa restoration, and antique repair at Shop No.13, Nikam wadi, Bhavani Shankar Rd near Cosmos Plaza, Dadar West, Mumbai.',
+    'priceRange': '₹249 - ₹15000',
     'address': {
       '@type': 'PostalAddress',
-      'streetAddress': 'Shop No.13, Nikam wadi, Bhavani Shankar Road Near Cosmos Plaza',
+      'streetAddress': 'Shop No.13, Nikam wadi, Bhavani Shankar Rd, near Cosmos Plaza',
       'addressLocality': 'Dadar West, Mumbai',
       'addressRegion': 'Maharashtra',
       'postalCode': '400025',
@@ -122,54 +126,26 @@ const DadarLocation = () => {
     },
     'telephone': '+918828709945',
     'openingHours': 'Mo-Su 00:00-23:59',
-    'url': 'https://a1furniturepolish.in/dadar',
-    'hasMap': 'https://www.google.com/maps/place/A1+Furniture+Polish+Service/@19.0134143,72.833927',
+    'url': 'https://a1furniturepolish.com/dadar',
+    'hasMap': gmbSearchUrl,
     'areaServed': [
-      {
-        '@type': 'City',
-        'name': 'Dadar, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Parel, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Lower Parel, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Worli, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Byculla, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Fort, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Colaba, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Shivaji Park, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Matunga, Mumbai'
-      },
-      {
-        '@type': 'City',
-        'name': 'Mahim, Mumbai'
-      }
+      { '@type': 'AdministrativeArea', 'name': 'Dadar West' },
+      { '@type': 'AdministrativeArea', 'name': 'Dadar East' },
+      { '@type': 'AdministrativeArea', 'name': 'Shivaji Park' },
+      { '@type': 'AdministrativeArea', 'name': 'Bhavani Shankar Road' },
+      { '@type': 'AdministrativeArea', 'name': 'Portuguese Church' },
+      { '@type': 'AdministrativeArea', 'name': 'Kabutar Khana' },
+      { '@type': 'AdministrativeArea', 'name': 'Prabhadevi' },
+      { '@type': 'AdministrativeArea', 'name': 'Parel' },
+      { '@type': 'AdministrativeArea', 'name': 'Lower Parel' },
+      { '@type': 'AdministrativeArea', 'name': 'Matunga' },
+      { '@type': 'AdministrativeArea', 'name': 'Mahim' },
+      { '@type': 'AdministrativeArea', 'name': 'Worli' }
     ],
     'aggregateRating': {
       '@type': 'AggregateRating',
-      'ratingValue': '4.9',
-      'reviewCount': '87',
+      'ratingValue': '5.0',
+      'reviewCount': '1',
       'bestRating': '5',
       'worstRating': '1'
     },
@@ -187,21 +163,31 @@ const DadarLocation = () => {
         '@type': 'ListItem',
         'position': 1,
         'name': 'Home',
-        'item': 'https://a1furniturepolish.in/'
+        'item': 'https://a1furniturepolish.com/'
       },
       {
         '@type': 'ListItem',
         'position': 2,
         'name': 'Locations',
-        'item': 'https://a1furniturepolish.in/locations'
+        'item': 'https://a1furniturepolish.com/service-areas-mumbai'
       },
       {
         '@type': 'ListItem',
         'position': 3,
-        'name': 'Dadar',
-        'item': 'https://a1furniturepolish.in/dadar'
+        'name': 'A1 Furniture Polish Service - Dadar',
+        'item': 'https://a1furniturepolish.com/dadar'
       }
     ]
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqs.map((f) => ({
+      '@type': 'Question',
+      'name': f.question,
+      'acceptedAnswer': { '@type': 'Answer', 'text': f.answer }
+    }))
   };
 
   const serviceSchema = {
@@ -257,103 +243,199 @@ const DadarLocation = () => {
   return (
     <>
       <SEOHead
-        title="⭐ Best Furniture Polish Dadar to Colaba | 24/7 Near Cosmos Plaza | ₹249 Starting - Shop No.13"
-        description="Professional furniture polishing services from Dadar to Colaba. Expert wooden furniture polish, sofa restoration covering Dadar, Parel, Lower Parel, Worli, Byculla, Fort, Colaba. Shop No.13 Cosmos Plaza - Starting ₹249. Call +91 8828709945"
-        keywords="furniture polish dadar to colaba, furniture polishing dadar parel worli, furniture polishing south mumbai, wooden furniture polish dadar, sofa polishing dadar to fort, furniture restoration dadar mumbai, table polishing dadar parel, bed polishing dadar, furniture polish near cosmos plaza, best furniture polish dadar, furniture polishing lower parel, furniture polishing worli, furniture polishing byculla, furniture polishing fort mumbai, furniture polishing colaba, antique furniture restoration south mumbai, furniture repair dadar, scratch repair dadar to colaba, furniture refinishing mumbai, teak wood polishing dadar, sheesham wood polishing south mumbai, furniture polish bhavani shankar road, furniture polish shivaji park, furniture polishing mahim, furniture polishing matunga, 24 hour furniture polish dadar, emergency furniture polishing south mumbai, same day furniture polish dadar to colaba, furniture polish dadar station, furniture polish near dadar, affordable furniture polishing mumbai, home furniture polish dadar, office furniture polish south mumbai, commercial furniture polishing mumbai central"
+        title="A1 Furniture Polish Service - Dadar West | Wood & Sofa Polish Near Cosmos Plaza"
+        description="A1 Furniture Polish Service (5.0★ Google Rated). Doorstep wood polishing, PU polish, sofa repair at Shop No.13, Bhavani Shankar Rd, Dadar West. Call +91 8828709945."
+        keywords="A1 Furniture Polish Service, furniture polish dadar, furniture repair shop dadar west, wood polishing dadar, pu polish dadar, bhavani shankar road furniture polish, cosmos plaza dadar furniture polish, sofa repair dadar"
         ogImage="/assets/Sofa And chair.webp"
         canonical={getCanonicalURL('/dadar')}
       />
-      <JsonLd data={localBusinessSchema} />
-      <JsonLd data={breadcrumbSchema} />
-      <JsonLd data={serviceSchema} />
+      <JsonLd schema={localBusinessSchema} />
+      <JsonLd schema={breadcrumbSchema} />
+      <JsonLd schema={faqSchema} />
+      <JsonLd schema={serviceSchema} />
+
+      {/* Breadcrumb Navigation */}
+      <div className="bg-white border-b border-gray-100 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex text-sm text-gray-600">
+            <Link to="/" className="hover:text-amber-600 transition-colors">Home</Link>
+            <span className="mx-2 text-gray-400">/</span>
+            <Link to="/service-areas-mumbai" className="hover:text-amber-600 transition-colors">Locations</Link>
+            <span className="mx-2 text-gray-400">/</span>
+            <span className="text-amber-600 font-semibold">Dadar</span>
+          </nav>
+        </div>
+      </div>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-12 md:py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 py-12 md:py-16 overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 "></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30  "></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 "></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <FadeIn>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <FadeIn className="lg:col-span-7">
               <div>
                 {/* Location Badge */}
-                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-full mb-4 shadow-lg">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-1.5 rounded-full mb-4 shadow-md text-xs sm:text-sm font-semibold">
+                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   <MapPin className="w-4 h-4" />
-                  <span className="text-sm font-semibold">Serving Dadar to Colaba</span>
+                  <span>Verified Google Business Profile • Dadar West (Shop No.13)</span>
                 </div>
                 
-                <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Best <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600">Furniture Polish</span> in Dadar
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                  A1 Furniture Polish Service - <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600">Dadar</span>
                 </h1>
 
-                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                  <strong>Transform your furniture</strong> with Mumbai's most trusted experts in wooden furniture polishing, sofa restoration, and complete furniture refinishing. Covering <strong>Dadar, Parel, Lower Parel, Worli, Byculla, Fort, and Colaba</strong> with 24/7 emergency service.
+                <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
+                  Expert wooden furniture polish, PU Italian finish, sofa restoration, and antique furniture repair. Located at <strong>Shop No.13, Bhavani Shankar Rd (near Cosmos Plaza), Dadar West</strong>, providing 100% doorstep service across Dadar West, Shivaji Park, Dadar East, Prabhadevi, Parel & Central Mumbai.
                 </p>
                 
+                {/* Rating Strip */}
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 bg-white/90 backdrop-blur-sm p-3.5 rounded-xl border border-amber-200/80 mb-6 shadow-sm">
+                  <div className="flex items-center gap-1.5">
+                    <div className="flex text-amber-500">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                      ))}
+                    </div>
+                    <span className="font-bold text-gray-900 text-base sm:text-lg">5.0</span>
+                  </div>
+                  <div className="h-5 w-px bg-gray-300 hidden sm:block"></div>
+                  <div className="text-xs sm:text-sm text-gray-700 font-medium">
+                    <span className="font-bold text-gray-900">1 Google Review</span> • 100% Recommended
+                  </div>
+                  <div className="h-5 w-px bg-gray-300 hidden sm:block"></div>
+                  <div className="flex items-center gap-1 text-xs sm:text-sm text-emerald-700 font-semibold">
+                    <Clock className="w-4 h-4 text-emerald-600" /> Open 24 Hours
+                  </div>
+                </div>
+
                 {/* Trust Badges */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-                  <div className="bg-white p-3 rounded-lg shadow-md text-center">
-                    <p className="text-2xl font-bold text-amber-600">5000+</p>
-                    <p className="text-xs text-gray-600">Happy Customers</p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
+                  <div className="bg-white/80 p-2.5 rounded-lg shadow-sm text-center border border-amber-100">
+                    <p className="text-xl font-bold text-amber-600">5000+</p>
+                    <p className="text-[11px] text-gray-600">Happy Customers</p>
                   </div>
-                  <div className="bg-white p-3 rounded-lg shadow-md text-center">
-                    <p className="text-2xl font-bold text-amber-600">15+</p>
-                    <p className="text-xs text-gray-600">Years Experience</p>
+                  <div className="bg-white/80 p-2.5 rounded-lg shadow-sm text-center border border-amber-100">
+                    <p className="text-xl font-bold text-amber-600">15+</p>
+                    <p className="text-[11px] text-gray-600">Years Experience</p>
                   </div>
-                  <div className="bg-white p-3 rounded-lg shadow-md text-center">
-                    <p className="text-2xl font-bold text-amber-600">24/7</p>
-                    <p className="text-xs text-gray-600">Service Available</p>
+                  <div className="bg-white/80 p-2.5 rounded-lg shadow-sm text-center border border-amber-100">
+                    <p className="text-xl font-bold text-amber-600">24/7</p>
+                    <p className="text-[11px] text-gray-600">Service Available</p>
                   </div>
-                  <div className="bg-white p-3 rounded-lg shadow-md text-center">
-                    <p className="text-2xl font-bold text-amber-600">4.9★</p>
-                    <p className="text-xs text-gray-600">Google Rating</p>
+                  <div className="bg-white/80 p-2.5 rounded-lg shadow-sm text-center border border-amber-100">
+                    <p className="text-xl font-bold text-amber-600">5.0★</p>
+                    <p className="text-[11px] text-gray-600">Google Rating</p>
                   </div>
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="https://wa.me/918828709945?text=Hi, I need furniture polishing service in Dadar"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-200  shadow-2xl font-bold text-lg"
-                  >
-                    <MessageCircle size={24} />
-                    <span>Book on WhatsApp</span>
-                  </a>
+                <div className="flex flex-wrap gap-3">
                   <a
                     href="tel:+918828709945"
-                    className="flex-1 flex items-center justify-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-8 py-4 rounded-xl hover:from-amber-600 hover:to-orange-700 transition-all duration-200  shadow-2xl font-bold text-lg"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-600/30 transition-all hover:scale-105"
                   >
-                    <Phone size={24} />
-                    <span>Call: 9967834585</span>
+                    <Phone className="w-5 h-5" />
+                    Call: +91 8828709945
+                  </a>
+                  <a
+                    href="https://wa.me/918828709945?text=Hi%20A1%20Furniture%20Polish%20Dadar,%20I%20need%20a%20free%20quote%20for%20furniture%20polish/repair."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition-all hover:scale-105"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    WhatsApp Photos
+                  </a>
+                  <a
+                    href={gmbDirectionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-amber-50 text-gray-800 font-semibold px-5 py-3.5 rounded-xl border border-amber-300 transition-all shadow-sm"
+                  >
+                    <Navigation className="w-4 h-4 text-amber-600" />
+                    Get Directions
                   </a>
                 </div>
               </div>
             </FadeIn>
-            <FadeIn delay={200}>
-              <div className="relative">
-                <OptimizedImage
-                  src="/assets/wooden furniture .webp"
-                  alt="Furniture polishing service in Dadar"
-                  width={1920}
-                  height={1080}
-                  className="rounded-lg shadow-2xl"
-                  priority={true}
-                  sizes={COMMON_SIZES.hero}
-                  objectFit="cover"
-                />
-                <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white p-3 md:p-4 rounded-lg shadow-xl">
-                  <div className="flex items-center space-x-1.5 md:space-x-2 mb-1 md:mb-2">
-                    <div className="flex text-yellow-400">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={16} className="md:w-[18px] md:h-[18px]" fill="currentColor" />
-                      ))}
-                    </div>
-                    <span className="text-base md:text-lg font-bold text-gray-900">4.9/5</span>
+
+            {/* GMB Profile Card (Right Column) */}
+            <FadeIn delay={200} className="lg:col-span-5">
+              <div className="bg-white text-gray-900 rounded-2xl shadow-2xl p-6 sm:p-7 border border-amber-100 relative">
+                <div className="flex items-start justify-between mb-4 border-b border-gray-100 pb-4">
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded inline-block">
+                      Dadar Workshop & Office
+                    </span>
+                    <h3 className="font-bold text-xl text-gray-900 mt-2">
+                      A1 Furniture Polish Service
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Furniture repair shop in Mumbai, Maharashtra
+                    </p>
                   </div>
-                  <p className="text-xs md:text-sm text-gray-600">87+ Happy Customers</p>
+                  <div className="text-right">
+                    <div className="flex items-center text-amber-500 font-bold">
+                      <Star className="w-4 h-4 fill-current mr-1" />
+                      5.0
+                    </div>
+                    <span className="text-xs text-gray-400">1 Google Review</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3 text-sm text-gray-700 mb-6">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+                    <span>
+                      <strong>Address:</strong> Shop No.13, Nikam wadi, Bhavani Shankar Rd, near Cosmos Plaza, Dadar West, Mumbai, Maharashtra 400025
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <span><strong>Hours:</strong> Open 24 Hours (7 Days a Week)</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-5 h-5 text-blue-600 shrink-0" />
+                    <span><strong>Helpline:</strong> +91 8828709945</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 pt-4 border-t border-gray-100 text-xs mb-5">
+                  <div className="bg-amber-50 p-2 rounded-lg flex items-center gap-2 text-amber-900 font-medium">
+                    <Check className="w-4 h-4 text-amber-600 shrink-0" /> Doorstep Service
+                  </div>
+                  <div className="bg-amber-50 p-2 rounded-lg flex items-center gap-2 text-amber-900 font-medium">
+                    <Check className="w-4 h-4 text-amber-600 shrink-0" /> Free Inspection
+                  </div>
+                  <div className="bg-amber-50 p-2 rounded-lg flex items-center gap-2 text-amber-900 font-medium">
+                    <Check className="w-4 h-4 text-amber-600 shrink-0" /> 1-Year Polish Warranty
+                  </div>
+                  <div className="bg-amber-50 p-2 rounded-lg flex items-center gap-2 text-amber-900 font-medium">
+                    <Check className="w-4 h-4 text-amber-600 shrink-0" /> Odourless PU Polish
+                  </div>
+                </div>
+
+                <div className="flex gap-2">
+                  <a
+                    href={gmbDirectionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2.5 px-3 rounded-lg text-xs transition-colors"
+                  >
+                    <Navigation className="w-3.5 h-3.5" />
+                    Directions to Shop No.13
+                  </a>
+                  <a
+                    href="tel:+918828709945"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2.5 px-3 rounded-lg text-xs transition-colors"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    Call Dadar Shop
+                  </a>
                 </div>
               </div>
             </FadeIn>
@@ -1001,7 +1083,7 @@ const DadarLocation = () => {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Contact</h3>
                       <a href="tel:+918828709945" className="text-amber-600 font-semibold hover:text-amber-700 text-lg">
-                        +91 9967834585
+                        +91 8828709945
                       </a>
                     </div>
                     <div>
@@ -1010,10 +1092,10 @@ const DadarLocation = () => {
                     </div>
                     <div className="pt-4">
                       <a
-                        href="https://maps.google.com/?q=Shop+No.13,+Nikam+wadi,+Bhavani+Shankar+Road+Near+Cosmos+Plaza,+Dadar+West,+Mumbai,+Maharashtra+400025"
+                        href={gmbDirectionsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-2 bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition-all duration-200  shadow-lg font-semibold"
+                        className="inline-flex items-center space-x-2 bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition-all duration-200 shadow-lg font-semibold"
                       >
                         <MapPin size={20} />
                         <span>Get Directions</span>
@@ -1053,16 +1135,16 @@ const DadarLocation = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:+918828709945"
-              className="flex items-center justify-center space-x-2 bg-white text-amber-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-200  shadow-lg font-semibold"
+              className="flex items-center justify-center space-x-2 bg-white text-amber-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-200 shadow-lg font-semibold"
             >
               <Phone size={20} />
-              <span>Call: +91 9967834585</span>
+              <span>Call: +91 8828709945</span>
             </a>
             <a
               href="https://wa.me/918828709945?text=Hi, I need furniture polishing service in Dadar"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center space-x-2 bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-all duration-200  shadow-lg font-semibold"
+              className="flex items-center justify-center space-x-2 bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 transition-all duration-200 shadow-lg font-semibold"
             >
               <MessageCircle size={20} />
               <span>WhatsApp Us</span>
